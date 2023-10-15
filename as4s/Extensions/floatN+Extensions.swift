@@ -42,15 +42,4 @@ extension float4 {
         get { float2(x, y) }
         set { x = newValue.x; y = newValue.y}
     }
-    
-    func projectedPoint(uniforms: Uniforms) -> float4 {
-        uniforms.projectionMatrix * uniforms.viewMatrix * uniforms.modelMatrix * self + float4(uniforms.cameraPosition, 0)
-    }
-    
-    func screenPoint(uniforms: Uniforms, frame: NSRect) -> CGPoint {
-        let projected = self.projectedPoint(uniforms: uniforms)
-        let inShader = projected.xy / projected.w
-        let screen = CGPoint(x: frame.width * CGFloat(inShader.x + 1) / 2, y: frame.height * CGFloat(inShader.y + 1) / 2)
-        return screen
-    }
 }

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class Store: Identifiable {
+    var id = UUID()
+    
+    init() {
+    }
+}

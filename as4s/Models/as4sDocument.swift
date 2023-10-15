@@ -9,31 +9,29 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
-    }
+    static let as4Doument = UTType(exportedAs: "jp.rfst.as4s.model")
 }
 
 struct as4sDocument: FileDocument {
-    var text: String
+    var model: AS4Model
 
-    init(text: String = "Hello, world!") {
-        self.text = text
+    init() {
+        self.model = AS4Model()
     }
 
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    static var readableContentTypes: [UTType] { [.as4Doument] }
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
-              let string = String(data: data, encoding: .utf8)
+              let model = try? JSONDecoder().decode(AS4Model.self, from: data)
         else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        text = string
+        self.model = model
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
+        let data = try JSONEncoder().encode(model)
         return .init(regularFileWithContents: data)
     }
 }
