@@ -1,15 +1,31 @@
 //
-//  Store.swift
+//  as4sDocument.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/10/15.
 //
 
-import Foundation
+import SwiftUI
+import Mevic
 
-class Store: Identifiable {
-    var id = UUID()
+final class Store {
+    var model: AS4Model
+    
+    let scene = MVCScene()
+    let overlayScene = MVCOverlayScene()
     
     init() {
+        self.model = AS4Model()
     }
+    
+    init(configuration: ReadConfiguration) throws {
+        guard let data = configuration.file.regularFileContents else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        self.model = try JSONDecoder().decode(AS4Model.self, from: data)
+    }
+}
+
+class SharedStore: ObservableObject {
+    var stores: [Store] = []
 }

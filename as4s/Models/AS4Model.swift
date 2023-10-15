@@ -9,26 +9,24 @@ import Foundation
 
 struct AS4Model: Identifiable {
     var id = UUID()
-    
-    var positions: [float3] = []
+    var points: [AS4Point] = []
 }
 
 
 extension AS4Model: Codable {
     enum CodingKeys: String, CodingKey {
-        case id
-        case positions
+        case id, points
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(UUID.self, forKey: .id)
-        positions = try container.decode([float3].self, forKey: .positions)
+        self.id = try container.decode(UUID.self, forKey: .id)
+        self.points = try container.decode([AS4Point].self, forKey: .points)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(positions, forKey: .positions)
+        try container.encode(points, forKey: .points)
     }
 }

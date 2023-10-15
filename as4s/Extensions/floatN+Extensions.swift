@@ -14,6 +14,9 @@ public typealias float2 = SIMD2<Float>
 public typealias float3 = SIMD3<Float>
 public typealias float4 = SIMD4<Float>
 
+public typealias double2 = SIMD2<Double>
+public typealias double3 = SIMD3<Double>
+
 
 // MARK: - float3 Extensions
 

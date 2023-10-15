@@ -9,16 +9,13 @@ import SwiftUI
 import Mevic
 
 struct ContentView: View {
-    @Binding var document: as4sDocument
-    
-    let scene = MVCScene()
-    let overlayScene = MVCOverlayScene()
+    @EnvironmentObject var store: Store
 
     var body: some View {
         NavigationSplitView {
             addPoint
         } detail: {
-            MVCView(scene: scene, overlayScene: overlayScene)
+            MVCView(scene: store.scene, overlayScene: store.overlayScene)
         }
     }
     
@@ -28,19 +25,18 @@ struct ContentView: View {
             
             let geom = MVCPointGeometry(position: position, color: .init(x: 1, y: 0, z: 0))
             let node = MVCNode(geometry: geom)
-            scene.rootNode.addChildNode(node)
+            store.scene.rootNode.addChildNode(node)
             
             let label = MOSLabelNode("Test", target: position)
             label.fontName = "Arial"
-            overlayScene.addChild(label)
+            store.overlayScene.addChild(label)
             
-            
-            // FIXME: BindingでsceneやoverlaySceneが別物になっているのでは
-            document.model.positions.append(position)
+            store.model.points.append(.init(at: double3(position)))
         }
     }
 }
 
 #Preview {
-    ContentView(document: .constant(as4sDocument()))
+    ContentView()
+        .environmentObject(Store())
 }
