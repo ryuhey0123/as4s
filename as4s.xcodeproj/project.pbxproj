@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		B161BC352ADB958A00AABA48 /* as4sTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC342ADB958A00AABA48 /* as4sTests.swift */; };
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
+		B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B161BC4E2ADB95B500AABA48 /* Mevic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
-				B161BC212ADB958A00AABA48 /* as4sDocument.swift */,
-				B161BC232ADB958A00AABA48 /* ContentView.swift */,
+				B161BC512ADB963800AABA48 /* Models */,
+				B161BC502ADB962A00AABA48 /* Views */,
 				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
 				B161BC272ADB958A00AABA48 /* Info.plist */,
 				B161BC282ADB958A00AABA48 /* as4s.entitlements */,
@@ -134,6 +136,22 @@
 			path = as4sUITests;
 			sourceTree = "<group>";
 		};
+		B161BC502ADB962A00AABA48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B161BC232ADB958A00AABA48 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B161BC512ADB963800AABA48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B161BC212ADB958A00AABA48 /* as4sDocument.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,6 +168,9 @@
 			dependencies = (
 			);
 			name = as4s;
+			packageProductDependencies = (
+				B161BC4E2ADB95B500AABA48 /* Mevic */,
+			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
 			productType = "com.apple.product-type.application";
@@ -222,6 +243,9 @@
 				Base,
 			);
 			mainGroup = B161BC132ADB958900AABA48;
+			packageReferences = (
+				B161BC4D2ADB95B500AABA48 /* XCLocalSwiftPackageReference "../Mevic" */,
+			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -629,6 +653,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B161BC4D2ADB95B500AABA48 /* XCLocalSwiftPackageReference "../Mevic" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Mevic;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B161BC4E2ADB95B500AABA48 /* Mevic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mevic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B161BC142ADB958900AABA48 /* Project object */;
 }
