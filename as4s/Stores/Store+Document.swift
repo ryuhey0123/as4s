@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import Mevic
 
 extension UTType {
     static let as4Doument = UTType(exportedAs: "jp.rfst.as4s.model")
