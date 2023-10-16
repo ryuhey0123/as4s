@@ -21,13 +21,16 @@ enum Actions {
     }
     
     static func leftDrag(store: Store, translation: NSPoint, in view: NSView) {
-        AS4Logger.logAction("Left Drag - Translation:\(translation.debugDescription)")
-        Self.panCamera(store: store, translation: translation, in: view)
     }
     
     static func rightDrag(store: Store, translation: NSPoint, in view: NSView) {
         AS4Logger.logAction("Right Drag - Translation:\(translation.debugDescription)")
-        Self.rotateCamera(store: store, translation: translation, in: view)
+        
+        if NSEvent.modifierFlags.contains(.shift) {
+            Self.panCamera(store: store, translation: translation, in: view)
+        } else {
+            Self.rotateCamera(store: store, translation: translation, in: view)
+        }
     }
     
     static func scrollWheel(store: Store, delta: CGFloat) {
