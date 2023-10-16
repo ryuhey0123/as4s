@@ -16,6 +16,7 @@
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
 		B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B161BC4E2ADB95B500AABA48 /* Mevic */; };
+		B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */; };
 		B1B3121B2ADC1CFE00DC32B9 /* AS4Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */; };
 		B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */; };
 		B1B312212ADC264600DC32B9 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B312202ADC264600DC32B9 /* Actions.swift */; };
@@ -55,6 +56,7 @@
 		B161BC3A2ADB958A00AABA48 /* as4sUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = as4sUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Logger.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Point.swift; sourceTree = "<group>"; };
 		B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Document.swift"; sourceTree = "<group>"; };
 		B1B312202ADC264600DC32B9 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				B161BC502ADB962A00AABA48 /* Views */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
 				B1B312222ADC27B900DC32B9 /* Inputs */,
+				B1A65B8D2ADD367C001A9C7B /* Utilities */,
 				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
 				B161BC282ADB958A00AABA48 /* as4s.entitlements */,
 				B161BC292ADB958A00AABA48 /* Preview Content */,
@@ -167,6 +170,14 @@
 				B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B1A65B8D2ADD367C001A9C7B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		B1B3121F2ADC263C00DC32B9 /* Actions */ = {
@@ -346,6 +357,7 @@
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */,
+				B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

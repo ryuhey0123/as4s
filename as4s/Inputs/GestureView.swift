@@ -16,6 +16,14 @@ struct Gesture: NSViewRepresentable {
         let clickGesture = NSClickGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleClick(_:)))
         view.addGestureRecognizer(clickGesture)
         
+        let leftDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleLeftDrag(_:)))
+        leftDragGesture.buttonMask = 0x1  // Left button
+        view.addGestureRecognizer(leftDragGesture)
+        
+        let rightDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleRightDrag(_:)))
+        rightDragGesture.buttonMask = 0x2  // Right button
+        view.addGestureRecognizer(rightDragGesture)
+        
         return view
     }
     
@@ -36,8 +44,18 @@ struct Gesture: NSViewRepresentable {
         
         @objc func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
             let point = gestureRecognize.location(in: view)
-            let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
-            Actions.addPoint(at: double3(modelPoint), store: store)
+            Actions.tapOrClick(store: store, point: point)
+        }
+        
+        @objc func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
+            let translation = gestureRecognize.translation(in: view)
+            Actions.leftDrag(store: store, translation: translation)
+        }
+        
+        @objc func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
+            let translation = gestureRecognize.translation(in: view)
+            Actions.rightDrag(store: store, translation: translation, in: view)
+            gestureRecognize.setTranslation(.zero, in: view)
         }
     }
 }
