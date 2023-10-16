@@ -17,7 +17,10 @@ struct ContentView: View {
         } detail: {
             ZStack {
                 MVCView(controller: &store.controller)
-                    .onAppear { addCoordinate(scene: store.scene) }
+                    .onAppear {
+                        addCoordinate(scene: store.scene)
+                        constants(scene: store.scene)
+                    }
                 Gesture(store: store)
             }
         }
@@ -40,6 +43,12 @@ struct ContentView: View {
         scene.rootNode.addChildNode(MVCNode(geometry: xLine))
         scene.rootNode.addChildNode(MVCNode(geometry: yLine))
         scene.rootNode.addChildNode(MVCNode(geometry: zLine))
+    }
+    
+    private func constants(scene: MVCScene) {
+        var a = MVCPointGeometry(position: .init(x: 0.5, y: 0, z: 0), color: .init(x: 1, y: 0, z: 0))
+        a.isConstant = true
+        scene.rootNode.addChildNode(MVCNode(geometry: a))
     }
 }
 
