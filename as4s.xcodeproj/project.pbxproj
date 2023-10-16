@@ -18,6 +18,8 @@
 		B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B161BC4E2ADB95B500AABA48 /* Mevic */; };
 		B1B3121B2ADC1CFE00DC32B9 /* AS4Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */; };
 		B1B3121D2ADC24A700DC32B9 /* Store+RFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121C2ADC24A700DC32B9 /* Store+RFDocument.swift */; };
+		B1B312212ADC264600DC32B9 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B312202ADC264600DC32B9 /* Actions.swift */; };
+		B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B312232ADC27D700DC32B9 /* GestureView.swift */; };
 		B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B879292ADBBB2800CCDDA7 /* AS4Model.swift */; };
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Point.swift; sourceTree = "<group>"; };
 		B1B3121C2ADC24A700DC32B9 /* Store+RFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+RFDocument.swift"; sourceTree = "<group>"; };
+		B1B312202ADC264600DC32B9 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		B1B312232ADC27D700DC32B9 /* GestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureView.swift; sourceTree = "<group>"; };
 		B1B879292ADBBB2800CCDDA7 /* AS4Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Model.swift; sourceTree = "<group>"; };
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,10 +114,12 @@
 			children = (
 				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
 				B161BC272ADB958A00AABA48 /* Info.plist */,
+				B1B3121F2ADC263C00DC32B9 /* Actions */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B161BC512ADB963800AABA48 /* Models */,
 				B161BC502ADB962A00AABA48 /* Views */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
+				B1B312222ADC27B900DC32B9 /* Inputs */,
 				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
 				B161BC282ADB958A00AABA48 /* as4s.entitlements */,
 				B161BC292ADB958A00AABA48 /* Preview Content */,
@@ -161,6 +167,22 @@
 				B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B1B3121F2ADC263C00DC32B9 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				B1B312202ADC264600DC32B9 /* Actions.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		B1B312222ADC27B900DC32B9 /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				B1B312232ADC27D700DC32B9 /* GestureView.swift */,
+			);
+			path = Inputs;
 			sourceTree = "<group>";
 		};
 		B1B8792B2ADBBDCC00CCDDA7 /* Extensions */ = {
@@ -317,10 +339,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B3121B2ADC1CFE00DC32B9 /* AS4Point.swift in Sources */,
+				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+RFDocument.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
+				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);
