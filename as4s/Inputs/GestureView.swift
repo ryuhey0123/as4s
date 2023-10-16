@@ -13,6 +13,8 @@ struct Gesture: NSViewRepresentable {
     let store: Store
     
     func makeNSView(context: Context) -> GestureView {
+        view.store = store
+        
         let clickGesture = NSClickGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleClick(_:)))
         view.addGestureRecognizer(clickGesture)
         
@@ -49,12 +51,15 @@ struct Gesture: NSViewRepresentable {
         
         @objc func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
             let translation = gestureRecognize.translation(in: view)
-            Actions.leftDrag(store: store, translation: translation)
+            Actions.leftDrag(store: store, translation: translation, in: view)
+            // 加速度を削除するために逐一0とする
+            gestureRecognize.setTranslation(.zero, in: view)
         }
         
         @objc func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
             let translation = gestureRecognize.translation(in: view)
             Actions.rightDrag(store: store, translation: translation, in: view)
+            // 加速度を削除するために逐一0とする
             gestureRecognize.setTranslation(.zero, in: view)
         }
     }
@@ -64,5 +69,9 @@ struct Gesture: NSViewRepresentable {
 // MARK: - NSEvents
 
 class GestureView : NSView {
-
+    var store: Store?
+    
+    override func scrollWheel(with event: NSEvent) {
+        Actions.scrollWheel(store: store!, delta: event.deltaY)
+    }
 }

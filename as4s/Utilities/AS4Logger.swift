@@ -6,6 +6,7 @@
 //
 
 import os
+import Foundation
 
 class AS4Logger {
     static let actionLogger = Logger(subsystem: "jp.rfst.as4s", category: "Actions")
