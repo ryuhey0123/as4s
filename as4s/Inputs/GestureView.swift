@@ -18,9 +18,9 @@ struct Gesture: NSViewRepresentable {
         let clickGesture = NSClickGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleClick(_:)))
         view.addGestureRecognizer(clickGesture)
         
-        let leftDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleLeftDrag(_:)))
-        leftDragGesture.buttonMask = 0x1  // Left button
-        view.addGestureRecognizer(leftDragGesture)
+//        let leftDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleLeftDrag(_:)))
+//        leftDragGesture.buttonMask = 0x1  // Left button
+//        view.addGestureRecognizer(leftDragGesture)
         
         let rightDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleRightDrag(_:)))
         rightDragGesture.buttonMask = 0x2  // Right button
@@ -49,12 +49,12 @@ struct Gesture: NSViewRepresentable {
             Actions.tapOrClick(store: store, point: point)
         }
         
-        @objc func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
-            let translation = gestureRecognize.translation(in: view)
-            Actions.leftDrag(store: store, translation: translation, in: view)
-            // 加速度を削除するために逐一0とする
-            gestureRecognize.setTranslation(.zero, in: view)
-        }
+//        @objc func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
+//            let translation = gestureRecognize.translation(in: view)
+//            Actions.leftDrag(store: store, translation: translation, in: view)
+//            // 加速度を削除するために逐一0とする
+//            gestureRecognize.setTranslation(.zero, in: view)
+//        }
         
         @objc func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
             let translation = gestureRecognize.translation(in: view)
