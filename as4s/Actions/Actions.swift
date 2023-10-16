@@ -66,8 +66,8 @@ enum Actions {
     
     private static func panCamera(store: Store, translation: NSPoint, in view: NSView) {
         var translation = float2(translation)
-        translation.x /= Float(view.frame.size.width)
-        translation.y /= Float(view.frame.size.height)
+        translation.x /= Float(view.frame.size.width) / 2
+        translation.y /= Float(view.frame.size.height) / 2
         store.controller.scene.camera.pan(translation)
         
         AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
