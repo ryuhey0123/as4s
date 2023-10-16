@@ -20,6 +20,7 @@ struct ContentView: View {
                     .onAppear {
                         addCoordinate(scene: store.scene)
                         constants(scene: store.scene)
+                        addSelectionReactangle(scene: store.scene)
                     }
                 Gesture(store: store)
             }
@@ -49,6 +50,27 @@ struct ContentView: View {
         var a = MVCPointGeometry(position: .init(x: 0.5, y: 0, z: 0), color: .init(x: 1, y: 0, z: 0))
         a.isConstant = true
         scene.rootNode.addChildNode(MVCNode(geometry: a))
+    }
+    
+    private func addSelectionReactangle(scene: MVCScene) {
+        let leftTop = float3(x: 0, y: 0.5, z: 0)
+        let rightBottom = float3(x: 0.5, y: 0, z: 0)
+        let color = float3(x: 1, y: 1, z: 0)
+        
+        var geometry = MVCPlaneGeometry(positions: [
+            .init(x: leftTop.x, y: rightBottom.y, z: 0),
+            .init(x: leftTop.x, y: leftTop.y, z: 0),
+            .init(x: rightBottom.x, y: rightBottom.y, z: 0),
+            .init(x: rightBottom.x, y: rightBottom.y, z: 0),
+            .init(x: leftTop.x, y: leftTop.y, z: 0),
+            .init(x: rightBottom.x, y: leftTop.y, z: 0)
+        ], colors: [float3].init(repeating: color, count: 6))
+        
+        geometry.isConstant = true
+        
+        let node = MVCNode(geometry: geometry)
+        
+        scene.rootNode.addChildNode(node)
     }
 }
 
