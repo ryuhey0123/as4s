@@ -16,6 +16,7 @@
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
 		B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B161BC4E2ADB95B500AABA48 /* Mevic */; };
+		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
 		B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */; };
 		B1B3121B2ADC1CFE00DC32B9 /* AS4Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* AS4Point.swift */; };
 		B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */; };
@@ -71,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B161BC4F2ADB95B500AABA48 /* Mevic in Frameworks */,
+				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +233,7 @@
 			name = as4s;
 			packageProductDependencies = (
 				B161BC4E2ADB95B500AABA48 /* Mevic */,
+				B17FE6502ADE82E5009A9134 /* Mevic */,
 			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
@@ -305,7 +308,7 @@
 			);
 			mainGroup = B161BC132ADB958900AABA48;
 			packageReferences = (
-				B161BC4D2ADB95B500AABA48 /* XCLocalSwiftPackageReference "../Mevic" */,
+				B17FE64F2ADE82E5009A9134 /* XCLocalSwiftPackageReference "../Mevic" */,
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
@@ -723,7 +726,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		B161BC4D2ADB95B500AABA48 /* XCLocalSwiftPackageReference "../Mevic" */ = {
+		B17FE64F2ADE82E5009A9134 /* XCLocalSwiftPackageReference "../Mevic" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Mevic;
 		};
@@ -731,6 +734,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		B161BC4E2ADB95B500AABA48 /* Mevic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Mevic;
+		};
+		B17FE6502ADE82E5009A9134 /* Mevic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Mevic;
 		};

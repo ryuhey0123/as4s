@@ -61,7 +61,7 @@ enum Actions {
         let node = MVCNode(geometry: geom)
         store.scene.rootNode.addChildNode(node)
         
-        let label = MOSLabelNode("Test", target: float3(position))
+        let label = MVCLabelNode("Test", target: float3(position))
         label.fontName = "Arial"
         store.overlayScene.addChild(label)
         

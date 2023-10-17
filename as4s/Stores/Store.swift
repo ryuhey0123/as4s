@@ -14,11 +14,11 @@ final class Store {
     let scene = MVCScene()
     let overlayScene = MVCOverlayScene()
     
-    var controller: GraphicController
+    var controller: MVCGraphicController
     
     init() {
         self.model = AS4Model()
-        self.controller = GraphicController(scene: scene, overlayScene: overlayScene)
+        self.controller = MVCGraphicController(scene: scene, overlayScene: overlayScene)
     }
     
     init(configuration: ReadConfiguration) throws {
@@ -26,7 +26,7 @@ final class Store {
             throw CocoaError(.fileReadCorruptFile)
         }
         self.model = try JSONDecoder().decode(AS4Model.self, from: data)
-        self.controller = GraphicController(scene: scene, overlayScene: overlayScene)
+        self.controller = MVCGraphicController(scene: scene, overlayScene: overlayScene)
     }
 }
 
