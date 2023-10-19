@@ -16,7 +16,7 @@ struct ContentView: View {
             addPoint
         } detail: {
             ZStack {
-                MVCView(controller: &store.controller)
+                MVCView(controller: store.controller)
                     .onAppear {
                         addCoordinate(scene: store.scene)
                         constants(scene: store.scene)
@@ -32,18 +32,9 @@ struct ContentView: View {
     }
     
     private func addCoordinate(scene: MVCScene) {
-        let xLine = MVCLineGeometry(
-            positions: [.init(x: 0, y: 0, z: 0), .init(x: 1, y: 0, z: 0)],
-            colors: [.init(x: 1, y: 0, z: 0), .init(x: 1, y: 0, z: 0)])
-        let yLine = MVCLineGeometry(
-            positions: [.init(x: 0, y: 0, z: 0), .init(x: 0, y: 1, z: 0)],
-            colors: [.init(x: 0, y: 1, z: 0), .init(x: 0, y: 1, z: 0)])
-        let zLine = MVCLineGeometry(
-            positions: [.init(x: 0, y: 0, z: 0), .init(x: 0, y: 0, z: 1)],
-            colors: [.init(x: 0, y: 0, z: 1), .init(x: 0, y: 0, z: 1)])
-        scene.rootNode.addChildNode(MVCNode(geometry: xLine))
-        scene.rootNode.addChildNode(MVCNode(geometry: yLine))
-        scene.rootNode.addChildNode(MVCNode(geometry: zLine))
+        scene.rootNode.addChildNode(MVCNode(geometry: MVCLineGeometry.x))
+        scene.rootNode.addChildNode(MVCNode(geometry: MVCLineGeometry.y))
+        scene.rootNode.addChildNode(MVCNode(geometry: MVCLineGeometry.z))
     }
     
     private func constants(scene: MVCScene) {
@@ -53,7 +44,7 @@ struct ContentView: View {
     }
     
     private func addSelectionReactangle(scene: MVCScene) {
-        scene.rootNode.addChildNode(MVCNode(geometry: MVCEnclosedRectGeometry.test))
+        scene.rootNode.addChildNode(MVCNode(geometry: MVCThickPolylineGeometry.test))
     }
 }
 
