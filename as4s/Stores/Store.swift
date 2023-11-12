@@ -14,7 +14,7 @@ final class Store {
     let scene = MVCScene()
     let overlayScene = MVCOverlayScene()
     
-    var controller: MVCGraphicController
+    let controller: MVCGraphicController
     
     init() {
         self.model = AS4Model()

@@ -20,7 +20,6 @@ struct ContentView: View {
                     .onAppear {
                         addCoordinate(scene: store.scene)
                         constants(scene: store.scene)
-                        addSelectionReactangle(scene: store.scene)
                     }
                 Gesture(store: store)
             }
@@ -41,10 +40,6 @@ struct ContentView: View {
         var a = MVCPointGeometry(position: .init(x: 0.5, y: 0, z: 0), color: .init(x: 1, y: 0, z: 0))
         a.isConstant = true
         scene.rootNode.addChildNode(MVCNode(geometry: a))
-    }
-    
-    private func addSelectionReactangle(scene: MVCScene) {
-        scene.rootNode.addChildNode(MVCNode(geometry: MVCThickPolylineGeometry.test))
     }
 }
 
