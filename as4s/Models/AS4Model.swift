@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Mevic
 
 struct AS4Model: Identifiable {
 
@@ -13,8 +14,9 @@ struct AS4Model: Identifiable {
     var id = UUID()
     var nodes: [AS4Node] = []
 
-    mutating func append(_ node: AS4Node) {
+    mutating func append(_ node: AS4Node, layer: MVCLayer) {
         nodes.append(node)
+        layer.append(geometry: node.geometry)
     }
 }
 

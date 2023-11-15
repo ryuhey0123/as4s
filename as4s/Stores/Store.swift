@@ -39,21 +39,6 @@ final class Store {
         scene.append(layer: modelLayer!)
         scene.append(layer: captionLayer!)
     }
-
-    func append(_ node: AS4Node) {
-        guard let modelLayer = modelLayer else {
-            fatalError("Not exist model layer.")
-        }
-        model.append(node)
-        modelLayer.append(geometry: node.geometry)
-    }
-
-    func append(_ line: MVCLineGeometry, layer: String) {
-        guard let layer = scene.layers.first(where: { $0.label == layer }) else {
-            fatalError("Not exist layer.")
-        }
-        layer.append(geometry: line)
-    }
 }
 
 class SharedStore: ObservableObject {

@@ -53,7 +53,7 @@ enum Actions {
     static func addNode(at position: double3, store: Store) {
         let id = store.model.nodes.count + 1
         let node = AS4Node(id: id, position: position)
-        store.append(node)
+        store.model.append(node, layer: store.modelLayer!)
 
         AS4Logger.logAction("Add Point - \(node.position.debugDescription)")
     }
@@ -62,9 +62,9 @@ enum Actions {
     // MARK: - Other Geometry
 
     static func addCoordinate(store: Store) {
-        store.append(MVCLineGeometry.x, layer: "Caption")
-        store.append(MVCLineGeometry.y, layer: "Caption")
-        store.append(MVCLineGeometry.z, layer: "Caption")
+        store.captionLayer?.append(geometry: MVCLineGeometry.x)
+        store.captionLayer?.append(geometry: MVCLineGeometry.y)
+        store.captionLayer?.append(geometry: MVCLineGeometry.z)
 
         AS4Logger.logAction("Add Coordinate")
     }
