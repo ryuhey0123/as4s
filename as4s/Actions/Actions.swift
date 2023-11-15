@@ -15,7 +15,6 @@ enum Actions {
     static func tapOrClick(store: Store, point: NSPoint) {
         AS4Logger.logAction("Tap or Click - Point:\(point.debugDescription)")
         
-        // TODO: don't work
         let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
         Actions.addNode(at: double3(modelPoint), store: store)
     }
