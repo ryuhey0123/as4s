@@ -14,9 +14,13 @@ struct AS4Model: Identifiable {
     var id = UUID()
     var nodes: [AS4Node] = []
 
-    mutating func append(_ node: AS4Node, layer: MVCLayer) {
+    mutating func append(_ node: AS4Node, layer: MVCLayer, overlayLayer: MVCOverlayLayer) {
         nodes.append(node)
         layer.append(geometry: node.geometry)
+        
+        let label = MVCLabelNode(String(node.id), target: float3(node.position))
+        label.fontName = "Arial"
+        overlayLayer.append(node: label)
     }
 }
 

@@ -16,6 +16,8 @@ final class Store {
 
     var modelLayer: MVCLayer?
     var captionLayer: MVCLayer?
+    
+    var nodeLabel: MVCOverlayLayer?
 
     let controller: MVCGraphicController
 
@@ -38,6 +40,10 @@ final class Store {
 
         scene.append(layer: modelLayer!)
         scene.append(layer: captionLayer!)
+        
+        nodeLabel = MVCOverlayLayer("Node")
+        
+        overlayScene.append(layer: nodeLabel!)
     }
 }
 

@@ -53,7 +53,7 @@ enum Actions {
     static func addNode(at position: double3, store: Store) {
         let id = store.model.nodes.count + 1
         let node = AS4Node(id: id, position: position)
-        store.model.append(node, layer: store.modelLayer!)
+        store.model.append(node, layer: store.modelLayer!, overlayLayer: store.nodeLabel!)
 
         AS4Logger.logAction("Add Point - \(node.position.debugDescription)")
     }
