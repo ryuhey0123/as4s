@@ -8,25 +8,32 @@
 import Foundation
 
 struct AS4Model: Identifiable {
+
+    // Codable
     var id = UUID()
-    var points: [AS4Point] = []
+    var nodes: [AS4Node] = []
+
+    mutating func append(_ node: AS4Node) {
+        nodes.append(node)
+    }
 }
 
-
 extension AS4Model: Codable {
+
     enum CodingKeys: String, CodingKey {
-        case id, points
+        case id
+        case nodes
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
-        self.points = try container.decode([AS4Point].self, forKey: .points)
+        self.nodes = try container.decode([AS4Node].self, forKey: .nodes)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(points, forKey: .points)
+        try container.encode(nodes, forKey: .nodes)
     }
 }

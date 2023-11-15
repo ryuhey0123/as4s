@@ -17,7 +17,7 @@ enum Actions {
         
         // exsample
         let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
-        Actions.addPoint(at: double3(modelPoint), store: store)
+        Actions.addNode(at: double3(modelPoint), store: store)
     }
     
     static func leftDrag(store: Store, translation: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {
@@ -51,24 +51,12 @@ enum Actions {
     
     // MARK: - Geometry Controll
     
-    static func addPoint(store: Store) {
-        let position: double3 = .random(in: -1...1)
-        addPoint(at: position, store: store)
-    }
-    
-    static func addPoint(at position: double3, store: Store) {
-        let geom = MVCPointGeometry(position: float3(position), color: .init(x: 1, y: 0, z: 0))
-        let node = MVCNode(geometry: geom)
-        store.scene.rootNode.addChildNode(node)
-        
-        let label = MVCLabelNode(String(geom.id), target: float3(position))
-        label.fontName = "Arial"
-        store.overlayScene.addChild(label)
-        
-        let point = AS4Point(at: position)
-        store.model.points.append(point)
-        
-        AS4Logger.logAction("Add Point - \(point.position.debugDescription)")
+    static func addNode(at position: double3, store: Store) {
+        let id = store.model.nodes.count + 1
+        let node = AS4Node(id: id, position: position)
+        store.append(node)
+
+        AS4Logger.logAction("Add Point - \(node.position.debugDescription)")
     }
     
     
