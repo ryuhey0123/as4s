@@ -17,13 +17,13 @@ struct ContentView: View {
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
-                    .onAppear {
-                        store.updateView()
-
-                        Actions.addCoordinate(store: store)
-                    }
                 Gesture(store: store)
             }
+        }
+        .onAppear {
+            store.updateView()
+            
+            Actions.addCoordinate(store: store)
         }
     }
     
