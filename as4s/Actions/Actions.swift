@@ -15,7 +15,7 @@ enum Actions {
     static func tapOrClick(store: Store, point: NSPoint) {
         AS4Logger.logAction("Tap or Click - Point:\(point.debugDescription)")
         
-        // exsample
+        // TODO: don't work
         let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
         Actions.addNode(at: double3(modelPoint), store: store)
     }
@@ -34,8 +34,8 @@ enum Actions {
     }
     
     static func rightDrag(store: Store, translation: NSPoint, in view: NSView) {
-        AS4Logger.logAction("Right Drag - Translation:\(translation.debugDescription)")
-        
+        // AS4Logger.logAction("Right Drag - Translation:\(translation.debugDescription)")
+
         if NSEvent.modifierFlags.contains(.shift) {
             Self.panCamera(store: store, translation: translation, in: view)
         } else {
@@ -44,7 +44,7 @@ enum Actions {
     }
     
     static func scrollWheel(store: Store, delta: CGFloat) {
-        AS4Logger.logAction("Scroll Wheel - Delta:\(delta.description)")
+        // AS4Logger.logAction("Scroll Wheel - Delta:\(delta.description)")
         Self.zoomCamera(store: store, delta: delta)
     }
     
@@ -58,7 +58,18 @@ enum Actions {
 
         AS4Logger.logAction("Add Point - \(node.position.debugDescription)")
     }
-    
+
+
+    // MARK: - Other Geometry
+
+    static func addCoordinate(store: Store) {
+        store.append(MVCLineGeometry.x, layer: "Caption")
+        store.append(MVCLineGeometry.y, layer: "Caption")
+        store.append(MVCLineGeometry.z, layer: "Caption")
+
+        AS4Logger.logAction("Add Coordinate")
+    }
+
     
     // MARK: - Selection Controll
     
@@ -90,7 +101,7 @@ enum Actions {
         translation.y /= Float(view.frame.size.height) / 2
         store.controller.scene.camera.pan(translation)
         
-        AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
+        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
     
     private static func rotateCamera(store: Store, translation: NSPoint, in view: NSView) {
@@ -99,7 +110,7 @@ enum Actions {
         translation.y /= Float(view.frame.size.height) / (2 * .pi)
         store.controller.scene.camera.rotate(translation)
         
-        AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
+        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
     
     private static func zoomCamera(store: Store, delta: CGFloat) {
@@ -107,6 +118,6 @@ enum Actions {
         delta *= 0.05
         store.controller.scene.camera.zoom(delta)
         
-        AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
+        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
 }
