@@ -37,7 +37,7 @@ final class AS4Node: Identifiable {
         self.condition = condition
         
         self.geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color.node.nomal))
-        self.idLabel = MVCLabelNode(String(id), target: float3(position))
+        self.idLabel = MVCLabelNode(String(id), target: geometry)
     }
     
     func isContain(in selectionBox: CGRect, renderer: MVCRenderer) -> Bool {

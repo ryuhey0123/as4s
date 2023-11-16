@@ -18,9 +18,9 @@ struct AS4Model: Identifiable {
         nodes.append(node)
         layer.append(geometry: node.geometry)
         
-        let label = MVCLabelNode(String(node.id), target: float3(node.position))
+        let label = MVCLabelNode(String(node.id), target: node.geometry)
         label.fontName = "Arial"
-        overlayLayer.append(node: label)
+        overlayLayer.addChild(label)
     }
 }
 
