@@ -29,15 +29,13 @@ enum Actions {
             case .changed:
                 resizeSelectionRectangle(store: store, at: point)
             case .ended:
-                endSelectionRectangle(store: store)
+                endSelectionRectangle(store: store, at: point)
             default:
                 return
         }
     }
     
     static func rightDrag(store: Store, translation: NSPoint, in view: NSView) {
-        // AS4Logger.logAction("Right Drag - Translation:\(translation.debugDescription)")
-
         if NSEvent.modifierFlags.contains(.shift) {
             Self.panCamera(store: store, translation: translation, in: view)
         } else {
@@ -46,7 +44,6 @@ enum Actions {
     }
     
     static func scrollWheel(store: Store, delta: CGFloat) {
-        // AS4Logger.logAction("Scroll Wheel - Delta:\(delta.description)")
         Self.zoomCamera(store: store, delta: delta)
     }
     
@@ -76,7 +73,13 @@ enum Actions {
     // MARK: - Selection Controll
     
     static func beganSelectionRectangle(store: Store, at point: NSPoint) {
-        store.selectionBox.run(SKAction.fadeIn(withDuration: 0.01))
+        // FadeOutが終わらないうちにBeganした場合、残っているアクションを削除し初期化
+        store.selectionBox.removeAllActions()
+        store.selectionBox.removeRect()
+        
+        // FadeOutと逆のアクションをして表示。必要なのか？
+        store.selectionBox.run(SKAction.fadeIn(withDuration: 0))
+        
         store.selectionBox.p1 = point
         
         AS4Logger.logAction("Selection Began - \(point.debugDescription)")
@@ -84,43 +87,33 @@ enum Actions {
     
     static func resizeSelectionRectangle(store: Store, at point: NSPoint) {
         store.selectionBox.p2 = point
-        
-        AS4Logger.logAction("Selection Change - \(point.debugDescription)")
     }
     
-    static func endSelectionRectangle(store: Store) {
-        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.2))
-        store.selectionBox.removeRect()
+    static func endSelectionRectangle(store: Store, at point: NSPoint) {
+        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.3))
         
-        AS4Logger.logAction("Selection Ended")
+        AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
     }
     
     
     // MARK: - Camera Controll
     
     private static func panCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation)
+        var translation = float2(translation) * Config.CameraControllSensitivity.pan
         translation.x /= Float(view.frame.size.width) / 2
         translation.y /= Float(view.frame.size.height) / 2
         store.controller.scene.camera.pan(translation)
-        
-        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
     
     private static func rotateCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation)
+        var translation = float2(translation) * Config.CameraControllSensitivity.rotate
         translation.x /= Float(view.frame.size.width) / (2 * .pi)
         translation.y /= Float(view.frame.size.height) / (2 * .pi)
         store.controller.scene.camera.rotate(translation)
-        
-        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
     
     private static func zoomCamera(store: Store, delta: CGFloat) {
-        var delta = Float(delta)
-        delta *= 0.05
+        let delta = Float(delta) * 0.05 * Config.CameraControllSensitivity.zoom
         store.controller.scene.camera.zoom(delta)
-        
-        // AS4Logger.logAction("Update camera: \(store.controller.scene.camera.transform)")
     }
 }
