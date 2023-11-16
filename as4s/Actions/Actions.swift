@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SpriteKit
 import Mevic
 
 enum Actions {
@@ -22,11 +23,11 @@ enum Actions {
     static func leftDrag(store: Store, translation: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {
         switch state {
             case .began:
-                initSelectionRectangle(store: store, at: translation)
+                beganSelectionRectangle(store: store, at: translation)
             case .changed:
                 resizeSelectionRectangle(store: store, at: translation)
             case .ended:
-                resetSelectionRectangle(store: store)
+                endSelectionRectangle(store: store)
             default:
                 return
         }
@@ -72,21 +73,23 @@ enum Actions {
     
     // MARK: - Selection Controll
     
-    static func initSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.overlayScene.selectionRectangle.leftTop = point
+    static func beganSelectionRectangle(store: Store, at point: NSPoint) {
+//        store.selectionBox.run(SKAction.fadeIn(withDuration: 0.01))
+        store.selectionBox.leftTop = point
         
         AS4Logger.logAction("Selection Began - \(point.debugDescription)")
     }
     
     static func resizeSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.overlayScene.selectionRectangle.rightBottom?.x += point.x
-//        store.overlayScene.selectionRectangle.rightBottom?.y += point.y
+//        store.selectionBox.isHidden = false
+        store.selectionBox.rightBottom = point
         
         AS4Logger.logAction("Selection Change - \(point.debugDescription)")
     }
     
-    static func resetSelectionRectangle(store: Store) {
-//        store.overlayScene.selectionRectangle.reset()
+    static func endSelectionRectangle(store: Store) {
+//        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.2))
+        store.selectionBox.removeRect()
         
         AS4Logger.logAction("Selection Ended")
     }

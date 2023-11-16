@@ -13,14 +13,16 @@ final class Store {
     
     let scene: MVCScene = MVCScene()
     let overlayScene = MVCOverlayScene()
-
+    
     var modelLayer: MVCLayer?
     var captionLayer: MVCLayer?
     
     var nodeLabel: MVCOverlayLayer?
-
+    
+    var selectionBox = STKSelectionBoxNode()
+    
     let controller: MVCGraphicController
-
+    
     init() {
         model = AS4Model()
         controller = MVCGraphicController(scene: scene, overlayScene: overlayScene)
@@ -37,13 +39,19 @@ final class Store {
     func updateView() {
         modelLayer = MVCLayer("Model")
         captionLayer = MVCLayer("Caption")
-
         scene.append(layer: modelLayer!)
         scene.append(layer: captionLayer!)
         
         nodeLabel = MVCOverlayLayer("Node")
-        
         overlayScene.append(layer: nodeLabel!)
+        
+        selectionBox.isHidden = false
+        selectionBox.leftTop = .init(x: 20, y: 20)
+        selectionBox.rightBottom = .init(x: 100, y: 100)
+        
+        selectionBox.fillColor = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+        selectionBox.strokeColor = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+        overlayScene.addChild(selectionBox)
     }
 }
 
