@@ -40,9 +40,8 @@ final class AS4Node: Identifiable {
         self.idLabel = MVCLabelNode(String(id), target: geometry)
     }
     
-    func isContain(in selectionBox: CGRect, renderer: MVCRenderer) -> Bool {
-        let projectPoint = renderer.projectPoint(float3(position))
-        let pp = CGPoint(x: CGFloat(projectPoint.x), y: CGFloat(projectPoint.y))
+    func isContain(in selectionBox: CGRect) -> Bool {
+        let pp = geometry.screenPoint
         return (pp.x > selectionBox.minX) && (pp.y > selectionBox.minY) && (pp.x < selectionBox.maxX) && (pp.y < selectionBox.maxY)
     }
 }
