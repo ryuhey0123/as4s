@@ -99,21 +99,21 @@ enum Actions {
     // MARK: - Camera Controll
     
     private static func panCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * Config.CameraControllSensitivity.pan
+        var translation = float2(translation) * Config.cameraControllSensitivity.pan
         translation.x /= Float(view.frame.size.width) / 2
         translation.y /= Float(view.frame.size.height) / 2
         store.controller.scene.camera.pan(translation)
     }
     
     private static func rotateCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * Config.CameraControllSensitivity.rotate
+        var translation = float2(translation) * Config.cameraControllSensitivity.rotate
         translation.x /= Float(view.frame.size.width) / (2 * .pi)
         translation.y /= Float(view.frame.size.height) / (2 * .pi)
         store.controller.scene.camera.rotate(translation)
     }
     
     private static func zoomCamera(store: Store, delta: CGFloat) {
-        let delta = Float(delta) * 0.05 * Config.CameraControllSensitivity.zoom
+        let delta = Float(delta) * 0.05 * Config.cameraControllSensitivity.zoom
         store.controller.scene.camera.zoom(delta)
     }
 }

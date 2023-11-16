@@ -35,14 +35,15 @@ enum Config {
         
         static let cursor = NSColor.white
         
-        static let selectionBox_fill = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.3)
-        static let selectionBox_stroke = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.8)
+        enum selectionBox {
+            static let fill = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.3)
+            static let stroke = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.8)
+        }
     }
     
-    enum CameraControllSensitivity {
+    enum cameraControllSensitivity {
         static let rotate: Float = 1.0
         static let pan: Float = 1.0
         static let zoom: Float = 1.0
     }
 }
-
