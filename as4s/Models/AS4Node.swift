@@ -24,7 +24,7 @@ struct AS4Node: Identifiable {
         self.position = position
         self.condition = condition
         
-        self.geometry = MVCPointGeometry(position: float3(position), color: .init(x: 1, y: 0, z: 0))
+        self.geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(x: 1, y: 0, z: 0))
         self.idLabel = MVCLabelNode(String(id), target: float3(position))
     }
 }
