@@ -23,9 +23,6 @@ enum Config {
     enum color {
         static let background = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
         
-        static let selected_point = Color(NSColor.orange)
-        static let selected_line = Color(NSColor.orange)
-        
         static let beam = Color(NSColor.cyan)
         static let truss = Color(NSColor.red)
         static let plate = Color(NSColor.blue)
@@ -34,6 +31,11 @@ enum Config {
         static let beam_label = Color.gray
         
         static let cursor = NSColor.white
+        
+        enum node {
+            static let nomal: Color = .white
+            static let selected: Color = .orange
+        }
         
         enum selectionBox {
             static let fill = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.3)

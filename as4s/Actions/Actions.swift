@@ -92,6 +92,10 @@ enum Actions {
     static func endSelectionRectangle(store: Store, at point: NSPoint) {
         store.selectionBox.run(SKAction.fadeOut(withDuration: 0.3))
         
+        if let rect = store.selectionBox.rect {
+            store.model.nodes.filter { $0.isContain(in: rect, renderer: store.controller.renderer) }.forEach { $0.isSelected.toggle() }
+        }
+        
         AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
     }
     

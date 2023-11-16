@@ -8,7 +8,7 @@
 import Foundation
 import Mevic
 
-struct AS4Node: Identifiable {
+final class AS4Node: Identifiable {
 
     // Codable
     var id: Int
@@ -16,16 +16,34 @@ struct AS4Node: Identifiable {
     var condition: Condition
     
     // Uncodable
-    var geometry: MVCGeometry
+    var geometry: MVCPointGeometry
     var idLabel: MVCLabelNode
+    
+    var isHidden: Bool = false {
+        didSet {
+            geometry.color = isHidden ? .zero : .one
+        }
+    }
+    
+    var isSelected: Bool = false {
+        didSet {
+            geometry.color = .init(isSelected ? Config.color.node.selected : Config.color.node.nomal)
+        }
+    }
     
     init(id: Int, position: double3, condition: Condition = .free) {
         self.id = id
         self.position = position
         self.condition = condition
         
-        self.geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(x: 1, y: 0, z: 0))
+        self.geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color.node.nomal))
         self.idLabel = MVCLabelNode(String(id), target: float3(position))
+    }
+    
+    func isContain(in selectionBox: CGRect, renderer: MVCRenderer) -> Bool {
+        let projectPoint = renderer.projectPoint(float3(position))
+        let pp = CGPoint(x: CGFloat(projectPoint.x), y: CGFloat(projectPoint.y))
+        return (pp.x > selectionBox.minX) && (pp.y > selectionBox.minY) && (pp.x < selectionBox.maxX) && (pp.y < selectionBox.maxY)
     }
 }
 
@@ -37,7 +55,7 @@ extension AS4Node: Codable {
         case condition
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let id = try values.decode(Int.self, forKey: .id)

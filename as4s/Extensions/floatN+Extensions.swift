@@ -7,6 +7,7 @@
 
 import simd
 import Foundation
+import SwiftUI
 
 // MARK: - Typealias
 
@@ -29,6 +30,10 @@ extension float3 {
     var xy: float2 {
         get { float2(x, y) }
         set { x = newValue.x; y = newValue.y}
+    }
+    
+    init(_ color: Color) {
+        self.init(x: Float(color.rgba.red), y: Float(color.rgba.green), z: Float(color.rgba.blue))
     }
 }
 
