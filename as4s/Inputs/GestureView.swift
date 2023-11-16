@@ -50,8 +50,8 @@ struct Gesture: NSViewRepresentable {
         }
         
         @objc func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
-            let translation = gestureRecognize.translation(in: view)
-            Actions.leftDrag(store: store, translation: translation, in: view, state: gestureRecognize.state)
+            let location = gestureRecognize.location(in: view)
+            Actions.leftDrag(store: store, location: location, in: view, state: gestureRecognize.state)
         }
         
         @objc func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {

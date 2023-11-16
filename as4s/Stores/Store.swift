@@ -45,12 +45,8 @@ final class Store {
         nodeLabel = MVCOverlayLayer("Node")
         overlayScene.append(layer: nodeLabel!)
         
-        selectionBox.isHidden = false
-        selectionBox.leftTop = .init(x: 20, y: 20)
-        selectionBox.rightBottom = .init(x: 100, y: 100)
-        
-        selectionBox.fillColor = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-        selectionBox.strokeColor = NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+        selectionBox.fillColor = Config.color.selectionBox_fill
+        selectionBox.strokeColor = Config.color.selectionBox_stroke
         overlayScene.addChild(selectionBox)
     }
 }

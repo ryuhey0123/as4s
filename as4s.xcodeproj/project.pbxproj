@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1372C7F2B05CE65000293D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* Config.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1372C7E2B05CE65000293D4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */,
+				B1372C7E2B05CE65000293D4 /* Config.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
+				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,

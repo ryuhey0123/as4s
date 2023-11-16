@@ -20,12 +20,14 @@ enum Actions {
         Actions.addNode(at: double3(modelPoint), store: store)
     }
     
-    static func leftDrag(store: Store, translation: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {
+    static func leftDrag(store: Store, location: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {
+        let point: NSPoint = .init(x: location.x * 2, y: location.y * 2)
+        
         switch state {
             case .began:
-                beganSelectionRectangle(store: store, at: translation)
+                beganSelectionRectangle(store: store, at: point)
             case .changed:
-                resizeSelectionRectangle(store: store, at: translation)
+                resizeSelectionRectangle(store: store, at: point)
             case .ended:
                 endSelectionRectangle(store: store)
             default:
@@ -74,21 +76,20 @@ enum Actions {
     // MARK: - Selection Controll
     
     static func beganSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.selectionBox.run(SKAction.fadeIn(withDuration: 0.01))
-        store.selectionBox.leftTop = point
+        store.selectionBox.run(SKAction.fadeIn(withDuration: 0.01))
+        store.selectionBox.p1 = point
         
         AS4Logger.logAction("Selection Began - \(point.debugDescription)")
     }
     
     static func resizeSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.selectionBox.isHidden = false
-        store.selectionBox.rightBottom = point
+        store.selectionBox.p2 = point
         
         AS4Logger.logAction("Selection Change - \(point.debugDescription)")
     }
     
     static func endSelectionRectangle(store: Store) {
-//        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.2))
+        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.2))
         store.selectionBox.removeRect()
         
         AS4Logger.logAction("Selection Ended")
