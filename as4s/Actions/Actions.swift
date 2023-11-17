@@ -48,10 +48,9 @@ enum Actions {
     }
     
     static func mouseMoving(store: Store, location: NSPoint) {
-        let p: NSPoint = .init(x: location.x * 2, y: location.y * 2)
-        let r = Config.cursor.snapRadius
+        let point: NSPoint = .init(x: location.x * 2, y: location.y * 2)
         
-        store.cursor.position = store.model.nodes.lazy.map { $0.screenPoint }.filter { $0.isClose(to: p, radius: r) }.first ?? p
+        Self.snapToNode(store: store, location: point)
     }
     
     
@@ -107,6 +106,17 @@ enum Actions {
         }
         
         AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
+    }
+    
+    static func snapToNode(store: Store, location: NSPoint) {
+        let r = Config.cursor.snapRadius
+        let snapNode = store.model.nodes.filter { $0.screenPoint.isClose(to: location, radius: r) }.first
+        
+        if let snapNode = snapNode {
+            store.cursor.position = snapNode.screenPoint
+        } else {
+            store.cursor.position = location
+        }
     }
     
     
