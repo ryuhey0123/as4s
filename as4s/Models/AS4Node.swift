@@ -10,6 +10,9 @@ import Foundation
 import Mevic
 
 final class AS4Node: Identifiable {
+    
+    typealias Config = AS4Config.node
+    typealias Geometry = MVCPointGeometry
 
     // Codable
     var id: Int
@@ -17,7 +20,7 @@ final class AS4Node: Identifiable {
     var condition: Condition
     
     // Uncodable
-    var geometry: MVCPointGeometry
+    var geometry: Geometry
     var idLabel: MVCLabelNode
     
     // Alias
@@ -26,7 +29,7 @@ final class AS4Node: Identifiable {
     }
     
     var isSelected: Bool = false {
-        didSet { geometry.color = .init(isSelected ? Config.node.selectedColor : Config.node.color) }
+        didSet { geometry.color = .init(isSelected ? Config.selectedColor : Config.color) }
     }
     
     init(id: Int, position: double3, condition: Condition = .free) {
@@ -34,13 +37,13 @@ final class AS4Node: Identifiable {
         self.position = position
         self.condition = condition
         
-        geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.node.color))
+        geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color))
         
         idLabel = MVCLabelNode(String(id), target: geometry)
-        idLabel.fontName = Config.node.labelFont
-        idLabel.fontSize = Config.node.labelSize
-        idLabel.fontColor = NSColor(Config.node.labelColor)
-        idLabel.padding = Config.node.labelPadding
+        idLabel.fontName = Config.labelFont
+        idLabel.fontSize = Config.labelSize
+        idLabel.fontColor = NSColor(Config.labelColor)
+        idLabel.padding = Config.labelPadding
     }
     
     func isContain(in selectionBox: CGRect) -> Bool {

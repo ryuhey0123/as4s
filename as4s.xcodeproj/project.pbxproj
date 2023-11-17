@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
-		B1372C7F2B05CE65000293D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* Config.swift */; };
+		B1372C7F2B05CE65000293D4 /* AS4Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* AS4Config.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -28,6 +28,8 @@
 		B1B87CBD2B00AB18008926E6 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B87CBC2B00AB18008926E6 /* Condition.swift */; };
 		B1D026612AE0E55F00DF77E0 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B1D026602AE0E55F00DF77E0 /* Mevic */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
+		B1F5EF1E2B074F6200805708 /* AS4Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* AS4Beam.swift */; };
+		B1F5EF202B074FCD00805708 /* AS4Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* AS4Element.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		B124ADDC2B06429100AE5429 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		B1372C7E2B05CE65000293D4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B1372C7E2B05CE65000293D4 /* AS4Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Config.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -102,6 +104,8 @@
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1B87CBC2B00AB18008926E6 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
+		B1F5EF1D2B074F6200805708 /* AS4Beam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Beam.swift; sourceTree = "<group>"; };
+		B1F5EF1F2B074FCD00805708 /* AS4Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Element.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				B1B879292ADBBB2800CCDDA7 /* AS4Model.swift */,
+				B1F5EF1F2B074FCD00805708 /* AS4Element.swift */,
 				B1B3121A2ADC1CFE00DC32B9 /* AS4Node.swift */,
+				B1F5EF1D2B074F6200805708 /* AS4Beam.swift */,
 				B1B87CBC2B00AB18008926E6 /* Condition.swift */,
 			);
 			path = Models;
@@ -218,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */,
-				B1372C7E2B05CE65000293D4 /* Config.swift */,
+				B1372C7E2B05CE65000293D4 /* AS4Config.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -529,13 +535,15 @@
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
-				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
+				B1372C7F2B05CE65000293D4 /* AS4Config.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
+				B1F5EF1E2B074F6200805708 /* AS4Beam.swift in Sources */,
 				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */,
+				B1F5EF202B074FCD00805708 /* AS4Element.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);

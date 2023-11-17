@@ -46,12 +46,12 @@ final class Store {
         nodeLabel = MVCOverlayLayer("Node")
         overlayScene.append(layer: nodeLabel!)
         
-        selectionBox.fillColor = NSColor(Config.selectionBox.fillColor)
-        selectionBox.strokeColor = NSColor(Config.selectionBox.strokeColor)
+        selectionBox.fillColor = NSColor(AS4Config.selectionBox.fillColor)
+        selectionBox.strokeColor = NSColor(AS4Config.selectionBox.strokeColor)
         overlayScene.addChild(selectionBox)
         
-        cursor.size = Config.cursor.size
-        cursor.lineWidth = Config.cursor.lineWidth
+        cursor.size = AS4Config.cursor.size
+        cursor.lineWidth = AS4Config.cursor.lineWidth
         overlayScene.addChild(cursor)
     }
 }

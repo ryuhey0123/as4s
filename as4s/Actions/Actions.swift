@@ -109,7 +109,7 @@ enum Actions {
     }
     
     static func snapToNode(store: Store, location: NSPoint) {
-        let r = Config.cursor.snapRadius
+        let r = AS4Config.cursor.snapRadius
         let snapNode = store.model.nodes.filter { $0.screenPoint.isClose(to: location, radius: r) }.first
         
         if let snapNode = snapNode {
@@ -123,21 +123,21 @@ enum Actions {
     // MARK: - Camera Controll
     
     private static func panCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * Config.cameraControllSensitivity.pan
+        var translation = float2(translation) * AS4Config.cameraControllSensitivity.pan
         translation.x /= Float(view.frame.size.width) / 2
         translation.y /= Float(view.frame.size.height) / 2
         store.controller.scene.camera.pan(translation)
     }
     
     private static func rotateCamera(store: Store, translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * Config.cameraControllSensitivity.rotate
+        var translation = float2(translation) * AS4Config.cameraControllSensitivity.rotate
         translation.x /= Float(view.frame.size.width) / (2 * .pi)
         translation.y /= Float(view.frame.size.height) / (2 * .pi)
         store.controller.scene.camera.rotate(translation)
     }
     
     private static func zoomCamera(store: Store, delta: CGFloat) {
-        let delta = Float(delta) * 0.05 * Config.cameraControllSensitivity.zoom
+        let delta = Float(delta) * 0.05 * AS4Config.cameraControllSensitivity.zoom
         store.controller.scene.camera.zoom(delta)
     }
 }

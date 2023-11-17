@@ -1,5 +1,5 @@
 //
-//  Config.swift
+//  AS4Config.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/11/16.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Config {
+enum AS4Config {
     
     enum node {
         static let color: Color = .white
