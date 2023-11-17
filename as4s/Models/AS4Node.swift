@@ -5,6 +5,7 @@
 //  Created by Ryuhei Fujita on 2023/10/15.
 //
 
+import AppKit
 import Foundation
 import Mevic
 
@@ -27,7 +28,7 @@ final class AS4Node: Identifiable {
     
     var isSelected: Bool = false {
         didSet {
-            geometry.color = .init(isSelected ? Config.color.node.selected : Config.color.node.nomal)
+            geometry.color = .init(isSelected ? Config.node.selectedColor : Config.node.color)
         }
     }
     
@@ -36,8 +37,13 @@ final class AS4Node: Identifiable {
         self.position = position
         self.condition = condition
         
-        self.geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color.node.nomal))
-        self.idLabel = MVCLabelNode(String(id), target: geometry)
+        geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.node.color))
+        
+        idLabel = MVCLabelNode(String(id), target: geometry)
+        idLabel.fontName = Config.node.labelFont
+        idLabel.fontSize = Config.node.labelSize
+        idLabel.fontColor = NSColor(Config.node.labelColor)
+        idLabel.padding = Config.node.labelPadding
     }
     
     func isContain(in selectionBox: CGRect) -> Bool {
