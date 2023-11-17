@@ -9,9 +9,9 @@ import SwiftUI
 
 enum AS4Config {
     
-    enum node {
-        static let color: Color = .white
-        static let selectedColor: Color = .orange
+    enum node: AS4ElementConfig {
+        static var color: Color = .white
+        static var selectedColor: Color = .orange
         
         static let labelFont: String = "Helvetica"
         static let labelSize: CGFloat = 10
@@ -35,4 +35,9 @@ enum AS4Config {
         static let pan: Float = 1.0
         static let zoom: Float = 1.0
     }
+}
+
+protocol AS4ElementConfig {
+    static var color: Color { get set }
+    static var selectedColor: Color { get set }
 }

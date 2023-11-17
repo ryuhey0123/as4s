@@ -9,46 +9,38 @@ import AppKit
 import Foundation
 import Mevic
 
-final class AS4Node: Identifiable {
+final class AS4Node: AS4Element<MVCPointGeometry, AS4Config.node> {
     
     typealias Config = AS4Config.node
     typealias Geometry = MVCPointGeometry
-
-    // Codable
-    var id: Int
+    
     var position: double3
     var condition: Condition
     
-    // Uncodable
-    var geometry: Geometry
-    var idLabel: MVCLabelNode
-    
-    // Alias
     var screenPoint: CGPoint {
         get { geometry.screenPoint }
     }
     
-    var isSelected: Bool = false {
-        didSet { geometry.color = .init(isSelected ? Config.selectedColor : Config.color) }
-    }
-    
     init(id: Int, position: double3, condition: Condition = .free) {
-        self.id = id
         self.position = position
         self.condition = condition
         
-        geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color))
+        let geometry = MVCPointGeometry(id: id, position: float3(position), color: .init(Config.color))
         
-        idLabel = MVCLabelNode(String(id), target: geometry)
+        let idLabel = MVCLabelNode(String(id), target: geometry)
         idLabel.fontName = Config.labelFont
         idLabel.fontSize = Config.labelSize
         idLabel.fontColor = NSColor(Config.labelColor)
         idLabel.padding = Config.labelPadding
+        
+        super.init(id: id, geometry: geometry, idLabel: idLabel)
     }
     
-    func isContain(in selectionBox: CGRect) -> Bool {
-        let pp = geometry.screenPoint
-        return (pp.x > selectionBox.minX) && (pp.y > selectionBox.minY) && (pp.x < selectionBox.maxX) && (pp.y < selectionBox.maxY)
+    override func isContain(in selectionBox: CGRect) -> Bool {
+        (screenPoint.x > selectionBox.minX)
+        && (screenPoint.y > selectionBox.minY)
+        && (screenPoint.x < selectionBox.maxX)
+        && (screenPoint.y < selectionBox.maxY)
     }
 }
 
