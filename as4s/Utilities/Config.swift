@@ -8,10 +8,6 @@
 import SwiftUI
 
 enum Config {
-    static let cursor_size: CGFloat = 30
-    static let cursor_line_width: CGFloat = 1.5
-    
-    static let snap_radius: Float = 50.0
     
     enum node {
         static let color: Color = .white
@@ -21,6 +17,12 @@ enum Config {
         static let labelSize: CGFloat = 10
         static let labelColor: Color = .white
         static let labelPadding: CGFloat = 10
+    }
+    
+    enum cursor {
+        static let size: CGFloat = 30
+        static let lineWidth: CGFloat = 1.5
+        static let snapRadius: CGFloat = 50.0
     }
     
     enum selectionBox {

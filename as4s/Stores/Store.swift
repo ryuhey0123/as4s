@@ -19,7 +19,8 @@ final class Store {
     
     var nodeLabel: MVCOverlayLayer?
     
-    var selectionBox = STKSelectionBoxNode()
+    var selectionBox = MVCSelectionBoxNode()
+    var cursor = MVCCursorNode()
     
     let controller: MVCGraphicController
     
@@ -48,6 +49,10 @@ final class Store {
         selectionBox.fillColor = NSColor(Config.selectionBox.fillColor)
         selectionBox.strokeColor = NSColor(Config.selectionBox.strokeColor)
         overlayScene.addChild(selectionBox)
+        
+        cursor.size = Config.cursor.size
+        cursor.lineWidth = Config.cursor.lineWidth
+        overlayScene.addChild(cursor)
     }
 }
 

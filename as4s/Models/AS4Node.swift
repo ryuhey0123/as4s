@@ -20,16 +20,13 @@ final class AS4Node: Identifiable {
     var geometry: MVCPointGeometry
     var idLabel: MVCLabelNode
     
-    var isHidden: Bool = false {
-        didSet {
-            geometry.color = isHidden ? .zero : .one
-        }
+    // Alias
+    var screenPoint: CGPoint {
+        get { geometry.screenPoint }
     }
     
     var isSelected: Bool = false {
-        didSet {
-            geometry.color = .init(isSelected ? Config.node.selectedColor : Config.node.color)
-        }
+        didSet { geometry.color = .init(isSelected ? Config.node.selectedColor : Config.node.color) }
     }
     
     init(id: Int, position: double3, condition: Condition = .free) {

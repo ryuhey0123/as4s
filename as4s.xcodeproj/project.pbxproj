@@ -27,6 +27,7 @@
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1B87CBD2B00AB18008926E6 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B87CBC2B00AB18008926E6 /* Condition.swift */; };
 		B1D026612AE0E55F00DF77E0 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B1D026602AE0E55F00DF77E0 /* Mevic */; };
+		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		B1B879292ADBBB2800CCDDA7 /* AS4Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Model.swift; sourceTree = "<group>"; };
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1B87CBC2B00AB18008926E6 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
+		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 			children = (
 				B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */,
 				B124ADDC2B06429100AE5429 /* Color+Extensions.swift */,
+				B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
+				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
 				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */,

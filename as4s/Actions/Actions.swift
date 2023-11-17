@@ -47,6 +47,13 @@ enum Actions {
         Self.zoomCamera(store: store, delta: delta)
     }
     
+    static func mouseMoving(store: Store, location: NSPoint) {
+        let p: NSPoint = .init(x: location.x * 2, y: location.y * 2)
+        let r = Config.cursor.snapRadius
+        
+        store.cursor.position = store.model.nodes.lazy.map { $0.screenPoint }.filter { $0.isClose(to: p, radius: r) }.first ?? p
+    }
+    
     
     // MARK: - Geometry Controll
     

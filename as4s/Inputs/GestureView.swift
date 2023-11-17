@@ -26,6 +26,9 @@ struct Gesture: NSViewRepresentable {
         rightDragGesture.buttonMask = 0x2  // Right button
         view.addGestureRecognizer(rightDragGesture)
         
+        let options: NSTrackingArea.Options = [.mouseMoved, .activeAlways, .inVisibleRect]
+        view.addTrackingArea(NSTrackingArea.init(rect: .zero, options: options, owner: view, userInfo: nil))
+        
         return view
     }
     
@@ -71,5 +74,9 @@ class GestureView : NSView {
     
     override func scrollWheel(with event: NSEvent) {
         Actions.scrollWheel(store: store!, delta: event.deltaY)
+    }
+    
+    override func mouseMoved(with event: NSEvent) {
+        Actions.mouseMoving(store: store!, location: convert(event.locationInWindow, from: nil))
     }
 }
