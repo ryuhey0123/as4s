@@ -17,3 +17,10 @@ extension NSPoint {
         distance(to: p) < radius
     }
 }
+
+extension CGPoint {
+    
+    init(_ value: float2) {
+        self.init(x: CGFloat(value.x), y: CGFloat(value.y))
+    }
+}

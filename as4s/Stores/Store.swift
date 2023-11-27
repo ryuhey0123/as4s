@@ -12,15 +12,12 @@ final class Store {
     var model: AS4Model
     
     let scene: MVCScene = MVCScene()
-    let overlayScene = MVCOverlayScene()
+    let overlayScene = MVCScene()
     
     var modelLayer: MVCLayer?
     var captionLayer: MVCLayer?
     
-    var nodeLabel: MVCOverlayLayer?
-    
-    var selectionBox = MVCSelectionBoxNode()
-    var cursor = MVCCursorNode()
+    var nodeLabel: MVCLayer?
     
     let controller: MVCGraphicController
     
@@ -43,16 +40,13 @@ final class Store {
         scene.append(layer: modelLayer!)
         scene.append(layer: captionLayer!)
         
-        nodeLabel = MVCOverlayLayer("Node")
-        overlayScene.append(layer: nodeLabel!)
+        nodeLabel = MVCLayer("Node")
+        scene.append(layer: nodeLabel!)
         
-        selectionBox.fillColor = NSColor(AS4Config.selectionBox.fillColor)
-        selectionBox.strokeColor = NSColor(AS4Config.selectionBox.strokeColor)
-        overlayScene.addChild(selectionBox)
-        
-        cursor.size = AS4Config.cursor.size
-        cursor.lineWidth = AS4Config.cursor.lineWidth
-        overlayScene.addChild(cursor)
+        let overlay = MVCLayer()
+        overlay.append(geometry: MVCCursor())
+        overlay.append(geometry: MVCSelectionBox())
+        overlayScene.append(layer: overlay)
     }
 }
 

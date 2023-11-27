@@ -16,8 +16,8 @@ enum Actions {
     static func tapOrClick(store: Store, point: NSPoint) {
         AS4Logger.logAction("Tap or Click - Point:\(point.debugDescription)")
         
-        let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
-        Actions.addNode(at: double3(modelPoint), store: store)
+//        let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
+//        Actions.addNode(at: double3(modelPoint), store: store)
     }
     
     static func leftDrag(store: Store, location: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {
@@ -80,43 +80,43 @@ enum Actions {
     
     static func beganSelectionRectangle(store: Store, at point: NSPoint) {
         // FadeOutが終わらないうちにBeganした場合、残っているアクションを削除し初期化
-        store.selectionBox.removeAllActions()
-        store.selectionBox.removeRect()
+//        store.selectionBox.removeAllActions()
+//        store.selectionBox.removeRect()
         
         // FadeOutと逆のアクションをして表示。必要なのか？
-        store.selectionBox.run(SKAction.fadeIn(withDuration: 0))
+//        store.selectionBox.run(SKAction.fadeIn(withDuration: 0))
         
-        store.selectionBox.p1 = point
+//        store.selectionBox.p1 = point
         
-        AS4Logger.logAction("Selection Began - \(point.debugDescription)")
+//        AS4Logger.logAction("Selection Began - \(point.debugDescription)")
     }
     
     static func resizeSelectionRectangle(store: Store, at point: NSPoint) {
-        store.selectionBox.p2 = point
+//        store.selectionBox.p2 = point
     }
     
     static func endSelectionRectangle(store: Store, at point: NSPoint) {
-        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.3))
-        
-        if let rect = store.selectionBox.rect {
-            store.model.nodes.filter { $0.isContain(in: rect) }.forEach {
-                $0.isSelected.toggle()
-                AS4Logger.logAction("Selected - \($0.id.description)")
-            }
-        }
-        
-        AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
+//        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.3))
+//        
+//        if let rect = store.selectionBox.rect {
+//            store.model.nodes.filter { $0.isContain(in: rect) }.forEach {
+//                $0.isSelected.toggle()
+//                AS4Logger.logAction("Selected - \($0.id.description)")
+//            }
+//        }
+//        
+//        AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
     }
     
     static func snapToNode(store: Store, location: NSPoint) {
-        let r = AS4Config.cursor.snapRadius
-        let snapNode = store.model.nodes.filter { $0.screenPoint.isClose(to: location, radius: r) }.first
-        
-        if let snapNode = snapNode {
-            store.cursor.position = snapNode.screenPoint
-        } else {
-            store.cursor.position = location
-        }
+//        let r = AS4Config.cursor.snapRadius
+//        let snapNode = store.model.nodes.filter { $0.screenPoint.isClose(to: location, radius: r) }.first
+//        
+//        if let snapNode = snapNode {
+//            store.cursor.position = snapNode.screenPoint
+//        } else {
+//            store.cursor.position = location
+//        }
     }
     
     

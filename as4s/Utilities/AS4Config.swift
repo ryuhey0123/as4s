@@ -13,10 +13,20 @@ enum AS4Config {
         static var color: Color = .white
         static var selectedColor: Color = .orange
         
-        static let labelFont: String = "Helvetica"
-        static let labelSize: CGFloat = 10
-        static let labelColor: Color = .white
-        static let labelPadding: CGFloat = 10
+        static var labelFont: String = "Helvetica"
+        static var labelSize: CGFloat = 10
+        static var labelColor: Color = .white
+        static var labelPadding: CGFloat = 10
+    }
+    
+    enum beam: AS4ElementConfig {
+        static var color: Color = .cyan
+        static var selectedColor: Color = .orange
+        
+        static var labelFont: String = "Helvetica"
+        static var labelSize: CGFloat = 10
+        static var labelColor: Color = .white
+        static var labelPadding: CGFloat = 10
     }
     
     enum cursor {
@@ -40,4 +50,9 @@ enum AS4Config {
 protocol AS4ElementConfig {
     static var color: Color { get set }
     static var selectedColor: Color { get set }
+    
+    static var labelFont: String { get set }
+    static var labelSize: CGFloat { get set }
+    static var labelColor: Color { get set }
+    static var labelPadding: CGFloat { get set }
 }

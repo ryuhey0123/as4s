@@ -14,13 +14,17 @@ class AS4Element<Geometry: MVCGeometry, Config: AS4ElementConfig>: Identifiable 
     
     var geometry: Geometry
     
-    var idLabel: MVCLabelNode
+    var idLabel: MVCLabelGeometry
     
-    var isSelected: Bool = false {
-        didSet { geometry.color = .init(isSelected ? Config.selectedColor : Config.color) }
-    }
+//    var screenPoint: CGPoint {
+//        get { CGPoint(geometry.screenPoint) }
+//    }
     
-    init(id: Int, geometry: Geometry, idLabel: MVCLabelNode) {
+    var isSelected: Bool = false
+//        didSet { geometry.color = .init(isSelected ? Config.selectedColor : Config.color) }
+//    }
+    
+    init(id: Int, geometry: Geometry, idLabel: MVCLabelGeometry) {
         self.id = id
         self.geometry = geometry
         self.idLabel = idLabel
@@ -28,4 +32,3 @@ class AS4Element<Geometry: MVCGeometry, Config: AS4ElementConfig>: Identifiable 
     
     func isContain(in selectionBox: CGRect) -> Bool { false }
 }
-
