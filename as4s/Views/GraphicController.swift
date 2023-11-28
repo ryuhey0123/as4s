@@ -10,4 +10,8 @@ import Mevic
 
 class GraphicController: MVCGraphicController {
     
+    override func mouseScroll() {
+        let sizedScroll = inputController.mouseScroll
+        scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
+    }
 }
