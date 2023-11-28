@@ -72,11 +72,7 @@ struct Gesture: NSViewRepresentable {
 class GestureView : NSView {
     var store: Store?
     
-    override func scrollWheel(with event: NSEvent) {
-        Actions.scrollWheel(store: store!, delta: event.deltaY)
-    }
-    
-    override func mouseMoved(with event: NSEvent) {
-        Actions.mouseMoving(store: store!, location: convert(event.locationInWindow, from: nil))
-    }
+//    override func scrollWheel(with event: NSEvent) {
+//        Actions.scrollWheel(store: store!, delta: event.deltaY)
+//    }
 }

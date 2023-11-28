@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
+		B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12AD6402B16153400D4D315 /* GraphicController.swift */; };
 		B1372C7F2B05CE65000293D4 /* AS4Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* AS4Config.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		B124ADDC2B06429100AE5429 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		B12AD6402B16153400D4D315 /* GraphicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicController.swift; sourceTree = "<group>"; };
 		B1372C7E2B05CE65000293D4 /* AS4Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Config.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				B161BC232ADB958A00AABA48 /* ContentView.swift */,
+				B12AD6402B16153400D4D315 /* GraphicController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
+				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* AS4Beam.swift in Sources */,
 				B1B312242ADC27D700DC32B9 /* GestureView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */,

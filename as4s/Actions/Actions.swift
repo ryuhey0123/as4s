@@ -14,10 +14,9 @@ enum Actions {
     // MARK: - Gesture Handling
     
     static func tapOrClick(store: Store, point: NSPoint) {
-        Logger.action.trace("Tap or Click - Point:\(point.debugDescription)")
-        
-//        let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
-//        Actions.addNode(at: double3(modelPoint), store: store)
+        if let clickPoint = store.scene.getSnapedId() {
+            Logger.action.trace("Click - Point:\(clickPoint)")
+        }
     }
     
     static func leftDrag(store: Store, location: NSPoint, in view: NSView, state: NSGestureRecognizer.State) {

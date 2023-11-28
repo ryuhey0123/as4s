@@ -17,7 +17,6 @@ struct ContentView: View {
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
-                Gesture(store: store)
             }
         }
         .onAppear {
