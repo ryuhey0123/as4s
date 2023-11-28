@@ -8,13 +8,14 @@
 import os
 import Foundation
 
-class AS4Logger {
-    static let actionLogger = Logger(subsystem: "jp.rfst.as4s", category: "Actions")
+enum Logger {
     
-    static func logAction(_ message: String) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from: Date())
-        actionLogger.debug("[\(dateString)] \(message)")
+    private enum LogCategory: String {
+        case action = "Action"
     }
+    
+    public static let action: os.Logger = .init(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: LogCategory.action.rawValue
+    )
 }

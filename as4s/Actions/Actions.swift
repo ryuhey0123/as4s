@@ -14,7 +14,7 @@ enum Actions {
     // MARK: - Gesture Handling
     
     static func tapOrClick(store: Store, point: NSPoint) {
-        AS4Logger.logAction("Tap or Click - Point:\(point.debugDescription)")
+        Logger.action.trace("Tap or Click - Point:\(point.debugDescription)")
         
 //        let modelPoint = store.controller.renderer.unprojectPoint(.init(x: Float(point.x), y: Float(point.y), z: 0))
 //        Actions.addNode(at: double3(modelPoint), store: store)
@@ -61,7 +61,7 @@ enum Actions {
         let node = AS4Node(id: id, position: position)
         store.model.append(node, layer: store.modelLayer!, overlayLayer: store.nodeLabel!)
 
-        AS4Logger.logAction("Add Point - \(node.position.debugDescription)")
+        Logger.action.trace("Add Point - \(node.position.debugDescription)")
     }
 
 
@@ -72,52 +72,19 @@ enum Actions {
         store.captionLayer?.append(geometry: MVCLineGeometry.y)
         store.captionLayer?.append(geometry: MVCLineGeometry.z)
 
-        AS4Logger.logAction("Add Coordinate")
+        Logger.action.trace("Add Coordinate")
     }
 
     
     // MARK: - Selection Controll
     
-    static func beganSelectionRectangle(store: Store, at point: NSPoint) {
-        // FadeOutが終わらないうちにBeganした場合、残っているアクションを削除し初期化
-//        store.selectionBox.removeAllActions()
-//        store.selectionBox.removeRect()
-        
-        // FadeOutと逆のアクションをして表示。必要なのか？
-//        store.selectionBox.run(SKAction.fadeIn(withDuration: 0))
-        
-//        store.selectionBox.p1 = point
-        
-//        AS4Logger.logAction("Selection Began - \(point.debugDescription)")
-    }
+    static func beganSelectionRectangle(store: Store, at point: NSPoint) {}
     
-    static func resizeSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.selectionBox.p2 = point
-    }
+    static func resizeSelectionRectangle(store: Store, at point: NSPoint) {}
     
-    static func endSelectionRectangle(store: Store, at point: NSPoint) {
-//        store.selectionBox.run(SKAction.fadeOut(withDuration: 0.3))
-//        
-//        if let rect = store.selectionBox.rect {
-//            store.model.nodes.filter { $0.isContain(in: rect) }.forEach {
-//                $0.isSelected.toggle()
-//                AS4Logger.logAction("Selected - \($0.id.description)")
-//            }
-//        }
-//        
-//        AS4Logger.logAction("Selection Ended - \(point.debugDescription)")
-    }
+    static func endSelectionRectangle(store: Store, at point: NSPoint) {}
     
-    static func snapToNode(store: Store, location: NSPoint) {
-//        let r = AS4Config.cursor.snapRadius
-//        let snapNode = store.model.nodes.filter { $0.screenPoint.isClose(to: location, radius: r) }.first
-//        
-//        if let snapNode = snapNode {
-//            store.cursor.position = snapNode.screenPoint
-//        } else {
-//            store.cursor.position = location
-//        }
-    }
+    static func snapToNode(store: Store, location: NSPoint) {}
     
     
     // MARK: - Camera Controll
