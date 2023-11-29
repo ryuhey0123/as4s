@@ -10,12 +10,14 @@ import Foundation
 
 enum Logger {
     
+    static let subSystem = "rfst.jp.as4s"
+    
     private enum LogCategory: String {
         case action = "Action"
     }
     
     public static let action: os.Logger = .init(
-        subsystem: Bundle.main.bundleIdentifier!,
+        subsystem: subSystem,
         category: LogCategory.action.rawValue
     )
 }
