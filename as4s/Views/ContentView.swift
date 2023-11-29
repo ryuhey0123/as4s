@@ -14,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             addPoint
+            addBeam
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
@@ -27,8 +28,14 @@ struct ContentView: View {
     }
     
     private var addPoint: some View {
-        Button("Add Point") {
+        Button("Add Random Point") {
             Actions.addNode(at: .random(in: -1...1), store: store)
+        }
+    }
+    
+    private var addBeam: some View {
+        Button("Add Random Beam") {
+            Actions.addBeam(i: .random(in: -1...1), j: .random(in: -1...1), store: store)
         }
     }
 }

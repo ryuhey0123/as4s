@@ -13,10 +13,11 @@ final class Store {
     
     let scene = MVCScene()
     
-    var modelLayer: MVCLayer?
-    var captionLayer: MVCLayer?
+    var modelLayer: MVCLayer!
+    var captionLayer: MVCLayer!
     
-    var nodeLabel: MVCLayer?
+    var nodeLabelLayer: MVCLayer!
+    var beamLabelLayer: MVCLayer!
     
     let controller: GraphicController
     
@@ -36,11 +37,12 @@ final class Store {
     func updateView() {
         modelLayer = MVCLayer("Model")
         captionLayer = MVCLayer("Caption")
-        scene.append(layer: modelLayer!)
-        scene.append(layer: captionLayer!)
-        
-        nodeLabel = MVCLayer("Node")
-        scene.append(layer: nodeLabel!)
+        nodeLabelLayer = MVCLayer("NodeLabel")
+        beamLabelLayer = MVCLayer("BeamLabel")
+        scene.append(layer: modelLayer)
+        scene.append(layer: captionLayer)
+        scene.append(layer: nodeLabelLayer)
+        scene.append(layer: beamLabelLayer)
     }
 }
 

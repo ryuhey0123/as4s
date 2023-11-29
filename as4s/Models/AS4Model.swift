@@ -13,13 +13,18 @@ struct AS4Model: Identifiable {
     // Codable
     var id = UUID()
     var nodes: [AS4Node] = []
+    var beams: [AS4Beam] = []
 
-    mutating func append(_ node: AS4Node, layer: MVCLayer, overlayLayer: MVCLayer) {
+    mutating func append(_ node: AS4Node, layer: MVCLayer, labelLayer: MVCLayer) {
         nodes.append(node)
         layer.append(geometry: node.geometry)
-        
-        let label = MVCLabelGeometry(target: float3(node.position), text: String(node.id))
-        overlayLayer.append(geometry: label)
+        labelLayer.append(geometry: node.idLabel)
+    }
+    
+    mutating func append(_ beam: AS4Beam, layer: MVCLayer, labelLayer: MVCLayer) {
+        beams.append(beam)
+        layer.append(geometry: beam.geometry)
+        labelLayer.append(geometry: beam.idLabel)
     }
 }
 
