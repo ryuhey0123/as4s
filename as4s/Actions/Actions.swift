@@ -26,7 +26,7 @@ enum Actions {
         let beam = AS4Beam(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
-        Logger.action.trace("\(#function): Add Beam at \(beam.i.description) to \(beam.j.description)")
+        Logger.action.trace("\(#function): Add Beam from \(beam.i.description) to \(beam.j.description)")
     }
     
     // MARK: - Other Geometry
