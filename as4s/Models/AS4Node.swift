@@ -23,7 +23,7 @@ final class AS4Node: AS4Element<MVCPointGeometry, AS4Config.node> {
         
         let geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
         
-        let idLabel = MVCLabelGeometry(target: float3(position), text: String(id), margin: .init(0, 25), alignment: .bottom)
+        let idLabel = MVCLabelGeometry(target: float3(position), text: String(id), margin: .init(0, 20), alignment: .bottom)
         
         super.init(id: id, geometry: geometry, idLabel: idLabel)
     }
