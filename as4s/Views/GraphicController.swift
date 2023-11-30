@@ -60,6 +60,23 @@ class GraphicController: MVCGraphicController {
         scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
     }
     
+    override func keysPressed(_ keys: Set<GCKeyCode>) {
+        if keys.contains(.escape) {
+            cancelDrawing()
+            cancelSelecting()
+        }
+    }
+    
+    func cancelDrawing() {
+        isDrawingLine = false
+        lineGideGeometry.j = lineGideGeometry.i
+    }
+    
+    func cancelSelecting() {
+        store!.model.nodes.forEach { $0.isSelected = false }
+        store!.model.beams.forEach { $0.isSelected = false }
+    }
+    
     
     // MARK: Utilities
     
