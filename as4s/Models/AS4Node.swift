@@ -5,8 +5,7 @@
 //  Created by Ryuhei Fujita on 2023/10/15.
 //
 
-import AppKit
-import Foundation
+import SwiftUI
 import Mevic
 
 final class AS4Node: AS4Element<MVCPointGeometry, AS4Config.node> {
@@ -17,15 +16,20 @@ final class AS4Node: AS4Element<MVCPointGeometry, AS4Config.node> {
     var position: double3
     var condition: Condition
     
+    override var color: Color {
+        didSet {
+            geometry.color = float4(float3(color), 1)
+        }
+    }
+    
     init(id: Int, position: double3, condition: Condition = .free) {
         self.position = position
         self.condition = condition
         
         let geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
-        
         let idLabel = MVCLabelGeometry(target: float3(position), text: String(id), margin: .init(0, 20), alignment: .bottom)
         
-        super.init(id: id, geometry: geometry, idLabel: idLabel)
+        super.init(id: id, geometryId: geometry.id, geometry: geometry, idLabel: idLabel)
     }
 }
 

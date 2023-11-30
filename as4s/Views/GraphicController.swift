@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
-import Mevic
 import GameController
+
+import Mevic
 
 class GraphicController: MVCGraphicController {
     
     weak var store: Store?
+    
+    
+    // MARK: init
     
     override init(scene: MVCScene) {
         super.init(scene: scene)
@@ -20,6 +24,9 @@ class GraphicController: MVCGraphicController {
         lineGideGeometry.iColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
         lineGideGeometry.jColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
     }
+    
+    
+    // MARK: Handlers
     
     override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
         if let snapedId = scene.getSnapedId() {
@@ -51,6 +58,30 @@ class GraphicController: MVCGraphicController {
     override func handleScroll() {
         let sizedScroll = inputController.mouseScroll
         scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
+    }
+    
+    
+    // MARK: Utilities
+    
+    override func traceSelection() {
+        let selectionId = scene.getSeletionId()
+        if !selectionId.isEmpty {
+            let selectedNodes: [AS4Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
+            let selectedBeams: [AS4Beam] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryId)) })
+            
+            if inputController.keysPressed.isEmpty {
+                selectedNodes.forEach { $0.isSelected = true }
+                selectedBeams.forEach { $0.isSelected = true }
+                Logger.action.trace("\(#function) Add selected nodes: \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function) Add selected beams: \(selectedBeams.map { $0.id })")
+                
+            } else if inputController.keysPressed.contains(.leftShift) {
+                selectedNodes.forEach { $0.isSelected = false }
+                selectedBeams.forEach { $0.isSelected = false }
+                Logger.action.trace("\(#function) Remove selected nodes: \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function) Remove selected beams: \(selectedBeams.map { $0.id })")
+            }
+        }
     }
     
     private func panCamera(translation: NSPoint, in view: NSView) {
