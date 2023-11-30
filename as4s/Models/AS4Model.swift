@@ -33,17 +33,20 @@ extension AS4Model: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case nodes
+        case beams
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.nodes = try container.decode([AS4Node].self, forKey: .nodes)
+        self.beams = try container.decode([AS4Beam].self, forKey: .beams)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(nodes, forKey: .nodes)
+        try container.encode(beams, forKey: .beams)
     }
 }

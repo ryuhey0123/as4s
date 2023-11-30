@@ -33,3 +33,28 @@ final class AS4Beam: AS4Element<MVCLineGeometry, AS4Config.beam> {
         super.init(id: id, geometryId: geometry.id, geometry: geometry, idLabel: idLabel)
     }
 }
+
+extension AS4Beam: Codable {
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case i
+        case j
+    }
+    
+    convenience init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let id = try values.decode(Int.self, forKey: .id)
+        let i = try values.decode(double3.self, forKey: .i)
+        let j = try values.decode(double3.self, forKey: .j)
+        
+        self.init(id: id, i: i, j: j)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(i, forKey: .i)
+        try container.encode(j, forKey: .j)
+    }
+}

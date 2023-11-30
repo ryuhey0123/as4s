@@ -43,7 +43,6 @@ extension AS4Node: Codable {
     
     convenience init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
         let id = try values.decode(Int.self, forKey: .id)
         let position = try values.decode(double3.self, forKey: .position)
         let condition = try values.decode(Condition.self, forKey: .condition)
@@ -53,7 +52,6 @@ extension AS4Node: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
         try container.encode(id, forKey: .id)
         try container.encode(position, forKey: .position)
         try container.encode(condition, forKey: .condition)
