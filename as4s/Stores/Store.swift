@@ -24,6 +24,7 @@ final class Store {
     init() {
         model = AS4Model()
         controller = GraphicController(scene: scene)
+        controller.store = self
     }
     
     init(configuration: ReadConfiguration) throws {

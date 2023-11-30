@@ -45,6 +45,10 @@ enum AS4Config {
         static let pan: Float = 1.0
         static let zoom: Float = 1.0
     }
+    
+    enum drawingGide {
+        static let lineColor: Color = .yellow
+    }
 }
 
 protocol AS4ElementConfig {

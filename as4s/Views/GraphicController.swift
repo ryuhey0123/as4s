@@ -8,12 +8,32 @@
 
 import SwiftUI
 import Mevic
+import GameController
 
 class GraphicController: MVCGraphicController {
     
-    override func handleScroll() {
-        let sizedScroll = inputController.mouseScroll
-        scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
+    weak var store: Store?
+    
+    override init(scene: MVCScene) {
+        super.init(scene: scene)
+        
+        lineGideGeometry.iColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
+        lineGideGeometry.jColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
+    }
+    
+    override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
+        if let snapedId = scene.getSnapedId() {
+            guard let point = scene.layers.flatMap({ $0.geometries }).compactMap({ $0 as? MVCPointGeometry }).first(where: { $0.id == snapedId }) else { return }
+            
+            if isDrawingLine {
+                Actions.addBeam(i: double3(lineGideGeometry.i), j: double3(point.position), store: store!)
+                lineGideGeometry.j = lineGideGeometry.i
+            } else {
+                lineGideGeometry.i = point.position
+            }
+            
+            isDrawingLine.toggle()
+        }
     }
     
     override func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
@@ -26,6 +46,11 @@ class GraphicController: MVCGraphicController {
         }
         
         gestureRecognize.setTranslation(.zero, in: metalView)
+    }
+    
+    override func handleScroll() {
+        let sizedScroll = inputController.mouseScroll
+        scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
     }
     
     private func panCamera(translation: NSPoint, in view: NSView) {
