@@ -26,7 +26,6 @@
 		B1B8792A2ADBBB2800CCDDA7 /* AS4Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B879292ADBBB2800CCDDA7 /* AS4Model.swift */; };
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1B87CBD2B00AB18008926E6 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B87CBC2B00AB18008926E6 /* Condition.swift */; };
-		B1D026612AE0E55F00DF77E0 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B1D026602AE0E55F00DF77E0 /* Mevic */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
 		B1F5EF1E2B074F6200805708 /* AS4Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* AS4Beam.swift */; };
 		B1F5EF202B074FCD00805708 /* AS4Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* AS4Element.swift */; };
@@ -46,27 +45,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B161BC1B2ADB958A00AABA48;
 			remoteInfo = as4s;
-		};
-		B1AFD41D2ADFD8E800643EBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1AFD4192ADFD8E800643EBC /* LibraryTest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B1AFD4082ADFD89600643EBC;
-			remoteInfo = LibraryTest;
-		};
-		B1AFD4272ADFD90C00643EBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1AFD4232ADFD90C00643EBC /* LibraryTest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B1AFD4082ADFD89600643EBC;
-			remoteInfo = LibraryTest;
-		};
-		B1AFD4312ADFD93700643EBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B1AFD42D2ADFD93700643EBC /* LibraryTest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B1AFD4082ADFD89600643EBC;
-			remoteInfo = LibraryTest;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -88,15 +66,6 @@
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Logger.swift; sourceTree = "<group>"; };
-		B1AFD4172ADFD8E800643EBC /* LibraryTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryTest.h; sourceTree = "<group>"; };
-		B1AFD4182ADFD8E800643EBC /* LibraryTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryTest.m; sourceTree = "<group>"; };
-		B1AFD4192ADFD8E800643EBC /* LibraryTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LibraryTest.xcodeproj; sourceTree = "<group>"; };
-		B1AFD4212ADFD90C00643EBC /* LibraryTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryTest.h; sourceTree = "<group>"; };
-		B1AFD4222ADFD90C00643EBC /* LibraryTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryTest.m; sourceTree = "<group>"; };
-		B1AFD4232ADFD90C00643EBC /* LibraryTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LibraryTest.xcodeproj; sourceTree = "<group>"; };
-		B1AFD42B2ADFD93700643EBC /* LibraryTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibraryTest.h; sourceTree = "<group>"; };
-		B1AFD42C2ADFD93700643EBC /* LibraryTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryTest.m; sourceTree = "<group>"; };
-		B1AFD42D2ADFD93700643EBC /* LibraryTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LibraryTest.xcodeproj; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* AS4Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Node.swift; sourceTree = "<group>"; };
 		B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Document.swift"; sourceTree = "<group>"; };
 		B1B312202ADC264600DC32B9 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
@@ -114,7 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
-				B1D026612AE0E55F00DF77E0 /* Mevic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +110,6 @@
 				B161BC332ADB958A00AABA48 /* as4sTests */,
 				B161BC3D2ADB958A00AABA48 /* as4sUITests */,
 				B161BC1D2ADB958A00AABA48 /* Products */,
-				B1AFD4142ADFD8E800643EBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,97 +196,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		B1AFD4142ADFD8E800643EBC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4292ADFD93700643EBC /* LibraryTest */,
-				B1AFD41F2ADFD90C00643EBC /* LibraryTest */,
-				B1AFD4152ADFD8E800643EBC /* LibraryTest */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B1AFD4152ADFD8E800643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4162ADFD8E800643EBC /* LibraryTest */,
-				B1AFD4192ADFD8E800643EBC /* LibraryTest.xcodeproj */,
-			);
-			name = LibraryTest;
-			path = ../../Exercise/LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD4162ADFD8E800643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4172ADFD8E800643EBC /* LibraryTest.h */,
-				B1AFD4182ADFD8E800643EBC /* LibraryTest.m */,
-			);
-			path = LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD41A2ADFD8E800643EBC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD41E2ADFD8E800643EBC /* libLibraryTest.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1AFD41F2ADFD90C00643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4202ADFD90C00643EBC /* LibraryTest */,
-				B1AFD4232ADFD90C00643EBC /* LibraryTest.xcodeproj */,
-			);
-			name = LibraryTest;
-			path = ../../Exercise/LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD4202ADFD90C00643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4212ADFD90C00643EBC /* LibraryTest.h */,
-				B1AFD4222ADFD90C00643EBC /* LibraryTest.m */,
-			);
-			path = LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD4242ADFD90C00643EBC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4282ADFD90C00643EBC /* libLibraryTest.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1AFD4292ADFD93700643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD42A2ADFD93700643EBC /* LibraryTest */,
-				B1AFD42D2ADFD93700643EBC /* LibraryTest.xcodeproj */,
-			);
-			name = LibraryTest;
-			path = ../../Exercise/LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD42A2ADFD93700643EBC /* LibraryTest */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD42B2ADFD93700643EBC /* LibraryTest.h */,
-				B1AFD42C2ADFD93700643EBC /* LibraryTest.m */,
-			);
-			path = LibraryTest;
-			sourceTree = "<group>";
-		};
-		B1AFD42E2ADFD93700643EBC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1AFD4322ADFD93700643EBC /* libLibraryTest.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		B1B3121F2ADC263C00DC32B9 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,7 +241,6 @@
 			name = as4s;
 			packageProductDependencies = (
 				B17FE6502ADE82E5009A9134 /* Mevic */,
-				B1D026602AE0E55F00DF77E0 /* Mevic */,
 			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
@@ -444,20 +319,6 @@
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B1AFD41A2ADFD8E800643EBC /* Products */;
-					ProjectRef = B1AFD4192ADFD8E800643EBC /* LibraryTest.xcodeproj */;
-				},
-				{
-					ProductGroup = B1AFD4242ADFD90C00643EBC /* Products */;
-					ProjectRef = B1AFD4232ADFD90C00643EBC /* LibraryTest.xcodeproj */;
-				},
-				{
-					ProductGroup = B1AFD42E2ADFD93700643EBC /* Products */;
-					ProjectRef = B1AFD42D2ADFD93700643EBC /* LibraryTest.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				B161BC1B2ADB958A00AABA48 /* as4s */,
@@ -466,30 +327,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B1AFD41E2ADFD8E800643EBC /* libLibraryTest.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLibraryTest.a;
-			remoteRef = B1AFD41D2ADFD8E800643EBC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1AFD4282ADFD90C00643EBC /* libLibraryTest.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLibraryTest.a;
-			remoteRef = B1AFD4272ADFD90C00643EBC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1AFD4322ADFD93700643EBC /* libLibraryTest.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libLibraryTest.a;
-			remoteRef = B1AFD4312ADFD93700643EBC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B161BC1A2ADB958A00AABA48 /* Resources */ = {
@@ -910,10 +747,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		B17FE6502ADE82E5009A9134 /* Mevic */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Mevic;
-		};
-		B1D026602AE0E55F00DF77E0 /* Mevic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Mevic;
 		};
