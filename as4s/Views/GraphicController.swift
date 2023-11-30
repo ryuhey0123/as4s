@@ -67,16 +67,6 @@ class GraphicController: MVCGraphicController {
         }
     }
     
-    func cancelDrawing() {
-        isDrawingLine = false
-        lineGideGeometry.j = lineGideGeometry.i
-    }
-    
-    func cancelSelecting() {
-        store!.model.nodes.forEach { $0.isSelected = false }
-        store!.model.beams.forEach { $0.isSelected = false }
-    }
-    
     
     // MARK: Utilities
     
@@ -118,5 +108,15 @@ class GraphicController: MVCGraphicController {
     private func zoomCamera( delta: CGFloat) {
         let delta = Float(delta) * 0.05 * AS4Config.cameraControllSensitivity.zoom
         scene.camera.zoom(delta)
+    }
+    
+    private func cancelDrawing() {
+        isDrawingLine = false
+        lineGideGeometry.j = lineGideGeometry.i
+    }
+    
+    private func cancelSelecting() {
+        store!.model.nodes.forEach { $0.isSelected = false }
+        store!.model.beams.forEach { $0.isSelected = false }
     }
 }
