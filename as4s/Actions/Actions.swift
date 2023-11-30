@@ -18,13 +18,15 @@ enum Actions {
         let node = AS4Node(id: id, position: position)
         store.model.append(node, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
-        Logger.action.trace("Add Point - \(node.position.debugDescription)")
+        Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
     static func addBeam(i: double3, j: double3, store: Store) {
         let id = store.model.beams.count + 1
         let beam = AS4Beam(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
+        
+        Logger.action.trace("\(#function): Add Beam at \(beam.i.description) to \(beam.j.description)")
     }
     
     // MARK: - Other Geometry
@@ -34,6 +36,6 @@ enum Actions {
         store.captionLayer.append(geometry: MVCLineGeometry.y)
         store.captionLayer.append(geometry: MVCLineGeometry.z)
         
-        Logger.action.trace("Add Coordinate")
+        Logger.action.trace("\(#function): Add Coordinate")
     }
 }

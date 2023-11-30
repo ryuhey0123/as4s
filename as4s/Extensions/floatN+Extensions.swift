@@ -51,3 +51,12 @@ extension float4 {
         set { x = newValue.x; y = newValue.y}
     }
 }
+
+
+// MARK: - double3 Extensions
+
+extension double3 {
+    public var description: String {
+        "(\(String(format: "%.3f", x)), \(String(format: "%.3f", y)), \(String(format: "%.3f", z)))"
+    }
+}

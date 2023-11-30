@@ -89,14 +89,14 @@ class GraphicController: MVCGraphicController {
             if inputController.keysPressed.isEmpty {
                 selectedNodes.forEach { $0.isSelected = true }
                 selectedBeams.forEach { $0.isSelected = true }
-                Logger.action.trace("\(#function) Add selected nodes: \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function) Add selected beams: \(selectedBeams.map { $0.id })")
+                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function): Add selected beams \(selectedBeams.map { $0.id })")
                 
             } else if inputController.keysPressed.contains(.leftShift) {
                 selectedNodes.forEach { $0.isSelected = false }
                 selectedBeams.forEach { $0.isSelected = false }
-                Logger.action.trace("\(#function) Remove selected nodes: \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function) Remove selected beams: \(selectedBeams.map { $0.id })")
+                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function): Remove selected beams \(selectedBeams.map { $0.id })")
             }
         }
     }
