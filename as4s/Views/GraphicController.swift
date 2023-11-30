@@ -23,6 +23,10 @@ class GraphicController: MVCGraphicController {
         
         lineGideGeometry.iColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
         lineGideGeometry.jColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
+        
+        scene.camera.viewSize = 5000
+        scene.camera.near = -100_000
+        scene.camera.far = 100_000
     }
     
     
@@ -56,7 +60,7 @@ class GraphicController: MVCGraphicController {
     }
     
     override func handleScroll() {
-        let sizedScroll = inputController.mouseScroll
+        let sizedScroll = inputController.mouseScroll * scene.camera.viewSize
         scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
     }
     

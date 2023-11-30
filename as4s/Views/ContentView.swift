@@ -18,6 +18,7 @@ struct ContentView: View {
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
+                    .clearColor(AS4Config.system.backGroundColor)
             }
         }
         .onAppear {
@@ -29,13 +30,17 @@ struct ContentView: View {
     
     private var addPoint: some View {
         Button("Add Random Point") {
-            Actions.addNode(at: .random(in: -1...1), store: store)
+            Actions.addNode(at: .random(in: -10000...10000), store: store)
         }
     }
     
     private var addBeam: some View {
         Button("Add Random Beam") {
-            Actions.addBeam(i: .random(in: -1...1), j: .random(in: -1...1), store: store)
+            let i: double3 = .random(in: -10000...10000)
+            let j: double3 = .random(in: -10000...10000)
+            Actions.addNode(at: i, store: store)
+            Actions.addNode(at: j, store: store)
+            Actions.addBeam(i: i, j: j, store: store)
         }
     }
 }

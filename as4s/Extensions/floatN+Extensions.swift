@@ -22,6 +22,13 @@ public typealias double3 = SIMD3<Double>
 // MARK: - float3 Extensions
 
 extension float3 {
+    
+    static var x = float3(x: 1, y: 0, z: 0)
+    
+    static var y = float3(x: 0, y: 1, z: 0)
+    
+    static var z = float3(x: 0, y: 0, z: 1)
+    
     var array: [Float] {
         get { [x, y, z] }
         set { x = newValue[0]; y = newValue[1]; z = newValue[2] }

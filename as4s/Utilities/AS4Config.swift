@@ -25,7 +25,7 @@ enum AS4Config {
         
         static var labelFont: String = "Helvetica"
         static var labelSize: CGFloat = 10
-        static var labelColor: Color = .white
+        static var labelColor: Color = .cyan
         static var labelPadding: CGFloat = 10
     }
     
@@ -48,6 +48,10 @@ enum AS4Config {
     
     enum drawingGide {
         static let lineColor: Color = .yellow
+    }
+    
+    enum system {
+        static let backGroundColor: Color = .init(red: 0.25, green: 0.25, blue: 0.25)
     }
 }
 

@@ -32,9 +32,12 @@ enum Actions {
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
-        store.captionLayer.append(geometry: MVCLineGeometry.x)
-        store.captionLayer.append(geometry: MVCLineGeometry.y)
-        store.captionLayer.append(geometry: MVCLineGeometry.z)
+        let x = MVCLineGeometry(j: .x * 1000, color: .x, selectable: false)
+        let y = MVCLineGeometry(j: .y * 1000, color: .y, selectable: false)
+        let z = MVCLineGeometry(j: .z * 1000, color: .z, selectable: false)
+        store.captionLayer.append(geometry: x)
+        store.captionLayer.append(geometry: y)
+        store.captionLayer.append(geometry: z)
         
         Logger.action.trace("\(#function): Add Coordinate")
     }
