@@ -17,27 +17,16 @@ final class AS4Node: AS4Element<MVCPointGeometry, AS4Config.node> {
     var position: double3
     var condition: Condition
     
-//    var screenPoint: CGPoint {
-//        get { geometry.screenPoint }
-//    }
-    
     init(id: Int, position: double3, condition: Condition = .free) {
         self.position = position
         self.condition = condition
         
         let geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
         
-        let idLabel = MVCLabelGeometry(target: float3(position), text: String(id))
+        let idLabel = MVCLabelGeometry(target: float3(position), text: String(id), margin: .init(0, 25), alignment: .bottom)
         
         super.init(id: id, geometry: geometry, idLabel: idLabel)
     }
-    
-//    override func isContain(in selectionBox: CGRect) -> Bool {
-//        (screenPoint.x > selectionBox.minX)
-//        && (screenPoint.y > selectionBox.minY)
-//        && (screenPoint.x < selectionBox.maxX)
-//        && (screenPoint.y < selectionBox.maxY)
-//    }
 }
 
 extension AS4Node: Codable {
