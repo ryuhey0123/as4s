@@ -26,6 +26,20 @@ struct AS4Model: Identifiable {
         layer.append(geometry: beam.geometry)
         labelLayer.append(geometry: beam.idLabel)
     }
+    
+    mutating func updateNodes(layer: MVCLayer, labelLayer: MVCLayer) {
+        for node in nodes {
+            layer.append(geometry: node.geometry)
+            labelLayer.append(geometry: node.idLabel)
+        }
+    }
+    
+    mutating func updateBeams(layer: MVCLayer, labelLayer: MVCLayer) {
+        for beam in beams {
+            layer.append(geometry: beam.geometry)
+            labelLayer.append(geometry: beam.idLabel)
+        }
+    }
 }
 
 extension AS4Model: Codable {

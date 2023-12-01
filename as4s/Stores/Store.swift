@@ -22,8 +22,9 @@ final class Store {
     let controller: GraphicController
     
     init() {
-        model = AS4Model()
         controller = GraphicController(scene: scene)
+        model = AS4Model()
+        
         controller.store = self
     }
     
@@ -31,8 +32,10 @@ final class Store {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        model = try JSONDecoder().decode(AS4Model.self, from: data)
         controller = GraphicController(scene: scene)
+        model = try JSONDecoder().decode(AS4Model.self, from: data)
+        
+        controller.store = self
     }
 
     func updateView() {
@@ -44,6 +47,9 @@ final class Store {
         scene.append(layer: captionLayer)
         scene.append(layer: nodeLabelLayer)
         scene.append(layer: beamLabelLayer)
+        
+        model.updateNodes(layer: modelLayer, labelLayer: nodeLabelLayer)
+        model.updateBeams(layer: modelLayer, labelLayer: beamLabelLayer)
     }
 }
 
