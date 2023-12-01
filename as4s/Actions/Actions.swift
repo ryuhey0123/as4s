@@ -60,38 +60,33 @@ enum Actions {
             $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }
         
-        let nodes: [(id: Int, position: double3)?] = nodeData.map {
+        let nodes: [(id: Int, position: double3)] = nodeData.map {
             guard let id = Int($0[0]) else { return nil }
             guard let x = Double($0[1]) else { return nil }
             guard let y = Double($0[3]) else { return nil }
             guard let z = Double($0[2]) else { return nil }
             return (id: id, position: double3(x, y, z))
-        }
+        }.compactMap { $0 }
         
         let beamData: [[String]] = data[7].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
             $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }.filter { $0[1] == "BEAM" }
         
-        let beams: [(id: Int, iNode: Int, jNode: Int)?] = beamData.map {
+        let beams: [(id: Int, iNode: Int, jNode: Int)] = beamData.map {
             guard let id = Int($0[0]) else { return nil }
             guard let iNode = Int($0[4]) else { return nil }
             guard let jNode = Int($0[5]) else { return nil }
             return (id: id, iNode: iNode, jNode: jNode)
-        }
+        }.compactMap { $0 }
         
         for node in nodes {
-            if let node = node {
-                Actions.addNode(at: node.position, store: store)
-            }
+            Actions.addNode(at: node.position, store: store)
         }
         
         for beam in beams {
-            if let beam = beam {
-                guard let i = nodes.first(where: { $0?.id == beam.iNode }) else { break }
-                guard let j = nodes.first(where: { $0?.id == beam.jNode }) else { break }
-                Actions.addBeam(i: i!.position, j: j!.position, store: store)
-            }
+            guard let i = nodes.first(where: { $0.id == beam.iNode }) else { break }
+            guard let j = nodes.first(where: { $0.id == beam.jNode }) else { break }
+            Actions.addBeam(i: i.position, j: j.position, store: store)
         }
     }
-    
 }
