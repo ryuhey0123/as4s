@@ -15,6 +15,7 @@ struct ContentView: View {
         NavigationSplitView {
             addPoint
             addBeam
+            importTestModel
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
@@ -41,6 +42,12 @@ struct ContentView: View {
             Actions.addNode(at: i, store: store)
             Actions.addNode(at: j, store: store)
             Actions.addBeam(i: i, j: j, store: store)
+        }
+    }
+    
+    private var importTestModel: some View {
+        Button("Import Test Model") {
+            Actions.importTestModel(store: store)
         }
     }
 }

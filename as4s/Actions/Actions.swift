@@ -29,6 +29,7 @@ enum Actions {
         Logger.action.trace("\(#function): Add Beam from \(beam.i.description) to \(beam.j.description)")
     }
     
+    
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
@@ -41,4 +42,56 @@ enum Actions {
         
         Logger.action.trace("\(#function): Add Coordinate")
     }
+    
+    
+    // MARK: - Import
+    
+    static func importTestModel(store: Store) {
+        guard let fileURL = Bundle.main.url(forResource: "TestModel", withExtension: "txt") else {
+            fatalError("Not found TestModel.txt")
+        }
+        guard let fileContents = try? String(contentsOf: fileURL) else {
+            fatalError("Cannot read file.")
+        }
+        
+        let data = fileContents.components(separatedBy: "*")
+        
+        let nodeData: [[String]] = data[6].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
+            $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        }
+        
+        let nodes: [(id: Int, position: double3)?] = nodeData.map {
+            guard let id = Int($0[0]) else { return nil }
+            guard let x = Double($0[1]) else { return nil }
+            guard let y = Double($0[3]) else { return nil }
+            guard let z = Double($0[2]) else { return nil }
+            return (id: id, position: double3(x, y, z))
+        }
+        
+        let beamData: [[String]] = data[7].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
+            $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        }.filter { $0[1] == "BEAM" }
+        
+        let beams: [(id: Int, iNode: Int, jNode: Int)?] = beamData.map {
+            guard let id = Int($0[0]) else { return nil }
+            guard let iNode = Int($0[4]) else { return nil }
+            guard let jNode = Int($0[5]) else { return nil }
+            return (id: id, iNode: iNode, jNode: jNode)
+        }
+        
+        for node in nodes {
+            if let node = node {
+                Actions.addNode(at: node.position, store: store)
+            }
+        }
+        
+        for beam in beams {
+            if let beam = beam {
+                guard let i = nodes.first(where: { $0?.id == beam.iNode }) else { break }
+                guard let j = nodes.first(where: { $0?.id == beam.jNode }) else { break }
+                Actions.addBeam(i: i!.position, j: j!.position, store: store)
+            }
+        }
+    }
+    
 }
