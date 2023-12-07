@@ -10,12 +10,13 @@ import Mevic
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
+    @State var lastNodeId = 0
 
     var body: some View {
         NavigationSplitView {
             addPoint
-            addBeam
             importTestModel
+            linerStaticAnalyzeButton
         } detail: {
             ZStack {
                 MVCView(controller: store.controller)
@@ -31,23 +32,20 @@ struct ContentView: View {
     
     private var addPoint: some View {
         Button("Add Random Point") {
-            Actions.addNode(at: .random(in: -10000...10000), store: store)
-        }
-    }
-    
-    private var addBeam: some View {
-        Button("Add Random Beam") {
-            let i: double3 = .random(in: -10000...10000)
-            let j: double3 = .random(in: -10000...10000)
-            Actions.addNode(at: i, store: store)
-            Actions.addNode(at: j, store: store)
-            Actions.addBeam(i: i, j: j, store: store)
+            Actions.addNode(id: lastNodeId, position: .random(in: -10000...10000), store: store)
+            lastNodeId += 1
         }
     }
     
     private var importTestModel: some View {
         Button("Import Test Model") {
             Actions.importTestModel(store: store)
+        }
+    }
+    
+    private var linerStaticAnalyzeButton: some View {
+        Button("Liner Static Analyze") {
+            Actions.linerStaticAnalyze(store: store)
         }
     }
 }

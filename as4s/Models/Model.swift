@@ -1,5 +1,5 @@
 //
-//  AS4Model.swift
+//  Model.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/10/15.
@@ -7,22 +7,24 @@
 
 import Foundation
 import Mevic
+import Analic
 
-struct AS4Model: Identifiable {
+struct Model: Identifiable {
 
-    // Codable
     var id = UUID()
-    var nodes: [AS4Node] = []
-    var beams: [AS4Beam] = []
+    
+    var nodes: [Node] = []
+    var elements: [any Elementable] = []
+    var loads: [any Loadable] = []
 
-    mutating func append(_ node: AS4Node, layer: MVCLayer, labelLayer: MVCLayer) {
+    mutating func append(_ node: Node, layer: MVCLayer, labelLayer: MVCLayer) {
         nodes.append(node)
         layer.append(geometry: node.geometry)
         labelLayer.append(geometry: node.idLabel)
     }
     
-    mutating func append(_ beam: AS4Beam, layer: MVCLayer, labelLayer: MVCLayer) {
-        beams.append(beam)
+    mutating func append(_ beam: Beam, layer: MVCLayer, labelLayer: MVCLayer) {
+        elements.append(beam)
         layer.append(geometry: beam.geometry)
         labelLayer.append(geometry: beam.idLabel)
     }
@@ -35,32 +37,41 @@ struct AS4Model: Identifiable {
     }
     
     mutating func updateBeams(layer: MVCLayer, labelLayer: MVCLayer) {
-        for beam in beams {
+        for beam in elements {
             layer.append(geometry: beam.geometry)
             labelLayer.append(geometry: beam.idLabel)
         }
     }
 }
 
-extension AS4Model: Codable {
+extension Model: AnalyzableModel {
+    
+    var analyzableNodes: [AnalyzableNode] { nodes }
+    
+    var analyzableElements: [AnalyzableElement] { elements }
+    
+    var analyzableLoads: [AnalyzableLoad] { loads }
+}
+
+extension Model: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case nodes
-        case beams
+//        case nodes
+//        case elements
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
-        self.nodes = try container.decode([AS4Node].self, forKey: .nodes)
-        self.beams = try container.decode([AS4Beam].self, forKey: .beams)
+//        self.nodes = try container.decode([Node].self, forKey: .nodes)
+//        self.elements = try container.decode([Beam].self, forKey: .elements)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(nodes, forKey: .nodes)
-        try container.encode(beams, forKey: .beams)
+//        try container.encode(nodes, forKey: .nodes)
+//        try container.encode(elements, forKey: .elements)
     }
 }

@@ -13,7 +13,7 @@ extension UTType {
 }
 
 extension Store: ReferenceFileDocument {
-    typealias Snapshot = AS4Model
+    typealias Snapshot = Model
 
     static var readableContentTypes: [UTType] { [.as4Doument] }
     
@@ -21,7 +21,7 @@ extension Store: ReferenceFileDocument {
         self.model
     }
     
-    func fileWrapper(snapshot: AS4Model, configuration: WriteConfiguration) throws -> FileWrapper {
+    func fileWrapper(snapshot: Model, configuration: WriteConfiguration) throws -> FileWrapper {
         let data = try JSONEncoder().encode(snapshot)
         let fileWrapper = FileWrapper(regularFileWithContents: data)
         return fileWrapper

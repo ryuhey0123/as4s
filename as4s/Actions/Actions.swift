@@ -13,22 +13,19 @@ enum Actions {
     
     // MARK: - Geometry Controll
     
-    static func addNode(at position: double3, store: Store) {
-        let id = store.model.nodes.count + 1
-        let node = AS4Node(id: id, position: position)
+    static func addNode(id: Int, position: double3, store: Store) {
+        let node = Node(id: id, position: position)
         store.model.append(node, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
-    static func addBeam(i: double3, j: double3, store: Store) {
-        let id = store.model.beams.count + 1
-        let beam = AS4Beam(id: id, i: i, j: j)
+    static func addBeam(id: Int, i: Node, j: Node, store: Store) {
+        let beam = Beam(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
-        
-        Logger.action.trace("\(#function): Add Beam from \(beam.i.description) to \(beam.j.description)")
+
+        Logger.action.trace("\(#function): Add Beam from \(beam.i.id) to \(beam.j.id)")
     }
-    
     
     // MARK: - Other Geometry
     
@@ -80,13 +77,19 @@ enum Actions {
         }.compactMap { $0 }
         
         for node in nodes {
-            Actions.addNode(at: node.position, store: store)
+            Actions.addNode(id: node.id, position: node.position, store: store)
         }
         
         for beam in beams {
-            guard let i = nodes.first(where: { $0.id == beam.iNode }) else { break }
-            guard let j = nodes.first(where: { $0.id == beam.jNode }) else { break }
-            Actions.addBeam(i: i.position, j: j.position, store: store)
+            guard let i: Node = store.model.nodes.first(where: { $0.id == beam.iNode }) else { break }
+            guard let j: Node = store.model.nodes.first(where: { $0.id == beam.jNode }) else { break }
+            Actions.addBeam(id: beam.id, i: i, j: j, store: store)
         }
+    }
+    
+    static func linerStaticAnalyze(store: Store) {
+        let model = store.model
+        let solver = store.solver
+        solver.analyze(model: model)
     }
 }

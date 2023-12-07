@@ -7,11 +7,14 @@
 
 import SwiftUI
 import Mevic
+import Analic
 
 final class Store {
-    var model: AS4Model
     
-    let scene = MVCScene()
+    var model: Model
+    
+    let scene = GameScene()
+    let solver = ALCLinerStaticSolver()
     
     var modelLayer: MVCLayer!
     var captionLayer: MVCLayer!
@@ -23,7 +26,7 @@ final class Store {
     
     init() {
         controller = GraphicController(scene: scene)
-        model = AS4Model()
+        model = Model()
         
         controller.store = self
     }
@@ -33,7 +36,7 @@ final class Store {
             throw CocoaError(.fileReadCorruptFile)
         }
         controller = GraphicController(scene: scene)
-        model = try JSONDecoder().decode(AS4Model.self, from: data)
+        model = try JSONDecoder().decode(Model.self, from: data)
         
         controller.store = self
     }

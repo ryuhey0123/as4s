@@ -7,26 +7,26 @@
 
 import SwiftUI
 import Mevic
+import Analic
 
-class AS4Element<Geometry: MVCGeometry, Config: AS4ElementConfig>: Identifiable {
+protocol Elementable: AnalyzableElement, Identifiable {
     
-    var id: Int
-    var geometryId: UInt32
+    associatedtype Geometry: MVCGeometry
+    associatedtype Config: AS4ElementConfig
     
-    var geometry: Geometry
+    var geometry: Geometry { get set }
     
-    var color: Color = Config.color
+    var idLabel: MVCLabelGeometry { get set }
+        
+    var isSelected: Bool { get set }
+}
+
+extension Elementable {
     
-    var idLabel: MVCLabelGeometry
-    
-    var isSelected: Bool = false {
-        didSet { color = isSelected ? Config.selectedColor : Config.color }
-    }
-    
-    init(id: Int, geometryId: UInt32, geometry: Geometry, idLabel: MVCLabelGeometry) {
-        self.id = id
-        self.geometryId = geometryId
-        self.geometry = geometry
-        self.idLabel = idLabel
+    var color: Color {
+        get {
+            isSelected ? Config.selectedColor : Config.color
+        }
     }
 }
+

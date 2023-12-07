@@ -15,6 +15,7 @@ class GraphicController: MVCGraphicController {
     
     weak var store: Store?
     
+    private var lastSelectedNode: Node?
     
     // MARK: init
     
@@ -34,16 +35,19 @@ class GraphicController: MVCGraphicController {
     
     override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
         if let snapedId = scene.getSnapedId() {
-            guard let point = scene.layers.flatMap({ $0.geometries }).compactMap({ $0 as? MVCPointGeometry }).first(where: { $0.id == snapedId }) else { return }
+            
+            guard let node = store?.model.nodes.first(where: { $0.id == snapedId }) else { return }
             
             if isDrawingLine {
-                Actions.addBeam(i: double3(lineGideGeometry.i), j: double3(point.position), store: store!)
+                guard let lastSelectedNode = lastSelectedNode else { return }
+                Actions.addBeam(id: 99, i: lastSelectedNode, j: node, store: store!)
                 lineGideGeometry.j = lineGideGeometry.i
+                isDrawingLine.toggle()
             } else {
-                lineGideGeometry.i = point.position
+                lineGideGeometry.i = float3(node.position)
+                lastSelectedNode = node
+                isDrawingLine.toggle()
             }
-            
-            isDrawingLine.toggle()
         }
     }
     
@@ -75,24 +79,24 @@ class GraphicController: MVCGraphicController {
     // MARK: Utilities
     
     override func traceSelection() {
-        let selectionId = scene.getSeletionId()
-        if !selectionId.isEmpty {
-            let selectedNodes: [AS4Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
-            let selectedBeams: [AS4Beam] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryId)) })
-            
-            if inputController.keysPressed.isEmpty {
-                selectedNodes.forEach { $0.isSelected = true }
-                selectedBeams.forEach { $0.isSelected = true }
-                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function): Add selected beams \(selectedBeams.map { $0.id })")
-                
-            } else if inputController.keysPressed.contains(.leftShift) {
-                selectedNodes.forEach { $0.isSelected = false }
-                selectedBeams.forEach { $0.isSelected = false }
-                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function): Remove selected beams \(selectedBeams.map { $0.id })")
-            }
-        }
+//        let selectionId = scene.getSeletionId()
+//        if !selectionId.isEmpty {
+//            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
+//            let selectedBeams: [Beam] = store!.model.elements.filter( { selectionId.contains(Int($0.geometryId)) })
+//            
+//            if inputController.keysPressed.isEmpty {
+//                selectedNodes.forEach { $0.isSelected = true }
+//                selectedBeams.forEach { $0.isSelected = true }
+//                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
+//                Logger.action.trace("\(#function): Add selected beams \(selectedBeams.map { $0.id })")
+//                
+//            } else if inputController.keysPressed.contains(.leftShift) {
+//                selectedNodes.forEach { $0.isSelected = false }
+//                selectedBeams.forEach { $0.isSelected = false }
+//                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
+//                Logger.action.trace("\(#function): Remove selected beams \(selectedBeams.map { $0.id })")
+//            }
+//        }
     }
     
     private func panCamera(translation: NSPoint, in view: NSView) {
@@ -120,7 +124,7 @@ class GraphicController: MVCGraphicController {
     }
     
     private func cancelSelecting() {
-        store!.model.nodes.forEach { $0.isSelected = false }
-        store!.model.beams.forEach { $0.isSelected = false }
+//        store!.model.nodes.forEach { $0.isSelected = false }
+//        store!.model.elements.forEach { $0.isSelected = false }
     }
 }
