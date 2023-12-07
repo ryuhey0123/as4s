@@ -1,5 +1,5 @@
 //
-//  AS4Element.swift
+//  Element.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/11/17.
@@ -19,15 +19,9 @@ protocol Elementable: AnalyzableElement, Identifiable {
     var geometry: Geometry { get set }
     
     var idLabel: MVCLabelGeometry { get set }
+    
+    var color: Color { get set }
         
     var isSelected: Bool { get set }
 }
 
-extension Elementable {
-    
-    var color: Color {
-        get {
-            isSelected ? Config.selectedColor : Config.color
-        }
-    }
-}

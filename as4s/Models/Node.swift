@@ -19,6 +19,8 @@ protocol Nodable: AnalyzableNode, Identifiable {
     
     var idLabel: MVCLabelGeometry { get set }
     
+    var color: Color { get set }
+    
     var isSelected: Bool { get set }
 }
 
@@ -39,7 +41,15 @@ final class Node: Nodable {
     var geometry: Mevic.MVCPointGeometry
     var idLabel: MVCLabelGeometry
     
-    var isSelected: Bool = false
+    var color: Color = Config.color {
+        didSet {
+            geometry.color = float4(float3(color), 1)
+        }
+    }
+    
+    var isSelected: Bool = false {
+        didSet { color = isSelected ? Config.selectedColor : Config.color }
+    }
     
     init(id: Int, position: double3, condition: ALCCondition = .free) {
         self.id = id

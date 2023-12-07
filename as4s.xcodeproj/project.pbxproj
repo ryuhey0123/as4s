@@ -32,7 +32,7 @@
 		B1B87CBD2B00AB18008926E6 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B87CBC2B00AB18008926E6 /* Condition.swift */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
 		B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* Beam.swift */; };
-		B1F5EF202B074FCD00805708 /* AS4Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* AS4Element.swift */; };
+		B1F5EF202B074FCD00805708 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Element.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +81,7 @@
 		B1B87CBC2B00AB18008926E6 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* Beam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beam.swift; sourceTree = "<group>"; };
-		B1F5EF1F2B074FCD00805708 /* AS4Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Element.swift; sourceTree = "<group>"; };
+		B1F5EF1F2B074FCD00805708 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				B1B879292ADBBB2800CCDDA7 /* Model.swift */,
-				B1F5EF1F2B074FCD00805708 /* AS4Element.swift */,
+				B1F5EF1F2B074FCD00805708 /* Element.swift */,
 				B1B3121A2ADC1CFE00DC32B9 /* Node.swift */,
 				B1F5EF1D2B074F6200805708 /* Beam.swift */,
 				B17F72612B215A1300829C30 /* Load.swift */,
@@ -388,7 +388,7 @@
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
-				B1F5EF202B074FCD00805708 /* AS4Element.swift in Sources */,
+				B1F5EF202B074FCD00805708 /* Element.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);

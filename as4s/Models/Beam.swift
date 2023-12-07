@@ -29,7 +29,16 @@ final class Beam: Elementable {
     var material: AnalyzableMaterial = ALCSteel.sn400b
     var section: AnalyzableSection = ALCSection.defaultSection
     
-    var isSelected: Bool = false
+    var color: Color = Config.color {
+        didSet {
+            geometry.iColor = float4(float3(color), 1)
+            geometry.jColor = float4(float3(color), 1)
+        }
+    }
+    
+    var isSelected: Bool = false {
+        didSet { color = isSelected ? Config.selectedColor : Config.color }
+    }
     
     var forceMatrix: Surge.Matrix<Double>?
     

@@ -79,24 +79,24 @@ class GraphicController: MVCGraphicController {
     // MARK: Utilities
     
     override func traceSelection() {
-//        let selectionId = scene.getSeletionId()
-//        if !selectionId.isEmpty {
-//            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
-//            let selectedBeams: [Beam] = store!.model.elements.filter( { selectionId.contains(Int($0.geometryId)) })
-//            
-//            if inputController.keysPressed.isEmpty {
-//                selectedNodes.forEach { $0.isSelected = true }
-//                selectedBeams.forEach { $0.isSelected = true }
-//                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
-//                Logger.action.trace("\(#function): Add selected beams \(selectedBeams.map { $0.id })")
-//                
-//            } else if inputController.keysPressed.contains(.leftShift) {
-//                selectedNodes.forEach { $0.isSelected = false }
-//                selectedBeams.forEach { $0.isSelected = false }
-//                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
-//                Logger.action.trace("\(#function): Remove selected beams \(selectedBeams.map { $0.id })")
-//            }
-//        }
+        let selectionId = scene.getSeletionId()
+        if !selectionId.isEmpty {
+            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
+            let selectedElems: [any Elementable] = store!.model.elements.filter( { selectionId.contains(Int($0.geometryId)) })
+            
+            if inputController.keysPressed.isEmpty {
+                selectedNodes.forEach { $0.isSelected = true }
+                for var element in selectedElems { element.isSelected = true }
+                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function): Add selected beams \(selectedElems.map { $0.id })")
+                
+            } else if inputController.keysPressed.contains(.leftShift) {
+                selectedNodes.forEach { $0.isSelected = false }
+                for var element in selectedElems { element.isSelected = false }
+                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
+                Logger.action.trace("\(#function): Remove selected beams \(selectedElems.map { $0.id })")
+            }
+        }
     }
     
     private func panCamera(translation: NSPoint, in view: NSView) {
