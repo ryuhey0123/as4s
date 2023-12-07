@@ -42,11 +42,11 @@ enum Actions {
         Logger.action.trace("\(#function): Add Support at \(id)")
     }
     
-    static func addPointLoad(at node: Node, value: [Double], store: Store) {
-        let load = PointLoad(node: node, array: value)
+    static func addPointLoad(at id: Int, value: [Double], store: Store) {
+        let load = PointLoad(nodeId: id, value: value)
         store.model.append(load)
         
-        Logger.action.trace("\(#function): Add Point load at \(node.id)")
+        Logger.action.trace("\(#function): Add Point load at \(id)")
     }
     
     // MARK: - Other Geometry

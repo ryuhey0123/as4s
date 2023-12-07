@@ -9,12 +9,12 @@ import Analic
 
 class Support: ConstraintableNode {
     
-    var id: Int
+    var nodeId: Int
     
     var constraint: ALCConstraint
     
     init(id: Int, constraint: ALCConstraint) {
-        self.id = id
+        self.nodeId = id
         self.constraint = constraint
     }
 }
