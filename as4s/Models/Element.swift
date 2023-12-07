@@ -24,4 +24,3 @@ protocol Elementable: AnalyzableElement, Identifiable {
         
     var isSelected: Bool { get set }
 }
-

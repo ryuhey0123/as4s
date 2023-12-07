@@ -51,6 +51,8 @@ extension Model: AnalyzableModel {
     var analyzableElements: [AnalyzableElement] { elements }
     
     var analyzableLoads: [AnalyzableLoad] { loads }
+    
+    var analyzableConstraint: [AnalyzableConstraint] { [] }
 }
 
 extension Model: Codable {
