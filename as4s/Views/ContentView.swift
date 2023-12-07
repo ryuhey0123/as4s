@@ -10,7 +10,6 @@ import Mevic
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
-    @State var lastNodeId = 0
 
     var body: some View {
         NavigationSplitView {
@@ -32,8 +31,7 @@ struct ContentView: View {
     
     private var addPoint: some View {
         Button("Add Random Point") {
-            Actions.addNode(id: lastNodeId, position: .random(in: -10000...10000), store: store)
-            lastNodeId += 1
+            Actions.appendNode(position: .random(in: -10000...10000), store: store)
         }
     }
     

@@ -30,6 +30,7 @@ final class Node: Nodable {
     static var dofNum: Int = 6
     
     var id: Int
+    var geometryId: Int
     
     var position: double3
     var rotation: double3 = .zero
@@ -47,8 +48,11 @@ final class Node: Nodable {
         
         self.geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
         self.idLabel = MVCLabelGeometry(target: float3(position), text: String(id),
-                                        forgroundColor: .init(Config.labelColor), backgroundColor: .init(AS4Config.system.backGroundColor),
+                                        forgroundColor: .init(Config.labelColor),
+                                        backgroundColor: .init(AS4Config.system.backGroundColor),
                                         margin: .init(0, 8), alignment: .bottom)
+        
+        self.geometryId = Int(self.geometry.id)
     }
 }
 

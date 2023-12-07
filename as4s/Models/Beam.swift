@@ -16,6 +16,8 @@ final class Beam: Elementable {
     typealias Config = AS4Config.beam
     
     var id: Int
+    var geometryId: Int
+    
     var i: Node
     var j: Node
     
@@ -38,6 +40,8 @@ final class Beam: Elementable {
         self.geometry = MVCLineGeometry(i: float3(i.position), j: float3(j.position), color: float3(Config.color))
         self.idLabel = MVCLabelGeometry(target: float3((i.position + j.position) / 2), text: String(id),
                                         forgroundColor: .init(Config.labelColor), backgroundColor: .init(AS4Config.system.backGroundColor))
+        
+        self.geometryId = Int(self.geometry.id)
     }
 }
 

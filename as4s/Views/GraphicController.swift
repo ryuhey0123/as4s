@@ -35,12 +35,12 @@ class GraphicController: MVCGraphicController {
     
     override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
         if let snapedId = scene.getSnapedId() {
-            
-            guard let node = store?.model.nodes.first(where: { $0.id == snapedId }) else { return }
+            guard let node = store?.model.nodes.first(where: { $0.geometryId == snapedId }) else { return }
             
             if isDrawingLine {
                 guard let lastSelectedNode = lastSelectedNode else { return }
-                Actions.addBeam(id: 99, i: lastSelectedNode, j: node, store: store!)
+                let id = store!.model.elements.count + 1
+                Actions.addBeam(id: id, i: lastSelectedNode, j: node, store: store!)
                 lineGideGeometry.j = lineGideGeometry.i
                 isDrawingLine.toggle()
             } else {
@@ -124,7 +124,11 @@ class GraphicController: MVCGraphicController {
     }
     
     private func cancelSelecting() {
-//        store!.model.nodes.forEach { $0.isSelected = false }
-//        store!.model.elements.forEach { $0.isSelected = false }
+        for node in store!.model.nodes {
+            node.isSelected = false
+        }
+        for var element in store!.model.elements {
+            element.isSelected = false
+        }
     }
 }

@@ -20,6 +20,14 @@ enum Actions {
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
+    static func appendNode(position: double3, store: Store) {
+        let id = store.model.nodes.count + 1
+        let node = Node(id: id, position: position)
+        store.model.append(node, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
+        
+        Logger.action.trace("\(#function): Add Point at \(node.position.description)")
+    }
+    
     static func addBeam(id: Int, i: Node, j: Node, store: Store) {
         let beam = Beam(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)

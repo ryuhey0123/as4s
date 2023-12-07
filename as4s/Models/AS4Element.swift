@@ -14,6 +14,8 @@ protocol Elementable: AnalyzableElement, Identifiable {
     associatedtype Geometry: MVCGeometry
     associatedtype Config: AS4ElementConfig
     
+    var geometryId: Int { get }
+    
     var geometry: Geometry { get set }
     
     var idLabel: MVCLabelGeometry { get set }
@@ -29,4 +31,3 @@ extension Elementable {
         }
     }
 }
-
