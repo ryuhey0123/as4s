@@ -14,7 +14,8 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             addPoint
-            importTestModel
+            importSmallTestModel
+            importBigTestModel
             linerStaticAnalyzeButton
         } detail: {
             ZStack {
@@ -35,8 +36,20 @@ struct ContentView: View {
         }
     }
     
-    private var importTestModel: some View {
-        Button("Import Test Model") {
+    private var importSmallTestModel: some View {
+        Button("Import Small Test Model") {
+            Actions.addNode(id: 1, position: .init([0, 0, 0]), store: store)
+            Actions.addNode(id: 2, position: .init([1000, 0, 0]), store: store)
+            let node1 = store.model.nodes.first(where: { $0.id == 1 })!
+            let node2 = store.model.nodes.first(where: { $0.id == 2 })!
+            Actions.addBeam(id: 1, i: node1, j: node2, store: store)
+            Actions.addSupport(at: 1, constraint: .fix, store: store)
+            Actions.addPointLoad(at: node2, value: [0, 0, -1000, 0, 0, 0], store: store)
+        }
+    }
+    
+    private var importBigTestModel: some View {
+        Button("Import Big Test Model") {
             Actions.importTestModel(store: store)
         }
     }

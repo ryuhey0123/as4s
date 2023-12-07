@@ -10,7 +10,8 @@ import Analic
 
 protocol Loadable: AnalyzableLoad {}
 
-class PointLoad: AnalyzablePointLoad {
+class PointLoad: AnalyzablePointLoad, Loadable {
+    
     var node: AnalyzableNode
     
     var qx: Double = 0.0

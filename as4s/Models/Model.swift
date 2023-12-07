@@ -16,6 +16,7 @@ struct Model: Identifiable {
     var nodes: [Node] = []
     var elements: [any Elementable] = []
     var loads: [any Loadable] = []
+    var supports: [Support] = []
 
     mutating func append(_ node: Node, layer: MVCLayer, labelLayer: MVCLayer) {
         nodes.append(node)
@@ -27,6 +28,14 @@ struct Model: Identifiable {
         elements.append(beam)
         layer.append(geometry: beam.geometry)
         labelLayer.append(geometry: beam.labelGeometry)
+    }
+    
+    mutating func append(_ support: Support) {
+        supports.append(support)
+    }
+    
+    mutating func append(_ load: PointLoad) {
+        loads.append(load)
     }
     
     mutating func updateNodes(layer: MVCLayer, labelLayer: MVCLayer) {
@@ -52,7 +61,7 @@ extension Model: AnalyzableModel {
     
     var analyzableLoads: [AnalyzableLoad] { loads }
     
-    var analyzableConstraint: [AnalyzableConstraint] { [] }
+    var analyzableConstraint: [AnalyzableConstraint] { supports }
 }
 
 extension Model: Codable {
