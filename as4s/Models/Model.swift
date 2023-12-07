@@ -14,8 +14,8 @@ struct Model: Identifiable {
     var id = UUID()
     
     var nodes: [Node] = []
-    var elements: [any Elementable] = []
-    var loads: [any Loadable] = []
+    var beams: [Beam] = []
+    var pointLoads: [PointLoad] = []
     var supports: [Support] = []
 
     mutating func append(_ node: Node, layer: MVCLayer, labelLayer: MVCLayer) {
@@ -25,7 +25,7 @@ struct Model: Identifiable {
     }
     
     mutating func append(_ beam: Beam, layer: MVCLayer, labelLayer: MVCLayer) {
-        elements.append(beam)
+        beams.append(beam)
         layer.append(geometry: beam.geometry)
         labelLayer.append(geometry: beam.labelGeometry)
     }
@@ -35,7 +35,7 @@ struct Model: Identifiable {
     }
     
     mutating func append(_ load: PointLoad) {
-        loads.append(load)
+        pointLoads.append(load)
     }
     
     mutating func updateNodes(layer: MVCLayer, labelLayer: MVCLayer) {
@@ -46,7 +46,7 @@ struct Model: Identifiable {
     }
     
     mutating func updateBeams(layer: MVCLayer, labelLayer: MVCLayer) {
-        for beam in elements {
+        for beam in beams {
             layer.append(geometry: beam.geometry)
             labelLayer.append(geometry: beam.labelGeometry)
         }
@@ -57,9 +57,9 @@ extension Model: AnalyzableModel {
     
     var analyzableNodes: [AnalyzableNode] { nodes }
     
-    var analyzableElements: [AnalyzableElement] { elements }
+    var analyzableElements: [AnalyzableElement] { beams }
     
-    var analyzableLoads: [AnalyzableLoad] { loads }
+    var analyzableLoads: [AnalyzableLoad] { pointLoads }
     
     var analyzableConstraint: [AnalyzableConstraint] { supports }
 }

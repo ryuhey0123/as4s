@@ -39,7 +39,7 @@ class GraphicController: MVCGraphicController {
             
             if isDrawingLine {
                 guard let lastSelectedNode = lastSelectedNode else { return }
-                let id = store!.model.elements.count + 1
+                let id = store!.model.beams.count + 1
                 Actions.addBeam(id: id, i: lastSelectedNode, j: node, store: store!)
                 lineGideGeometry.j = lineGideGeometry.i
                 isDrawingLine.toggle()
@@ -82,7 +82,7 @@ class GraphicController: MVCGraphicController {
         let selectionId = scene.getSeletionId()
         if !selectionId.isEmpty {
             let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
-            let selectedElems: [any Elementable] = store!.model.elements.filter( { selectionId.contains(Int($0.geometryId)) })
+            let selectedElems: [any Elementable] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryId)) })
             
             if inputController.keysPressed.isEmpty {
                 selectedNodes.forEach { $0.isSelected = true }
@@ -124,11 +124,7 @@ class GraphicController: MVCGraphicController {
     }
     
     private func cancelSelecting() {
-        for node in store!.model.nodes {
-            node.isSelected = false
-        }
-        for var element in store!.model.elements {
-            element.isSelected = false
-        }
+        store!.model.nodes.forEach { $0.isSelected = false }
+        store!.model.beams.forEach { $0.isSelected = false }
     }
 }
