@@ -24,7 +24,7 @@ final class Beam: Elementable {
     var coordAngle: Double = 0.0
     
     var geometry: Geometry
-    var idLabel: MVCLabelGeometry
+    var labelGeometry: MVCLabelGeometry
     
     var material: AnalyzableMaterial = ALCSteel.sn400b
     var section: AnalyzableSection = ALCSection.defaultSection
@@ -47,7 +47,7 @@ final class Beam: Elementable {
         self.i = i
         self.j = j
         self.geometry = MVCLineGeometry(i: float3(i.position), j: float3(j.position), color: float3(Config.color))
-        self.idLabel = MVCLabelGeometry(target: float3((i.position + j.position) / 2), text: String(id),
+        self.labelGeometry = MVCLabelGeometry(target: float3((i.position + j.position) / 2), text: String(id),
                                         forgroundColor: .init(Config.labelColor), backgroundColor: .init(AS4Config.system.backGroundColor))
         
         self.geometryId = Int(self.geometry.id)

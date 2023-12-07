@@ -18,7 +18,7 @@ protocol Elementable: AnalyzableElement, Identifiable {
     
     var geometry: Geometry { get set }
     
-    var idLabel: MVCLabelGeometry { get set }
+    var labelGeometry: MVCLabelGeometry { get set }
     
     var color: Color { get set }
         

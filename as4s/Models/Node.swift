@@ -17,7 +17,7 @@ protocol Nodable: AnalyzableNode, Identifiable {
     
     var geometry: Geometry { get set }
     
-    var idLabel: MVCLabelGeometry { get set }
+    var labelGeometry: MVCLabelGeometry { get set }
     
     var color: Color { get set }
     
@@ -38,8 +38,8 @@ final class Node: Nodable {
     var rotation: double3 = .zero
     var condition: ALCCondition
     
-    var geometry: Mevic.MVCPointGeometry
-    var idLabel: MVCLabelGeometry
+    var geometry: Geometry
+    var labelGeometry: MVCLabelGeometry
     
     var color: Color = Config.color {
         didSet {
@@ -57,7 +57,7 @@ final class Node: Nodable {
         self.condition = condition
         
         self.geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
-        self.idLabel = MVCLabelGeometry(target: float3(position), text: String(id),
+        self.labelGeometry = MVCLabelGeometry(target: float3(position), text: String(id),
                                         forgroundColor: .init(Config.labelColor),
                                         backgroundColor: .init(AS4Config.system.backGroundColor),
                                         margin: .init(0, 8), alignment: .bottom)

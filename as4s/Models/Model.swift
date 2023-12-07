@@ -20,26 +20,26 @@ struct Model: Identifiable {
     mutating func append(_ node: Node, layer: MVCLayer, labelLayer: MVCLayer) {
         nodes.append(node)
         layer.append(geometry: node.geometry)
-        labelLayer.append(geometry: node.idLabel)
+        labelLayer.append(geometry: node.labelGeometry)
     }
     
     mutating func append(_ beam: Beam, layer: MVCLayer, labelLayer: MVCLayer) {
         elements.append(beam)
         layer.append(geometry: beam.geometry)
-        labelLayer.append(geometry: beam.idLabel)
+        labelLayer.append(geometry: beam.labelGeometry)
     }
     
     mutating func updateNodes(layer: MVCLayer, labelLayer: MVCLayer) {
         for node in nodes {
             layer.append(geometry: node.geometry)
-            labelLayer.append(geometry: node.idLabel)
+            labelLayer.append(geometry: node.labelGeometry)
         }
     }
     
     mutating func updateBeams(layer: MVCLayer, labelLayer: MVCLayer) {
         for beam in elements {
             layer.append(geometry: beam.geometry)
-            labelLayer.append(geometry: beam.idLabel)
+            labelLayer.append(geometry: beam.labelGeometry)
         }
     }
 }
