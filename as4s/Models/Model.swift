@@ -7,7 +7,6 @@
 
 import Foundation
 import Mevic
-import Analic
 
 struct Model: Identifiable {
 
@@ -51,17 +50,6 @@ struct Model: Identifiable {
             labelLayer.append(geometry: beam.labelGeometry)
         }
     }
-}
-
-extension Model: AnalyzableModel {
-    
-    var analyzableNodes: [AnalyzableNode] { nodes }
-    
-    var analyzableElements: [AnalyzableElement] { beams }
-    
-    var analyzableLoads: [AnalyzableLoad] { pointLoads }
-    
-    var analyzableConstraint: [AnalyzableConstraint] { supports }
 }
 
 extension Model: Codable {

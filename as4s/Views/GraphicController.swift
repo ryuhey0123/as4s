@@ -4,7 +4,6 @@
 //
 //  Created by Ryuhei Fujita on 2023/11/28.
 //
-//
 
 import SwiftUI
 import GameController
@@ -22,8 +21,8 @@ class GraphicController: MVCGraphicController {
     override init(scene: MVCScene) {
         super.init(scene: scene)
         
-        lineGideGeometry.iColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
-        lineGideGeometry.jColor = float4(float3(AS4Config.drawingGide.lineColor), 1)
+        lineGideGeometry.iColor = float4(float3(Config.drawingGide.lineColor), 1)
+        lineGideGeometry.jColor = float4(float3(Config.drawingGide.lineColor), 1)
         
         scene.camera.viewSize = 5000
         scene.camera.near = -100_000
@@ -65,7 +64,7 @@ class GraphicController: MVCGraphicController {
     
     override func handleScroll() {
         let sizedScroll = inputController.mouseScroll * scene.camera.viewSize
-        scene.camera.zoom(sizedScroll.y * AS4Config.cameraControllSensitivity.zoom * 0.05)
+        scene.camera.zoom(sizedScroll.y * Config.cameraControllSensitivity.zoom * 0.05)
     }
     
     override func keysPressed(_ keys: Set<GCKeyCode>) {
@@ -100,21 +99,21 @@ class GraphicController: MVCGraphicController {
     }
     
     private func panCamera(translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * AS4Config.cameraControllSensitivity.pan
+        var translation = float2(translation) * Config.cameraControllSensitivity.pan
         translation.x /= Float(view.frame.size.width) / 2
         translation.y /= Float(view.frame.size.height) / 2
         scene.camera.pan(translation)
     }
     
     private func rotateCamera(translation: NSPoint, in view: NSView) {
-        var translation = float2(translation) * AS4Config.cameraControllSensitivity.rotate
+        var translation = float2(translation) * Config.cameraControllSensitivity.rotate
         translation.x /= Float(view.frame.size.width) / (2 * .pi)
         translation.y /= Float(view.frame.size.height) / (2 * .pi)
         scene.camera.rotate(translation)
     }
     
     private func zoomCamera( delta: CGFloat) {
-        let delta = Float(delta) * 0.05 * AS4Config.cameraControllSensitivity.zoom
+        let delta = Float(delta) * 0.05 * Config.cameraControllSensitivity.zoom
         scene.camera.zoom(delta)
     }
     

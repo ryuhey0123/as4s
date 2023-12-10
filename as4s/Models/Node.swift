@@ -7,13 +7,11 @@
 
 import SwiftUI
 import Mevic
-import Analic
-import Surge
 
-protocol Nodable: AnalyzableNode, Identifiable {
+protocol Nodable: Identifiable {
     
     associatedtype Geometry: MVCGeometry
-    associatedtype Config: AS4ElementConfig
+    associatedtype ElementConfig: AS4ElementConfig
     
     var geometry: Geometry { get set }
     
@@ -27,7 +25,7 @@ protocol Nodable: AnalyzableNode, Identifiable {
 final class Node: Nodable {
     
     typealias Geometry = MVCPointGeometry
-    typealias Config = AS4Config.node
+    typealias ElementConfig = Config.node
     
     static var dofNum: Int = 6
     
@@ -40,24 +38,24 @@ final class Node: Nodable {
     var geometry: Geometry
     var labelGeometry: MVCLabelGeometry
     
-    var color: Color = Config.color {
+    var color: Color = ElementConfig.color {
         didSet {
             geometry.color = float4(float3(color), 1)
         }
     }
     
     var isSelected: Bool = false {
-        didSet { color = isSelected ? Config.selectedColor : Config.color }
+        didSet { color = isSelected ? ElementConfig.selectedColor : ElementConfig.color }
     }
     
     init(id: Int, position: double3) {
         self.id = id
         self.position = position
         
-        self.geometry = MVCPointGeometry(position: float3(position), color: .init(Config.color))
+        self.geometry = MVCPointGeometry(position: float3(position), color: .init(ElementConfig.color))
         self.labelGeometry = MVCLabelGeometry(target: float3(position), text: String(id),
-                                        forgroundColor: .init(Config.labelColor),
-                                        backgroundColor: .init(AS4Config.system.backGroundColor),
+                                        forgroundColor: .init(ElementConfig.labelColor),
+                                        backgroundColor: .init(Config.system.backGroundColor),
                                         margin: .init(0, 8), alignment: .bottom)
         
         self.geometryId = Int(self.geometry.id)

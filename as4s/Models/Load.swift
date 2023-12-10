@@ -6,17 +6,14 @@
 //
 
 import Mevic
-import Analic
 
-protocol Loadable: AnalyzableLoad {}
+protocol Loadable {}
 
-class PointLoad: AnalyzablePointLoad, Loadable {
+class PointLoad: Loadable {
     
     var nodeId: Int
-    var load: ALCLoad
     
     init(nodeId: Int, value: [Double]) {
         self.nodeId = nodeId
-        self.load = ALCLoad(type: .point, value: value)
     }
 }

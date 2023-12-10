@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Mevic
-import Analic
 
 enum Actions {
     
@@ -33,13 +32,6 @@ enum Actions {
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
 
         Logger.action.trace("\(#function): Add Beam from \(beam.i.id) to \(beam.j.id)")
-    }
-    
-    static func addSupport(at id: Int, constraint: ALCConstraint, store: Store) {
-        let support = Support(id: id, constraint: constraint)
-        store.model.append(support)
-        
-        Logger.action.trace("\(#function): Add Support at \(id)")
     }
     
     static func addPointLoad(at id: Int, value: [Double], store: Store) {
@@ -107,17 +99,5 @@ enum Actions {
             guard let j: Node = store.model.nodes.first(where: { $0.id == beam.jNode }) else { break }
             Actions.addBeam(id: beam.id, i: i, j: j, store: store)
         }
-    }
-    
-    
-    // MARK: - Analyze
-    
-    static func linerStaticAnalyze(store: Store) {
-        let model = store.model
-        let solver = store.solver
-        solver.analyze(model: model)
-        
-        Logger.action.trace("\(#function): Complete Analysis")
-        print(solver.nodalDisplacementsMatrix!)
     }
 }

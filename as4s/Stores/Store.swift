@@ -7,14 +7,12 @@
 
 import SwiftUI
 import Mevic
-import Analic
 
 final class Store {
     
     var model: Model
     
     let scene = GameScene()
-    let solver = ALCLinerStaticSolver()
     
     var modelLayer: MVCLayer!
     var captionLayer: MVCLayer!

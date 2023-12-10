@@ -7,13 +7,11 @@
 
 import SwiftUI
 import Mevic
-import Analic
-import Surge
 
 final class Beam: Elementable {
     
     typealias Geometry = MVCLineGeometry
-    typealias Config = AS4Config.beam
+    typealias ElementConfig = Config.beam
     
     var id: Int
     var geometryId: Int
@@ -26,10 +24,7 @@ final class Beam: Elementable {
     var geometry: Geometry
     var labelGeometry: MVCLabelGeometry
     
-    var material: AnalyzableMaterial = ALCSteel.sn400b
-    var section: AnalyzableSection = ALCSection.default
-    
-    var color: Color = Config.color {
+    var color: Color = ElementConfig.color {
         didSet {
             geometry.iColor = float4(float3(color), 1)
             geometry.jColor = float4(float3(color), 1)
@@ -37,50 +32,18 @@ final class Beam: Elementable {
     }
     
     var isSelected: Bool = false {
-        didSet { color = isSelected ? Config.selectedColor : Config.color }
+        didSet { color = isSelected ? ElementConfig.selectedColor : ElementConfig.color }
     }
-    
-    var forceMatrix: Surge.Matrix<Double>?
     
     init(id: Int, i: Node, j: Node) {
         self.id = id
         self.i = i
         self.j = j
-        self.geometry = MVCLineGeometry(i: float3(i.position), j: float3(j.position), color: float3(Config.color))
+        self.geometry = MVCLineGeometry(i: float3(i.position), j: float3(j.position), color: float3(ElementConfig.color))
         self.labelGeometry = MVCLabelGeometry(target: float3((i.position + j.position) / 2), text: String(id),
-                                        forgroundColor: .init(Config.labelColor), backgroundColor: .init(AS4Config.system.backGroundColor))
+                                        forgroundColor: .init(ElementConfig.labelColor), backgroundColor: .init(Config.system.backGroundColor))
         
         self.geometryId = Int(self.geometry.id)
-    }
-}
-
-extension Beam: AnalyzableBeam {
-    var nodeI: Int {
-        <#code#>
-    }
-    
-    var nodeJ: Int {
-        <#code#>
-    }
-    
-    var positions: Analic.LinePoints<Double> {
-        <#code#>
-    }
-    
-    var positionI: double3 {
-        i.position
-    }
-    
-    var positionJ: double3 {
-        j.position
-    }
-    
-    var analyzableNodeI: Int {
-        i.id
-    }
-    
-    var analyzableNodeJ: Int {
-        j.id
     }
 }
 

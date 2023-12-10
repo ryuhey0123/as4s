@@ -7,12 +7,11 @@
 
 import SwiftUI
 import Mevic
-import Analic
 
-protocol Elementable: AnalyzableElement, Identifiable {
+protocol Elementable: Identifiable {
     
     associatedtype Geometry: MVCGeometry
-    associatedtype Config: AS4ElementConfig
+    associatedtype ElementConfig: AS4ElementConfig
     
     var geometryId: Int { get }
     

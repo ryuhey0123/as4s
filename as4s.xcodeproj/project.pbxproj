@@ -10,7 +10,7 @@
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
 		B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12AD6402B16153400D4D315 /* GraphicController.swift */; };
 		B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12AD6802B1950A800D4D315 /* TestModel.txt */; };
-		B1372C7F2B05CE65000293D4 /* AS4Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* AS4Config.swift */; };
+		B1372C7F2B05CE65000293D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* Config.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -19,10 +19,9 @@
 		B161BC352ADB958A00AABA48 /* as4sTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC342ADB958A00AABA48 /* as4sTests.swift */; };
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
-		B17F72602B20791000829C30 /* Analic in Frameworks */ = {isa = PBXBuildFile; productRef = B17F725F2B20791000829C30 /* Analic */; };
 		B17F72622B215A1300829C30 /* Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* Load.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
-		B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */; };
+		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
 		B1AF9F732B21B6810066C617 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF9F722B21B6810066C617 /* Scene.swift */; };
 		B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* Node.swift */; };
 		B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */; };
@@ -57,7 +56,7 @@
 		B124ADDC2B06429100AE5429 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		B12AD6402B16153400D4D315 /* GraphicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicController.swift; sourceTree = "<group>"; };
 		B12AD6802B1950A800D4D315 /* TestModel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestModel.txt; sourceTree = "<group>"; };
-		B1372C7E2B05CE65000293D4 /* AS4Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Config.swift; sourceTree = "<group>"; };
+		B1372C7E2B05CE65000293D4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -72,7 +71,7 @@
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Load.swift; sourceTree = "<group>"; };
-		B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AS4Logger.swift; sourceTree = "<group>"; };
+		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B1AF9F722B21B6810066C617 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Document.swift"; sourceTree = "<group>"; };
@@ -91,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17F72602B20791000829C30 /* Analic in Frameworks */,
 				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,8 +202,8 @@
 		B1A65B8D2ADD367C001A9C7B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				B1A65B8E2ADD36A1001A9C7B /* AS4Logger.swift */,
-				B1372C7E2B05CE65000293D4 /* AS4Config.swift */,
+				B1A65B8E2ADD36A1001A9C7B /* Logger.swift */,
+				B1372C7E2B05CE65000293D4 /* Config.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -255,7 +253,6 @@
 			name = as4s;
 			packageProductDependencies = (
 				B17FE6502ADE82E5009A9134 /* Mevic */,
-				B17F725F2B20791000829C30 /* Analic */,
 			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
@@ -331,7 +328,6 @@
 			mainGroup = B161BC132ADB958900AABA48;
 			packageReferences = (
 				B1D0265F2AE0E55F00DF77E0 /* XCLocalSwiftPackageReference "../Mevic/Mevic" */,
-				B17F725E2B20791000829C30 /* XCLocalSwiftPackageReference "../Analic" */,
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
@@ -382,7 +378,7 @@
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
-				B1372C7F2B05CE65000293D4 /* AS4Config.swift in Sources */,
+				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B17F72622B215A1300829C30 /* Load.swift in Sources */,
 				B1AF9F732B21B6810066C617 /* Scene.swift in Sources */,
@@ -393,7 +389,7 @@
 				B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
 				B1F5EF202B074FCD00805708 /* Element.swift in Sources */,
-				B1A65B8F2ADD36A1001A9C7B /* AS4Logger.swift in Sources */,
+				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,10 +755,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		B17F725E2B20791000829C30 /* XCLocalSwiftPackageReference "../Analic" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Analic;
-		};
 		B1D0265F2AE0E55F00DF77E0 /* XCLocalSwiftPackageReference "../Mevic/Mevic" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Mevic/Mevic;
@@ -770,10 +762,6 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B17F725F2B20791000829C30 /* Analic */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Analic;
-		};
 		B17FE6502ADE82E5009A9134 /* Mevic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Mevic;
