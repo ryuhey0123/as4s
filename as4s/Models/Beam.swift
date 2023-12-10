@@ -27,7 +27,7 @@ final class Beam: Elementable {
     var labelGeometry: MVCLabelGeometry
     
     var material: AnalyzableMaterial = ALCSteel.sn400b
-    var section: AnalyzableSection = ALCSection.defaultSection
+    var section: AnalyzableSection = ALCSection.default
     
     var color: Color = Config.color {
         didSet {
@@ -55,8 +55,33 @@ final class Beam: Elementable {
 }
 
 extension Beam: AnalyzableBeam {
-    var analyzableNodeI: AnalyzableNode { i }
-    var analyzableNodeJ: AnalyzableNode { j }
+    var nodeI: Int {
+        <#code#>
+    }
+    
+    var nodeJ: Int {
+        <#code#>
+    }
+    
+    var positions: Analic.LinePoints<Double> {
+        <#code#>
+    }
+    
+    var positionI: double3 {
+        i.position
+    }
+    
+    var positionJ: double3 {
+        j.position
+    }
+    
+    var analyzableNodeI: Int {
+        i.id
+    }
+    
+    var analyzableNodeJ: Int {
+        j.id
+    }
 }
 
 //extension Beam: Codable {
