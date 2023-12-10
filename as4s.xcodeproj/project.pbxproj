@@ -33,6 +33,8 @@
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
 		B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* Beam.swift */; };
 		B1F5EF202B074FCD00805708 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Element.swift */; };
+		B1FE61B32B258D2D005116DC /* OpenSees in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61A92B258D2D005116DC /* OpenSees */; };
+		B1FE61B42B258D2D005116DC /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61AC2B258D2D005116DC /* init.tcl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* Beam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beam.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		B1FE61A92B258D2D005116DC /* OpenSees */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = OpenSees; sourceTree = "<group>"; };
+		B1FE61AC2B258D2D005116DC /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,16 +139,15 @@
 			isa = PBXGroup;
 			children = (
 				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
-				B161BC272ADB958A00AABA48 /* Info.plist */,
 				B161BC502ADB962A00AABA48 /* Views */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
 				B161BC512ADB963800AABA48 /* Models */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
 				B1A65B8D2ADD367C001A9C7B /* Utilities */,
-				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
+				B1FE619E2B258CF8005116DC /* Resources */,
+				B161BC272ADB958A00AABA48 /* Info.plist */,
 				B161BC282ADB958A00AABA48 /* as4s.entitlements */,
-				B12AD6802B1950A800D4D315 /* TestModel.txt */,
 				B161BC292ADB958A00AABA48 /* Preview Content */,
 			);
 			path = as4s;
@@ -233,6 +236,49 @@
 				B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		B1FE619E2B258CF8005116DC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE619F2B258D2D005116DC /* OpenSees3.5.0 */,
+				B12AD6802B1950A800D4D315 /* TestModel.txt */,
+				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B1FE619F2B258D2D005116DC /* OpenSees3.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE61A82B258D2D005116DC /* bin */,
+				B1FE61AA2B258D2D005116DC /* lib */,
+			);
+			path = OpenSees3.5.0;
+			sourceTree = "<group>";
+		};
+		B1FE61A82B258D2D005116DC /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE61A92B258D2D005116DC /* OpenSees */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		B1FE61AA2B258D2D005116DC /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE61AB2B258D2D005116DC /* tcl8.6 */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		B1FE61AB2B258D2D005116DC /* tcl8.6 */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE61AC2B258D2D005116DC /* init.tcl */,
+			);
+			path = tcl8.6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +393,8 @@
 			files = (
 				B161BC2B2ADB958A00AABA48 /* Preview Assets.xcassets in Resources */,
 				B161BC262ADB958A00AABA48 /* Assets.xcassets in Resources */,
+				B1FE61B32B258D2D005116DC /* OpenSees in Resources */,
+				B1FE61B42B258D2D005116DC /* init.tcl in Resources */,
 				B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

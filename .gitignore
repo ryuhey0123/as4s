@@ -1,5 +1,5 @@
 # ---- Xcode ----
-## User settings
+## 
 xcuserdata/
 
 ## Xcode 8 and earlier
@@ -127,3 +127,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+OpenSees3.5.0/
