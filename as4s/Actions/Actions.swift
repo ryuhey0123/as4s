@@ -34,6 +34,13 @@ enum Actions {
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
     
+    static func addBeam(id: Int, i: Int, j: Int, store: Store) {
+        let beam = Beam(eleTag: id, iNode: i, jNode: j)
+        store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
+        
+        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
+    }
+    
 //    static func addPointLoad(at id: Int, value: [Float], store: Store) {
 //        let load = PointLoad(nodeId: id, value: value)
 //        store.model.append(load)

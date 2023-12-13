@@ -8,6 +8,7 @@
 import OpenSeesCoder
 
 final class Transformation: OSLinerTransformation {
+    
     var transfTag: Int
     var vecxzX: Float
     var vecxzY: Float

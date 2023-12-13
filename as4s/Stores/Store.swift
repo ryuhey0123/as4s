@@ -24,7 +24,7 @@ final class Store {
     
     init() {
         controller = GraphicController(scene: scene)
-        model = Model(ndm: 3)
+        model = Model()
         
         controller.store = self
     }

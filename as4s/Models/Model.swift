@@ -38,6 +38,11 @@ struct Model: OSModel {
     var analysis: OSAnalysis = OSAnalysis(analysisType: .Static)
     var analyze: OSAnalyze = OSAnalyze(numIncr: 1)
     
+    init() {
+        self.ndm = 3
+        self.ndf = nil
+    }
+    
     init(ndm: Int, ndf: Int? = nil) {
         self.ndm = ndm
         self.ndf = ndf

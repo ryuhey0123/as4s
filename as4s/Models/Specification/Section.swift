@@ -8,6 +8,7 @@
 import OpenSeesCoder
 
 final class Section: OSElasticSection {
+    
     var secTag: Int
     
     var E: Float
