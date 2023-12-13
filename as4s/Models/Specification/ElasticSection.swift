@@ -39,3 +39,8 @@ final class ElasticSection: CrossSection, OSElasticSection {
         self.alphaZ = alphaZ
     }
 }
+
+extension ElasticSection {
+    
+    static var `default`: ElasticSection = .init(secTag: 1, E: 100e2, A: 100e2, Iz: 100e4, Iy: 100e4, G: 100e4, J: 100e4)
+}

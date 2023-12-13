@@ -33,3 +33,8 @@ final class Transformation: OSLinerTransformation {
         self.dZj = dZj
     }
 }
+
+extension Transformation {
+    
+    static var `default`: Transformation = .init(transfTag: 1, vecxzX: 0, vecxzY: 0, vecxzZ: -1)
+}

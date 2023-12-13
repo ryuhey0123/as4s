@@ -10,6 +10,7 @@ import Mevic
 import OpenSeesCoder
 
 final class Model: OSModel {
+    
     var ndm: Int
     var ndf: Int?
     
@@ -20,16 +21,16 @@ final class Model: OSModel {
     var fixes: [Support] = []
     
     // Specification
-    var elasticSec: [ElasticSection] = []
-    var linerTransfs: [Transformation] = []
+    var elasticSec: [ElasticSection] = [.default]
+    var linerTransfs: [Transformation] = [.default]
     
     // Loads
     var masses: [Mass] = []
-    var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 0)
+    var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 1)
     var plainPatterns: [OSPlainPattern] = []
     
     // Output
-    var nodeRecorder: OSNodeRecorder = OSNodeRecorder(fileName: "res_node_disp", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
+    var nodeRecorder: OSNodeRecorder = .nodeDesp
     
     // Analyze
     var system: OSSystem = .BandSPD
@@ -40,12 +41,7 @@ final class Model: OSModel {
     var analysis: OSAnalysis = OSAnalysis(analysisType: .Static)
     var analyze: OSAnalyze = OSAnalyze(numIncr: 1)
     
-    init() {
-        self.ndm = 3
-        self.ndf = nil
-    }
-    
-    init(ndm: Int, ndf: Int? = nil) {
+    init(ndm: Int = 3, ndf: Int? = nil) {
         self.ndm = ndm
         self.ndf = ndf
     }
