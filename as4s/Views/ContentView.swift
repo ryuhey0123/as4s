@@ -63,10 +63,10 @@ struct ContentView: View {
                 Transformation(transfTag: 0, vecxzX: 0, vecxzY: 0, vecxzZ: -1),
             ])
             store.model.plainPatterns.append(contentsOf: [
-                OSPlainPattern(patternTag: 0, tsTag: 0, loads: [
-                    NodalLoad(nodeTag: 0, loadvalues: [0, 0, -10, 0, 0, 0]),
-                    NodalLoad(nodeTag: 1, loadvalues: [0, 0, -100.0, 0, 0, 0])
-                ])
+//                OSPlainPattern(patternTag: 0, tsTag: 0, loads: [
+//                    NodalLoad(nodeTag: 0, loadvalues: [0, 0, -10, 0, 0, 0]),
+//                    NodalLoad(nodeTag: 1, loadvalues: [0, 0, -100.0, 0, 0, 0])
+//                ])
             ])
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Beam: OSElasticBeamColumn, Renderable {
+final class Beam: OSElasticBeamColumn, Renderable, Selectable {
     
     typealias Geometry = MVCLineGeometry
     typealias ElementConfig = Config.beam
@@ -70,5 +70,9 @@ final class Beam: OSElasticBeamColumn, Renderable {
         self.geometry = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         self.labelGeometry = MVCLabelGeometry(target: (i + j) / 2, text: eleTag.description)
         self.geometryTag = geometry.id
+    }
+    
+    func append(model: Model) {
+        model.beams.append(self)
     }
 }

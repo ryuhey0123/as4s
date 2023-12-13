@@ -21,9 +21,9 @@ protocol Renderable {
     
     var color: Color { get set }
     
-    var isSelected: Bool { get set }
-    
     func geometrySetup(model: Model)
+    
+    func append(model: Model)
 }
 
 extension Renderable {

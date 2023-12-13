@@ -9,7 +9,7 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Node: OSNode, Renderable {
+final class Node: OSNode, Renderable, Selectable {
     
     typealias Geometry = MVCPointGeometry
     typealias ElementConfig = Config.node
@@ -61,6 +61,10 @@ final class Node: OSNode, Renderable {
     }
     
     func geometrySetup(model: Model) {}
+    
+    func append(model: Model) {
+        model.nodes.append(self)
+    }
 }
 
 extension Node {

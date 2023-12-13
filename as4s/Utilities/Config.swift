@@ -29,6 +29,16 @@ enum Config {
         static var labelPadding: CGFloat = 10
     }
     
+    enum support: AS4ElementConfig {
+        static var color: Color = .cyan
+        static var selectedColor: Color = .orange
+        
+        static var labelFont: String = "Helvetica"
+        static var labelSize: CGFloat = 10
+        static var labelColor: Color = .cyan
+        static var labelPadding: CGFloat = 10
+    }
+    
     enum cursor {
         static let size: CGFloat = 30
         static let lineWidth: CGFloat = 1.5

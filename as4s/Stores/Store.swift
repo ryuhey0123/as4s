@@ -48,9 +48,6 @@ final class Store {
         scene.append(layer: captionLayer)
         scene.append(layer: nodeLabelLayer)
         scene.append(layer: beamLabelLayer)
-        
-        model.updateNodes(layer: modelLayer, labelLayer: nodeLabelLayer)
-        model.updateBeams(layer: modelLayer, labelLayer: beamLabelLayer)
     }
 }
 
