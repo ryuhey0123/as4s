@@ -43,7 +43,7 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
         didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
     }
     
-    init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 0, transfTag: Int = 0, massDens: Float? = nil) {
+    init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 1, transfTag: Int = 1, massDens: Float? = nil) {
         self.eleTag = eleTag
         self.iNode = iNode
         self.jNode = jNode
@@ -52,13 +52,13 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
         self.massDens = massDens
     }
     
-    init(id: Int, i: Node, j: Node) {
+    init(id: Int, i: Node, j: Node, secTag: Int = 1, transfTag: Int = 1, massDens: Float? = nil) {
         self.eleTag = id
         self.iNode = i.nodeTag
         self.jNode = j.nodeTag
-        self.secTag = 0
-        self.transfTag = 0
-        self.massDens = nil
+        self.secTag = secTag
+        self.transfTag = transfTag
+        self.massDens = massDens
     }
     
     func geometrySetup(model: Model) {

@@ -41,7 +41,7 @@ final class Model: OSModel {
     var analysis: OSAnalysis = OSAnalysis(analysisType: .Static)
     var analyze: OSAnalyze = OSAnalyze(numIncr: 1)
     
-    init(ndm: Int = 3, ndf: Int? = nil) {
+    init(ndm: Int = 3, ndf: Int? = 6) {
         self.ndm = ndm
         self.ndf = ndf
     }
