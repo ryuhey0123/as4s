@@ -51,7 +51,7 @@ struct ContentView: View {
             Actions.addBeam(id: 1, i: 1, j: 2, store: store)
             
             store.model.elasticSec.append(contentsOf: [
-                Section(secTag: 0, E: 2.05E5, A: 100E2, Iz: 100E4, Iy: 100E4, G: 100E4, J: 100E4),
+                ElasticSection(secTag: 0, E: 2.05E5, A: 100E2, Iz: 100E4, Iy: 100E4, G: 100E4, J: 100E4),
             ])
             store.model.fixes.append(contentsOf: [
                 Support(nodeTag: 0, constrValues: [1, 1, 1, 1, 1, 1]),

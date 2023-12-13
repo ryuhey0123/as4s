@@ -11,8 +11,8 @@ import OpenSeesCoder
 
 final class Support: OSFix, Renderable {
     
-    typealias Geometry = MVCPointGeometry
-    typealias ElementConfig = Config.support
+    typealias GeometryType = MVCPointGeometry
+    typealias ElementConfigType = Config.support
     
     var nodeTag: Int
     var constrValues: [Int]

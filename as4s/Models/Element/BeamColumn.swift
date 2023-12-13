@@ -9,10 +9,10 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Beam: OSElasticBeamColumn, Renderable, Selectable {
+final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
     
-    typealias Geometry = MVCLineGeometry
-    typealias ElementConfig = Config.beam
+    typealias GeometryType = MVCLineGeometry
+    typealias ElementConfigType = Config.beam
     
     // MARK: OpenSees Value
     
@@ -29,10 +29,10 @@ final class Beam: OSElasticBeamColumn, Renderable, Selectable {
     // MARK: Renderable Value
     
     var geometryTag: UInt32!
-    var geometry: Geometry!
+    var geometry: GeometryType!
     var labelGeometry: MVCLabelGeometry!
     
-    var color: Color = ElementConfig.color {
+    var color: Color = ElementConfigType.color {
         didSet {
             geometry!.iColor = float4(float3(color), 1)
             geometry!.jColor = float4(float3(color), 1)
@@ -40,7 +40,7 @@ final class Beam: OSElasticBeamColumn, Renderable, Selectable {
     }
     
     var isSelected: Bool = false {
-        didSet { color = isSelected ? ElementConfig.selectedColor : ElementConfig.color }
+        didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
     }
     
     init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 0, transfTag: Int = 0, massDens: Float? = nil) {
@@ -68,7 +68,7 @@ final class Beam: OSElasticBeamColumn, Renderable, Selectable {
         }
         
         self.geometry = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
-        self.labelGeometry = MVCLabelGeometry(target: (i + j) / 2, text: eleTag.description)
+        self.labelGeometry = Self.buildLabelGeometry(target: (i + j) / 2, tag: eleTag.description)
         self.geometryTag = geometry.id
     }
     

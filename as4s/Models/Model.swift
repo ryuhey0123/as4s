@@ -13,16 +13,25 @@ final class Model: OSModel {
     var ndm: Int
     var ndf: Int?
     
+    // Renderable
     var nodes: [Node] = []
-    var elasticSec: [Section] = []
-    var linerTransfs: [Transformation] = []
-    var beams: [Beam] = []
+    var beams: [BeamColumn] = []
     var trusses: [Truss] = []
     var fixes: [Support] = []
+    
+    // Specification
+    var elasticSec: [ElasticSection] = []
+    var linerTransfs: [Transformation] = []
+    
+    // Loads
     var masses: [Mass] = []
     var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 0)
     var plainPatterns: [OSPlainPattern] = []
+    
+    // Output
     var nodeRecorder: OSNodeRecorder = OSNodeRecorder(fileName: "res_node_disp", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
+    
+    // Analyze
     var system: OSSystem = .BandSPD
     var numberer: OSNumberer = .RCM
     var constraints: OSConstraints = .Plain
@@ -46,9 +55,5 @@ final class Model: OSModel {
         rendable.append(model: self)
         layer.append(geometry: rendable.geometry)
         labelLayer.append(geometry: rendable.labelGeometry)
-    }
-    
-    func append(_ support: Support) {
-        fixes.append(support)
     }
 }

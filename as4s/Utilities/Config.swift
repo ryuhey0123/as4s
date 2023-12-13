@@ -6,37 +6,47 @@
 //
 
 import SwiftUI
+import Mevic
 
 enum Config {
     
-    enum node: AS4ElementConfig {
+    enum node: ElementConfig {
         static var color: Color = .white
         static var selectedColor: Color = .orange
         
         static var labelFont: String = "Helvetica"
         static var labelSize: CGFloat = 10
         static var labelColor: Color = .white
-        static var labelPadding: CGFloat = 10
+        static var labelBgColor: Color = Config.system.backGroundColor
+        static var labelPaddingX: Float = 0
+        static var labelPaddingY: Float = 8
+        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
     }
     
-    enum beam: AS4ElementConfig {
+    enum beam: ElementConfig {
         static var color: Color = .cyan
         static var selectedColor: Color = .orange
         
         static var labelFont: String = "Helvetica"
         static var labelSize: CGFloat = 10
         static var labelColor: Color = .cyan
-        static var labelPadding: CGFloat = 10
+        static var labelBgColor: Color = Config.system.backGroundColor
+        static var labelPaddingX: Float = 0
+        static var labelPaddingY: Float = 0
+        static var labelAlignment: MVCLabelGeometry.Alignment = .center
     }
     
-    enum support: AS4ElementConfig {
+    enum support: ElementConfig {
         static var color: Color = .cyan
         static var selectedColor: Color = .orange
         
         static var labelFont: String = "Helvetica"
         static var labelSize: CGFloat = 10
         static var labelColor: Color = .cyan
-        static var labelPadding: CGFloat = 10
+        static var labelBgColor: Color = Config.system.backGroundColor
+        static var labelPaddingX: Float = 0
+        static var labelPaddingY: Float = 8
+        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
     }
     
     enum cursor {
@@ -65,12 +75,15 @@ enum Config {
     }
 }
 
-protocol AS4ElementConfig {
+protocol ElementConfig {
     static var color: Color { get set }
     static var selectedColor: Color { get set }
     
     static var labelFont: String { get set }
     static var labelSize: CGFloat { get set }
     static var labelColor: Color { get set }
-    static var labelPadding: CGFloat { get set }
+    static var labelBgColor: Color { get set }
+    static var labelPaddingX: Float { get set }
+    static var labelPaddingY: Float { get set }
+    static var labelAlignment: MVCLabelGeometry.Alignment { get set }
 }

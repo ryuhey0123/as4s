@@ -28,14 +28,14 @@ enum Actions {
     }
     
     static func addBeam(id: Int, i: Node, j: Node, store: Store) {
-        let beam = Beam(id: id, i: i, j: j)
+        let beam = BeamColumn(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
 
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
     
     static func addBeam(id: Int, i: Int, j: Int, store: Store) {
-        let beam = Beam(eleTag: id, iNode: i, jNode: j)
+        let beam = BeamColumn(eleTag: id, iNode: i, jNode: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")

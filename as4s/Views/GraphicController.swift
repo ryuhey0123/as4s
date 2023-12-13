@@ -81,7 +81,7 @@ class GraphicController: MVCGraphicController {
         let selectionId = scene.getSeletionId()
         if !selectionId.isEmpty {
             let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryTag)) })
-            let selectedElems: [Beam] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryTag)) })
+            let selectedElems: [BeamColumn] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryTag)) })
             
             if inputController.keysPressed.isEmpty {
                 selectedNodes.forEach { $0.isSelected = true }

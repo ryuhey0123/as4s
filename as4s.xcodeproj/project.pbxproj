@@ -17,6 +17,7 @@
 		B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E532B29E05F00F9A22C /* Transformation.swift */; };
 		B1424E562B29E09800F9A22C /* Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E552B29E09800F9A22C /* Mass.swift */; };
 		B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5B2B2A0C5700F9A22C /* Selectable.swift */; };
+		B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -36,7 +37,7 @@
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE09EE2B21FAAC0002C57B /* Support.swift */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
-		B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* Beam.swift */; };
+		B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* BeamColumn.swift */; };
 		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
 		B1FE61B32B258D2D005116DC /* OpenSees in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61A92B258D2D005116DC /* OpenSees */; };
 		B1FE61B42B258D2D005116DC /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61AC2B258D2D005116DC /* init.tcl */; };
@@ -69,6 +70,7 @@
 		B1424E532B29E05F00F9A22C /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		B1424E552B29E09800F9A22C /* Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mass.swift; sourceTree = "<group>"; };
 		B1424E5B2B2A0C5700F9A22C /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
+		B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElasticSection.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1BE09EE2B21FAAC0002C57B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
-		B1F5EF1D2B074F6200805708 /* Beam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beam.swift; sourceTree = "<group>"; };
+		B1F5EF1D2B074F6200805708 /* BeamColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamColumn.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
 		B1FE61A92B258D2D005116DC /* OpenSees */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = OpenSees; sourceTree = "<group>"; };
 		B1FE61AC2B258D2D005116DC /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
@@ -128,7 +130,7 @@
 		B1424E572B2A075000F9A22C /* Element */ = {
 			isa = PBXGroup;
 			children = (
-				B1F5EF1D2B074F6200805708 /* Beam.swift */,
+				B1F5EF1D2B074F6200805708 /* BeamColumn.swift */,
 				B1F5EF1F2B074FCD00805708 /* Truss.swift */,
 			);
 			path = Element;
@@ -154,8 +156,9 @@
 		B1424E5A2B2A07BF00F9A22C /* Specification */ = {
 			isa = PBXGroup;
 			children = (
-				B1424E532B29E05F00F9A22C /* Transformation.swift */,
 				B1424E512B29DFD400F9A22C /* Section.swift */,
+				B1424E532B29E05F00F9A22C /* Transformation.swift */,
+				B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */,
 			);
 			path = Specification;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */,
+				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B1424E522B29DFD400F9A22C /* Section.swift in Sources */,
 				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
@@ -486,7 +490,7 @@
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
-				B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */,
+				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
 				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
