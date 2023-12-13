@@ -7,36 +7,30 @@
 
 import SwiftUI
 import Mevic
+import OpenSeesCoder
 
-protocol Nodable: Identifiable {
-    
-    associatedtype Geometry: MVCGeometry
-    associatedtype ElementConfig: AS4ElementConfig
-    
-    var geometry: Geometry { get set }
-    
-    var labelGeometry: MVCLabelGeometry { get set }
-    
-    var color: Color { get set }
-    
-    var isSelected: Bool { get set }
-}
-
-final class Node: Nodable {
+final class Node: OSNode, Renderable {
     
     typealias Geometry = MVCPointGeometry
     typealias ElementConfig = Config.node
     
-    static var dofNum: Int = 6
+    // MARK: OpenSees Value
     
-    var id: Int
-    var geometryId: Int
+    var nodeTag: Int
     
-    var position: double3
-    var rotation: double3 = .zero
+    var coords: [Float]
+    var massValues: [Float]?
     
-    var geometry: Geometry
-    var labelGeometry: MVCLabelGeometry
+    // MARK: Renderable Value
+    
+    var geometryTag: UInt32!
+    var geometry: Geometry!
+    var labelGeometry: MVCLabelGeometry!
+    
+    var position: float3 {
+        get { .init(coords) }
+        set { coords = newValue.array }
+    }
     
     var color: Color = ElementConfig.color {
         didSet {
@@ -48,38 +42,29 @@ final class Node: Nodable {
         didSet { color = isSelected ? ElementConfig.selectedColor : ElementConfig.color }
     }
     
-    init(id: Int, position: double3) {
-        self.id = id
-        self.position = position
-        
-        self.geometry = MVCPointGeometry(position: float3(position), color: .init(ElementConfig.color))
-        self.labelGeometry = MVCLabelGeometry(target: float3(position), text: String(id),
-                                        forgroundColor: .init(ElementConfig.labelColor),
-                                        backgroundColor: .init(Config.system.backGroundColor),
-                                        margin: .init(0, 8), alignment: .bottom)
-        
-        self.geometryId = Int(self.geometry.id)
+    init(nodeTag: Int, coords: [Float], massValues: [Float]? = nil) {
+        self.nodeTag = nodeTag
+        self.coords = coords
+        self.massValues = massValues
+        self.geometry =  MVCPointGeometry(position: float3(coords), color: .init(ElementConfig.color))
+        self.labelGeometry = Self.buildLabelGeometry(position: float3(coords), tag: nodeTag.description)
+        self.geometryTag = geometry.id
     }
+    
+    init(id: Int, position: float3) {
+        self.nodeTag = id
+        self.coords = position.array
+        self.massValues = nil
+        self.geometry =  MVCPointGeometry(position: float3(coords), color: .init(ElementConfig.color))
+        self.labelGeometry = Self.buildLabelGeometry(position: float3(coords), tag: nodeTag.description)
+        self.geometryTag = geometry.id
+    }
+    
+    func geometrySetup(model: Model) {}
 }
 
-extension Node: Codable {
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case position
-    }
-    
-    convenience init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        let id = try values.decode(Int.self, forKey: .id)
-        let position = try values.decode(double3.self, forKey: .position)
-        
-        self.init(id: id, position: position)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(position, forKey: .position)
+extension Node {
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        lhs.nodeTag == rhs.nodeTag
     }
 }

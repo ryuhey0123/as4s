@@ -5,11 +5,15 @@
 //  Created by Ryuhei Fujita on 2023/12/07.
 //
 
-class Support {
+import OpenSeesCoder
+
+final class Support: OSFix {
+
+    var nodeTag: Int
+    var constrValues: [Int]
     
-    var nodeId: Int
-    
-    init(id: Int) {
-        self.nodeId = id
+    init(nodeTag: Int, constrValues: [Int]) {
+        self.nodeTag = nodeTag
+        self.constrValues = constrValues
     }
 }

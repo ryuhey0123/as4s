@@ -34,7 +34,7 @@ class GraphicController: MVCGraphicController {
     
     override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
         if let snapedId = scene.getSnapedId() {
-            guard let node = store?.model.nodes.first(where: { $0.geometryId == snapedId }) else { return }
+            guard let node = store?.model.nodes.first(where: { $0.geometryTag == snapedId }) else { return }
             
             if isDrawingLine {
                 guard let lastSelectedNode = lastSelectedNode else { return }
@@ -80,20 +80,20 @@ class GraphicController: MVCGraphicController {
     override func traceSelection() {
         let selectionId = scene.getSeletionId()
         if !selectionId.isEmpty {
-            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryId)) })
-            let selectedElems: [any Elementable] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryId)) })
+            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryTag)) })
+            let selectedElems: [Beam] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryTag)) })
             
             if inputController.keysPressed.isEmpty {
                 selectedNodes.forEach { $0.isSelected = true }
-                for var element in selectedElems { element.isSelected = true }
-                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function): Add selected beams \(selectedElems.map { $0.id })")
+                for element in selectedElems { element.isSelected = true }
+                Logger.action.trace("\(#function): Add selected nodes \(selectedNodes.map { $0.nodeTag })")
+                Logger.action.trace("\(#function): Add selected beams \(selectedElems.map { $0.eleTag })")
                 
             } else if inputController.keysPressed.contains(.leftShift) {
                 selectedNodes.forEach { $0.isSelected = false }
-                for var element in selectedElems { element.isSelected = false }
-                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.id })")
-                Logger.action.trace("\(#function): Remove selected beams \(selectedElems.map { $0.id })")
+                for element in selectedElems { element.isSelected = false }
+                Logger.action.trace("\(#function): Remove selected nodes \(selectedNodes.map { $0.nodeTag })")
+                Logger.action.trace("\(#function): Remove selected beams \(selectedElems.map { $0.eleTag })")
             }
         }
     }

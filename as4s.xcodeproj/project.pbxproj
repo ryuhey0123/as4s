@@ -12,6 +12,10 @@
 		B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12AD6802B1950A800D4D315 /* TestModel.txt */; };
 		B1372C7F2B05CE65000293D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* Config.swift */; };
 		B1424E4E2B29CF1600F9A22C /* OpenSeesCoder in Frameworks */ = {isa = PBXBuildFile; productRef = B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */; };
+		B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E4F2B29D28B00F9A22C /* Renderable.swift */; };
+		B1424E522B29DFD400F9A22C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E512B29DFD400F9A22C /* Section.swift */; };
+		B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E532B29E05F00F9A22C /* Transformation.swift */; };
+		B1424E562B29E09800F9A22C /* Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E552B29E09800F9A22C /* Mass.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -20,7 +24,7 @@
 		B161BC352ADB958A00AABA48 /* as4sTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC342ADB958A00AABA48 /* as4sTests.swift */; };
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
-		B17F72622B215A1300829C30 /* Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* Load.swift */; };
+		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
 		B1AF9F732B21B6810066C617 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF9F722B21B6810066C617 /* Scene.swift */; };
@@ -33,7 +37,7 @@
 		B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE09EE2B21FAAC0002C57B /* Support.swift */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
 		B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* Beam.swift */; };
-		B1F5EF202B074FCD00805708 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Element.swift */; };
+		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
 		B1FE61B32B258D2D005116DC /* OpenSees in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61A92B258D2D005116DC /* OpenSees */; };
 		B1FE61B42B258D2D005116DC /* init.tcl in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61AC2B258D2D005116DC /* init.tcl */; };
 /* End PBXBuildFile section */
@@ -60,6 +64,10 @@
 		B12AD6402B16153400D4D315 /* GraphicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicController.swift; sourceTree = "<group>"; };
 		B12AD6802B1950A800D4D315 /* TestModel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestModel.txt; sourceTree = "<group>"; };
 		B1372C7E2B05CE65000293D4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B1424E4F2B29D28B00F9A22C /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		B1424E512B29DFD400F9A22C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		B1424E532B29E05F00F9A22C /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
+		B1424E552B29E09800F9A22C /* Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mass.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -73,7 +81,7 @@
 		B161BC3A2ADB958A00AABA48 /* as4sUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = as4sUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B17F72612B215A1300829C30 /* Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Load.swift; sourceTree = "<group>"; };
+		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B1AF9F722B21B6810066C617 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -85,7 +93,7 @@
 		B1BE09EE2B21FAAC0002C57B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* Beam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beam.swift; sourceTree = "<group>"; };
-		B1F5EF1F2B074FCD00805708 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
 		B1FE61A92B258D2D005116DC /* OpenSees */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = OpenSees; sourceTree = "<group>"; };
 		B1FE61AC2B258D2D005116DC /* init.tcl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.tcl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,11 +202,15 @@
 			isa = PBXGroup;
 			children = (
 				B1B879292ADBBB2800CCDDA7 /* Model.swift */,
-				B1F5EF1F2B074FCD00805708 /* Element.swift */,
+				B1424E552B29E09800F9A22C /* Mass.swift */,
+				B1F5EF1F2B074FCD00805708 /* Truss.swift */,
 				B1B3121A2ADC1CFE00DC32B9 /* Node.swift */,
 				B1F5EF1D2B074F6200805708 /* Beam.swift */,
-				B17F72612B215A1300829C30 /* Load.swift */,
+				B1424E532B29E05F00F9A22C /* Transformation.swift */,
+				B1424E4F2B29D28B00F9A22C /* Renderable.swift */,
+				B17F72612B215A1300829C30 /* NodalLoad.swift */,
 				B1B87CBC2B00AB18008926E6 /* Condition.swift */,
+				B1424E512B29DFD400F9A22C /* Section.swift */,
 				B1BE09EE2B21FAAC0002C57B /* Support.swift */,
 			);
 			path = Models;
@@ -427,20 +439,24 @@
 				B1B87CBD2B00AB18008926E6 /* Condition.swift in Sources */,
 				B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */,
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
+				B1424E522B29DFD400F9A22C /* Section.swift in Sources */,
+				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
 				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
-				B17F72622B215A1300829C30 /* Load.swift in Sources */,
+				B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */,
 				B1AF9F732B21B6810066C617 /* Scene.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
+				B1424E562B29E09800F9A22C /* Mass.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
+				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* Beam.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
-				B1F5EF202B074FCD00805708 /* Element.swift in Sources */,
+				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);

@@ -12,14 +12,14 @@ enum Actions {
     
     // MARK: - Geometry Controll
     
-    static func addNode(id: Int, position: double3, store: Store) {
+    static func addNode(id: Int, position: float3, store: Store) {
         let node = Node(id: id, position: position)
         store.model.append(node, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
-    static func appendNode(position: double3, store: Store) {
+    static func appendNode(position: float3, store: Store) {
         let id = store.model.nodes.count + 1
         let node = Node(id: id, position: position)
         store.model.append(node, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
@@ -31,15 +31,15 @@ enum Actions {
         let beam = Beam(id: id, i: i, j: j)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
 
-        Logger.action.trace("\(#function): Add Beam from \(beam.i.id) to \(beam.j.id)")
+        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
     
-    static func addPointLoad(at id: Int, value: [Double], store: Store) {
-        let load = PointLoad(nodeId: id, value: value)
-        store.model.append(load)
-        
-        Logger.action.trace("\(#function): Add Point load at \(id)")
-    }
+//    static func addPointLoad(at id: Int, value: [Float], store: Store) {
+//        let load = PointLoad(nodeId: id, value: value)
+//        store.model.append(load)
+//        
+//        Logger.action.trace("\(#function): Add Point load at \(id)")
+//    }
     
     // MARK: - Other Geometry
     
@@ -71,12 +71,12 @@ enum Actions {
             $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }
         
-        let nodes: [(id: Int, position: double3)] = nodeData.map {
+        let nodes: [(id: Int, position: float3)] = nodeData.map {
             guard let id = Int($0[0]) else { return nil }
-            guard let x = Double($0[1]) else { return nil }
-            guard let y = Double($0[3]) else { return nil }
-            guard let z = Double($0[2]) else { return nil }
-            return (id: id, position: double3(x, y, z))
+            guard let x = Float($0[1]) else { return nil }
+            guard let y = Float($0[3]) else { return nil }
+            guard let z = Float($0[2]) else { return nil }
+            return (id: id, position: float3(x, y, z))
         }.compactMap { $0 }
         
         let beamData: [[String]] = data[7].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
@@ -95,8 +95,8 @@ enum Actions {
         }
         
         for beam in beams {
-            guard let i: Node = store.model.nodes.first(where: { $0.id == beam.iNode }) else { break }
-            guard let j: Node = store.model.nodes.first(where: { $0.id == beam.jNode }) else { break }
+            guard let i: Node = store.model.nodes.first(where: { $0.nodeTag == beam.iNode }) else { break }
+            guard let j: Node = store.model.nodes.first(where: { $0.nodeTag == beam.jNode }) else { break }
             Actions.addBeam(id: beam.id, i: i, j: j, store: store)
         }
     }

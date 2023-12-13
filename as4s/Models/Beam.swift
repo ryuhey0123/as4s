@@ -7,27 +7,35 @@
 
 import SwiftUI
 import Mevic
+import OpenSeesCoder
 
-final class Beam: Elementable {
+final class Beam: OSElasticBeamColumn, Renderable {
     
     typealias Geometry = MVCLineGeometry
     typealias ElementConfig = Config.beam
     
-    var id: Int
-    var geometryId: Int
+    // MARK: OpenSees Value
     
-    var i: Node
-    var j: Node
+    var eleTag: Int
+    var secTag: Int
     
-    var coordAngle: Double = 0.0
+    var iNode: Int
+    var jNode: Int
     
-    var geometry: Geometry
-    var labelGeometry: MVCLabelGeometry
+    var transfTag: Int
+    
+    var massDens: Float?
+    
+    // MARK: Renderable Value
+    
+    var geometryTag: UInt32!
+    var geometry: Geometry!
+    var labelGeometry: MVCLabelGeometry!
     
     var color: Color = ElementConfig.color {
         didSet {
-            geometry.iColor = float4(float3(color), 1)
-            geometry.jColor = float4(float3(color), 1)
+            geometry!.iColor = float4(float3(color), 1)
+            geometry!.jColor = float4(float3(color), 1)
         }
     }
     
@@ -35,39 +43,32 @@ final class Beam: Elementable {
         didSet { color = isSelected ? ElementConfig.selectedColor : ElementConfig.color }
     }
     
+    init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 0, transfTag: Int = 0, massDens: Float? = nil) {
+        self.eleTag = eleTag
+        self.iNode = iNode
+        self.jNode = jNode
+        self.secTag = secTag
+        self.transfTag = transfTag
+        self.massDens = massDens
+    }
+    
     init(id: Int, i: Node, j: Node) {
-        self.id = id
-        self.i = i
-        self.j = j
-        self.geometry = MVCLineGeometry(i: float3(i.position), j: float3(j.position), color: float3(ElementConfig.color))
-        self.labelGeometry = MVCLabelGeometry(target: float3((i.position + j.position) / 2), text: String(id),
-                                        forgroundColor: .init(ElementConfig.labelColor), backgroundColor: .init(Config.system.backGroundColor))
+        self.eleTag = id
+        self.iNode = i.nodeTag
+        self.jNode = j.nodeTag
+        self.secTag = 0
+        self.transfTag = 0
+        self.massDens = nil
+    }
+    
+    func geometrySetup(model: Model) {
+        guard let i = model.nodes.first(where: { $0.nodeTag == iNode })?.position,
+              let j = model.nodes.first(where: { $0.nodeTag == jNode })?.position else {
+            fatalError("Cannot find nodes \(iNode), \(jNode)")
+        }
         
-        self.geometryId = Int(self.geometry.id)
+        self.geometry = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
+        self.labelGeometry = MVCLabelGeometry(target: (i + j) / 2, text: eleTag.description)
+        self.geometryTag = geometry.id
     }
 }
-
-//extension Beam: Codable {
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case i
-//        case j
-//    }
-//    
-//    convenience init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        let id = try values.decode(Int.self, forKey: .id)
-//        let i = try values.decode(double3.self, forKey: .i)
-//        let j = try values.decode(double3.self, forKey: .j)
-//        
-//        self.init(id: id, i: i, j: j)
-//    }
-//    
-//    func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(id, forKey: .id)
-//        try container.encode(i, forKey: .i)
-//        try container.encode(j, forKey: .j)
-//    }
-//}
