@@ -8,6 +8,7 @@
 import SwiftUI
 import Mevic
 import OpenSeesCoder
+import simd
 
 enum Actions {
     
@@ -50,9 +51,9 @@ enum Actions {
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
-        let x = MVCLineGeometry(j: .x * 100, color: .x, selectable: false)
-        let y = MVCLineGeometry(j: .y * 100, color: .y, selectable: false)
-        let z = MVCLineGeometry(j: .z * 100, color: .z, selectable: false)
+        let x = MVCLineGeometry(j: .x.metal * 100, color: .x, selectable: false)
+        let y = MVCLineGeometry(j: .y.metal * 100, color: .y, selectable: false)
+        let z = MVCLineGeometry(j: .z.metal * 100, color: .z, selectable: false)
         store.captionLayer.append(geometry: x)
         store.captionLayer.append(geometry: y)
         store.captionLayer.append(geometry: z)
@@ -157,15 +158,23 @@ enum Actions {
               let resultLines = String(data: resultData, encoding: .utf8)?.components(separatedBy: .newlines)[12...] else { return }
         
         var nodeDisps: [Int: [Float]] = [:]
+        var eleForce: [Int: [Float]] = [:]
         
         var disps: [Float] = []
+        var forces: [Float] = []
         
         let nodeRegex = /(\sNode:\s)([0-9]+)/
         let nodeDispRegex = /(\sDisps:)([\s0-9e.-]+)/
         let nodeIdRegex = /\sID\s:/
         
+        let eleRegex = /ElasticBeam3d: ([0-9]+)/
+        let eleForceRgex = /\sEnd ([1|2]) Forces \(P Mz Vy My Vz T\):\s([0-9.e+\-\s]+)/
+        
         var currentNodeId: Int = 0
+        var currentEleId: Int = 0
+        
         var isNodeSection: Bool = false
+        var isEleSection: Bool = false
         
         for line in resultLines {
             
@@ -173,6 +182,12 @@ enum Actions {
                 isNodeSection = true
                 currentNodeId = Int(match.2)!
                 disps = []
+            }
+            
+            if let match = line.wholeMatch(of: eleRegex) {
+                isEleSection = true
+                currentEleId = Int(match.1)!
+                forces = []
             }
             
             if isNodeSection {
@@ -183,6 +198,18 @@ enum Actions {
                 if let _ = line.prefixMatch(of: nodeIdRegex) {
                     isNodeSection = false
                     nodeDisps[currentNodeId] = disps
+                }
+            }
+            
+            if isEleSection {
+                if let match = line.wholeMatch(of: eleForceRgex) {
+                    let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
+                    forces += value.map { Float($0)! }
+                    
+                    if match.1 == "2" {
+                        isEleSection = false
+                        eleForce[currentEleId] = forces
+                    }
                 }
             }
         }
@@ -196,6 +223,27 @@ enum Actions {
         for beam in store.model.beams {
             beam.dispGeometry.i = beam.i.dispGeometry.position
             beam.dispGeometry.j = beam.j.dispGeometry.position
+            
+            let force = eleForce[beam.id]!
+            let iForce = -force[3] * 0.00005
+            let jForce = force[9] * 0.00005
+            
+            let i = beam.geometry.i
+            let j = beam.geometry.j
+            
+            let iHeight = i + (beam.chordVector * iForce).metal
+            let jHeight = j + (beam.chordVector * jForce).metal
+            
+            let geometry = MVCQuadGeometry(i: i,
+                                           j: iHeight,
+                                           k: j,
+                                           l: jHeight,
+                                           iColor: float4(iHeight.normalized, 1),
+                                           jColor: float4(iHeight.normalized, 1),
+                                           kColor: float4(jHeight.normalized, 1),
+                                           lColor: float4(jHeight.normalized, 1))
+            
+            store.modelLayer.append(geometry: geometry)
         }
     }
 }

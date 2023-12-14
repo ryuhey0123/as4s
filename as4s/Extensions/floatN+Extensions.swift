@@ -46,6 +46,10 @@ extension float3 {
     var metal: float3 {
         .init(x, z, -y)
     }
+    
+    var normalized: float3 {
+        get { normalize(self) }
+    }
 }
 
 

@@ -18,11 +18,10 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
     var i: Node
     var j: Node
     
-    var vector: float3 {
-        j.position - i.position
-    }
-    
-    var chordAngle: Float = 0.0
+    var vector: float3
+    var chordAngle: Float
+    var chordVector: float3
+    var chordCrossVector: float3
     
     var transformation: Transformation
     
@@ -52,6 +51,14 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
     var dispGeometry: GeometryType!
     var dispLabelGeometry: MVCLabelGeometry!
     
+    // MARK: Foecable Value
+    
+    var axialGeometry: MVCQuadGeometry!
+    var shearZGeometry: MVCQuadGeometry!
+    var shearYGeometry: MVCQuadGeometry!
+    var momentZGeometry: MVCQuadGeometry!
+    var momentYGeometry: MVCQuadGeometry!
+    
     init(id: Int, i: Node, j: Node, chordAngle: Float = 0.0) {
         self.id = id
         self.i = i
@@ -67,11 +74,11 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position).metal / 2,
                                                      tag: id.description)
         
-        let vector = j.position - i.position
-        let chordVector = Self.calcCoordTransMatrix(vector: vector, angle: chordAngle) * vector
+        self.vector = (j.position - i.position).normalized
+        self.chordAngle = chordAngle
+        self.chordVector = (Self.calcCoordTransMatrix(vector: vector, angle: chordAngle) * vector).normalized
+        self.chordCrossVector = cross(chordVector, vector)
         self.transformation = Transformation(id: id, vector: chordVector)
-        
-        print(chordVector)
     }
     
     func append(model: Model) {
