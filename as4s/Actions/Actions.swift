@@ -150,42 +150,58 @@ enum Actions {
         guard let resultData = store.openSeesStdErrData,
               let resultLines = String(data: resultData, encoding: .utf8)?.components(separatedBy: .newlines)[12...] else { return }
         
-        var results: [Int: [Float]] = [:]
-        var currentNodeId: Int? = nil
+        var nodeDisps: [Int: [Float]] = [:]
+        
         var disps: [Float] = []
         
+        let nodeRegex = /(\sNode:\s)([0-9]+)/
+        let nodeDispRegex = /(\sDisps:)([\s0-9.-]+)/
+        let nodeIdRegex = /(\sID\s:\s)([\s0-9-]+)/
+        
+        var currentNodeId: Int = 0
+        var isNodeSection: Bool = false
+        
         for line in resultLines {
-            if line.starts(with: " Node:") {
-                let regex = /(\sNode:\s)([0-9]+)/
-                let match = line.wholeMatch(of: regex)
-                currentNodeId = Int(match!.2)
+            
+            if let match = line.wholeMatch(of: nodeRegex) {
+                isNodeSection = true
+                currentNodeId = Int(match.2)!
                 disps = []
-                
-            } else if let currentNodeId = currentNodeId {
-                let regex = /(\sDisps:)([\s0-9.-]+)/
-                
-                if let match = line.wholeMatch(of: regex) {
+            }
+            
+            if isNodeSection {
+                if let match = line.wholeMatch(of: nodeDispRegex) {
                     let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
                     disps += value.map { Float($0)! }
                 }
-                
-                let end = /(\sID\s:\s)([\s0-9]+)/
-                if let _ = line.wholeMatch(of: end) {
-                    results[currentNodeId] = disps
+                if let _ = line.wholeMatch(of: nodeIdRegex) {
+                    isNodeSection = false
+                    nodeDisps[currentNodeId] = disps
                 }
             }
         }
         
-        for result in results {
-            let tag = result.key
-            let value = result.value
-            
-            if let node = store.model.nodes.first(where: { $0.nodeTag == tag }) {
-                let disp = float3(value[0], value[1], value[2])
+        for result in nodeDisps {
+            if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
+                let disp = float3(result.value[0], result.value[1], result.value[2])
                 let geometry = MVCPointGeometry(position: node.position + disp,
                                                 color: .init(1, 0, 0))
                 store.modelLayer.append(geometry: geometry)
             }
+        }
+        
+        for beam in store.model.beams {
+            let iNode = beam.iNode
+            let jNode = beam.jNode
+            let iDisp = float3(nodeDisps[iNode]![0..<3])
+            let jDisp = float3(nodeDisps[jNode]![0..<3])
+            let iPosition = store.model.nodes.first(where: { $0.nodeTag == iNode })!.geometry.position
+            let jPosition = store.model.nodes.first(where: { $0.nodeTag == jNode })!.geometry.position
+            let geometry = MVCLineGeometry(i: iPosition + iDisp,
+                                           j: jPosition + jDisp,
+                                           color: .init(1, 0, 0),
+                                           selectable: false)
+            store.modelLayer.append(geometry: geometry)
         }
     }
 }
