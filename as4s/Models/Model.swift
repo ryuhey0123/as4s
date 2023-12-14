@@ -14,25 +14,30 @@ final class Model: OSModel {
     var ndm: Int
     var ndf: Int?
     
-    // Renderable
+    // MARK: Renderable
+    
     var nodes: [Node] = []
     var beams: [BeamColumn] = []
     var trusses: [Truss] = []
     var fixes: [Support] = []
     
-    // Specification
+    // MARK: Specification
+    
     var elasticSec: [ElasticSection] = [.default]
     var linerTransfs: [Transformation] = [.default]
     
-    // Loads
+    // MARK: Loads
+    
     var masses: [Mass] = []
     var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 1)
     var plainPatterns: [OSPlainPattern] = []
     
-    // Output
+    // MARK: Output
+
     var nodeRecorder: OSNodeRecorder = .init(fileName: "tmp/node_disp.out", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
     
-    // Analyze
+    // MARK: Analyze
+    
     var system: OSSystem = .BandSPD
     var numberer: OSNumberer = .RCM
     var constraints: OSConstraints = .Plain
@@ -47,10 +52,11 @@ final class Model: OSModel {
     }
     
     func append(_ rendable: some Renderable & Displacementable, layer: MVCLayer, labelLayer: MVCLayer) {
-        rendable.geometrySetup(model: self)
-        rendable.dispGeometrySetup(model: self)
         rendable.append(model: self)
+        
         layer.append(geometry: rendable.geometry)
+        layer.append(geometry: rendable.dispGeometry)
+        
         labelLayer.append(geometry: rendable.labelGeometry)
     }
 }

@@ -7,4 +7,6 @@
 
 import OpenSeesCoder
 
-protocol CrossSection {}
+protocol CrossSection {
+    
+}

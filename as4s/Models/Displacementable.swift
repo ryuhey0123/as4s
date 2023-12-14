@@ -15,6 +15,4 @@ protocol Displacementable {
     var dispGeometry: GeometryType! { get set }
     
     var dispLabelGeometry: MVCLabelGeometry! { get set }
-    
-    func dispGeometrySetup(model: Model)
 }

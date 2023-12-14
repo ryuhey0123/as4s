@@ -64,8 +64,7 @@ struct ContentView: View {
     
     private var buildAnalyzeCommand: some View {
         Button("Analyze") {
-            let data = try! OSEncoder().encode(store.model)
-            Actions.exexuteOpenSees(data: data, store: store)
+            Actions.exexuteOpenSees(store: store)
             Actions.updateNodeDisp(store: store)
         }
     }

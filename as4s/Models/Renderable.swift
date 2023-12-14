@@ -21,8 +21,6 @@ protocol Renderable {
     
     var color: Color { get set }
     
-    func geometrySetup(model: Model)
-    
     func append(model: Model)
 }
 

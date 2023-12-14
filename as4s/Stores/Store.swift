@@ -54,12 +54,13 @@ final class Store {
     }
     
     convenience init(configuration: ReadConfiguration) throws {
-        guard let data = configuration.file.regularFileContents else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
-        
-        let model = try JSONDecoder().decode(Model.self, from: data)
-        self.init(model: model)
+//        guard let data = configuration.file.regularFileContents else {
+//            throw CocoaError(.fileReadCorruptFile)
+//        }
+//        
+//        let model = try JSONDecoder().decode(Model.self, from: data)
+//        self.init(model: model)
+        fatalError()
     }
 }
 

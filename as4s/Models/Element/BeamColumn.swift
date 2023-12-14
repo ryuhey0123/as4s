@@ -9,21 +9,18 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable, Displacementable {
+final class BeamColumn: Renderable, Selectable, Displacementable {
+    
+    // MARK: General Value
+    
+    var id: Int
+    var i: Node
+    var j: Node
+    
+    // MARK: Renderable Value
     
     typealias GeometryType = MVCLineGeometry
     typealias ElementConfigType = Config.beam
-    
-    // MARK: OpenSees Value
-    
-    var eleTag: Int
-    var secTag: Int
-    var iNode: Int
-    var jNode: Int
-    var transfTag: Int
-    var massDens: Float?
-    
-    // MARK: Renderable Value
     
     var geometryTag: UInt32!
     var geometry: GeometryType!
@@ -36,49 +33,45 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable, Displacemen
         }
     }
     
+    // MARK: Selectable Value
+    
     var isSelected: Bool = false {
         didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
     }
     
-    // MARK: PostProcess Value
+    // MARK: Displacementable Value
     
     var dispGeometry: GeometryType!
     var dispLabelGeometry: MVCLabelGeometry!
     
-    init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 1, transfTag: Int = 1, massDens: Float? = nil) {
-        self.eleTag = eleTag
-        self.iNode = iNode
-        self.jNode = jNode
-        self.secTag = secTag
-        self.transfTag = transfTag
-        self.massDens = massDens
-    }
-    
-    init(id: Int, i: Node, j: Node, secTag: Int = 1, transfTag: Int = 1, massDens: Float? = nil) {
-        self.eleTag = id
-        self.iNode = i.nodeTag
-        self.jNode = j.nodeTag
-        self.secTag = secTag
-        self.transfTag = transfTag
-        self.massDens = massDens
-    }
-    
-    func geometrySetup(model: Model) {
-        guard let i = model.nodes.first(where: { $0.nodeTag == iNode })?.position,
-              let j = model.nodes.first(where: { $0.nodeTag == jNode })?.position else {
-            fatalError("Cannot find nodes \(iNode), \(jNode)")
-        }
-        
-        self.geometry = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
-        self.labelGeometry = Self.buildLabelGeometry(target: (i + j) / 2, tag: eleTag.description)
+    init(id: Int, i: Node, j: Node) {
+        self.id = id
+        self.i = i
+        self.j = j
+        self.geometry = MVCLineGeometry(i: i.position,
+                                        j: j.position,
+                                        iColor: float4(color),
+                                        jColor: float4(color))
+        self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position) / 2,
+                                                     tag: eleTag.description)
+        self.dispGeometry =  MVCLineGeometry(i: i.position,
+                                             j: j.position,
+                                             iColor: float4(Config.postprocess.dispColor),
+                                             jColor: float4(Config.postprocess.dispColor))
         self.geometryTag = geometry.id
-    }
-    
-    func dispGeometrySetup(model: Model) {
-        self.dispGeometry = self.geometry
     }
     
     func append(model: Model) {
         model.beams.append(self)
     }
+}
+
+extension BeamColumn: OSElasticBeamColumn {
+    
+    var eleTag: Int { id }
+    var secTag: Int { 1 }
+    var iNode: Int { i.id }
+    var jNode: Int { j.id }
+    var transfTag: Int { 1 }
+    var massDens: Float? { nil }
 }

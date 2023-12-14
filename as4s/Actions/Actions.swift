@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Mevic
-import Yams
+import OpenSeesCoder
 
 enum Actions {
     
@@ -36,18 +36,16 @@ enum Actions {
     }
     
     static func addBeam(id: Int, i: Int, j: Int, store: Store) {
-        let beam = BeamColumn(eleTag: id, iNode: i, jNode: j)
+        guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
+              let jNode = store.model.nodes.first(where: { $0.nodeTag == j }) else {
+            fatalError("Cannot find nodes \(i), \(j)")
+        }
+        
+        let beam = BeamColumn(id: id, i: iNode, j: jNode)
         store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
-    
-//    static func addPointLoad(at id: Int, value: [Float], store: Store) {
-//        let load = PointLoad(nodeId: id, value: value)
-//        store.model.append(load)
-//        
-//        Logger.action.trace("\(#function): Add Point load at \(id)")
-//    }
     
     // MARK: - Other Geometry
     
@@ -109,7 +107,9 @@ enum Actions {
         }
     }
     
-    static func exexuteOpenSees(data: Data, store: Store) {
+    static func exexuteOpenSees(store: Store) {
+        let data = try! OSEncoder().encode(store.model)
+        
         let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("command.tcl")
         do {
             try data.write(to: path)
@@ -133,8 +133,14 @@ enum Actions {
             let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
             store.openSeesStdOutData = outputData
             
+            print("OutputData:")
+            print(String(data: outputData, encoding: .utf8) ?? "")
+            
             let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
             store.openSeesStdErrData = errorData
+            
+            print("ErrorData:")
+            print(String(data: errorData, encoding: .utf8) ?? "")
             
             if process.terminationStatus == 0 {
                 Logger.openSees.info("Success execute OpenSees")
@@ -181,6 +187,8 @@ enum Actions {
             }
         }
         
+        print(nodeDisps)
+        
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
                 node.dispGeometry.position = node.position + float3(result.value[0..<3])
@@ -188,17 +196,8 @@ enum Actions {
         }
         
         for beam in store.model.beams {
-            let iNode = beam.iNode
-            let jNode = beam.jNode
-            let iDisp = float3(nodeDisps[iNode]![0..<3])
-            let jDisp = float3(nodeDisps[jNode]![0..<3])
-            let iPosition = store.model.nodes.first(where: { $0.nodeTag == iNode })!.geometry.position
-            let jPosition = store.model.nodes.first(where: { $0.nodeTag == jNode })!.geometry.position
-            let geometry = MVCLineGeometry(i: iPosition + iDisp,
-                                           j: jPosition + jDisp,
-                                           color: .init(1, 0, 0),
-                                           selectable: false)
-            store.modelLayer.append(geometry: geometry)
+            beam.dispGeometry.i = beam.i.dispGeometry.position
+            beam.dispGeometry.j = beam.j.dispGeometry.position
         }
     }
 }
