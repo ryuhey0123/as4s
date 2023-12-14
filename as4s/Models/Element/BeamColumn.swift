@@ -8,6 +8,7 @@
 import SwiftUI
 import Mevic
 import OpenSeesCoder
+import simd
 
 final class BeamColumn: Renderable, Selectable, Displacementable {
     
@@ -16,6 +17,14 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
     var id: Int
     var i: Node
     var j: Node
+    
+    var vector: float3 {
+        j.position - i.position
+    }
+    
+    var chordAngle: Float = 0.0
+    
+    var transformation: Transformation
     
     // MARK: Renderable Value
     
@@ -43,7 +52,7 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
     var dispGeometry: GeometryType!
     var dispLabelGeometry: MVCLabelGeometry!
     
-    init(id: Int, i: Node, j: Node) {
+    init(id: Int, i: Node, j: Node, chordAngle: Float = 0.0) {
         self.id = id
         self.i = i
         self.j = j
@@ -56,11 +65,57 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
                                             iColor: float4(Config.postprocess.dispColor),
                                             jColor: float4(Config.postprocess.dispColor))
         self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position).metal / 2,
-                                                     tag: eleTag.description)
+                                                     tag: id.description)
+        
+        let vector = j.position - i.position
+        let chordVector = Self.calcCoordTransMatrix(vector: vector, angle: chordAngle) * vector
+        self.transformation = Transformation(id: id, vector: chordVector)
+        
+        print(chordVector)
     }
     
     func append(model: Model) {
         model.beams.append(self)
+        model.linerTransfs.append(self.transformation)
+    }
+    
+    static func calcCoordTransMatrix(vector: float3, angle: Float) -> float3x3 {
+        let dd = vector
+        let len = length(vector)
+        let ll = dd.x / len
+        let mm = dd.y / len
+        let nn = dd.z / len
+        let qq = sqrt(pow(ll, 2) + pow(mm, 2))
+        
+        let t1 = float3x3(rows: [
+            float3([1,           0,          0]),
+            float3([0,  cos(angle), sin(angle)]),
+            float3([0, -sin(angle), cos(angle)])
+        ])
+        
+        var t2 = float3x3()
+        
+        let t3 = float3x3(rows: [
+            float3([ 0, 0, 1]),
+            float3([ 0, 1, 0]),
+            float3([-1, 0, 0])
+        ])
+        
+        if dd.x == 0.0 && dd.y == 0.0 {
+            t2 = float3x3(rows: [
+                float3([ 0, 0, nn]),
+                float3([nn, 0,  0]),
+                float3([ 0, 1,  0])
+            ])
+        } else {
+            t2 = float3x3(rows: [
+                float3([       ll,        mm, nn]),
+                float3([   -mm/qq,     ll/qq,  0]),
+                float3([-ll*nn/qq, -mm*nn/qq, qq])
+            ]) * t3
+        }
+        
+        return t1 * t2
     }
 }
 
@@ -74,7 +129,7 @@ extension BeamColumn: OSElasticBeamColumn {
     
     var jNode: Int { j.id }
     
-    var transfTag: Int { 1 }
+    var transfTag: Int { id }
     
     var massDens: Float? { nil }
 }

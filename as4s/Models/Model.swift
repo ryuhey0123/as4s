@@ -24,7 +24,7 @@ final class Model: OSModel {
     // MARK: Specification
     
     var elasticSec: [ElasticSection] = [.default]
-    var linerTransfs: [Transformation] = [.default]
+    var linerTransfs: [Transformation] = []
     
     // MARK: Loads
     

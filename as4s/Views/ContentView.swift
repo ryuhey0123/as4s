@@ -43,20 +43,43 @@ struct ContentView: View {
     
     private var buildSmallTestModel: some View {
         Button("Small Test Model") {
-            Actions.addNode(id: 1, position: .init(x: 0, y: 0, z: 0), store: store)
-            Actions.addNode(id: 2, position: .init(x: 500, y: 0, z: 0), store: store)
-            Actions.addNode(id: 3, position: .init(x: 1000, y: 0, z: 0), store: store)
+            Actions.addNode(id: 1, position: .init(x: -500, y: -500, z:    0), store: store)
+            Actions.addNode(id: 2, position: .init(x:  500, y: -500, z:    0), store: store)
+            Actions.addNode(id: 3, position: .init(x: -500, y:  500, z:    0), store: store)
+            Actions.addNode(id: 4, position: .init(x:  500, y:  500, z:    0), store: store)
+            Actions.addNode(id: 5, position: .init(x: -500, y: -500, z: 1000), store: store)
+            Actions.addNode(id: 6, position: .init(x:  500, y: -500, z: 1000), store: store)
+            Actions.addNode(id: 7, position: .init(x: -500, y:  500, z: 1000), store: store)
+            Actions.addNode(id: 8, position: .init(x:  500, y:  500, z: 1000), store: store)
             
-            Actions.addBeam(id: 1, i: 1, j: 2, store: store)
-            Actions.addBeam(id: 2, i: 2, j: 3, store: store)
+            Actions.addBeam(id:  1, i: 1, j: 2, store: store)
+            Actions.addBeam(id:  2, i: 2, j: 4, store: store)
+            Actions.addBeam(id:  3, i: 3, j: 4, store: store)
+            Actions.addBeam(id:  4, i: 1, j: 3, store: store)
+            
+            Actions.addBeam(id:  5, i: 5, j: 6, store: store)
+            Actions.addBeam(id:  6, i: 6, j: 8, store: store)
+            Actions.addBeam(id:  7, i: 7, j: 8, store: store)
+            Actions.addBeam(id:  8, i: 5, j: 7, store: store)
+            
+            Actions.addBeam(id:  9, i: 1, j: 5, store: store)
+            Actions.addBeam(id: 10, i: 2, j: 6, store: store)
+            Actions.addBeam(id: 11, i: 4, j: 8, store: store)
+            Actions.addBeam(id: 12, i: 3, j: 7, store: store)
             
             store.model.fixes.append(contentsOf: [
-                Support(nodeTag: 1, constrValues: [1, 1, 1, 1, 1, 1]),
+                Support(nodeTag: 1, constrValues: [1, 1, 1, 0, 0, 0]),
+                Support(nodeTag: 2, constrValues: [1, 1, 1, 0, 0, 0]),
+                Support(nodeTag: 3, constrValues: [1, 1, 1, 0, 0, 0]),
+                Support(nodeTag: 4, constrValues: [1, 1, 1, 0, 0, 0]),
             ])
             
             store.model.plainPatterns.append(contentsOf: [
                 OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
-                    NodalLoad(nodeTag: 3, loadvalues: [0, 0, -1e3, 0, 0, 0])
+                    NodalLoad(nodeTag: 5, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
+                    NodalLoad(nodeTag: 6, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
+                    NodalLoad(nodeTag: 7, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
+                    NodalLoad(nodeTag: 8, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
                 ])
             ])
         }
