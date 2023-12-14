@@ -22,21 +22,36 @@ final class Store {
     
     let controller: GraphicController
     
-    init() {
+    let openSeesURL: URL
+    let tclEnvironment: [String : String]
+    
+    init(model: Model = Model()) {
         controller = GraphicController(scene: scene)
-        model = Model()
+        self.model = model
+        
+        guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
+            fatalError("Not found OpenSees")
+        }
+        self.openSeesURL = binaryURL
+        
+        guard let tclURL = Bundle.main.url(forResource: "init.tcl", withExtension: nil) else {
+            fatalError("Not found init.tcl")
+        }
+        
+        var environment = ProcessInfo.processInfo.environment
+        environment["TCL_LIBRARY"] = tclURL.deletingLastPathComponent().path
+        self.tclEnvironment = environment
         
         controller.store = self
     }
     
-    init(configuration: ReadConfiguration) throws {
+    convenience init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        controller = GraphicController(scene: scene)
-        model = try JSONDecoder().decode(Model.self, from: data)
+        let model = try JSONDecoder().decode(Model.self, from: data)
         
-        controller.store = self
+        self.init(model: model)
     }
 
     func updateView() {

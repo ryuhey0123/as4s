@@ -107,4 +107,37 @@ enum Actions {
             Actions.addBeam(id: beam.id, i: i, j: j, store: store)
         }
     }
+    
+    static func exexuteOpenSees(data: Data, store: Store) {
+        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("command.tcl")
+        do {
+            try data.write(to: path)
+        } catch {
+            fatalError("Cannot write command file at: \(path.path())")
+        }
+        
+        let process = Process()
+        process.environment = store.tclEnvironment
+        process.executableURL = store.openSeesURL
+        process.arguments = [path.path()]
+        
+        do {
+            try process.run()
+            process.waitUntilExit()
+            
+            if process.terminationStatus == 0 {
+                print("Success")
+            } else {
+                fatalError("Error: \(process.terminationStatus)")
+            }
+        } catch {
+            fatalError("Error occurred during OpenSees execution: \(error)")
+        }
+    }
+    
+    static func printResultData() {
+        let resultURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("node_disp.out")
+        let resultData = try! Data(contentsOf: resultURL)
+        print(String(data: resultData, encoding: .utf8)!)
+    }
 }

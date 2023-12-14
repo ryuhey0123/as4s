@@ -48,6 +48,7 @@ struct ContentView: View {
             Actions.addNode(id: 1, position: .init(x: 0, y: 0, z: 0), store: store)
             Actions.addNode(id: 2, position: .init(x: 500, y: 0, z: 0), store: store)
             Actions.addNode(id: 3, position: .init(x: 1000, y: 0, z: 0), store: store)
+            
             Actions.addBeam(id: 1, i: 1, j: 2, store: store)
             Actions.addBeam(id: 2, i: 2, j: 3, store: store)
             
@@ -57,16 +58,17 @@ struct ContentView: View {
             
             store.model.plainPatterns.append(contentsOf: [
                 OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
-                    NodalLoad(nodeTag: 1, loadvalues: [0, 0, -10e3, 0, 0, 0])
+                    NodalLoad(nodeTag: 3, loadvalues: [0, 0, -10e3, 0, 0, 0])
                 ])
             ])
         }
     }
     
     private var buildAnalyzeCommand: some View {
-        Button("Analize") {
+        Button("Analyze") {
             let data = try! OSEncoder().encode(store.model)
-            print(String(data: data, encoding: .utf8)!)
+            Actions.exexuteOpenSees(data: data, store: store)
+            Actions.printResultData()
         }
     }
 }

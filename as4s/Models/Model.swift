@@ -30,7 +30,7 @@ final class Model: OSModel {
     var plainPatterns: [OSPlainPattern] = []
     
     // Output
-    var nodeRecorder: OSNodeRecorder = .nodeDesp
+    var nodeRecorder: OSNodeRecorder = .init(fileName: "tmp/node_disp.out", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
     
     // Analyze
     var system: OSSystem = .BandSPD
