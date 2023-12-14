@@ -47,15 +47,15 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
         self.id = id
         self.i = i
         self.j = j
-        self.geometry = MVCLineGeometry(i: i.position,
-                                        j: j.position,
+        self.geometry = MVCLineGeometry(i: i.position.metal,
+                                        j: j.position.metal,
                                         iColor: float4(color),
                                         jColor: float4(color))
-        self.dispGeometry = MVCLineGeometry(i: i.position,
-                                            j: j.position,
+        self.dispGeometry = MVCLineGeometry(i: i.position.metal,
+                                            j: j.position.metal,
                                             iColor: float4(Config.postprocess.dispColor),
                                             jColor: float4(Config.postprocess.dispColor))
-        self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position) / 2,
+        self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position).metal / 2,
                                                      tag: eleTag.description)
     }
     

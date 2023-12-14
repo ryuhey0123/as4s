@@ -43,7 +43,7 @@ class GraphicController: MVCGraphicController {
                 lineGideGeometry.j = lineGideGeometry.i
                 isDrawingLine.toggle()
             } else {
-                lineGideGeometry.i = float3(node.position)
+                lineGideGeometry.i = float3(node.position).metal
                 lastSelectedNode = node
                 isDrawingLine.toggle()
             }

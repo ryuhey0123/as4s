@@ -42,6 +42,10 @@ extension float3 {
     init(_ color: Color) {
         self.init(x: Float(color.rgba.red), y: Float(color.rgba.green), z: Float(color.rgba.blue))
     }
+    
+    var metal: float3 {
+        .init(x, z, y)
+    }
 }
 
 

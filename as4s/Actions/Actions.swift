@@ -161,8 +161,8 @@ enum Actions {
         var disps: [Float] = []
         
         let nodeRegex = /(\sNode:\s)([0-9]+)/
-        let nodeDispRegex = /(\sDisps:)([\s0-9.-]+)/
-        let nodeIdRegex = /(\sID\s:\s)([\s0-9-]+)/
+        let nodeDispRegex = /(\sDisps:)([\s0-9e.-]+)/
+        let nodeIdRegex = /\sID\s:/
         
         var currentNodeId: Int = 0
         var isNodeSection: Bool = false
@@ -180,7 +180,7 @@ enum Actions {
                     let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
                     disps += value.map { Float($0)! }
                 }
-                if let _ = line.wholeMatch(of: nodeIdRegex) {
+                if let _ = line.prefixMatch(of: nodeIdRegex) {
                     isNodeSection = false
                     nodeDisps[currentNodeId] = disps
                 }

@@ -18,7 +18,7 @@ final class Node: Renderable, Selectable, Displacementable {
     
     var disp: float3 = .zero {
         didSet {
-            dispGeometry.position = position + disp
+            dispGeometry.position = (position + disp).metal
         }
     }
     
@@ -50,9 +50,9 @@ final class Node: Renderable, Selectable, Displacementable {
     init(id: Int, position: float3) {
         self.id = id
         self.position = position
-        self.geometry =  MVCPointGeometry(position: position, color: .init(ElementConfigType.color))
-        self.dispGeometry = MVCPointGeometry(position: position, color: .init(Config.postprocess.dispColor))
-        self.labelGeometry = Self.buildLabelGeometry(target: position, tag: nodeTag.description)
+        self.geometry =  MVCPointGeometry(position: position.metal, color: .init(ElementConfigType.color))
+        self.dispGeometry = MVCPointGeometry(position: position.metal, color: .init(Config.postprocess.dispColor))
+        self.labelGeometry = Self.buildLabelGeometry(target: position.metal, tag: nodeTag.description)
     }
     
     func append(model: Model) {
