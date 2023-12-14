@@ -183,10 +183,7 @@ enum Actions {
         
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
-                let disp = float3(result.value[0], result.value[1], result.value[2])
-                let geometry = MVCPointGeometry(position: node.position + disp,
-                                                color: .init(1, 0, 0))
-                store.modelLayer.append(geometry: geometry)
+                node.dispGeometry.position = node.position + float3(result.value[0..<3])
             }
         }
         

@@ -9,7 +9,7 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
+final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable, Displacementable {
     
     typealias GeometryType = MVCLineGeometry
     typealias ElementConfigType = Config.beam
@@ -18,12 +18,9 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
     
     var eleTag: Int
     var secTag: Int
-    
     var iNode: Int
     var jNode: Int
-    
     var transfTag: Int
-    
     var massDens: Float?
     
     // MARK: Renderable Value
@@ -42,6 +39,11 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
     var isSelected: Bool = false {
         didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
     }
+    
+    // MARK: PostProcess Value
+    
+    var dispGeometry: GeometryType!
+    var dispLabelGeometry: MVCLabelGeometry!
     
     init(eleTag: Int, iNode: Int, jNode: Int, secTag: Int = 1, transfTag: Int = 1, massDens: Float? = nil) {
         self.eleTag = eleTag
@@ -70,6 +72,10 @@ final class BeamColumn: OSElasticBeamColumn, Renderable, Selectable {
         self.geometry = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         self.labelGeometry = Self.buildLabelGeometry(target: (i + j) / 2, tag: eleTag.description)
         self.geometryTag = geometry.id
+    }
+    
+    func dispGeometrySetup(model: Model) {
+        self.dispGeometry = self.geometry
     }
     
     func append(model: Model) {

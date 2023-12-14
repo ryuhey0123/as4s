@@ -9,7 +9,7 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Node: OSNode, Renderable, Selectable {
+final class Node: OSNode, Renderable, Selectable, Displacementable {
     
     typealias GeometryType = MVCPointGeometry
     typealias ElementConfigType = Config.node
@@ -17,7 +17,6 @@ final class Node: OSNode, Renderable, Selectable {
     // MARK: OpenSees Value
     
     var nodeTag: Int
-    
     var coords: [Float]
     var massValues: [Float]?
     
@@ -26,11 +25,6 @@ final class Node: OSNode, Renderable, Selectable {
     var geometryTag: UInt32!
     var geometry: GeometryType!
     var labelGeometry: MVCLabelGeometry!
-    
-    var position: float3 {
-        get { .init(coords) }
-        set { coords = newValue.array }
-    }
     
     var color: Color = ElementConfigType.color {
         didSet {
@@ -44,28 +38,33 @@ final class Node: OSNode, Renderable, Selectable {
     
     // MARK: PostProcess Value
     
-    var dispGeometry: GeometryType?
-    var dispValueLabelGeometry: MVCLabelGeometry?
+    var dispGeometry: GeometryType!
+    var dispLabelGeometry: MVCLabelGeometry!
+    
+    // MARK: Other Value
+    
+    var position: float3 {
+        get { .init(coords) }
+        set { coords = newValue.array }
+    }
     
     init(nodeTag: Int, coords: [Float], massValues: [Float]? = nil) {
         self.nodeTag = nodeTag
         self.coords = coords
         self.massValues = massValues
         self.geometry =  MVCPointGeometry(position: float3(coords), color: .init(ElementConfigType.color))
+        self.dispGeometry = MVCPointGeometry(position: float3(coords), color: .init(Config.postprocess.dispColor))
         self.labelGeometry = Self.buildLabelGeometry(target: float3(coords), tag: nodeTag.description)
         self.geometryTag = geometry.id
     }
     
-    init(id: Int, position: float3) {
-        self.nodeTag = id
-        self.coords = position.array
-        self.massValues = nil
-        self.geometry =  MVCPointGeometry(position: float3(coords), color: .init(ElementConfigType.color))
-        self.labelGeometry = Self.buildLabelGeometry(target: float3(coords), tag: nodeTag.description)
-        self.geometryTag = geometry.id
+    convenience init(id: Int, position: float3) {
+        self.init(nodeTag: id, coords: position.array)
     }
     
     func geometrySetup(model: Model) {}
+    
+    func dispGeometrySetup(model: Model) {}
     
     func append(model: Model) {
         model.nodes.append(self)

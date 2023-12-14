@@ -46,8 +46,9 @@ final class Model: OSModel {
         self.ndf = ndf
     }
     
-    func append(_ rendable: some Renderable, layer: MVCLayer, labelLayer: MVCLayer) {
+    func append(_ rendable: some Renderable & Displacementable, layer: MVCLayer, labelLayer: MVCLayer) {
         rendable.geometrySetup(model: self)
+        rendable.dispGeometrySetup(model: self)
         rendable.append(model: self)
         layer.append(geometry: rendable.geometry)
         labelLayer.append(geometry: rendable.labelGeometry)
