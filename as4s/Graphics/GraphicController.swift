@@ -34,7 +34,7 @@ class GraphicController: MVCGraphicController {
     
     override func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
         if let snapedId = scene.getSnapedId() {
-            guard let node = store?.model.nodes.first(where: { $0.geometryTag == snapedId }) else { return }
+            guard let node = store?.model.nodes.first(where: { $0.geometry.id == snapedId }) else { return }
             
             if isDrawingLine {
                 guard let lastSelectedNode = lastSelectedNode else { return }
@@ -80,8 +80,8 @@ class GraphicController: MVCGraphicController {
     override func traceSelection() {
         let selectionId = scene.getSeletionId()
         if !selectionId.isEmpty {
-            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometryTag)) })
-            let selectedElems: [BeamColumn] = store!.model.beams.filter( { selectionId.contains(Int($0.geometryTag)) })
+            let selectedNodes: [Node] = store!.model.nodes.filter( { selectionId.contains(Int($0.geometry.id)) })
+            let selectedElems: [BeamColumn] = store!.model.beams.filter( { selectionId.contains(Int($0.geometry.id)) })
             
             if inputController.keysPressed.isEmpty {
                 selectedNodes.forEach { $0.isSelected = true }

@@ -15,8 +15,6 @@ protocol Renderable {
     
     var geometry: GeometryType! { get set }
     
-    var geometryTag: UInt32! { get set }
-    
     var labelGeometry: MVCLabelGeometry! { get set }
     
     var color: Color { get set }

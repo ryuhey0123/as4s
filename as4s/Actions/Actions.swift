@@ -187,11 +187,9 @@ enum Actions {
             }
         }
         
-        print(nodeDisps)
-        
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
-                node.dispGeometry.position = node.position + float3(result.value[0..<3])
+                node.disp = float3(result.value[0..<3])
             }
         }
         

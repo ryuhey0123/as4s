@@ -180,6 +180,15 @@
 			path = PostProcess;
 			sourceTree = "<group>";
 		};
+		B1424E692B2AEBA400F9A22C /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				B12AD6402B16153400D4D315 /* GraphicController.swift */,
+				B1AF9F722B21B6810066C617 /* Scene.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
 		B161BC132ADB958900AABA48 = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +218,7 @@
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
 				B1424E5F2B2AB15200F9A22C /* PostProcess */,
 				B161BC512ADB963800AABA48 /* Models */,
+				B1424E692B2AEBA400F9A22C /* Graphics */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
 				B1A65B8D2ADD367C001A9C7B /* Utilities */,
 				B1FE619E2B258CF8005116DC /* Resources */,
@@ -248,8 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				B161BC232ADB958A00AABA48 /* ContentView.swift */,
-				B12AD6402B16153400D4D315 /* GraphicController.swift */,
-				B1AF9F722B21B6810066C617 /* Scene.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

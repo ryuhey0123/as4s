@@ -16,12 +16,17 @@ final class Node: Renderable, Selectable, Displacementable {
     var id: Int
     var position: float3
     
+    var disp: float3 = .zero {
+        didSet {
+            dispGeometry.position = position + disp
+        }
+    }
+    
     // MARK: Renderable Value
     
     typealias GeometryType = MVCPointGeometry
     typealias ElementConfigType = Config.node
     
-    var geometryTag: UInt32!
     var geometry: GeometryType!
     var labelGeometry: MVCLabelGeometry!
     
@@ -48,7 +53,6 @@ final class Node: Renderable, Selectable, Displacementable {
         self.geometry =  MVCPointGeometry(position: position, color: .init(ElementConfigType.color))
         self.dispGeometry = MVCPointGeometry(position: position, color: .init(Config.postprocess.dispColor))
         self.labelGeometry = Self.buildLabelGeometry(target: position, tag: nodeTag.description)
-        self.geometryTag = geometry.id
     }
     
     func append(model: Model) {

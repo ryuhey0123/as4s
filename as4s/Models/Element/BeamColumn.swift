@@ -22,7 +22,6 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
     typealias GeometryType = MVCLineGeometry
     typealias ElementConfigType = Config.beam
     
-    var geometryTag: UInt32!
     var geometry: GeometryType!
     var labelGeometry: MVCLabelGeometry!
     
@@ -52,13 +51,12 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
                                         j: j.position,
                                         iColor: float4(color),
                                         jColor: float4(color))
+        self.dispGeometry = MVCLineGeometry(i: i.position,
+                                            j: j.position,
+                                            iColor: float4(Config.postprocess.dispColor),
+                                            jColor: float4(Config.postprocess.dispColor))
         self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position) / 2,
                                                      tag: eleTag.description)
-        self.dispGeometry =  MVCLineGeometry(i: i.position,
-                                             j: j.position,
-                                             iColor: float4(Config.postprocess.dispColor),
-                                             jColor: float4(Config.postprocess.dispColor))
-        self.geometryTag = geometry.id
     }
     
     func append(model: Model) {
