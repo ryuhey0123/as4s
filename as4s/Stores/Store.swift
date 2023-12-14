@@ -23,6 +23,9 @@ final class Store {
     let openSeesBinaryURL: URL
     let tclEnvironment: [String : String]
     
+    var openSeesStdOutData: Data?
+    var openSeesStdErrData: Data?
+    
     init(model: Model = Model()) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
             fatalError("Not found OpenSees")

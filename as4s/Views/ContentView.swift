@@ -56,7 +56,7 @@ struct ContentView: View {
             
             store.model.plainPatterns.append(contentsOf: [
                 OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
-                    NodalLoad(nodeTag: 3, loadvalues: [0, 0, -10e3, 0, 0, 0])
+                    NodalLoad(nodeTag: 3, loadvalues: [0, 0, -1e3, 0, 0, 0])
                 ])
             ])
         }
@@ -66,7 +66,7 @@ struct ContentView: View {
         Button("Analyze") {
             let data = try! OSEncoder().encode(store.model)
             Actions.exexuteOpenSees(data: data, store: store)
-            Actions.printResultData()
+            Actions.updateNodeDisp(store: store)
         }
     }
 }

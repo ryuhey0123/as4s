@@ -42,6 +42,11 @@ final class Node: OSNode, Renderable, Selectable {
         didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
     }
     
+    // MARK: PostProcess Value
+    
+    var dispGeometry: GeometryType?
+    var dispValueLabelGeometry: MVCLabelGeometry?
+    
     init(nodeTag: Int, coords: [Float], massValues: [Float]? = nil) {
         self.nodeTag = nodeTag
         self.coords = coords

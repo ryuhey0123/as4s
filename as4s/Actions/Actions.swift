@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Mevic
+import Yams
 
 enum Actions {
     
@@ -51,9 +52,9 @@ enum Actions {
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
-        let x = MVCLineGeometry(j: .x * 1000, color: .x, selectable: false)
-        let y = MVCLineGeometry(j: .y * 1000, color: .y, selectable: false)
-        let z = MVCLineGeometry(j: .z * 1000, color: .z, selectable: false)
+        let x = MVCLineGeometry(j: .x * 100, color: .x, selectable: false)
+        let y = MVCLineGeometry(j: .y * 100, color: .y, selectable: false)
+        let z = MVCLineGeometry(j: .z * 100, color: .z, selectable: false)
         store.captionLayer.append(geometry: x)
         store.captionLayer.append(geometry: y)
         store.captionLayer.append(geometry: z)
@@ -117,6 +118,10 @@ enum Actions {
         }
         
         let process = Process()
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = errorPipe
         process.environment = store.tclEnvironment
         process.executableURL = store.openSeesBinaryURL
         process.arguments = [path.path()]
@@ -125,8 +130,14 @@ enum Actions {
             try process.run()
             process.waitUntilExit()
             
+            let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+            store.openSeesStdOutData = outputData
+            
+            let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+            store.openSeesStdErrData = errorData
+            
             if process.terminationStatus == 0 {
-                print("Success")
+                Logger.openSees.info("Success execute OpenSees")
             } else {
                 fatalError("Error: \(process.terminationStatus)")
             }
@@ -135,9 +146,46 @@ enum Actions {
         }
     }
     
-    static func printResultData() {
-        let resultURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("node_disp.out")
-        let resultData = try! Data(contentsOf: resultURL)
-        print(String(data: resultData, encoding: .utf8)!)
+    static func updateNodeDisp(store: Store) {
+        guard let resultData = store.openSeesStdErrData,
+              let resultLines = String(data: resultData, encoding: .utf8)?.components(separatedBy: .newlines)[12...] else { return }
+        
+        var results: [Int: [Float]] = [:]
+        var currentNodeId: Int? = nil
+        var disps: [Float] = []
+        
+        for line in resultLines {
+            if line.starts(with: " Node:") {
+                let regex = /(\sNode:\s)([0-9]+)/
+                let match = line.wholeMatch(of: regex)
+                currentNodeId = Int(match!.2)
+                disps = []
+                
+            } else if let currentNodeId = currentNodeId {
+                let regex = /(\sDisps:)([\s0-9.-]+)/
+                
+                if let match = line.wholeMatch(of: regex) {
+                    let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
+                    disps += value.map { Float($0)! }
+                }
+                
+                let end = /(\sID\s:\s)([\s0-9]+)/
+                if let _ = line.wholeMatch(of: end) {
+                    results[currentNodeId] = disps
+                }
+            }
+        }
+        
+        for result in results {
+            let tag = result.key
+            let value = result.value
+            
+            if let node = store.model.nodes.first(where: { $0.nodeTag == tag }) {
+                let disp = float3(value[0], value[1], value[2])
+                let geometry = MVCPointGeometry(position: node.position + disp,
+                                                color: .init(1, 0, 0))
+                store.modelLayer.append(geometry: geometry)
+            }
+        }
     }
 }
