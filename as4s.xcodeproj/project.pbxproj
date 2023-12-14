@@ -11,6 +11,7 @@
 		B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12AD6402B16153400D4D315 /* GraphicController.swift */; };
 		B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12AD6802B1950A800D4D315 /* TestModel.txt */; };
 		B1372C7F2B05CE65000293D4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1372C7E2B05CE65000293D4 /* Config.swift */; };
+		B13AED882B2B3B570028B410 /* BeamForcable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13AED872B2B3B570028B410 /* BeamForcable.swift */; };
 		B1424E4E2B29CF1600F9A22C /* OpenSeesCoder in Frameworks */ = {isa = PBXBuildFile; productRef = B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */; };
 		B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E4F2B29D28B00F9A22C /* Renderable.swift */; };
 		B1424E522B29DFD400F9A22C /* CrossSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E512B29DFD400F9A22C /* CrossSection.swift */; };
@@ -69,6 +70,7 @@
 		B12AD6402B16153400D4D315 /* GraphicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicController.swift; sourceTree = "<group>"; };
 		B12AD6802B1950A800D4D315 /* TestModel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestModel.txt; sourceTree = "<group>"; };
 		B1372C7E2B05CE65000293D4 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B13AED872B2B3B570028B410 /* BeamForcable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamForcable.swift; sourceTree = "<group>"; };
 		B1424E4F2B29D28B00F9A22C /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		B1424E512B29DFD400F9A22C /* CrossSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSection.swift; sourceTree = "<group>"; };
 		B1424E532B29E05F00F9A22C /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
@@ -218,6 +220,10 @@
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
 				B1424E5F2B2AB15200F9A22C /* PostProcess */,
 				B161BC512ADB963800AABA48 /* Models */,
+				B1424E5B2B2A0C5700F9A22C /* Selectable.swift */,
+				B1424E4F2B29D28B00F9A22C /* Renderable.swift */,
+				B1424E672B2AD5F800F9A22C /* Displacementable.swift */,
+				B13AED872B2B3B570028B410 /* BeamForcable.swift */,
 				B1424E692B2AEBA400F9A22C /* Graphics */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
 				B1A65B8D2ADD367C001A9C7B /* Utilities */,
@@ -265,9 +271,6 @@
 		B161BC512ADB963800AABA48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B1424E4F2B29D28B00F9A22C /* Renderable.swift */,
-				B1424E672B2AD5F800F9A22C /* Displacementable.swift */,
-				B1424E5B2B2A0C5700F9A22C /* Selectable.swift */,
 				B1B879292ADBBB2800CCDDA7 /* Model.swift */,
 				B1B3121A2ADC1CFE00DC32B9 /* Node.swift */,
 				B1424E572B2A075000F9A22C /* Element */,
@@ -524,6 +527,7 @@
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
+				B13AED882B2B3B570028B410 /* BeamForcable.swift in Sources */,
 				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,

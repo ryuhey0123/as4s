@@ -10,7 +10,7 @@ import Mevic
 import OpenSeesCoder
 import simd
 
-final class BeamColumn: Renderable, Selectable, Displacementable {
+final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
     
     // MARK: General Value
     
