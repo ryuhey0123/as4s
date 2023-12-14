@@ -69,9 +69,14 @@ final class BeamColumn: Renderable, Selectable, Displacementable {
 extension BeamColumn: OSElasticBeamColumn {
     
     var eleTag: Int { id }
+    
     var secTag: Int { 1 }
+    
     var iNode: Int { i.id }
+    
     var jNode: Int { j.id }
+    
     var transfTag: Int { 1 }
+    
     var massDens: Float? { nil }
 }
