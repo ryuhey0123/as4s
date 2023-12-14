@@ -118,7 +118,7 @@ enum Actions {
         
         let process = Process()
         process.environment = store.tclEnvironment
-        process.executableURL = store.openSeesURL
+        process.executableURL = store.openSeesBinaryURL
         process.arguments = [path.path()]
         
         do {

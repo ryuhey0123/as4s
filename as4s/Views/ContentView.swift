@@ -25,8 +25,6 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            store.updateView()
-            
             Actions.addCoordinate(store: store)
         }
     }
