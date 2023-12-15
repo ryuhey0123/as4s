@@ -29,8 +29,12 @@ final class Model: OSModel {
     // MARK: Loads
     
     var masses: [Mass] = []
+    var nodalLoads: [NodalLoad] = []
     var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 1)
-    var plainPatterns: [OSPlainPattern] = []
+    
+    var plainPatterns: [OSPlainPattern] { [
+        OSPlainPattern(patternTag: 1, tsTag: 1, loads: nodalLoads)
+    ] }
     
     // MARK: Output
 
@@ -51,11 +55,14 @@ final class Model: OSModel {
         self.ndf = ndf
     }
     
-    func append(_ rendable: some Renderable & Displacementable, layer: MVCLayer, labelLayer: MVCLayer) {
+    func append(_ rendable: some Renderable, layer: MVCLayer, labelLayer: MVCLayer) {
         rendable.append(model: self)
         
         layer.append(geometry: rendable.geometry)
-        layer.append(geometry: rendable.dispGeometry)
+        
+        if let rendable = rendable as? (any Displacementable) {
+            layer.append(geometry: rendable.dispGeometry)
+        }
         
         labelLayer.append(geometry: rendable.labelGeometry)
     }

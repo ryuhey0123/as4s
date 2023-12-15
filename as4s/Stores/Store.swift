@@ -15,10 +15,32 @@ final class Store {
     let scene: GameScene
     let controller: GraphicController
     
+    // Model
     let modelLayer: MVCLayer = MVCLayer("Model")
+    
+    let vXLayer: MVCLayer = MVCLayer("Vx")
+    let vYLayer: MVCLayer = MVCLayer("Vy")
+    let vZLayer: MVCLayer = MVCLayer("Vz")
+    let mXLayer: MVCLayer = MVCLayer("Mx")
+    let mYLayer: MVCLayer = MVCLayer("My")
+    let mZLayer: MVCLayer = MVCLayer("Mz")
+    
+    let loadLayer: MVCLayer = MVCLayer("Load")
+    
     let captionLayer: MVCLayer = MVCLayer("Caption")
+    
+    // Label
     let nodeLabelLayer: MVCLayer = MVCLayer("NodeLabel")
     let beamLabelLayer: MVCLayer = MVCLayer("BeamLabel")
+    
+    let vXLabelLayer: MVCLayer = MVCLayer("VxLabel")
+    let vYLabelLayer: MVCLayer = MVCLayer("VyLabel")
+    let vZLabelLayer: MVCLayer = MVCLayer("VzLabel")
+    let mXLabelLayer: MVCLayer = MVCLayer("MxLabel")
+    let mYLabelLayer: MVCLayer = MVCLayer("MyLabel")
+    let mZLabelLayer: MVCLayer = MVCLayer("MzLabel")
+    
+    let loadLabelLayer: MVCLayer = MVCLayer("LoadLabel")
     
     let openSeesBinaryURL: URL
     let tclEnvironment: [String : String]
@@ -39,10 +61,26 @@ final class Store {
         environment["TCL_LIBRARY"] = tclURL.deletingLastPathComponent().path
         
         let scene = GameScene()
+        // Model
         scene.append(layer: modelLayer)
+        scene.append(layer: vXLayer)
+        scene.append(layer: vYLayer)
+        scene.append(layer: vZLayer)
+        scene.append(layer: mXLayer)
+        scene.append(layer: mYLayer)
+        scene.append(layer: mZLayer)
+        scene.append(layer: loadLayer)
         scene.append(layer: captionLayer)
+        // Label
         scene.append(layer: nodeLabelLayer)
         scene.append(layer: beamLabelLayer)
+        scene.append(layer: vXLabelLayer)
+        scene.append(layer: vYLabelLayer)
+        scene.append(layer: vZLabelLayer)
+        scene.append(layer: mXLabelLayer)
+        scene.append(layer: mYLabelLayer)
+        scene.append(layer: mZLabelLayer)
+        scene.append(layer: loadLabelLayer)
         
         self.model = model
         self.scene = scene

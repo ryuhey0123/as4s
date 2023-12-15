@@ -31,7 +31,7 @@ enum Actions {
     
     static func addBeam(id: Int, i: Node, j: Node, store: Store) {
         let beam = BeamColumn(id: id, i: i, j: j)
-        store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
+        store.model.append(beam, layer: store.modelLayer, labelLayer: store.beamLabelLayer)
 
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
@@ -43,9 +43,19 @@ enum Actions {
         }
         
         let beam = BeamColumn(id: id, i: iNode, j: jNode)
-        store.model.append(beam, layer: store.modelLayer, labelLayer: store.nodeLabelLayer)
+        store.model.append(beam, layer: store.modelLayer, labelLayer: store.beamLabelLayer)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
+    }
+    
+    static func addNodalLoad(id: Int, force: [Float], store: Store) {
+        guard let node = store.model.nodes.first(where: { $0.nodeTag == id }) else {
+            fatalError("Cannot find nodes \(id)")
+        }
+        let force = NodalLoad(id: id, node: node, loadvalues: force)
+        store.model.append(force, layer: store.loadLayer, labelLayer: store.loadLabelLayer)
+        
+        Logger.action.trace("\(#function): Add Nodal Load to \(node.nodeTag)")
     }
     
     // MARK: - Other Geometry
@@ -106,6 +116,13 @@ enum Actions {
             guard let j: Node = store.model.nodes.first(where: { $0.nodeTag == beam.jNode }) else { break }
             Actions.addBeam(id: beam.id, i: i, j: j, store: store)
         }
+    }
+    
+    
+    // MARK: - OpenSees Execute
+    
+    static func buildCommand(store: Store) {
+        
     }
     
     static func exexuteOpenSees(store: Store) {
@@ -247,7 +264,7 @@ enum Actions {
                                                          minForce: minForce,
                                                          maxForce: maxForce)
             
-            store.modelLayer.append(geometry: geometry)
+            store.mYLayer.append(geometry: geometry)
         }
     }
 }

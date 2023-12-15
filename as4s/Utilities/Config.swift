@@ -49,6 +49,19 @@ enum Config {
         static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
     }
     
+    enum nodalLoad: ElementConfig {
+        static var color: Color = .green
+        static var selectedColor: Color = .clear
+        
+        static var labelFont: String = "Helvetica"
+        static var labelSize: CGFloat = 10
+        static var labelColor: Color = .green
+        static var labelBgColor: Color = Config.system.backGroundColor
+        static var labelPaddingX: Float = 0
+        static var labelPaddingY: Float = 8
+        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
+    }
+    
     enum cursor {
         static let size: CGFloat = 30
         static let lineWidth: CGFloat = 1.5

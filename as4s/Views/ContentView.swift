@@ -74,14 +74,16 @@ struct ContentView: View {
                 Support(nodeTag: 4, constrValues: [1, 1, 1, 0, 0, 0]),
             ])
             
-            store.model.plainPatterns.append(contentsOf: [
-                OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
-                    NodalLoad(nodeTag: 5, loadvalues: [10e3, 0, 0, 0, 0, 0]),
+            Actions.addNodalLoad(id: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
+            
+//            store.model.plainPatterns.append(contentsOf: [
+//                OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
+//                    NodalLoad(nodeTag: 5, loadvalues: [10e3, 0, 0, 0, 0, 0]),
 //                    NodalLoad(nodeTag: 6, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
 //                    NodalLoad(nodeTag: 7, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
 //                    NodalLoad(nodeTag: 8, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
-                ])
-            ])
+//                ])
+//            ])
         }
     }
     
