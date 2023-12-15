@@ -76,7 +76,7 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         
         self.vector = (j.position - i.position)
         self.chordAngle = chordAngle
-        self.chordVector = Self.calcChordTransMatrix(vector: vector, angle: chordAngle)
+        self.chordVector = Self.buildChordVecror(vector: vector, angle: chordAngle)
         self.chordCrossVector = cross(chordVector, vector).normalized
         self.transformation = Transformation(id: id, vector: chordVector)
     }
@@ -86,7 +86,7 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         model.linerTransfs.append(self.transformation)
     }
     
-    static func calcChordTransMatrix(vector: float3, angle: Float) -> float3 {
+    static func buildChordVecror(vector: float3, angle: Float) -> float3 {
         guard vector != .zero else {
             fatalError("Error: vector is zero length.")
         }
@@ -104,6 +104,23 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         
         let rotatedVector = rotateMatrix * crossVector
         return rotatedVector.xyz.normalized
+    }
+    
+    static func buildForceGeometry(i: float3, j: float3, direction: float3, iForce: Float, jForce: Float, minForce: Float, maxForce: Float) -> MVCTrapezoidGeometry {
+        let scale: Float = 0.00005
+        
+        let forceBand = maxForce - minForce
+        let iForceRatio = (iForce - minForce) / forceBand
+        let jForceRatio = (jForce - minForce) / forceBand
+        
+        let minColor = float4(Config.postprocess.minForceColor)
+        let maxColor = float4(Config.postprocess.maxForceColor)
+        
+        let iColor = (maxColor - minColor) * iForceRatio + minColor
+        let jColor = (maxColor - minColor) * jForceRatio + minColor
+        
+        return MVCTrapezoidGeometry(i: i, j: j, iHeight: iForce * scale, jHeight: jForce * scale, direction: direction,
+                                    iColor: iColor, jColor: jColor)
     }
 }
 

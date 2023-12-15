@@ -220,31 +220,32 @@ enum Actions {
             }
         }
         
+        let iForceIndex = 3
+        let jForceIndex = iForceIndex + 6
+        
+        let indexedForces = eleForce.flatMap( { [$0.value[iForceIndex], $0.value[jForceIndex]] })
+        
+        let maxForce = indexedForces.max()!
+        let minForce = indexedForces.min()!
+        
         for beam in store.model.beams {
             beam.dispGeometry.i = beam.i.dispGeometry.position
             beam.dispGeometry.j = beam.j.dispGeometry.position
             
             let force = eleForce[beam.id]!
-            
-            let iForce = -force[3] * 0.00005
-            let jForce = force[9] * 0.00005
+            let iForce = -force[iForceIndex]
+            let jForce = force[jForceIndex]
             
             let i = beam.geometry.i
             let j = beam.geometry.j
             
-            let iHeight = i + (beam.chordVector * iForce).metal
-            let jHeight = j + (beam.chordVector * jForce).metal
-            
-            let iColor = float4(1, 0, 0, 1)
-            let jColor = float4(1, 0, 0, 1)
-            
-            let geometry = MVCTrapezoidGeometry(i: beam.geometry.i,
-                                                j: beam.geometry.j,
-                                                iHeight: iForce,
-                                                jHeight: jForce,
-                                                direction: beam.chordVector.metal,
-                                                iColor: iColor,
-                                                jColor: jColor)
+            let geometry = BeamColumn.buildForceGeometry(i: i,
+                                                         j: j,
+                                                         direction: beam.chordVector.metal,
+                                                         iForce: iForce,
+                                                         jForce: jForce,
+                                                         minForce: minForce,
+                                                         maxForce: maxForce)
             
             store.modelLayer.append(geometry: geometry)
         }

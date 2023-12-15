@@ -76,6 +76,8 @@ enum Config {
     
     enum postprocess {
         static var dispColor: Color = .gray
+        static var minForceColor: Color = .blue
+        static var maxForceColor: Color = .red
     }
 }
 

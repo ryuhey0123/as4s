@@ -42,5 +42,5 @@ final class ElasticSection: CrossSection, OSElasticSection {
 
 extension ElasticSection {
     
-    static var `default`: ElasticSection = .init(secTag: 1, E: 100e2, A: 100e2, Iz: 50e4, Iy: 100e4, G: 100e4, J: 100e4)
+    static var `default`: ElasticSection = .init(secTag: 1, E: 100e2, A: 100e2, Iz: 50e4, Iy: 100e4, G: 100e4, J: 100e2)
 }
