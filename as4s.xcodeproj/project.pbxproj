@@ -41,7 +41,7 @@
 		B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B879292ADBBB2800CCDDA7 /* Model.swift */; };
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE09EE2B21FAAC0002C57B /* Support.swift */; };
-		B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */; };
+		B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */; };
 		B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* BeamColumn.swift */; };
 		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
 		B1FE61B32B258D2D005116DC /* OpenSees in Resources */ = {isa = PBXBuildFile; fileRef = B1FE61A92B258D2D005116DC /* OpenSees */; };
@@ -102,7 +102,7 @@
 		B1B879292ADBBB2800CCDDA7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1BE09EE2B21FAAC0002C57B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
-		B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extension.swift"; sourceTree = "<group>"; };
+		B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* BeamColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamColumn.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
 		B1FE61A92B258D2D005116DC /* OpenSees */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = OpenSees; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 			children = (
 				B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */,
 				B124ADDC2B06429100AE5429 /* Color+Extensions.swift */,
-				B1F5EF1B2B074A8400805708 /* NSPoint+Extension.swift */,
+				B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
 				B1424E612B2AB16800F9A22C /* PostProcess.swift in Sources */,
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
-				B1F5EF1C2B074A8400805708 /* NSPoint+Extension.swift in Sources */,
+				B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,

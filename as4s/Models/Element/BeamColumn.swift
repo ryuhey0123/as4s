@@ -74,10 +74,10 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position).metal / 2,
                                                      tag: id.description)
         
-        self.vector = (j.position - i.position).normalized
+        self.vector = (j.position - i.position)
         self.chordAngle = chordAngle
-        self.chordVector = (Self.calcCoordTransMatrix(vector: vector, angle: chordAngle) * vector).normalized
-        self.chordCrossVector = cross(chordVector, vector)
+        self.chordVector = Self.calcChordTransMatrix(vector: vector, angle: chordAngle)
+        self.chordCrossVector = cross(chordVector, vector).normalized
         self.transformation = Transformation(id: id, vector: chordVector)
     }
     
@@ -86,43 +86,24 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         model.linerTransfs.append(self.transformation)
     }
     
-    static func calcCoordTransMatrix(vector: float3, angle: Float) -> float3x3 {
-        let dd = vector
-        let len = length(vector)
-        let ll = dd.x / len
-        let mm = dd.y / len
-        let nn = dd.z / len
-        let qq = sqrt(pow(ll, 2) + pow(mm, 2))
-        
-        let t1 = float3x3(rows: [
-            float3([1,           0,          0]),
-            float3([0,  cos(angle), sin(angle)]),
-            float3([0, -sin(angle), cos(angle)])
-        ])
-        
-        var t2 = float3x3()
-        
-        let t3 = float3x3(rows: [
-            float3([ 0, 0, 1]),
-            float3([ 0, 1, 0]),
-            float3([-1, 0, 0])
-        ])
-        
-        if dd.x == 0.0 && dd.y == 0.0 {
-            t2 = float3x3(rows: [
-                float3([ 0, 0, nn]),
-                float3([nn, 0,  0]),
-                float3([ 0, 1,  0])
-            ])
-        } else {
-            t2 = float3x3(rows: [
-                float3([       ll,        mm, nn]),
-                float3([   -mm/qq,     ll/qq,  0]),
-                float3([-ll*nn/qq, -mm*nn/qq, qq])
-            ]) * t3
+    static func calcChordTransMatrix(vector: float3, angle: Float) -> float3 {
+        guard vector != .zero else {
+            fatalError("Error: vector is zero length.")
         }
         
-        return t1 * t2
+        let rotateMatrix = float4x4.rotation(radians: angle, axis: vector)
+        
+        var crossVector: float4 = .zero
+        if vector.z == 0 {
+            crossVector = .init(0, 0, -1, 1)
+        } else if vector.x == 0 && vector.y == 0 {
+            crossVector = .init(1, 0, 0, 1)
+        } else {
+            crossVector = .init(vector.x, vector.y, -(pow(vector.x, 2) + pow(vector.y, 2)) / vector.z, 1)
+        }
+        
+        let rotatedVector = rotateMatrix * crossVector
+        return rotatedVector.xyz.normalized
     }
 }
 

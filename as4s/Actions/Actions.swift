@@ -225,6 +225,7 @@ enum Actions {
             beam.dispGeometry.j = beam.j.dispGeometry.position
             
             let force = eleForce[beam.id]!
+            
             let iForce = -force[3] * 0.00005
             let jForce = force[9] * 0.00005
             
@@ -234,14 +235,16 @@ enum Actions {
             let iHeight = i + (beam.chordVector * iForce).metal
             let jHeight = j + (beam.chordVector * jForce).metal
             
-            let geometry = MVCQuadGeometry(i: i,
-                                           j: iHeight,
-                                           k: j,
-                                           l: jHeight,
-                                           iColor: float4(iHeight.normalized, 1),
-                                           jColor: float4(iHeight.normalized, 1),
-                                           kColor: float4(jHeight.normalized, 1),
-                                           lColor: float4(jHeight.normalized, 1))
+            let iColor = float4(1, 0, 0, 1)
+            let jColor = float4(1, 0, 0, 1)
+            
+            let geometry = MVCTrapezoidGeometry(i: beam.geometry.i,
+                                                j: beam.geometry.j,
+                                                iHeight: iForce,
+                                                jHeight: jForce,
+                                                direction: beam.chordVector.metal,
+                                                iColor: iColor,
+                                                jColor: jColor)
             
             store.modelLayer.append(geometry: geometry)
         }
