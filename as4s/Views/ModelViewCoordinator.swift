@@ -59,7 +59,10 @@ class ModelViewCoordinator: NSObject {
     }
     
     func handleScrollWheel(with event: NSEvent) {
-        controller?.scene.camera.zoom(Float(event.deltaY) * 10)
+        if let controller = controller {
+            let sizedScroll = Float(event.deltaY) * controller.scene.camera.viewSize
+            controller.scene.camera.zoom(sizedScroll * Config.cameraControllSensitivity.zoom * 0.05)
+        }
     }
     
     func handleKeyDown(with event: NSEvent) {}

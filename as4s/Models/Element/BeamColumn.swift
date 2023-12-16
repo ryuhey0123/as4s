@@ -119,8 +119,13 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         let iColor = (maxColor - minColor) * iForceRatio + minColor
         let jColor = (maxColor - minColor) * jForceRatio + minColor
         
-        return MVCTrapezoidGeometry(i: i, j: j, iHeight: iForce * scale, jHeight: jForce * scale, direction: direction,
-                                    iColor: iColor, jColor: jColor)
+        return MVCTrapezoidGeometry(i: i,
+                                    j: j,
+                                    iHeight: iForce * scale,
+                                    jHeight: jForce * scale,
+                                    direction: direction,
+                                    iColor: iColor,
+                                    jColor: jColor)
     }
 }
 
