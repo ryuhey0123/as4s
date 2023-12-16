@@ -47,6 +47,10 @@ final class Store {
     var openSeesStdOutData: Data?
     var openSeesStdErrData: Data?
     
+    @Published var nodeLabelVisiable: Bool = true {
+        didSet { nodeLabelLayer.isHidden = !nodeLabelVisiable }
+    }
+    
     init(model: Model = Model()) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
             fatalError("Not found OpenSees")

@@ -68,6 +68,9 @@ enum Actions {
         store.captionLayer.append(geometry: y)
         store.captionLayer.append(geometry: z)
         
+        store.scene.overlayLayer.append(geometry: MVCCursor())
+        store.scene.overlayLayer.append(geometry: MVCSelectionBox())
+        
         Logger.action.trace("\(#function): Add Coordinate")
     }
     
