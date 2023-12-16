@@ -11,21 +11,29 @@ import OpenSeesCoder
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
-
+    
+    @AppStorage("node_label_visiable") var nodeLabelVisiable = true
+    
     var body: some View {
         NavigationSplitView {
+            visiableToggle
             addPoint
             importBigTestModel
             buildSmallTestModel
             buildAnalyzeCommand
         } detail: {
             ZStack {
-                MVCView(controller: store.controller)
-                    .clearColor(Config.system.backGroundColor)
+                ModelView(scene: store.scene)
+                    .onAppear {
+                        Actions.addCoordinate(store: store)
+                    }
             }
         }
-        .onAppear {
-            Actions.addCoordinate(store: store)
+    }
+    
+    private var visiableToggle: some View {
+        Section("Label") {
+            Toggle(isOn: $nodeLabelVisiable, label: { Text("Node") })
         }
     }
     
@@ -75,15 +83,7 @@ struct ContentView: View {
             ])
             
             Actions.addNodalLoad(id: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
-            
-//            store.model.plainPatterns.append(contentsOf: [
-//                OSPlainPattern(patternTag: 1, tsTag: 1, loads: [
-//                    NodalLoad(nodeTag: 5, loadvalues: [10e3, 0, 0, 0, 0, 0]),
-//                    NodalLoad(nodeTag: 6, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
-//                    NodalLoad(nodeTag: 7, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
-//                    NodalLoad(nodeTag: 8, loadvalues: [10e3, 10e3, 0, 0, 0, 0]),
-//                ])
-//            ])
+            Actions.addNodalLoad(id: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
         }
     }
     
@@ -98,4 +98,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store())
+        .frame(width: 800, height: 500)
 }

@@ -33,7 +33,7 @@ class NodalLoad: Renderable {
         self.node = node
         self.loadvalues = loadvalues
         
-        self.geometry = MVCArrowGeometry(i: node.position.metal - float3(loadvalues[0..<3]) * 0.01,
+        self.geometry = MVCArrowGeometry(i: node.position.metal - float3(loadvalues[0..<3]).metal * 0.01,
                                          j: node.position.metal,
                                          color: float3(color),
                                          thickness: 0.01)

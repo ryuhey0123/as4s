@@ -12,8 +12,7 @@ final class Store {
     
     let model: Model
     
-    let scene: GameScene
-    let controller: GraphicController
+    let scene: GraphicScene = GraphicScene()
     
     // Model
     let modelLayer: MVCLayer = MVCLayer("Model")
@@ -60,7 +59,6 @@ final class Store {
         var environment = ProcessInfo.processInfo.environment
         environment["TCL_LIBRARY"] = tclURL.deletingLastPathComponent().path
         
-        let scene = GameScene()
         // Model
         scene.append(layer: modelLayer)
         scene.append(layer: vXLayer)
@@ -83,12 +81,8 @@ final class Store {
         scene.append(layer: loadLabelLayer)
         
         self.model = model
-        self.scene = scene
-        self.controller = GraphicController(scene: self.scene)
         self.openSeesBinaryURL = binaryURL
         self.tclEnvironment = environment
-        
-        controller.store = self
     }
     
     convenience init(configuration: ReadConfiguration) throws {
