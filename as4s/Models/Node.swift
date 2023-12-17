@@ -9,7 +9,7 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Node: Renderable, Selectable, Displacementable {
+final class Node: Renderable, Selectable {
     
     // MARK: General Value
     
