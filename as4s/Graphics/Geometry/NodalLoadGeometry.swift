@@ -7,14 +7,18 @@
 import SwiftUI
 import Mevic
 
-struct NodalLoadGeometry {
+struct NodalLoadGeometry: Geometry {
     
     typealias ElementConfigType = Config.nodalLoad
     
     var model: MVCArrowGeometry
     var label: MVCLabelGeometry
     
-    var color: Color = ElementConfigType.color
+    var color: Color = ElementConfigType.color {
+        didSet {
+            model.color = float4(float3(color), 1)
+        }
+    }
     
     init(id: Int, position: float3, loadvalues: [Float]) {
         let arrowhead = position.metal - float3(loadvalues[0..<3]).metal * 0.01
@@ -23,16 +27,6 @@ struct NodalLoadGeometry {
                                  j: position.metal,
                                  color: float3(color),
                                  thickness: 0.01)
-        label = Self.buildLabelGeometry(target: arrowhead, tag: tag)
-    }
-    
-    static func buildLabelGeometry(target: float3, tag: String) -> MVCLabelGeometry {
-        MVCLabelGeometry(target: target,
-                         text: tag,
-                         forgroundColor: .init(ElementConfigType.labelColor),
-                         backgroundColor: .init(ElementConfigType.labelBgColor),
-                         margin: .init(ElementConfigType.labelPaddingX, ElementConfigType.labelPaddingY),
-                         alignment: ElementConfigType.labelAlignment
-        )
+        label = Self.defaultLabel(target: arrowhead, tag: tag)
     }
 }

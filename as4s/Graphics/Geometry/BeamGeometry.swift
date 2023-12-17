@@ -8,7 +8,7 @@
 import SwiftUI
 import Mevic
 
-struct BeamGeometry {
+struct BeamGeometry: Geometry {
     
     typealias ElementConfigType = Config.beam
     
@@ -21,9 +21,6 @@ struct BeamGeometry {
         case Vz = 4
         case T = 5
     }
-    
-    static let iColor = Config.postprocess.minForceColor
-    static let jColor = Config.postprocess.maxForceColor
     
     var color: Color = ElementConfigType.color {
         didSet {
@@ -59,7 +56,7 @@ struct BeamGeometry {
     
     init(id: Int, i: float3, j: float3, zdir: float3, ydir: float3) {
         model = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
-        label = MVCLabelGeometry(target: (i + j) / 2, text: id.description)
+        label = Self.defaultLabel(target: (i + j) / 2, tag: id.description)
         disp = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         
         vX = Self.defalutGeometry(i: i, j: j, direction: zdir)
@@ -69,18 +66,18 @@ struct BeamGeometry {
         mY = Self.defalutGeometry(i: i, j: j, direction: zdir)
         mZ = Self.defalutGeometry(i: i, j: j, direction: ydir)
         
-        vXiLabel = Self.defalutLabelGeometry(target: i)
-        vYiLabel = Self.defalutLabelGeometry(target: i)
-        vZiLabel = Self.defalutLabelGeometry(target: i)
-        mXiLabel = Self.defalutLabelGeometry(target: i)
-        mYiLabel = Self.defalutLabelGeometry(target: i)
-        mZiLabel = Self.defalutLabelGeometry(target: i)
-        vXjLabel = Self.defalutLabelGeometry(target: j)
-        vYjLabel = Self.defalutLabelGeometry(target: j)
-        vZjLabel = Self.defalutLabelGeometry(target: j)
-        mXjLabel = Self.defalutLabelGeometry(target: j)
-        mYjLabel = Self.defalutLabelGeometry(target: j)
-        mZjLabel = Self.defalutLabelGeometry(target: j)
+        vXiLabel = Self.defaultLabel(target: i)
+        vYiLabel = Self.defaultLabel(target: i)
+        vZiLabel = Self.defaultLabel(target: i)
+        mXiLabel = Self.defaultLabel(target: i)
+        mYiLabel = Self.defaultLabel(target: i)
+        mZiLabel = Self.defaultLabel(target: i)
+        vXjLabel = Self.defaultLabel(target: j)
+        vYjLabel = Self.defaultLabel(target: j)
+        vZjLabel = Self.defaultLabel(target: j)
+        mXjLabel = Self.defaultLabel(target: j)
+        mYjLabel = Self.defaultLabel(target: j)
+        mZjLabel = Self.defaultLabel(target: j)
     }
     
     static func defalutGeometry(i: float3, j: float3, direction: float3) -> MVCTrapezoidGeometry {
@@ -89,12 +86,8 @@ struct BeamGeometry {
                              iHeight: 0,
                              jHeight: 0,
                              direction: direction,
-                             iColor: float4(Self.iColor),
-                             jColor: float4(Self.jColor))
-    }
-    
-    static func defalutLabelGeometry(target: float3) -> MVCLabelGeometry {
-        MVCLabelGeometry(target: target, text: "0", alignment: .center)
+                             iColor: float4(Config.postprocess.minForceColor),
+                             jColor: float4(Config.postprocess.maxForceColor))
     }
     
     mutating func updateGeometry(force: [Float]) {

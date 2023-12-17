@@ -8,7 +8,7 @@
 import SwiftUI
 import Mevic
 
-struct NodeGeometry {
+struct NodeGeometry: Geometry {
     
     typealias ElementConfigType = Config.node
     
@@ -26,17 +26,7 @@ struct NodeGeometry {
     init(id: Int, position: float3) {
         model =  MVCPointGeometry(position: position, color: .init(ElementConfigType.color))
         disp = MVCPointGeometry(position: position, color: .init(Config.postprocess.dispColor))
-        label = Self.buildLabelGeometry(target: position, tag: id.description)
-        dispLabel = Self.buildLabelGeometry(target: position, tag: id.description)
-    }
-    
-    static func buildLabelGeometry(target: float3, tag: String) -> MVCLabelGeometry {
-        MVCLabelGeometry(target: target,
-                         text: tag,
-                         forgroundColor: .init(ElementConfigType.labelColor),
-                         backgroundColor: .init(ElementConfigType.labelBgColor),
-                         margin: .init(ElementConfigType.labelPaddingX, ElementConfigType.labelPaddingY),
-                         alignment: ElementConfigType.labelAlignment
-        )
+        label = Self.defaultLabel(target: position, tag: id.description)
+        dispLabel = Self.defaultLabel(target: position, tag: id.description)
     }
 }
