@@ -18,6 +18,15 @@ struct BeamForceGeometry {
     var mY: MVCTrapezoidGeometry
     var mZ: MVCTrapezoidGeometry
     
+    enum Force: Int {
+        case P = 0
+        case Mz = 1
+        case Vy = 2
+        case My = 3
+        case Vz = 4
+        case T = 5
+    }
+    
     init(i: float3, j: float3, zdir: float3, ydir: float3, iColor: float4, jColor: float4) {
         vX = Self.defalutGeometry(i: i, j: j, direction: zdir, iColor: iColor, jColor: jColor)
         vY = Self.defalutGeometry(i: i, j: j, direction: ydir, iColor: iColor, jColor: jColor)
@@ -39,35 +48,25 @@ struct BeamForceGeometry {
     mutating func updateGeometry(force: [Float]) {
         let vScale: Float = 0.05
         let mScale: Float = 0.00005
+        let offset = 6
         
-        let Ppi = force[0]
-        let Mzi = force[1]
-        let Vyi = -force[2]
-        let Myi = -force[3]
-        let Vzi = -force[4]
-        let Tti = -force[5]
-        let Ppj = -force[6]
-        let Mzj = -force[7]
-        let Vyj = force[8]
-        let Myj = force[9]
-        let Vzj = force[10]
-        let Ttj = force[11]
+        vX.iHeight = force[Force.P.rawValue] * vScale
+        vX.jHeight = -force[Force.P.rawValue + offset] * vScale
         
-        vX.iHeight = Ppi * vScale
-        vY.iHeight = Vyi * vScale
-        vZ.iHeight = Vzi * vScale
+        vY.iHeight = -force[Force.Vy.rawValue] * vScale
+        vY.jHeight = force[Force.Vy.rawValue + offset] * vScale
         
-        mX.iHeight = Tti * mScale
-        mY.iHeight = Myi * mScale
-        mZ.iHeight = Mzi * mScale
+        vZ.iHeight = -force[Force.Vz.rawValue] * vScale
+        vZ.jHeight = force[Force.Vz.rawValue + offset] * vScale
         
-        vX.jHeight = Ppj * vScale
-        vY.jHeight = Vyj * vScale
-        vZ.jHeight = Vzj * vScale
+        mX.iHeight = -force[Force.T.rawValue] * mScale
+        mX.jHeight = force[Force.T.rawValue + offset] * mScale
         
-        mX.jHeight = Ttj * mScale
-        mY.jHeight = Myj * mScale
-        mZ.jHeight = Mzj * mScale
+        mY.iHeight = -force[Force.My.rawValue] * mScale
+        mY.jHeight = force[Force.My.rawValue + offset] * mScale
+        
+        mZ.iHeight = force[Force.Mz.rawValue] * mScale
+        mZ.jHeight = -force[Force.Mz.rawValue + offset] * mScale
     }
 }
 
