@@ -133,8 +133,14 @@ enum Actions {
     
     // MARK: - OpenSees Execute
     
-    static func buildCommand(store: Store) {
+    static func analayze(store: Store) {
+        exexuteOpenSees(store: store)
         
+        guard let data = store.openSeesStdErrData else { return }
+        let result = parseResultData(data: data)
+        
+        updateNodeResult(nodeDisps: result.node, store: store)
+        updateEleResult(eleForce: result.ele, store: store)
     }
     
     static func exexuteOpenSees(store: Store) {
@@ -182,9 +188,10 @@ enum Actions {
         }
     }
     
-    static func updateNodeDisp(store: Store) {
-        guard let resultData = store.openSeesStdErrData,
-              let resultLines = String(data: resultData, encoding: .utf8)?.components(separatedBy: .newlines)[12...] else { return }
+    static func parseResultData(data: Data) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
+        guard let resultLines = String(data: data, encoding: .utf8)?.components(separatedBy: .newlines) else {
+            fatalError("Cannnot read lines")
+        }
         
         var nodeDisps: [Int: [Float]] = [:]
         var eleForce: [Int: [Float]] = [:]
@@ -243,6 +250,10 @@ enum Actions {
             }
         }
         
+        return (node: nodeDisps, ele: eleForce)
+    }
+    
+    static func updateNodeResult(nodeDisps: [Int: [Float]], store: Store) {
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
                 let value = result.value[0..<3]
@@ -250,7 +261,9 @@ enum Actions {
                 node.geometry.dispLabel.text = "(\(String(format: "%.1f", value[0])), \(String(format: "%.1f", value[1])), \(String(format: "%.1f", value[2])))"
             }
         }
-        
+    }
+    
+    static func updateEleResult(eleForce: [Int: [Float]], store: Store) {
         for beam in store.model.beams {
             beam.geometry.disp.i = beam.i.geometry.disp.position
             beam.geometry.disp.j = beam.j.geometry.disp.position

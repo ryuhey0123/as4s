@@ -103,8 +103,7 @@ struct Sidebar: View {
     
     private var buildAnalyzeCommand: some View {
         Button("Analyze") {
-            Actions.exexuteOpenSees(store: store)
-            Actions.updateNodeDisp(store: store)
+            Actions.analayze(store: store)
         }
     }
 }
