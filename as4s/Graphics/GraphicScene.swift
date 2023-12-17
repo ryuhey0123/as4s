@@ -16,10 +16,6 @@ class GraphicScene: MVCScene, ObservableObject {
     @Published var loadLayer = LoadLayer()
     @Published var captionLayer = CaptionLayer()
     
-    @Published var modelVisiable: Bool = true {
-        didSet { modelLayer.isHidden = !modelVisiable }
-    }
-    
     override init(_ label: String? = nil) {
         super.init()
         buildLayer()

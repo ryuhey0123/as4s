@@ -5,21 +5,18 @@
 //  Created by Ryuhei Fujita on 2023/11/17.
 //
 
-import SwiftUI
 import Mevic
 import OpenSeesCoder
 import simd
 
-final class BeamColumn: Renderable, Selectable {
-    
-    // MARK: General Value
+final class BeamColumn: Selectable {
     
     var id: Int
     var i: Node
     var j: Node
     var chordAngle: Float
     
-    // MARK: Compute Value
+    var geometry: BeamGeometry!
     
     var vector: float3 {
         j.position - i.position
@@ -33,23 +30,8 @@ final class BeamColumn: Renderable, Selectable {
         cross(chordVector, vector).normalized
     }
     
-    // MARK: Renderable Value
-    
-    typealias ElementConfigType = Config.beam
-    
-    var geometry: BeamGeometry!
-    
-    var color: Color = ElementConfigType.color {
-        didSet {
-            geometry.model.iColor = float4(float3(color), 1)
-            geometry.model.jColor = float4(float3(color), 1)
-        }
-    }
-    
-    // MARK: Selectable Value
-    
     var isSelected: Bool = false {
-        didSet { color = isSelected ? ElementConfigType.selectedColor : ElementConfigType.color }
+        didSet { geometry.color = isSelected ? Config.beam.selectedColor : Config.beam.color }
     }
     
     init(id: Int, i: Node, j: Node, chordAngle: Float = 0.0) {
@@ -63,10 +45,13 @@ final class BeamColumn: Renderable, Selectable {
                                      zdir: chordVector.metal,
                                      ydir: chordCrossVector.metal)
     }
+}
+
+extension BeamColumn: Renderable {
     
     func appendTo(model: Model) {
         model.beams.append(self)
-        model.linerTransfs.append(self.transformation)
+        model.linerTransfs.append(transformation)
     }
     
     func appendTo(scene: GraphicScene) {

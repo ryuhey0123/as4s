@@ -14,7 +14,6 @@ struct BeamGeometry {
     
     enum Force: Int {
         static let offset = 6
-        
         case P = 0
         case Mz = 1
         case Vy = 2
@@ -26,7 +25,12 @@ struct BeamGeometry {
     static let iColor = Config.postprocess.minForceColor
     static let jColor = Config.postprocess.maxForceColor
     
-    var color: Color = ElementConfigType.color
+    var color: Color = ElementConfigType.color {
+        didSet {
+            model.iColor = float4(float3(color), 1)
+            model.jColor = float4(float3(color), 1)
+        }
+    }
     
     var model: MVCLineGeometry
     var label: MVCLabelGeometry

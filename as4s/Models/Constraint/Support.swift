@@ -11,11 +11,12 @@ import OpenSeesCoder
 
 final class Support: Renderable {
     
-    // MARK: General Value
-    
     var id: Int
     var node: Node
     var constrValues: [Int]
+    
+    var geometry: MVCSupportGeometry!
+    var color: Color = Config.support.color
     
     var type: MVCSupportGeometry.SupportType {
         if constrValues == [1, 1, 1, 1, 1, 1] {
@@ -24,16 +25,6 @@ final class Support: Renderable {
             return .pin
         }
     }
-    
-    // MARK: Renderable Value
-    
-    typealias GeometryType = MVCSupportGeometry
-    typealias ElementConfigType = Config.support
-    
-    var geometry: GeometryType!
-    var labelGeometry: MVCLabelGeometry!
-    
-    var color: Color = ElementConfigType.color
     
     init(id: Int, node: Node, constrValues: [Int]) {
         self.id = id

@@ -8,6 +8,7 @@
 import OpenSeesCoder
 
 final class Truss: OSTrussElement {
+    
     var eleTag: Int
     
     var iNode: Int
