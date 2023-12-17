@@ -10,19 +10,53 @@ import Mevic
 
 class ForceLayer: MVCLayer {
     
-    var vX: MVCLayer = MVCLayer("Force-Vx")
-    var vY: MVCLayer = MVCLayer("Force-Vy")
-    var vZ: MVCLayer = MVCLayer("Force-Vz")
-    var mX: MVCLayer = MVCLayer("Force-Mx")
-    var mY: MVCLayer = MVCLayer("Force-My")
-    var mZ: MVCLayer = MVCLayer("Force-Mz")
+    var vX: MVCLayer = MVCLayer("Force-Vx") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
     
-    var vXLabel: MVCLayer = MVCLayer("Force-VxLabel")
-    var vYLabel: MVCLayer = MVCLayer("Force-VyLabel")
-    var vZLabel: MVCLayer = MVCLayer("Force-VzLabel")
-    var mXLabel: MVCLayer = MVCLayer("Force-MxLabel")
-    var mYLabel: MVCLayer = MVCLayer("Force-MyLabel")
-    var mZLabel: MVCLayer = MVCLayer("Force-MzLabel")
+    var vY: MVCLayer = MVCLayer("Force-Vy") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var vZ: MVCLayer = MVCLayer("Force-Vz") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mX: MVCLayer = MVCLayer("Force-Mx") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mY: MVCLayer = MVCLayer("Force-My") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mZ: MVCLayer = MVCLayer("Force-Mz") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var vXLabel: MVCLayer = MVCLayer("Force-VxLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var vYLabel: MVCLayer = MVCLayer("Force-VyLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var vZLabel: MVCLayer = MVCLayer("Force-VzLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mXLabel: MVCLayer = MVCLayer("Force-MxLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mYLabel: MVCLayer = MVCLayer("Force-MyLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
+    
+    var mZLabel: MVCLayer = MVCLayer("Force-MzLabel") {
+        willSet { self.isShown = newValue.isShown ? true : self.isShown }
+    }
     
     init() {
         super.init("Model")

@@ -10,14 +10,7 @@ import Mevic
 
 protocol Renderable {
     
-    associatedtype GeometryType: MVCGeometry
     associatedtype ElementConfigType: ElementConfig
-    
-    var geometry: GeometryType! { get set }
-    
-    var labelGeometry: MVCLabelGeometry! { get set }
-    
-    var color: Color { get set }
     
     func appendTo(model: Model)
     

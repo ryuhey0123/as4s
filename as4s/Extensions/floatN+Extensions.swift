@@ -50,6 +50,26 @@ extension float3 {
     var normalized: float3 {
         get { normalize(self) }
     }
+    
+    func chordVector(angle: Float) -> float3 {
+        guard self != .zero else {
+            fatalError("Error: vector is zero length.")
+        }
+        
+        let rotateMatrix = float4x4.rotation(radians: angle, axis: self)
+        
+        var crossVector: float4 = .zero
+        if self.z == 0 {
+            crossVector = .init(0, 0, -1, 1)
+        } else if x == 0 && y == 0 {
+            crossVector = .init(1, 0, 0, 1)
+        } else {
+            crossVector = .init(x, y, -(pow(x, 2) + pow(y, 2)) / z, 1)
+        }
+        
+        let rotatedVector = rotateMatrix * crossVector
+        return rotatedVector.xyz.normalized
+    }
 }
 
 
