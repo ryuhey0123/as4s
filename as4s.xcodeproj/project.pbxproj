@@ -26,6 +26,9 @@
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
+		B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */; };
+		B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */; };
+		B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -87,6 +90,9 @@
 		B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewCoordinator.swift; sourceTree = "<group>"; };
 		B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceLayer.swift; sourceTree = "<group>"; };
+		B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLayer.swift; sourceTree = "<group>"; };
+		B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionLayer.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -193,9 +199,20 @@
 			children = (
 				B12AD6402B16153400D4D315 /* GraphicController.swift */,
 				B1AF9F722B21B6810066C617 /* GraphicScene.swift */,
-				B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */,
+				B14E2E4A2B2E9FA80032AE30 /* Layers */,
 			);
 			path = Graphics;
+			sourceTree = "<group>";
+		};
+		B14E2E4A2B2E9FA80032AE30 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */,
+				B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */,
+				B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */,
+				B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */,
+			);
+			path = Layers;
 			sourceTree = "<group>";
 		};
 		B161BC132ADB958900AABA48 = {
@@ -512,16 +529,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */,
+				B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */,
 				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B1424E522B29DFD400F9A22C /* CrossSection.swift in Sources */,
 				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
+				B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
 				B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
 				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B1424E682B2AD5F800F9A22C /* Displacementable.swift in Sources */,
+				B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */,
 				B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */,
 				B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
