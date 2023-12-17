@@ -11,7 +11,8 @@ import Mevic
 final class Store: ObservableObject {
     
     let model: Model
-    var scene: GraphicScene = GraphicScene()
+    
+    @Published var scene: GraphicScene = GraphicScene()
     
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]

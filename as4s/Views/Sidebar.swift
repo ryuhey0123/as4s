@@ -21,8 +21,15 @@ struct Sidebar: View {
     }
     
     private var visiableToggle: some View {
-        Section("Label") {
-            Toggle(isOn: $store.scene.nodeLabelVisiable, label: { Text("Node") })
+        VStack {
+            Section("Model") {
+                Toggle(isOn: $store.scene.modelVisiable, label: { Text("Model") })
+                Toggle(isOn: $store.scene.modelLayer.nodeVisiable, label: { Text("Node") })
+                Toggle(isOn: $store.scene.modelLayer.beamVisiable, label: { Text("Beam") })
+            }
+            Section("Label") {
+                Toggle(isOn: $store.scene.modelLayer.nodeLabelVisiable, label: { Text("Node") })
+            }
         }
     }
     

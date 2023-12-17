@@ -10,37 +10,14 @@ import Mevic
 
 class GraphicScene: MVCScene, ObservableObject {
     
-    // MARK: Model Layer
+    @Published var modelLayer = ModelLayer()
+    @Published var dispModelLayer = ModelLayer()
+    let forceLayer = ForceLayer()
+    let loadLayer = LoadLayer()
+    let captionLayer = CaptionLayer()
     
-    let modelLayer: MVCLayer = MVCLayer("Model")
-    
-    let vXLayer: MVCLayer = MVCLayer("Vx")
-    let vYLayer: MVCLayer = MVCLayer("Vy")
-    let vZLayer: MVCLayer = MVCLayer("Vz")
-    let mXLayer: MVCLayer = MVCLayer("Mx")
-    let mYLayer: MVCLayer = MVCLayer("My")
-    let mZLayer: MVCLayer = MVCLayer("Mz")
-    
-    let loadLayer: MVCLayer = MVCLayer("Load")
-    
-    let captionLayer: MVCLayer = MVCLayer("Caption")
-    
-    // MARK: Label Layer
-    
-    let nodeLabelLayer: MVCLayer = MVCLayer("NodeLabel")
-    let beamLabelLayer: MVCLayer = MVCLayer("BeamLabel")
-    
-    let vXLabelLayer: MVCLayer = MVCLayer("VxLabel")
-    let vYLabelLayer: MVCLayer = MVCLayer("VyLabel")
-    let vZLabelLayer: MVCLayer = MVCLayer("VzLabel")
-    let mXLabelLayer: MVCLayer = MVCLayer("MxLabel")
-    let mYLabelLayer: MVCLayer = MVCLayer("MyLabel")
-    let mZLabelLayer: MVCLayer = MVCLayer("MzLabel")
-    
-    let loadLabelLayer: MVCLayer = MVCLayer("LoadLabel")
-    
-    @Published var nodeLabelVisiable: Bool = true {
-        didSet { nodeLabelLayer.isHidden = !nodeLabelVisiable }
+    @Published var modelVisiable: Bool = true {
+        didSet { modelLayer.isHidden = !modelVisiable }
     }
     
     override init(_ label: String? = nil) {
@@ -53,25 +30,9 @@ class GraphicScene: MVCScene, ObservableObject {
     }
     
     func buildLayer() {
-        // Model
         append(layer: modelLayer)
-        append(layer: vXLayer)
-        append(layer: vYLayer)
-        append(layer: vZLayer)
-        append(layer: mXLayer)
-        append(layer: mYLayer)
-        append(layer: mZLayer)
+        append(layer: forceLayer)
         append(layer: loadLayer)
         append(layer: captionLayer)
-        // Label
-        append(layer: nodeLabelLayer)
-        append(layer: beamLabelLayer)
-        append(layer: vXLabelLayer)
-        append(layer: vYLabelLayer)
-        append(layer: vZLabelLayer)
-        append(layer: mXLabelLayer)
-        append(layer: mYLabelLayer)
-        append(layer: mZLabelLayer)
-        append(layer: loadLabelLayer)
     }
 }
