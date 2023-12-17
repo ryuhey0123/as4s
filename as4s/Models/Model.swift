@@ -5,8 +5,6 @@
 //  Created by Ryuhei Fujita on 2023/10/15.
 //
 
-import Foundation
-import Mevic
 import OpenSeesCoder
 
 final class Model: OSModel {
@@ -53,17 +51,5 @@ final class Model: OSModel {
     init(ndm: Int = 3, ndf: Int? = 6) {
         self.ndm = ndm
         self.ndf = ndf
-    }
-    
-    func append(_ rendable: some Renderable, layer: MVCLayer, labelLayer: MVCLayer) {
-        rendable.append(model: self)
-        
-        layer.append(geometry: rendable.geometry)
-        
-        if let rendable = rendable as? (any Displacementable) {
-            layer.append(geometry: rendable.dispGeometry)
-        }
-        
-        labelLayer.append(geometry: rendable.labelGeometry)
     }
 }
