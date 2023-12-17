@@ -35,18 +35,12 @@ final class BeamColumn: Renderable, Selectable {
     
     typealias ElementConfigType = Config.beam
     
-    var geometry: MVCLineGeometry!
-    var labelGeometry: MVCLabelGeometry!
-    
-    var dispGeometry: MVCLineGeometry!
-    var dispLabelGeometry: MVCLabelGeometry!
-    
     var forceGeometry: BeamForceGeometry!
     
     var color: Color = ElementConfigType.color {
         didSet {
-            geometry!.iColor = float4(float3(color), 1)
-            geometry!.jColor = float4(float3(color), 1)
+            forceGeometry.model.iColor = float4(float3(color), 1)
+            forceGeometry.model.jColor = float4(float3(color), 1)
         }
     }
     
@@ -62,20 +56,8 @@ final class BeamColumn: Renderable, Selectable {
         self.j = j
         self.chordAngle = chordAngle
         
-        self.geometry = MVCLineGeometry(i: i.position.metal,
-                                        j: j.position.metal,
-                                        iColor: float4(color),
-                                        jColor: float4(color))
-        
-        self.dispGeometry = MVCLineGeometry(i: i.position.metal,
-                                            j: j.position.metal,
-                                            iColor: float4(Config.postprocess.dispColor),
-                                            jColor: float4(Config.postprocess.dispColor))
-        
-        self.labelGeometry = Self.buildLabelGeometry(target: (i.position + j.position).metal / 2,
-                                                     tag: id.description)
-        
-        self.forceGeometry = BeamForceGeometry(i: i.position.metal,
+        self.forceGeometry = BeamForceGeometry(id: id,
+                                               i: i.position.metal,
                                                j: j.position.metal,
                                                zdir: chordVector.metal,
                                                ydir: chordCrossVector.metal)
@@ -87,33 +69,10 @@ final class BeamColumn: Renderable, Selectable {
     }
     
     func appendTo(scene: GraphicScene) {
-        scene.modelLayer.beam.append(geometry: geometry)
-        scene.modelLayer.beamLabel.append(geometry: labelGeometry)
-        scene.dispModelLayer.beam.append(geometry: dispGeometry)
-        
+        scene.modelLayer.beam.append(geometry: forceGeometry.model)
+        scene.modelLayer.beamLabel.append(geometry: forceGeometry.label)
+        scene.dispModelLayer.beam.append(geometry: forceGeometry.disp)
         scene.forceLayer.append(forceGeometry: forceGeometry)
-    }
-    
-    static func buildForceGeometry(i: float3, j: float3, direction: float3, iForce: Float, jForce: Float, minForce: Float, maxForce: Float) -> MVCTrapezoidGeometry {
-        let scale: Float = 0.00005
-        
-        let forceBand = maxForce - minForce
-        let iForceRatio = (iForce - minForce) / forceBand
-        let jForceRatio = (jForce - minForce) / forceBand
-        
-        let minColor = float4(Config.postprocess.minForceColor)
-        let maxColor = float4(Config.postprocess.maxForceColor)
-        
-        let iColor = (maxColor - minColor) * iForceRatio + minColor
-        let jColor = (maxColor - minColor) * jForceRatio + minColor
-        
-        return MVCTrapezoidGeometry(i: i,
-                                    j: j,
-                                    iHeight: iForce * scale,
-                                    jHeight: jForce * scale,
-                                    direction: direction,
-                                    iColor: iColor,
-                                    jColor: jColor)
     }
 }
 

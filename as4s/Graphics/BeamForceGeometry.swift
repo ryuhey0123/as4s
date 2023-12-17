@@ -5,9 +5,12 @@
 //  Created by Ryuhei Fujita on 2023/12/17.
 //
 
+import SwiftUI
 import Mevic
 
 struct BeamForceGeometry {
+    
+    typealias ElementConfigType = Config.beam
     
     enum Force: Int {
         static let offset = 6
@@ -22,6 +25,13 @@ struct BeamForceGeometry {
     
     static let iColor = Config.postprocess.minForceColor
     static let jColor = Config.postprocess.maxForceColor
+    
+    var color: Color = ElementConfigType.color
+    
+    var model: MVCLineGeometry
+    var label: MVCLabelGeometry
+    
+    var disp: MVCLineGeometry
     
     var vX: MVCTrapezoidGeometry
     var vY: MVCTrapezoidGeometry
@@ -43,7 +53,12 @@ struct BeamForceGeometry {
     var mYjLabel: MVCLabelGeometry
     var mZjLabel: MVCLabelGeometry
     
-    init(i: float3, j: float3, zdir: float3, ydir: float3) {
+    init(id: Int, i: float3, j: float3, zdir: float3, ydir: float3) {
+        model = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
+        label = MVCLabelGeometry(target: (i + j) / 2, text: id.description)
+        
+        disp = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
+        
         vX = Self.defalutGeometry(i: i, j: j, direction: zdir)
         vY = Self.defalutGeometry(i: i, j: j, direction: ydir)
         vZ = Self.defalutGeometry(i: i, j: j, direction: zdir)

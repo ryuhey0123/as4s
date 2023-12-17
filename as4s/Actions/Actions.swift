@@ -250,8 +250,8 @@ enum Actions {
         }
         
         for beam in store.model.beams {
-            beam.dispGeometry.i = beam.i.dispGeometry.position
-            beam.dispGeometry.j = beam.j.dispGeometry.position
+            beam.forceGeometry.disp.i = beam.i.dispGeometry.position
+            beam.forceGeometry.disp.j = beam.j.dispGeometry.position
             
             let force = eleForce[beam.id]!
             beam.forceGeometry.updateGeometry(force: force)
