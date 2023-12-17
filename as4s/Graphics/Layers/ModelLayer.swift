@@ -24,5 +24,8 @@ class ModelLayer: MVCLayer {
         append(layer: support)
         append(layer: nodeLabel)
         append(layer: beamLabel)
+        
+        nodeLabel.isShown = false
+        beamLabel.isShown = false
     }
 }

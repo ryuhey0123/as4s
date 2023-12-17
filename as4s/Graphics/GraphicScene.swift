@@ -31,8 +31,13 @@ class GraphicScene: MVCScene, ObservableObject {
     
     func buildLayer() {
         append(layer: modelLayer)
+        append(layer: dispModelLayer)
         append(layer: forceLayer)
         append(layer: loadLayer)
         append(layer: captionLayer)
+        
+        dispModelLayer.isShown = false
+        forceLayer.isShown = false
+        loadLayer.isShown = false
     }
 }

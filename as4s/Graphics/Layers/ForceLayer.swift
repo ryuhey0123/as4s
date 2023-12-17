@@ -36,5 +36,18 @@ class ForceLayer: MVCLayer {
         append(layer: mZLabel)
         append(layer: mXLabel)
         append(layer: mYLabel)
+        
+        vX.isShown = false
+        vY.isShown = false
+        vZ.isShown = false
+        mX.isShown = false
+        mY.isShown = false
+        mZ.isShown = false
+        vXLabel.isShown = false
+        vYLabel.isShown = false
+        vZLabel.isShown = false
+        mXLabel.isShown = false
+        mYLabel.isShown = false
+        mZLabel.isShown = false
     }
 }

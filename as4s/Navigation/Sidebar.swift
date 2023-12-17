@@ -26,6 +26,7 @@ struct Sidebar: View {
                 Toggle(isOn: $store.scene.modelLayer.isShown, label: { Text("Model") })
                 Toggle(isOn: $store.scene.modelLayer.node.isShown, label: { Text("Node") })
                 Toggle(isOn: $store.scene.modelLayer.beam.isShown, label: { Text("Beam") })
+                Toggle(isOn: $store.scene.modelLayer.support.isShown, label: { Text("Suppot") })
             }
             Section("Label") {
                 Toggle(isOn: $store.scene.modelLayer.nodeLabel.isShown, label: { Text("Node") })
@@ -33,9 +34,12 @@ struct Sidebar: View {
             }
             Section("Load") {
                 Toggle(isOn: $store.scene.loadLayer.isShown, label: { Text("Load") })
+                Toggle(isOn: $store.scene.loadLayer.nodal.isShown, label: { Text("Nodal") })
             }
-            Section("Force") {
+            Section("PostProcess") {
                 Toggle(isOn: $store.scene.forceLayer.isShown, label: { Text("Force") })
+                Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
+                Toggle(isOn: $store.scene.dispModelLayer.isShown, label: { Text("Displacement") })
             }
         }
     }
