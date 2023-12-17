@@ -81,12 +81,12 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         self.transformation = Transformation(id: id, vector: chordVector)
     }
     
-    func append(model: Model) {
+    func appendTo(model: Model) {
         model.beams.append(self)
         model.linerTransfs.append(self.transformation)
     }
     
-    func append(scene: GraphicScene) {
+    func appendTo(scene: GraphicScene) {
         scene.modelLayer.beam.append(geometry: geometry)
         scene.modelLayer.beamLabel.append(geometry: labelGeometry)
         scene.dispModelLayer.beam.append(geometry: dispGeometry)

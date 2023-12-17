@@ -42,11 +42,11 @@ class NodalLoad: Renderable {
                                                      tag: "(\(loadvalues[0]), \(loadvalues[1]), \(loadvalues[2]))")
     }
     
-    func append(model: Model) {
+    func appendTo(model: Model) {
         model.nodalLoads.append(self)
     }
     
-    func append(scene: GraphicScene) {
+    func appendTo(scene: GraphicScene) {
         scene.loadLayer.nodal.append(geometry: geometry)
         scene.loadLayer.nodalLabel.append(geometry: labelGeometry)
     }

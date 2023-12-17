@@ -30,9 +30,9 @@ final class Support: OSFix, Renderable {
     
     func geometrySetup(model: Model) {}
     
-    func append(model: Model) {
+    func appendTo(model: Model) {
         model.fixes.append(self)
     }
     
-    func append(scene: GraphicScene) {}
+    func appendTo(scene: GraphicScene) {}
 }

@@ -19,9 +19,9 @@ protocol Renderable {
     
     var color: Color { get set }
     
-    func append(model: Model)
+    func appendTo(model: Model)
     
-    func append(scene: GraphicScene)
+    func appendTo(scene: GraphicScene)
 }
 
 extension Renderable {

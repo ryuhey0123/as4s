@@ -55,11 +55,11 @@ final class Node: Renderable, Selectable, Displacementable {
         self.labelGeometry = Self.buildLabelGeometry(target: position.metal, tag: nodeTag.description)
     }
     
-    func append(model: Model) {
+    func appendTo(model: Model) {
         model.nodes.append(self)
     }
     
-    func append(scene: GraphicScene) {
+    func appendTo(scene: GraphicScene) {
         scene.modelLayer.node.append(geometry: geometry)
         scene.modelLayer.nodeLabel.append(geometry: labelGeometry)
         scene.dispModelLayer.node.append(geometry: dispGeometry)

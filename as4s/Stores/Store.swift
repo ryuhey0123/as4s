@@ -48,8 +48,8 @@ final class Store: ObservableObject {
     }
     
     func append(_ rendable: some Renderable) {
-        rendable.append(model: model)
-        rendable.append(scene: scene)
+        rendable.appendTo(model: model)
+        rendable.appendTo(scene: scene)
     }
 }
 
