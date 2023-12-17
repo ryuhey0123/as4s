@@ -257,7 +257,7 @@ enum Actions {
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
                 let value = result.value[0..<3]
-                node.geometry.disp.position += float3(value).metal
+                node.disp = float3(value)
                 node.geometry.dispLabel.text = "(\(String(format: "%.1f", value[0])), \(String(format: "%.1f", value[1])), \(String(format: "%.1f", value[2])))"
             }
         }
