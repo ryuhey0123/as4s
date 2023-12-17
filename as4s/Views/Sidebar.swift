@@ -22,7 +22,7 @@ struct Sidebar: View {
     
     private var visiableToggle: some View {
         Section("Label") {
-            Toggle(isOn: $store.nodeLabelVisiable, label: { Text("Node") })
+            Toggle(isOn: $store.scene.nodeLabelVisiable, label: { Text("Node") })
         }
     }
     
@@ -82,4 +82,9 @@ struct Sidebar: View {
             Actions.updateNodeDisp(store: store)
         }
     }
+}
+
+#Preview {
+    Sidebar()
+        .environmentObject(Store())
 }
