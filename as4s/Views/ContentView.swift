@@ -14,17 +14,12 @@ struct ContentView: View {
     
     var body: some View {
         NavigationSplitView {
-            // FIXME: Can not metal system trace
-            // Sidebar()
+            Sidebar()
         } detail: {
-            ZStack {
-                ModelView(scene: store.scene)
-                    .onAppear {
-                        Actions.addCoordinate(store: store)
-                    }
-                // FIXME: Can not metal system trace
-                Sidebar()
-            }
+            ModelView(scene: store.scene)
+                .onAppear {
+                    Actions.addCoordinate(store: store)
+                }
         }
     }
     
