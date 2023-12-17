@@ -34,30 +34,6 @@ class ForceLayer: MVCLayer {
         willSet { self.isShown = newValue.isShown ? true : self.isShown }
     }
     
-    var vXLabel: MVCLayer = MVCLayer("Force-VxLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
-    var vYLabel: MVCLayer = MVCLayer("Force-VyLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
-    var vZLabel: MVCLayer = MVCLayer("Force-VzLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
-    var mXLabel: MVCLayer = MVCLayer("Force-MxLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
-    var mYLabel: MVCLayer = MVCLayer("Force-MyLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
-    var mZLabel: MVCLayer = MVCLayer("Force-MzLabel") {
-        willSet { self.isShown = newValue.isShown ? true : self.isShown }
-    }
-    
     init() {
         super.init("Model")
         append(layer: vX)
@@ -66,12 +42,6 @@ class ForceLayer: MVCLayer {
         append(layer: mZ)
         append(layer: mX)
         append(layer: mY)
-        append(layer: vXLabel)
-        append(layer: vYLabel)
-        append(layer: vZLabel)
-        append(layer: mZLabel)
-        append(layer: mXLabel)
-        append(layer: mYLabel)
         
         vX.isShown = false
         vY.isShown = false
@@ -79,12 +49,6 @@ class ForceLayer: MVCLayer {
         mX.isShown = false
         mY.isShown = false
         mZ.isShown = false
-        vXLabel.isShown = false
-        vYLabel.isShown = false
-        vZLabel.isShown = false
-        mXLabel.isShown = false
-        mYLabel.isShown = false
-        mZLabel.isShown = false
     }
     
     func append(forceGeometry: BeamForceGeometry) {
@@ -94,20 +58,18 @@ class ForceLayer: MVCLayer {
         mX.append(geometry: forceGeometry.mX)
         mY.append(geometry: forceGeometry.mY)
         mZ.append(geometry: forceGeometry.mZ)
-    }
-    
-    func append(forceLabelGeometry: BeamForceLabelGeometry) {
-        vXLabel.append(geometry: forceLabelGeometry.vXi)
-        vYLabel.append(geometry: forceLabelGeometry.vYi)
-        vZLabel.append(geometry: forceLabelGeometry.vZi)
-        mXLabel.append(geometry: forceLabelGeometry.mXi)
-        mYLabel.append(geometry: forceLabelGeometry.mYi)
-        mZLabel.append(geometry: forceLabelGeometry.mZi)
-        vXLabel.append(geometry: forceLabelGeometry.vXj)
-        vYLabel.append(geometry: forceLabelGeometry.vYj)
-        vZLabel.append(geometry: forceLabelGeometry.vZj)
-        mXLabel.append(geometry: forceLabelGeometry.mXj)
-        mYLabel.append(geometry: forceLabelGeometry.mYj)
-        mZLabel.append(geometry: forceLabelGeometry.mZj)
+        
+        vX.append(geometry: forceGeometry.vXiLabel)
+        vY.append(geometry: forceGeometry.vYiLabel)
+        vZ.append(geometry: forceGeometry.vZiLabel)
+        mX.append(geometry: forceGeometry.mXiLabel)
+        mY.append(geometry: forceGeometry.mYiLabel)
+        mZ.append(geometry: forceGeometry.mZiLabel)
+        vX.append(geometry: forceGeometry.vXjLabel)
+        vY.append(geometry: forceGeometry.vYjLabel)
+        vZ.append(geometry: forceGeometry.vZjLabel)
+        mX.append(geometry: forceGeometry.mXjLabel)
+        mY.append(geometry: forceGeometry.mYjLabel)
+        mZ.append(geometry: forceGeometry.mZjLabel)
     }
 }
