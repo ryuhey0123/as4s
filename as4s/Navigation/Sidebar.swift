@@ -38,7 +38,16 @@ struct Sidebar: View {
             }
             Section("PostProcess") {
                 Toggle(isOn: $store.scene.forceLayer.isShown, label: { Text("Force") })
-                Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
+                HStack {
+                    Toggle(isOn: $store.scene.forceLayer.vX.isShown, label: { Text("Vx") })
+                    Toggle(isOn: $store.scene.forceLayer.vY.isShown, label: { Text("Vy") })
+                    Toggle(isOn: $store.scene.forceLayer.vZ.isShown, label: { Text("Vz") })
+                }
+                HStack {
+                    Toggle(isOn: $store.scene.forceLayer.mX.isShown, label: { Text("Mx") })
+                    Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
+                    Toggle(isOn: $store.scene.forceLayer.mZ.isShown, label: { Text("Mz") })
+                }
                 Toggle(isOn: $store.scene.dispModelLayer.isShown, label: { Text("Displacement") })
             }
         }

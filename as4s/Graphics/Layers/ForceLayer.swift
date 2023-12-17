@@ -62,11 +62,13 @@ class ForceLayer: MVCLayer {
         super.init("Model")
         append(layer: vX)
         append(layer: vY)
+        append(layer: vZ)
         append(layer: mZ)
         append(layer: mX)
         append(layer: mY)
         append(layer: vXLabel)
         append(layer: vYLabel)
+        append(layer: vZLabel)
         append(layer: mZLabel)
         append(layer: mXLabel)
         append(layer: mYLabel)
@@ -83,5 +85,29 @@ class ForceLayer: MVCLayer {
         mXLabel.isShown = false
         mYLabel.isShown = false
         mZLabel.isShown = false
+    }
+    
+    func append(forceGeometry: BeamForceGeometry) {
+        vX.append(geometry: forceGeometry.vX)
+        vY.append(geometry: forceGeometry.vY)
+        vZ.append(geometry: forceGeometry.vZ)
+        mX.append(geometry: forceGeometry.mX)
+        mY.append(geometry: forceGeometry.mY)
+        mZ.append(geometry: forceGeometry.mZ)
+    }
+    
+    func append(forceLabelGeometry: BeamForceLabelGeometry) {
+        vXLabel.append(geometry: forceLabelGeometry.vXi)
+        vYLabel.append(geometry: forceLabelGeometry.vYi)
+        vZLabel.append(geometry: forceLabelGeometry.vZi)
+        mXLabel.append(geometry: forceLabelGeometry.mXi)
+        mYLabel.append(geometry: forceLabelGeometry.mYi)
+        mZLabel.append(geometry: forceLabelGeometry.mZi)
+        vXLabel.append(geometry: forceLabelGeometry.vXj)
+        vYLabel.append(geometry: forceLabelGeometry.vYj)
+        vZLabel.append(geometry: forceLabelGeometry.vZj)
+        mXLabel.append(geometry: forceLabelGeometry.mXj)
+        mYLabel.append(geometry: forceLabelGeometry.mYj)
+        mZLabel.append(geometry: forceLabelGeometry.mZj)
     }
 }

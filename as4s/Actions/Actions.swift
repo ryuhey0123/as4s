@@ -249,34 +249,36 @@ enum Actions {
             }
         }
         
-        let iForceIndex = 3
-        let jForceIndex = iForceIndex + 6
+//        let iForceIndex = 3
+//        let jForceIndex = iForceIndex + 6
         
-        let indexedForces = eleForce.flatMap( { [$0.value[iForceIndex], $0.value[jForceIndex]] })
+//        let indexedForces = eleForce.flatMap( { [$0.value[iForceIndex], $0.value[jForceIndex]] })
         
-        let maxForce = indexedForces.max()!
-        let minForce = indexedForces.min()!
+//        let maxForce = indexedForces.max()!
+//        let minForce = indexedForces.min()!
         
         for beam in store.model.beams {
             beam.dispGeometry.i = beam.i.dispGeometry.position
             beam.dispGeometry.j = beam.j.dispGeometry.position
             
             let force = eleForce[beam.id]!
-            let iForce = -force[iForceIndex]
-            let jForce = force[jForceIndex]
             
-            let i = beam.geometry.i
-            let j = beam.geometry.j
-            
-            let geometry = BeamColumn.buildForceGeometry(i: i,
-                                                         j: j,
-                                                         direction: beam.chordVector.metal,
-                                                         iForce: iForce,
-                                                         jForce: jForce,
-                                                         minForce: minForce,
-                                                         maxForce: maxForce)
-            
-            store.scene.forceLayer.mY.append(geometry: geometry)
+            beam.forceGeometry.updateGeometry(force: force)
+//            let iForce = -force[iForceIndex]
+//            let jForce = force[jForceIndex]
+//            
+//            let i = beam.geometry.i
+//            let j = beam.geometry.j
+//            
+//            let geometry = BeamColumn.buildForceGeometry(i: i,
+//                                                         j: j,
+//                                                         direction: beam.chordVector.metal,
+//                                                         iForce: iForce,
+//                                                         jForce: jForce,
+//                                                         minForce: minForce,
+//                                                         maxForce: maxForce)
+//            
+//            store.scene.forceLayer.mY.append(geometry: geometry)
         }
     }
 }
