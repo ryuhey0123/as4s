@@ -33,4 +33,6 @@ final class Support: OSFix, Renderable {
     func append(model: Model) {
         model.fixes.append(self)
     }
+    
+    func append(scene: GraphicScene) {}
 }

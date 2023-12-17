@@ -23,12 +23,19 @@ struct Sidebar: View {
     private var visiableToggle: some View {
         VStack {
             Section("Model") {
-                Toggle(isOn: $store.scene.modelVisiable, label: { Text("Model") })
-                Toggle(isOn: $store.scene.modelLayer.nodeVisiable, label: { Text("Node") })
-                Toggle(isOn: $store.scene.modelLayer.beamVisiable, label: { Text("Beam") })
+                Toggle(isOn: $store.scene.modelLayer.isShown, label: { Text("Model") })
+                Toggle(isOn: $store.scene.modelLayer.node.isShown, label: { Text("Node") })
+                Toggle(isOn: $store.scene.modelLayer.beam.isShown, label: { Text("Beam") })
             }
             Section("Label") {
-                Toggle(isOn: $store.scene.modelLayer.nodeLabelVisiable, label: { Text("Node") })
+                Toggle(isOn: $store.scene.modelLayer.nodeLabel.isShown, label: { Text("Node") })
+                Toggle(isOn: $store.scene.modelLayer.beamLabel.isShown, label: { Text("Beam") })
+            }
+            Section("Load") {
+                Toggle(isOn: $store.scene.loadLayer.isShown, label: { Text("Load") })
+            }
+            Section("Force") {
+                Toggle(isOn: $store.scene.forceLayer.isShown, label: { Text("Force") })
             }
         }
     }

@@ -84,7 +84,7 @@ enum Config {
     }
     
     enum system {
-        static let backGroundColor: Color = .init(red: 0.25, green: 0.25, blue: 0.25)
+        static let backGroundColor: Color = .init(red: 0.15, green: 0.15, blue: 0.15)
     }
     
     enum postprocess {

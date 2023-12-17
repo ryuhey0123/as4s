@@ -8,21 +8,21 @@
 import SwiftUI
 import Mevic
 
-class ForceLayer: MVCLayer, ObservableObject {
+class ForceLayer: MVCLayer {
     
-    let vX: MVCLayer = MVCLayer("Force-Vx")
-    let vY: MVCLayer = MVCLayer("Force-Vy")
-    let vZ: MVCLayer = MVCLayer("Force-Vz")
-    let mX: MVCLayer = MVCLayer("Force-Mx")
-    let mY: MVCLayer = MVCLayer("Force-My")
-    let mZ: MVCLayer = MVCLayer("Force-Mz")
+    var vX: MVCLayer = MVCLayer("Force-Vx")
+    var vY: MVCLayer = MVCLayer("Force-Vy")
+    var vZ: MVCLayer = MVCLayer("Force-Vz")
+    var mX: MVCLayer = MVCLayer("Force-Mx")
+    var mY: MVCLayer = MVCLayer("Force-My")
+    var mZ: MVCLayer = MVCLayer("Force-Mz")
     
-    let vXLabel: MVCLayer = MVCLayer("Force-VxLabel")
-    let vYLabel: MVCLayer = MVCLayer("Force-VyLabel")
-    let vZLabel: MVCLayer = MVCLayer("Force-VzLabel")
-    let mXLabel: MVCLayer = MVCLayer("Force-MxLabel")
-    let mYLabel: MVCLayer = MVCLayer("Force-MyLabel")
-    let mZLabel: MVCLayer = MVCLayer("Force-MzLabel")
+    var vXLabel: MVCLayer = MVCLayer("Force-VxLabel")
+    var vYLabel: MVCLayer = MVCLayer("Force-VyLabel")
+    var vZLabel: MVCLayer = MVCLayer("Force-VzLabel")
+    var mXLabel: MVCLayer = MVCLayer("Force-MxLabel")
+    var mYLabel: MVCLayer = MVCLayer("Force-MyLabel")
+    var mZLabel: MVCLayer = MVCLayer("Force-MzLabel")
     
     init() {
         super.init("Model")

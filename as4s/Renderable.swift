@@ -20,6 +20,8 @@ protocol Renderable {
     var color: Color { get set }
     
     func append(model: Model)
+    
+    func append(scene: GraphicScene)
 }
 
 extension Renderable {

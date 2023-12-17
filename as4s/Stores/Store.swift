@@ -46,6 +46,11 @@ final class Store: ObservableObject {
 //        self.init(model: model)
         fatalError()
     }
+    
+    func append(_ rendable: some Renderable) {
+        rendable.append(model: model)
+        rendable.append(scene: scene)
+    }
 }
 
 class SharedStore: ObservableObject {

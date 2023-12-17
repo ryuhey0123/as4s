@@ -38,12 +38,17 @@ class NodalLoad: Renderable {
                                          color: float3(color),
                                          thickness: 0.01)
         
-        self.labelGeometry = Self.buildLabelGeometry(target: node.position.metal,
-                                                     tag: id.description)
+        self.labelGeometry = Self.buildLabelGeometry(target: node.position.metal - float3(loadvalues[0..<3]).metal * 0.01,
+                                                     tag: "(\(loadvalues[0]), \(loadvalues[1]), \(loadvalues[2]))")
     }
     
     func append(model: Model) {
         model.nodalLoads.append(self)
+    }
+    
+    func append(scene: GraphicScene) {
+        scene.loadLayer.nodal.append(geometry: geometry)
+        scene.loadLayer.nodalLabel.append(geometry: labelGeometry)
     }
 }
 

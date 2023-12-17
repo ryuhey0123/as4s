@@ -86,6 +86,12 @@ final class BeamColumn: Renderable, Selectable, Displacementable, BeamForcable {
         model.linerTransfs.append(self.transformation)
     }
     
+    func append(scene: GraphicScene) {
+        scene.modelLayer.beam.append(geometry: geometry)
+        scene.modelLayer.beamLabel.append(geometry: labelGeometry)
+        scene.dispModelLayer.beam.append(geometry: dispGeometry)
+    }
+    
     static func buildChordVecror(vector: float3, angle: Float) -> float3 {
         guard vector != .zero else {
             fatalError("Error: vector is zero length.")

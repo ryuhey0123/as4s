@@ -12,9 +12,9 @@ class GraphicScene: MVCScene, ObservableObject {
     
     @Published var modelLayer = ModelLayer()
     @Published var dispModelLayer = ModelLayer()
-    let forceLayer = ForceLayer()
-    let loadLayer = LoadLayer()
-    let captionLayer = CaptionLayer()
+    @Published var forceLayer = ForceLayer()
+    @Published var loadLayer = LoadLayer()
+    @Published var captionLayer = CaptionLayer()
     
     @Published var modelVisiable: Bool = true {
         didSet { modelLayer.isHidden = !modelVisiable }

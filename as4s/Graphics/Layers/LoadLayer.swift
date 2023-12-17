@@ -10,9 +10,8 @@ import Mevic
 
 class LoadLayer: MVCLayer {
     
-    let nodal = MVCLayer("Load-Nodal")
-    
-    let nodalLabel = MVCLayer("Load-NodalLabel")
+    var nodal = MVCLayer("Load-Nodal")
+    var nodalLabel = MVCLayer("Load-NodalLabel")
     
     init() {
         super.init("Load")

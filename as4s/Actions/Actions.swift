@@ -16,7 +16,7 @@ enum Actions {
     
     static func addNode(id: Int, position: float3, store: Store) {
         let node = Node(id: id, position: position)
-        store.model.append(node, layer: store.scene.modelLayer.node, labelLayer: store.scene.modelLayer.nodeLabel)
+        store.append(node)
         
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
@@ -24,14 +24,13 @@ enum Actions {
     static func appendNode(position: float3, store: Store) {
         let id = store.model.nodes.count + 1
         let node = Node(id: id, position: position)
-        store.model.append(node, layer: store.scene.modelLayer.node, labelLayer: store.scene.modelLayer.nodeLabel)
-        
+        store.append(node)
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
     static func addBeam(id: Int, i: Node, j: Node, store: Store) {
         let beam = BeamColumn(id: id, i: i, j: j)
-        store.model.append(beam, layer: store.scene.modelLayer.beam, labelLayer: store.scene.modelLayer.beamLabel)
+        store.append(beam)
 
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
@@ -43,7 +42,7 @@ enum Actions {
         }
         
         let beam = BeamColumn(id: id, i: iNode, j: jNode)
-        store.model.append(beam, layer: store.scene.modelLayer.beam, labelLayer: store.scene.modelLayer.beamLabel)
+        store.append(beam)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
@@ -53,7 +52,7 @@ enum Actions {
             fatalError("Cannot find nodes \(id)")
         }
         let force = NodalLoad(id: id, node: node, loadvalues: force)
-        store.model.append(force, layer: store.scene.loadLayer.nodal, labelLayer: store.scene.loadLayer.nodalLabel)
+        store.append(force)
         
         Logger.action.trace("\(#function): Add Nodal Load to \(node.nodeTag)")
     }

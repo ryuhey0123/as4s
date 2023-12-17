@@ -8,29 +8,13 @@
 import SwiftUI
 import Mevic
 
-class ModelLayer: MVCLayer, ObservableObject {
+class ModelLayer: MVCLayer {
     
-    let node = MVCLayer("Model-Node")
-    let beam = MVCLayer("Model-Beam")
+    var node = MVCLayer("Model-Node")
+    var beam = MVCLayer("Model-Beam")
     
-    let nodeLabel = MVCLayer("Model-NodeLabel")
-    let beamLabel = MVCLayer("Model-BeamLabel")
-    
-    @Published var nodeVisiable: Bool = true {
-        didSet { node.isHidden = !nodeVisiable }
-    }
-    
-    @Published var beamVisiable: Bool = true {
-        didSet { beam.isHidden = !beamVisiable }
-    }
-    
-    @Published var nodeLabelVisiable: Bool = true {
-        didSet { nodeLabel.isHidden = !nodeLabelVisiable }
-    }
-    
-    @Published var beamLabelVisiable: Bool = true {
-        didSet { beamLabel.isHidden = !beamLabelVisiable }
-    }
+    var nodeLabel = MVCLayer("Model-NodeLabel")
+    var beamLabel = MVCLayer("Model-BeamLabel")
     
     init() {
         super.init("Model")

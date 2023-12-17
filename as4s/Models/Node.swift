@@ -58,6 +58,12 @@ final class Node: Renderable, Selectable, Displacementable {
     func append(model: Model) {
         model.nodes.append(self)
     }
+    
+    func append(scene: GraphicScene) {
+        scene.modelLayer.node.append(geometry: geometry)
+        scene.modelLayer.nodeLabel.append(geometry: labelGeometry)
+        scene.dispModelLayer.node.append(geometry: dispGeometry)
+    }
 }
 
 extension Node: OSNode {
