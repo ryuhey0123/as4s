@@ -28,7 +28,7 @@
 		B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */; };
 		B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */; };
 		B14E2E4E2B2EAAF20032AE30 /* ModelCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E4D2B2EAAF20032AE30 /* ModelCommands.swift */; };
-		B14E2E5B2B2EEDEF0032AE30 /* BeamForceGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5A2B2EEDEF0032AE30 /* BeamForceGeometry.swift */; };
+		B14E2E5B2B2EEDEF0032AE30 /* BeamGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5A2B2EEDEF0032AE30 /* BeamGeometry.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
 		B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC232ADB958A00AABA48 /* ContentView.swift */; };
@@ -92,7 +92,7 @@
 		B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLayer.swift; sourceTree = "<group>"; };
 		B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionLayer.swift; sourceTree = "<group>"; };
 		B14E2E4D2B2EAAF20032AE30 /* ModelCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCommands.swift; sourceTree = "<group>"; };
-		B14E2E5A2B2EEDEF0032AE30 /* BeamForceGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamForceGeometry.swift; sourceTree = "<group>"; };
+		B14E2E5A2B2EEDEF0032AE30 /* BeamGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamGeometry.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
 		B161BC212ADB958A00AABA48 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			children = (
 				B12AD6402B16153400D4D315 /* GraphicController.swift */,
 				B1AF9F722B21B6810066C617 /* GraphicScene.swift */,
-				B14E2E5A2B2EEDEF0032AE30 /* BeamForceGeometry.swift */,
+				B14E2E5A2B2EEDEF0032AE30 /* BeamGeometry.swift */,
 				B14E2E4A2B2E9FA80032AE30 /* Layers */,
 			);
 			path = Graphics;
@@ -570,7 +570,7 @@
 				B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */,
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */,
-				B14E2E5B2B2EEDEF0032AE30 /* BeamForceGeometry.swift in Sources */,
+				B14E2E5B2B2EEDEF0032AE30 /* BeamGeometry.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */,

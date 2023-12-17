@@ -53,6 +53,7 @@ final class Node: Renderable, Selectable {
         self.geometry =  MVCPointGeometry(position: position.metal, color: .init(ElementConfigType.color))
         self.dispGeometry = MVCPointGeometry(position: position.metal, color: .init(Config.postprocess.dispColor))
         self.labelGeometry = Self.buildLabelGeometry(target: position.metal, tag: nodeTag.description)
+        self.dispLabelGeometry = Self.buildLabelGeometry(target: position.metal, tag: nodeTag.description)
     }
     
     func appendTo(model: Model) {
@@ -63,6 +64,7 @@ final class Node: Renderable, Selectable {
         scene.modelLayer.node.append(geometry: geometry)
         scene.modelLayer.nodeLabel.append(geometry: labelGeometry)
         scene.dispModelLayer.node.append(geometry: dispGeometry)
+        scene.dispModelLayer.node.append(geometry: dispLabelGeometry)
     }
 }
 

@@ -19,6 +19,8 @@ final class BeamColumn: Renderable, Selectable {
     var j: Node
     var chordAngle: Float
     
+    // MARK: Compute Value
+    
     var vector: float3 {
         j.position - i.position
     }
@@ -35,12 +37,12 @@ final class BeamColumn: Renderable, Selectable {
     
     typealias ElementConfigType = Config.beam
     
-    var forceGeometry: BeamForceGeometry!
+    var geometry: BeamGeometry!
     
     var color: Color = ElementConfigType.color {
         didSet {
-            forceGeometry.model.iColor = float4(float3(color), 1)
-            forceGeometry.model.jColor = float4(float3(color), 1)
+            geometry.model.iColor = float4(float3(color), 1)
+            geometry.model.jColor = float4(float3(color), 1)
         }
     }
     
@@ -55,12 +57,11 @@ final class BeamColumn: Renderable, Selectable {
         self.i = i
         self.j = j
         self.chordAngle = chordAngle
-        
-        self.forceGeometry = BeamForceGeometry(id: id,
-                                               i: i.position.metal,
-                                               j: j.position.metal,
-                                               zdir: chordVector.metal,
-                                               ydir: chordCrossVector.metal)
+        self.geometry = BeamGeometry(id: id,
+                                     i: i.position.metal,
+                                     j: j.position.metal,
+                                     zdir: chordVector.metal,
+                                     ydir: chordCrossVector.metal)
     }
     
     func appendTo(model: Model) {
@@ -69,10 +70,10 @@ final class BeamColumn: Renderable, Selectable {
     }
     
     func appendTo(scene: GraphicScene) {
-        scene.modelLayer.beam.append(geometry: forceGeometry.model)
-        scene.modelLayer.beamLabel.append(geometry: forceGeometry.label)
-        scene.dispModelLayer.beam.append(geometry: forceGeometry.disp)
-        scene.forceLayer.append(forceGeometry: forceGeometry)
+        scene.modelLayer.beam.append(geometry: geometry.model)
+        scene.modelLayer.beamLabel.append(geometry: geometry.label)
+        scene.dispModelLayer.beam.append(geometry: geometry.disp)
+        scene.forceLayer.append(forceGeometry: geometry)
     }
 }
 

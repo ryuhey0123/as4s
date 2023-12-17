@@ -1,5 +1,5 @@
 //
-//  BeamForceGeometry.swift
+//  BeamGeometry.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/17.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Mevic
 
-struct BeamForceGeometry {
+struct BeamGeometry {
     
     typealias ElementConfigType = Config.beam
     
@@ -56,7 +56,6 @@ struct BeamForceGeometry {
     init(id: Int, i: float3, j: float3, zdir: float3, ydir: float3) {
         model = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         label = MVCLabelGeometry(target: (i + j) / 2, text: id.description)
-        
         disp = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         
         vX = Self.defalutGeometry(i: i, j: j, direction: zdir)
@@ -65,6 +64,7 @@ struct BeamForceGeometry {
         mX = Self.defalutGeometry(i: i, j: j, direction: zdir)
         mY = Self.defalutGeometry(i: i, j: j, direction: zdir)
         mZ = Self.defalutGeometry(i: i, j: j, direction: ydir)
+        
         vXiLabel = Self.defalutLabelGeometry(target: i)
         vYiLabel = Self.defalutLabelGeometry(target: i)
         vZiLabel = Self.defalutLabelGeometry(target: i)
@@ -99,34 +99,48 @@ struct BeamForceGeometry {
         var vScale: Float = 0.05
         var mScale: Float = 0.00005
         
-        vX.iHeight = force[Force.P.rawValue] * vScale
-        vX.jHeight = -force[Force.P.rawValue + offset] * vScale
-        vY.iHeight = -force[Force.Vy.rawValue] * vScale
-        vY.jHeight = force[Force.Vy.rawValue + offset] * vScale
-        vZ.iHeight = -force[Force.Vz.rawValue] * vScale
-        vZ.jHeight = force[Force.Vz.rawValue + offset] * vScale
-        mX.iHeight = -force[Force.T.rawValue] * mScale
-        mX.jHeight = force[Force.T.rawValue + offset] * mScale
-        mY.iHeight = -force[Force.My.rawValue] * mScale
-        mY.jHeight = force[Force.My.rawValue + offset] * mScale
-        mZ.iHeight = force[Force.Mz.rawValue] * mScale
-        mZ.jHeight = -force[Force.Mz.rawValue + offset] * mScale
+        let vXi = -force[Force.P.rawValue]
+        let vYi = -force[Force.Vy.rawValue]
+        let vZi = -force[Force.Vz.rawValue]
+        let mXi = -force[Force.T.rawValue]
+        let mYi = -force[Force.My.rawValue]
+        let mZi = force[Force.Mz.rawValue]
+        let vXj = force[Force.P.rawValue + offset]
+        let vYj = force[Force.Vy.rawValue + offset]
+        let vZj = force[Force.Vz.rawValue + offset]
+        let mXj = force[Force.T.rawValue + offset]
+        let mYj = force[Force.My.rawValue + offset]
+        let mZj = -force[Force.Mz.rawValue + offset]
+        
+        
+        vX.iHeight = vXi * vScale
+        vY.iHeight = vYi * vScale
+        vZ.iHeight = vZi * vScale
+        mX.iHeight = mXi * mScale
+        mY.iHeight = mYi * mScale
+        mZ.iHeight = mZi * mScale
+        vX.jHeight = vXj * vScale
+        vY.jHeight = vYj * vScale
+        vZ.jHeight = vZj * vScale
+        mX.jHeight = mXj * mScale
+        mY.jHeight = mYj * mScale
+        mZ.jHeight = mZj * mScale
         
         vScale = 0.001
         mScale = 0.00001
         
-        vXiLabel.text = String(format: "%.1f", force[Force.P.rawValue] * vScale)
-        vYiLabel.text = String(format: "%.1f", -force[Force.P.rawValue + offset] * vScale)
-        vZiLabel.text = String(format: "%.1f", -force[Force.Vy.rawValue] * vScale)
-        mXiLabel.text = String(format: "%.1f", force[Force.Vy.rawValue + offset] * vScale)
-        mYiLabel.text = String(format: "%.1f", -force[Force.Vz.rawValue] * vScale)
-        mZiLabel.text = String(format: "%.1f", force[Force.Vz.rawValue + offset] * vScale)
-        vXjLabel.text = String(format: "%.1f", -force[Force.T.rawValue] * mScale)
-        vYjLabel.text = String(format: "%.1f", force[Force.T.rawValue + offset] * mScale)
-        vZjLabel.text = String(format: "%.1f", -force[Force.My.rawValue] * mScale)
-        mXjLabel.text = String(format: "%.1f", force[Force.My.rawValue + offset] * mScale)
-        mYjLabel.text = String(format: "%.1f", force[Force.Mz.rawValue] * mScale)
-        mZjLabel.text = String(format: "%.1f", -force[Force.Mz.rawValue + offset] * mScale)
+        vXiLabel.text = String(format: "%.1f", vXi * vScale)
+        vYiLabel.text = String(format: "%.1f", vYi * vScale)
+        vZiLabel.text = String(format: "%.1f", vZi * vScale)
+        mXiLabel.text = String(format: "%.1f", mXi * mScale)
+        mYiLabel.text = String(format: "%.1f", mYi * mScale)
+        mZiLabel.text = String(format: "%.1f", mZi * mScale)
+        vXjLabel.text = String(format: "%.1f", vXj * vScale)
+        vYjLabel.text = String(format: "%.1f", vYj * vScale)
+        vZjLabel.text = String(format: "%.1f", vZj * vScale)
+        mXjLabel.text = String(format: "%.1f", mXj * mScale)
+        mYjLabel.text = String(format: "%.1f", mYj * mScale)
+        mZjLabel.text = String(format: "%.1f", mZj * mScale)
         
         vXiLabel.target = vX.k
         vYiLabel.target = vY.k

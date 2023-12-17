@@ -245,16 +245,18 @@ enum Actions {
         
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
-                node.disp = float3(result.value[0..<3])
+                let value = result.value[0..<3]
+                node.disp = float3(value)
+                node.dispLabelGeometry.text = "(\(String(format: "%.1f", value[0])), \(String(format: "%.1f", value[1])), \(String(format: "%.1f", value[2])))"
             }
         }
         
         for beam in store.model.beams {
-            beam.forceGeometry.disp.i = beam.i.dispGeometry.position
-            beam.forceGeometry.disp.j = beam.j.dispGeometry.position
+            beam.geometry.disp.i = beam.i.dispGeometry.position
+            beam.geometry.disp.j = beam.j.dispGeometry.position
             
             let force = eleForce[beam.id]!
-            beam.forceGeometry.updateGeometry(force: force)
+            beam.geometry.updateGeometry(force: force)
         }
     }
 }

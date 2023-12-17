@@ -51,7 +51,7 @@ class ForceLayer: MVCLayer {
         mZ.isShown = false
     }
     
-    func append(forceGeometry: BeamForceGeometry) {
+    func append(forceGeometry: BeamGeometry) {
         vX.append(geometry: forceGeometry.vX)
         vY.append(geometry: forceGeometry.vY)
         vZ.append(geometry: forceGeometry.vZ)
