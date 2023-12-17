@@ -12,6 +12,7 @@ class ModelLayer: MVCLayer {
     
     var node = MVCLayer("Model-Node")
     var beam = MVCLayer("Model-Beam")
+    var support = MVCLayer("Model-Support")
     
     var nodeLabel = MVCLayer("Model-NodeLabel")
     var beamLabel = MVCLayer("Model-BeamLabel")
@@ -20,6 +21,7 @@ class ModelLayer: MVCLayer {
         super.init("Model")
         append(layer: node)
         append(layer: beam)
+        append(layer: support)
         append(layer: nodeLabel)
         append(layer: beamLabel)
     }

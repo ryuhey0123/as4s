@@ -57,6 +57,16 @@ enum Actions {
         Logger.action.trace("\(#function): Add Nodal Load to \(node.nodeTag)")
     }
     
+    static func addSupport(id: Int, constrValues: [Int], store: Store) {
+        guard let node = store.model.nodes.first(where: { $0.nodeTag == id }) else {
+            fatalError("Cannot find nodes \(id)")
+        }
+        let support = Support(id: id, node: node, constrValues: constrValues)
+        store.append(support)
+        
+        Logger.action.trace("\(#function): Add Support to \(node.nodeTag)")
+    }
+    
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {

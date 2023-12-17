@@ -9,30 +9,49 @@ import SwiftUI
 import Mevic
 import OpenSeesCoder
 
-final class Support: OSFix, Renderable {
+final class Support: Renderable {
     
-    typealias GeometryType = MVCPointGeometry
-    typealias ElementConfigType = Config.support
+    // MARK: General Value
     
-    var nodeTag: Int
+    var id: Int
+    var node: Node
     var constrValues: [Int]
     
-    var geometryTag: UInt32!
-    var geometry: Mevic.MVCPointGeometry!
-    var labelGeometry: Mevic.MVCLabelGeometry!
-    
-    var color: Color = .white
-    
-    init(nodeTag: Int, constrValues: [Int]) {
-        self.nodeTag = nodeTag
-        self.constrValues = constrValues
+    var type: MVCSupportGeometry.SupportType {
+        if constrValues == [1, 1, 1, 1, 1, 1] {
+            return .fix
+        } else {
+            return .pin
+        }
     }
     
-    func geometrySetup(model: Model) {}
+    // MARK: Renderable Value
+    
+    typealias GeometryType = MVCSupportGeometry
+    typealias ElementConfigType = Config.support
+    
+    var geometry: GeometryType!
+    var labelGeometry: MVCLabelGeometry!
+    
+    var color: Color = ElementConfigType.color
+    
+    init(id: Int, node: Node, constrValues: [Int]) {
+        self.id = id
+        self.node = node
+        self.constrValues = constrValues
+        self.geometry = MVCSupportGeometry(target: node.position.metal, type: type, color: float4(color))
+    }
     
     func appendTo(model: Model) {
         model.fixes.append(self)
     }
     
-    func appendTo(scene: GraphicScene) {}
+    func appendTo(scene: GraphicScene) {
+        scene.modelLayer.support.append(geometry: geometry)
+    }
+}
+
+extension Support: OSFix {
+    
+    var nodeTag: Int { node.id }
 }

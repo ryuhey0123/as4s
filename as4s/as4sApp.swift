@@ -19,6 +19,13 @@ struct as4sApp: App {
                 }
                 .focusedSceneValue(\.store, configuration.document)
         }
+        .commands {
+            ModelCommands()
+        }
+        
+        Window("Add node", id: "add-node") {
+            Text("Hello")
+        }
     }
 }
 
