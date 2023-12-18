@@ -11,7 +11,7 @@ import Mevic
 class GraphicScene: MVCScene, ObservableObject {
     
     @Published var modelLayer = ModelLayer()
-    @Published var dispModelLayer = ModelLayer()
+    @Published var dispModelLayer = DispModelLayer()
     @Published var forceLayer = ForceLayer()
     @Published var loadLayer = LoadLayer()
     @Published var captionLayer = CaptionLayer()
@@ -33,6 +33,7 @@ class GraphicScene: MVCScene, ObservableObject {
         append(layer: captionLayer)
         
         dispModelLayer.isShown = false
+        dispModelLayer.nodeLabel.isShown = true
         forceLayer.isShown = false
         loadLayer.isShown = false
     }

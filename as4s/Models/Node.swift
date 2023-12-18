@@ -12,14 +12,8 @@ final class Node: Selectable {
     
     var id: Int
     var position: float3
+    var disp: float3 = .zero
     var geometry: NodeGeometry
-    
-    var disp: float3 = .zero {
-        didSet {
-            geometry.disp.position = (position + disp).metal
-            geometry.dispLabel.target = (position + disp).metal
-        }
-    }
     
     var isSelected: Bool = false {
         didSet { geometry.color = isSelected ? Config.node.selectedColor : Config.node.color }
@@ -28,7 +22,6 @@ final class Node: Selectable {
     init(id: Int, position: float3) {
         self.id = id
         self.position = position
-        
         self.geometry = NodeGeometry(id: id, position: position.metal)
     }
 }

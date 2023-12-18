@@ -20,7 +20,7 @@ enum Config {
         static var labelBgColor: Color = Config.system.backGroundColor
         static var labelPaddingX: Float = 0
         static var labelPaddingY: Float = 8
-        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
+        static var labelAlignment: MVCLabelGeometry.LabelAlignment = .bottom
     }
     
     enum beam: ElementConfig {
@@ -33,7 +33,7 @@ enum Config {
         static var labelBgColor: Color = Config.system.backGroundColor
         static var labelPaddingX: Float = 0
         static var labelPaddingY: Float = 0
-        static var labelAlignment: MVCLabelGeometry.Alignment = .center
+        static var labelAlignment: MVCLabelGeometry.LabelAlignment = .center
     }
     
     enum support: ElementConfig {
@@ -46,7 +46,7 @@ enum Config {
         static var labelBgColor: Color = Config.system.backGroundColor
         static var labelPaddingX: Float = 0
         static var labelPaddingY: Float = 8
-        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
+        static var labelAlignment: MVCLabelGeometry.LabelAlignment = .bottom
     }
     
     enum nodalLoad: ElementConfig {
@@ -59,7 +59,7 @@ enum Config {
         static var labelBgColor: Color = Config.system.backGroundColor
         static var labelPaddingX: Float = 0
         static var labelPaddingY: Float = 8
-        static var labelAlignment: MVCLabelGeometry.Alignment = .bottom
+        static var labelAlignment: MVCLabelGeometry.LabelAlignment = .bottom
     }
     
     enum cursor {
@@ -104,5 +104,5 @@ protocol ElementConfig {
     static var labelBgColor: Color { get set }
     static var labelPaddingX: Float { get set }
     static var labelPaddingY: Float { get set }
-    static var labelAlignment: MVCLabelGeometry.Alignment { get set }
+    static var labelAlignment: MVCLabelGeometry.LabelAlignment { get set }
 }
