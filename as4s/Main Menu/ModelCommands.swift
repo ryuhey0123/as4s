@@ -23,6 +23,7 @@ struct ModelCommands: Commands {
             } label: {
                 Label("Add Beam...", systemImage: "plus")
             }
+            Divider()
             Button {
                 openWindow(id: "move-geometry")
             } label: {

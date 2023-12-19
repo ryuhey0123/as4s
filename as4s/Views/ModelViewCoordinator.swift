@@ -20,9 +20,7 @@ class ModelViewCoordinator: NSObject {
     }
     
     @objc
-    func handleClick(_ recognizer: NSClickGestureRecognizer) {
-        traceSnap()
-    }
+    func handleClick(_ recognizer: NSClickGestureRecognizer) {}
     
     @objc
     func handleLeftDrag(_ recognizer: NSPanGestureRecognizer) {
@@ -40,12 +38,26 @@ class ModelViewCoordinator: NSObject {
                 controller.renderer.inputs.dragLocation.y = Float(view.frame.height) - location.y
                 controller.renderer.inputs.mode = (startLocation.x < location.x) ? 1 : 2
             case .ended:
+                Actions.select(store: store)
                 controller.renderer.inputs.mode = 0
-                traceSelection()
             default:
                 break
         }
     }
+    
+    @objc
+    func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
+        let velocity = gestureRecognize.velocity(in: view)
+        
+        if NSEvent.modifierFlags.contains(.shift) {
+            controller?.scene.camera.pan(float2(x: Float(velocity.x) * 0.00002,
+                                                y: -Float(velocity.y) * 0.00002))
+        } else {
+            controller?.scene.camera.rotate(float2(x:  Float(velocity.x) * 0.0001,
+                                                   y: -Float(velocity.y) * 0.0001))
+        }
+    }
+    
     // FIXME: Zoom upしていくと挙動がおかしい
     @objc
     func handleTrackPadPinch(_ recognizer: NSMagnificationGestureRecognizer) {
@@ -74,26 +86,4 @@ class ModelViewCoordinator: NSObject {
             controller.scene.camera.rotate(sizedDelta)
         }
     }
-    
-    func handleKeyDown(with event: NSEvent) {}
-    
-    func handleKeyUp(with event: NSEvent) {}
-    
-    func traceSelection() {
-        let selectionIds = controller.renderer.getSeletionId()
-        
-        if !selectionIds.isEmpty {
-            let selectedNodes = store.model.nodes.filter({
-                selectionIds.contains(Int($0.geometry.model.id))
-            })
-            selectedNodes.forEach { $0.isSelected = true }
-            
-            let selectedBeam = store.model.beams.filter({
-                selectionIds.contains(Int($0.geometry.model.id))
-            })
-            selectedBeam.forEach { $0.isSelected = true }
-        }
-    }
-    
-    func traceSnap() {}
 }

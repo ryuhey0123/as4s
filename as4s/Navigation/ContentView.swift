@@ -24,7 +24,7 @@ struct ContentView: View {
                 }
         }
         .inspector(isPresented: $showingInspector) {
-            Text("Inspector")
+            ObjectInspector(selectedObjects: $store.selectedObjects)
         }
         .toolbar {
             ToolbarItem(placement: .automatic) {
@@ -33,6 +33,9 @@ struct ContentView: View {
                 }
             }
         }
+        .onExitCommand(perform: {
+            Actions.unselectAll(store: store)
+        })
     }
     
     var addPoint: some View {

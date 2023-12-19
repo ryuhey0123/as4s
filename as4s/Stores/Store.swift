@@ -13,6 +13,7 @@ final class Store: ObservableObject {
     let model: Model
     
     @Published var scene: GraphicScene = GraphicScene()
+    @Published var selectedObjects: [Selectable] = []
     
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]

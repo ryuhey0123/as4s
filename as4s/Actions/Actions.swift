@@ -67,6 +67,7 @@ enum Actions {
         Logger.action.trace("\(#function): Add Support to \(node.nodeTag)")
     }
     
+    
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
@@ -81,6 +82,34 @@ enum Actions {
         store.scene.overlayLayer.append(geometry: MVCSelectionBox())
         
         Logger.action.trace("\(#function): Add Coordinate")
+    }
+    
+    
+    // MARK: - Selection
+    
+    static func select(store: Store) {
+        let selectedIds = store.scene.renderer.getSeletionId()
+        guard !selectedIds.isEmpty else { return }
+        
+        let selectedNodes = store.model.nodes.filter({
+            selectedIds.contains(Int($0.geometry.model.id))
+        })
+        
+        let selectedBeam = store.model.beams.filter({
+            selectedIds.contains(Int($0.geometry.model.id))
+        })
+        
+        selectedNodes.forEach { $0.isSelected = true }
+        selectedBeam.forEach { $0.isSelected = true }
+        
+        store.selectedObjects.append(contentsOf: selectedNodes)
+        store.selectedObjects.append(contentsOf: selectedBeam)
+    }
+    
+    static func unselectAll(store: Store) {
+        store.selectedObjects = []
+        store.model.nodes.forEach { $0.isSelected = false }
+        store.model.beams.forEach { $0.isSelected = false }
     }
     
     
