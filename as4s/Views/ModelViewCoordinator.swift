@@ -10,13 +10,12 @@ import MetalKit
 class ModelViewCoordinator: NSObject {
     
     private let view: MVCView
-    weak var controller: GraphicController?
+    weak var controller: GraphicController!
     
     private var initialZoomValue: Float = 0.0
     
-    init(view: MVCView, controller: GraphicController?) {
+    init(view: MVCView) {
         self.view = view
-        self.controller = controller
     }
     
     @objc
@@ -26,8 +25,6 @@ class ModelViewCoordinator: NSObject {
     
     @objc
     func handleLeftDrag(_ recognizer: NSPanGestureRecognizer) {
-        guard let controller = controller else { return }
-        
         let location = float2(recognizer.location(in: view))
         let translation = float2(recognizer.translation(in: view))
         let startLocation = location - translation
@@ -51,8 +48,6 @@ class ModelViewCoordinator: NSObject {
     
     @objc
     func handleRightDrag(_ recognizer: NSPanGestureRecognizer) {
-        guard let controller = controller else { return }
-        
         let velocity = recognizer.velocity(in: view)
         
         if NSEvent.modifierFlags.contains(.shift) {
@@ -66,8 +61,6 @@ class ModelViewCoordinator: NSObject {
     
     @objc
     func handleTrackPadPinch(_ recognizer: NSMagnificationGestureRecognizer) {
-        guard let controller = controller else { return }
-        
         switch recognizer.state {
             case .began:
                 initialZoomValue = controller.scene.camera.viewSize
@@ -84,15 +77,11 @@ class ModelViewCoordinator: NSObject {
     }
     
     func handleScrollWheel(with event: NSEvent) {
-        guard let controller = controller else { return }
-        
         let sizedScroll = Float(event.deltaY) * controller.scene.camera.viewSize
         controller.scene.camera.zoom(sizedScroll * Config.cameraControllSensitivity.zoom * 0.05)
     }
     
     func handleTrackPadScroll(with event: NSEvent) {
-        guard let controller = controller else { return }
-        
         if NSEvent.modifierFlags.contains(.shift) {
             controller.scene.camera.pan(float2(x: Float(event.deltaX) * 0.005,
                                                 y: -Float(event.deltaY) * 0.005))
@@ -107,7 +96,21 @@ class ModelViewCoordinator: NSObject {
     
     func handleKeyUp(with event: NSEvent) {}
     
-    func traceSelection() {}
+    func traceSelection() {
+        let selectionIds = controller.renderer.getSeletionId()
+        
+        if !selectionIds.isEmpty {
+            let selectedNodes = controller.store.model.nodes.filter({
+                selectionIds.contains(Int($0.geometry.model.id))
+            })
+            selectedNodes.forEach { $0.isSelected = true }
+            
+            let selectedBeam = controller.store.model.beams.filter({
+                selectionIds.contains(Int($0.geometry.model.id))
+            })
+            selectedBeam.forEach { $0.isSelected = true }
+        }
+    }
     
     func traceSnap() {}
 }

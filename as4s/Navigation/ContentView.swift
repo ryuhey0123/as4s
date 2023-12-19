@@ -18,7 +18,7 @@ struct ContentView: View {
         NavigationSplitView {
             Sidebar()
         } detail: {
-            ModelView(scene: store.scene)
+            ModelView(store: store)
                 .onAppear {
                     Actions.addCoordinate(store: store)
                 }

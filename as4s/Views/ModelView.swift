@@ -10,7 +10,7 @@ import MetalKit
 
 public struct ModelView: View {
     
-    var scene: GraphicScene
+    var store: Store
     
     @State private var metalView = MVCView()
     @State private var controller: GraphicController?
@@ -18,7 +18,8 @@ public struct ModelView: View {
     public var body: some View {
         MetalViewRepresentable(view: $metalView, controller: controller)
             .onAppear {
-                controller = GraphicController(metalView: metalView, scene: scene)
+                controller = GraphicController(metalView: metalView, scene: store.scene)
+                controller!.store = store
             }
     }
 }
@@ -66,7 +67,7 @@ private struct MetalViewRepresentable: ViewRepresentable {
 #endif
     
     func makeCoordinator() -> ModelViewCoordinator {
-        ModelViewCoordinator(view: view, controller: controller)
+        ModelViewCoordinator(view: view)
     }
 }
 
