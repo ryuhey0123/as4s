@@ -77,14 +77,48 @@ enum Actions {
         store.scene.captionLayer.append(geometry: y)
         store.scene.captionLayer.append(geometry: z)
         
-        store.scene.overlayLayer.append(geometry: MVCCursor())
-        store.scene.overlayLayer.append(geometry: MVCSelectionBox())
+//        store.scene.overlayLayer.append(geometry: MVCCursor())
+//        store.scene.overlayLayer.append(geometry: MVCSelectionBox())
         
         Logger.action.trace("\(#function): Add Coordinate")
     }
     
     
     // MARK: - Import
+    
+    static func buildSmallModel(store: Store) {
+        Actions.addNode(id: 1, position: .init(x: -500, y: -500, z:    0), store: store)
+        Actions.addNode(id: 2, position: .init(x:  500, y: -500, z:    0), store: store)
+        Actions.addNode(id: 3, position: .init(x: -500, y:  500, z:    0), store: store)
+        Actions.addNode(id: 4, position: .init(x:  500, y:  500, z:    0), store: store)
+        Actions.addNode(id: 5, position: .init(x: -500, y: -500, z: 1000), store: store)
+        Actions.addNode(id: 6, position: .init(x:  500, y: -500, z: 1000), store: store)
+        Actions.addNode(id: 7, position: .init(x: -500, y:  500, z: 1000), store: store)
+        Actions.addNode(id: 8, position: .init(x:  500, y:  500, z: 1000), store: store)
+        
+        Actions.addBeam(id:  1, i: 1, j: 2, store: store)
+        Actions.addBeam(id:  2, i: 2, j: 4, store: store)
+        Actions.addBeam(id:  3, i: 3, j: 4, store: store)
+        Actions.addBeam(id:  4, i: 1, j: 3, store: store)
+        
+        Actions.addBeam(id:  5, i: 5, j: 6, store: store)
+        Actions.addBeam(id:  6, i: 6, j: 8, store: store)
+        Actions.addBeam(id:  7, i: 7, j: 8, store: store)
+        Actions.addBeam(id:  8, i: 5, j: 7, store: store)
+        
+        Actions.addBeam(id:  9, i: 1, j: 5, store: store)
+        Actions.addBeam(id: 10, i: 2, j: 6, store: store)
+        Actions.addBeam(id: 11, i: 4, j: 8, store: store)
+        Actions.addBeam(id: 12, i: 3, j: 7, store: store)
+        
+        Actions.addSupport(id: 1, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(id: 2, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(id: 3, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(id: 4, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        
+        Actions.addNodalLoad(id: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
+        Actions.addNodalLoad(id: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
+    }
     
     static func importTestModel(store: Store) {
         guard let fileURL = Bundle.main.url(forResource: "TestModel", withExtension: "txt") else {

@@ -12,6 +12,8 @@ import OpenSeesCoder
 struct ContentView: View {
     @EnvironmentObject var store: Store
     
+    @State private var showingInspector: Bool = false
+    
     var body: some View {
         NavigationSplitView {
             Sidebar()
@@ -20,6 +22,16 @@ struct ContentView: View {
                 .onAppear {
                     Actions.addCoordinate(store: store)
                 }
+        }
+        .inspector(isPresented: $showingInspector) {
+            Text("Inspector")
+        }
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                Button("Inspector toggle", systemImage: "info.circle") {
+                    showingInspector.toggle()
+                }
+            }
         }
     }
     
@@ -33,5 +45,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store())
-        .frame(width: 800, height: 500)
 }
