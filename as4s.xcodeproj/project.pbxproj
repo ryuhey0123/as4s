@@ -43,6 +43,7 @@
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
 		B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */; };
+		B19DFE032B30936A00B7F7B8 /* NodeTransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE022B30936A00B7F7B8 /* NodeTransformView.swift */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
 		B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF9F722B21B6810066C617 /* GraphicScene.swift */; };
 		B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* Node.swift */; };
@@ -115,6 +116,7 @@
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
 		B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModelLayer.swift; sourceTree = "<group>"; };
+		B19DFE022B30936A00B7F7B8 /* NodeTransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTransformView.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B1AF9F722B21B6810066C617 /* GraphicScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicScene.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			children = (
 				B13AED952B2C26430028B410 /* ModelView.swift */,
 				B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */,
+				B19DFE022B30936A00B7F7B8 /* NodeTransformView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
 				B14E2E5F2B2F1D8E0032AE30 /* Geometry.swift in Sources */,
+				B19DFE032B30936A00B7F7B8 /* NodeTransformView.swift in Sources */,
 				B1424E522B29DFD400F9A22C /* CrossSection.swift in Sources */,
 				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
 				B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */,

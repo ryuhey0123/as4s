@@ -23,6 +23,12 @@ struct ModelCommands: Commands {
             } label: {
                 Label("Add Beam...", systemImage: "plus")
             }
+            Button {
+                openWindow(id: "move-geometry")
+            } label: {
+                Label("Move...", systemImage: "plus")
+            }
+            .keyboardShortcut("m", modifiers: .command)
         }
     }
 }

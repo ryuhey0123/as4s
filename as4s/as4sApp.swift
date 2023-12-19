@@ -26,6 +26,10 @@ struct as4sApp: App {
         Window("Add node", id: "add-node") {
             Text("Hello")
         }
+        
+        Window("Move Geometry", id: "move-geometry") {
+            NodeTransformView()
+        }
     }
 }
 
