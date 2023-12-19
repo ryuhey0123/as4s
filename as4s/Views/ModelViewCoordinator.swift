@@ -11,6 +11,7 @@ class ModelViewCoordinator: NSObject {
     
     private let view: MVCView
     weak var controller: GraphicController!
+    weak var store: Store!
     
     private var initialZoomValue: Float = 0.0
     
@@ -100,12 +101,12 @@ class ModelViewCoordinator: NSObject {
         let selectionIds = controller.renderer.getSeletionId()
         
         if !selectionIds.isEmpty {
-            let selectedNodes = controller.store.model.nodes.filter({
+            let selectedNodes = store.model.nodes.filter({
                 selectionIds.contains(Int($0.geometry.model.id))
             })
             selectedNodes.forEach { $0.isSelected = true }
             
-            let selectedBeam = controller.store.model.beams.filter({
+            let selectedBeam = store.model.beams.filter({
                 selectionIds.contains(Int($0.geometry.model.id))
             })
             selectedBeam.forEach { $0.isSelected = true }

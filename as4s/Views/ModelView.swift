@@ -16,10 +16,9 @@ public struct ModelView: View {
     @State private var controller: GraphicController?
     
     public var body: some View {
-        MetalViewRepresentable(view: $metalView, controller: controller)
+        MetalViewRepresentable(view: $metalView, controller: controller, store: store)
             .onAppear {
                 controller = GraphicController(metalView: metalView, scene: store.scene)
-                controller!.store = store
             }
     }
 }
@@ -33,6 +32,7 @@ private typealias ViewRepresentable = UIViewRepresentable
 private struct MetalViewRepresentable: ViewRepresentable {
     @Binding var view: MVCView
     let controller: GraphicController?
+    let store: Store?
     
 #if os(macOS)
     func makeNSView(context: Context) -> some NSView {
@@ -55,6 +55,7 @@ private struct MetalViewRepresentable: ViewRepresentable {
     
     func updateNSView(_ uiView: NSViewType, context: Context) {
         context.coordinator.controller = controller
+        context.coordinator.store = store
         view.coordinator = context.coordinator
     }
     

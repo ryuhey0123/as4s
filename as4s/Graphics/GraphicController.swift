@@ -7,6 +7,4 @@
 
 import Mevic
 
-class GraphicController: MVCGraphicController {
-    weak var store: Store!
-}
+class GraphicController: MVCGraphicController {}
