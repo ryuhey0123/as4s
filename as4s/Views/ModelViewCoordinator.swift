@@ -12,33 +12,37 @@ class ModelViewCoordinator: NSObject {
     private let view: MVCView
     weak var controller: GraphicController?
     
+    private var initialZoomValue: Float = 0.0
+    
     init(view: MVCView, controller: GraphicController?) {
         self.view = view
         self.controller = controller
     }
     
     @objc
-    func handleClick(_ gestureRecognize: NSClickGestureRecognizer) {
+    func handleClick(_ recognizer: NSClickGestureRecognizer) {
         traceSnap()
     }
     
     @objc
-    func handleLeftDrag(_ gestureRecognize: NSPanGestureRecognizer) {
-        let location = float2(gestureRecognize.location(in: view))
-        let translation = float2(gestureRecognize.translation(in: view))
+    func handleLeftDrag(_ recognizer: NSPanGestureRecognizer) {
+        guard let controller = controller else { return }
+        
+        let location = float2(recognizer.location(in: view))
+        let translation = float2(recognizer.translation(in: view))
         let startLocation = location - translation
         
         // TODO: internal
-        switch gestureRecognize.state {
+        switch recognizer.state {
             case .began:
-                controller?.renderer.inputs.dragStartLocation.x = startLocation.x
-                controller?.renderer.inputs.dragStartLocation.y = Float(view.frame.height) - startLocation.y
+                controller.renderer.inputs.dragStartLocation.x = startLocation.x
+                controller.renderer.inputs.dragStartLocation.y = Float(view.frame.height) - startLocation.y
             case .changed:
-                controller?.renderer.inputs.dragLocation.x = location.x
-                controller?.renderer.inputs.dragLocation.y = Float(view.frame.height) - location.y
-                controller?.renderer.inputs.mode = (startLocation.x < location.x) ? 1 : 2
+                controller.renderer.inputs.dragLocation.x = location.x
+                controller.renderer.inputs.dragLocation.y = Float(view.frame.height) - location.y
+                controller.renderer.inputs.mode = (startLocation.x < location.x) ? 1 : 2
             case .ended:
-                controller?.renderer.inputs.mode = 0
+                controller.renderer.inputs.mode = 0
                 traceSelection()
             default:
                 break
@@ -46,23 +50,57 @@ class ModelViewCoordinator: NSObject {
     }
     
     @objc
-    func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
-        let velocity = gestureRecognize.velocity(in: view)
+    func handleRightDrag(_ recognizer: NSPanGestureRecognizer) {
+        guard let controller = controller else { return }
+        
+        let velocity = recognizer.velocity(in: view)
         
         if NSEvent.modifierFlags.contains(.shift) {
-            controller?.scene.camera.pan(float2(x: Float(velocity.x) * 0.00002,
+            controller.scene.camera.pan(float2(x: Float(velocity.x) * 0.00002,
                                                 y: Float(velocity.y) * 0.00002))
         } else {
-            controller?.scene.camera.rotate(float2(x: -Float(velocity.x) * 0.0001,
+            controller.scene.camera.rotate(float2(x: -Float(velocity.x) * 0.0001,
                                                    y: -Float(velocity.y) * 0.0001))
         }
     }
     
-    func handleScrollWheel(with event: NSEvent) {
-        if let controller = controller {
-            let sizedScroll = Float(event.deltaY) * controller.scene.camera.viewSize
-            controller.scene.camera.zoom(sizedScroll * Config.cameraControllSensitivity.zoom * 0.05)
+    @objc
+    func handleTrackPadPinch(_ recognizer: NSMagnificationGestureRecognizer) {
+        guard let controller = controller else { return }
+        
+        switch recognizer.state {
+            case .began:
+                initialZoomValue = controller.scene.camera.viewSize
+            case .changed:
+                let magnification = Float(recognizer.magnification) 
+                * controller.scene.camera.viewSize
+                * Config.cameraControllSensitivity.zoom
+                controller.scene.camera.viewSize = initialZoomValue - magnification
+            case .ended:
+                initialZoomValue = 0.0
+            default:
+                return
         }
+    }
+    
+    func handleScrollWheel(with event: NSEvent) {
+        guard let controller = controller else { return }
+        
+        let sizedScroll = Float(event.deltaY) * controller.scene.camera.viewSize
+        controller.scene.camera.zoom(sizedScroll * Config.cameraControllSensitivity.zoom * 0.05)
+    }
+    
+    func handleTrackPadScroll(with event: NSEvent) {
+        guard let controller = controller else { return }
+        
+        if NSEvent.modifierFlags.contains(.shift) {
+            controller.scene.camera.pan(float2(x: Float(event.deltaX) * 0.005,
+                                                y: -Float(event.deltaY) * 0.005))
+        } else {
+            controller.scene.camera.rotate(float2(x: Float(event.deltaX) * 0.015,
+                                                  y: -Float(event.deltaY) * 0.015))
+        }
+
     }
     
     func handleKeyDown(with event: NSEvent) {}
