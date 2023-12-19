@@ -40,12 +40,7 @@ private struct MetalViewRepresentable: ViewRepresentable {
         view.addGestureRecognizer(clickGesture)
         
         let leftDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleLeftDrag(_:)))
-        leftDragGesture.buttonMask = 0x1  // Left button
         view.addGestureRecognizer(leftDragGesture)
-        
-        let rightDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleRightDrag(_:)))
-        rightDragGesture.buttonMask = 0x2  // Right button
-        view.addGestureRecognizer(rightDragGesture)
         
         let pinchGesture = NSMagnificationGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleTrackPadPinch(_:)))
         view.addGestureRecognizer(pinchGesture)
@@ -78,11 +73,7 @@ class MVCView: MTKView {
     override var acceptsFirstResponder: Bool { true }
     
     override func scrollWheel(with event: NSEvent) {
-        if event.hasPreciseScrollingDeltas {
-            coordinator?.handleTrackPadScroll(with: event)
-        } else {
-            coordinator?.handleScrollWheel(with: event)
-        }
+        coordinator?.handleScrollWheel(with: event)
     }
     
     override func keyDown(with event: NSEvent) {

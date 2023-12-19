@@ -19,6 +19,15 @@ public typealias double2 = SIMD2<Double>
 public typealias double3 = SIMD3<Double>
 
 
+// MARK: - float2 Extensions
+
+extension float2 {
+    
+    init(_ xValue: CGFloat, _ yValue: CGFloat) {
+        self.init(x: Float(xValue), y: Float(yValue))
+    }
+}
+
 // MARK: - float3 Extensions
 
 extension float3 {

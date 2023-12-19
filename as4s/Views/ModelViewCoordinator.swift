@@ -13,7 +13,7 @@ class ModelViewCoordinator: NSObject {
     weak var controller: GraphicController!
     weak var store: Store!
     
-    private var initialZoomValue: Float = 0.0
+    private var initialZoomValue: Float = 1.0
     
     init(view: MVCView) {
         self.view = view
@@ -46,51 +46,33 @@ class ModelViewCoordinator: NSObject {
                 break
         }
     }
-    
-    @objc
-    func handleRightDrag(_ recognizer: NSPanGestureRecognizer) {
-        let velocity = recognizer.velocity(in: view)
-        
-        if NSEvent.modifierFlags.contains(.shift) {
-            controller.scene.camera.pan(float2(x: Float(velocity.x) * 0.00002,
-                                                y: Float(velocity.y) * 0.00002))
-        } else {
-            controller.scene.camera.rotate(float2(x: -Float(velocity.x) * 0.0001,
-                                                   y: -Float(velocity.y) * 0.0001))
-        }
-    }
-    
+    // FIXME: Zoom upしていくと挙動がおかしい
     @objc
     func handleTrackPadPinch(_ recognizer: NSMagnificationGestureRecognizer) {
         switch recognizer.state {
             case .began:
-                initialZoomValue = controller.scene.camera.viewSize
+                initialZoomValue = controller.scene.camera.zoomValue
             case .changed:
-                let magnification = Float(recognizer.magnification) 
-                * controller.scene.camera.viewSize
-                * Config.cameraControllSensitivity.zoom
-                controller.scene.camera.viewSize = initialZoomValue - magnification
-            case .ended:
-                initialZoomValue = 0.0
+                let sizedScroll = Float(recognizer.magnification) * Config.cameraControllSensitivity.zoom
+                let newValue = max(0.0001, initialZoomValue + sizedScroll)
+                controller.scene.camera.zoomValue = newValue
             default:
                 return
         }
     }
     
+    // FIXME: Zoom upしていくと挙動がおかしい
     func handleScrollWheel(with event: NSEvent) {
-        let sizedScroll = Float(event.deltaY) * controller.scene.camera.viewSize
-        controller.scene.camera.zoom(sizedScroll * Config.cameraControllSensitivity.zoom * 0.05)
-    }
-    
-    func handleTrackPadScroll(with event: NSEvent) {
         if NSEvent.modifierFlags.contains(.shift) {
-            controller.scene.camera.pan(float2(x: Float(event.deltaX) * 0.005,
-                                                y: -Float(event.deltaY) * 0.005))
+            let sizedScroll = Float(event.deltaY) * 0.05 * Config.cameraControllSensitivity.zoom
+            controller.scene.camera.zoom(sizedScroll)
+        } else if NSEvent.modifierFlags.contains(.control) {
+            let sizedDelta = float2(event.deltaX, event.deltaY) * 0.01 * Config.cameraControllSensitivity.pan
+            controller.scene.camera.pan(sizedDelta)
         } else {
-            controller.scene.camera.rotate(float2(x: Float(event.deltaX) * 0.015,
-                                                  y: -Float(event.deltaY) * 0.015))
+            let sizedDelta = float2(event.deltaX, event.deltaY) * 0.01 * Config.cameraControllSensitivity.rotate
+            controller.scene.camera.rotate(sizedDelta)
         }
-
     }
     
     func handleKeyDown(with event: NSEvent) {}
