@@ -56,4 +56,5 @@ final class Store: ObservableObject {
 
 class SharedStore: ObservableObject {
     var stores: [Store] = []
+    var activeStore: Store?
 }

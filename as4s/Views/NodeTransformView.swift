@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct NodeTransformView: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    @EnvironmentObject var sharedStore: SharedStore
     
     @State private var dX: Float = 0
     @State private var dY: Float = 0
@@ -44,7 +47,9 @@ struct NodeTransformView: View {
                                 x: "dX", y: "dY", z: "dZ")
                 .disabled(mode != .move)
                 .onSubmit {
-                    transformConfirm()
+                    if let store = sharedStore.activeStore {
+                        Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
+                    }
                 }
                 PointValueInput(valueX: $X, valueY: $Y, valueZ: $Z,
                                 x: "X", y: "Y", z: "Z")
@@ -55,16 +60,22 @@ struct NodeTransformView: View {
             }
             
             HStack {
-                Button("Cancel") { cancelAction() }
+                Button("Cancel") {
+                    dismiss()
+                }
+                .keyboardShortcut(.escape, modifiers: [])
                 Button("OK") {
                     switch mode {
                         case .move:
-                            transformConfirm()
+                            if let store = sharedStore.activeStore {
+                                Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
+                            }
                         case .change:
                             changeConfirm()
                     }
+                    dismiss()
                 }
-                    .buttonStyle(.borderedProminent)
+                .buttonStyle(.borderedProminent)
             }
             .padding(.top, 10)
             .frame(maxWidth: 360, alignment: .trailing)

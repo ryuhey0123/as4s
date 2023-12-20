@@ -16,6 +16,7 @@ struct as4sApp: App {
             ContentView()
                 .onAppear {
                     sharedStore.stores.append(configuration.document)
+                    sharedStore.activeStore = configuration.document
                 }
                 .focusedSceneValue(\.store, configuration.document)
         }
@@ -29,6 +30,7 @@ struct as4sApp: App {
         
         Window("Move Geometry", id: "move-geometry") {
             NodeTransformView()
+                .environmentObject(sharedStore)
         }
     }
 }
@@ -39,11 +41,7 @@ extension FocusedValues {
     }
 
     var store: Store? {
-        get {
-            self[StoreFocusedValues.self]
-        }
-        set {
-            self[StoreFocusedValues.self] = newValue
-        }
+        get { self[StoreFocusedValues.self] }
+        set { self[StoreFocusedValues.self] = newValue }
     }
 }

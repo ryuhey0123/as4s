@@ -29,12 +29,12 @@ struct BeamGeometry: Geometry {
         }
     }
     
-    var model: MVCLineGeometry
+    var model: RFLine
     var label: MVCLabelGeometry
     
     var disp: MVCLineGeometry
     
-    var vX: MVCTrapezoidGeometry
+    var vX: RFTrapezoid
     var vY: MVCTrapezoidGeometry
     var vZ: MVCTrapezoidGeometry
     var mX: MVCTrapezoidGeometry
@@ -54,12 +54,53 @@ struct BeamGeometry: Geometry {
     var mYjLabel: MVCLabelGeometry
     var mZjLabel: MVCLabelGeometry
     
-    init(id: Int, i: float3, j: float3, zdir: float3, ydir: float3) {
-        model = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
+    func updateI(i: float3, j: float3) {
+        model.i = i
+        label.target = (i + j) / 2
+        disp.i = i
+        vX.i = i
+        vY.i = i
+        vZ.i = i
+        mX.i = i
+        mY.i = i
+        mZ.i = i
+        vXiLabel.target = i
+        vYiLabel.target = i
+        vZiLabel.target = i
+        mXiLabel.target = i
+        mYiLabel.target = i
+        mZiLabel.target = i
+    }
+    
+    func updateJ(i: float3, j: float3) {
+        model.j = j
+        label.target = (i + j) / 2
+        disp.j = j
+        vX.j = j
+        vY.j = j
+        vZ.j = j
+        mX.j = j
+        mY.j = j
+        mZ.j = j
+        vXjLabel.target = j
+        vYjLabel.target = j
+        vZjLabel.target = j
+        mXjLabel.target = j
+        mYjLabel.target = j
+        mZjLabel.target = j
+    }
+    
+    init(id: Int, i: Node, j: Node, zdir: float3, ydir: float3) {
+        
+        model = RFLine(i: i, j: j, color: ElementConfigType.color, selectable: true)
+        
+        let i = i.position.metal
+        let j = j.position.metal
+        
         label = Self.defaultLabel(target: (i + j) / 2, tag: id.description)
         disp = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         
-        vX = Self.defalutGeometry(i: i, j: j, direction: zdir)
+        vX = RFTrapezoid(line: model, iColor: .red, jColor: .blue, direction: .z)
         vY = Self.defalutGeometry(i: i, j: j, direction: ydir)
         vZ = Self.defalutGeometry(i: i, j: j, direction: zdir)
         mX = Self.defalutGeometry(i: i, j: j, direction: zdir)

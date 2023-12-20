@@ -40,8 +40,8 @@ final class BeamColumn: Selectable {
         self.j = j
         self.chordAngle = chordAngle
         self.geometry = BeamGeometry(id: id,
-                                     i: i.position.metal,
-                                     j: j.position.metal,
+                                     i: i,
+                                     j: j,
                                      zdir: chordVector.metal,
                                      ydir: chordCrossVector.metal)
     }

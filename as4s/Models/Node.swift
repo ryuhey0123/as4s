@@ -11,7 +11,11 @@ import OpenSeesCoder
 final class Node: Selectable {
     
     var id: Int
-    var position: float3
+    
+    var position: float3 {
+        didSet { geometry.model.position = position.metal }
+    }
+    
     var disp: float3 = .zero
     var geometry: NodeGeometry
     

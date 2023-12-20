@@ -113,6 +113,20 @@ enum Actions {
     }
     
     
+    // MARK: Geometry Transforom
+    
+    static func moveSelectedObject(to value: float3, store: Store) {
+        let objects = store.selectedObjects
+        guard !objects.isEmpty else { return }
+        
+        for object in objects {
+            if let object = object as? Node {
+                object.position += value
+            }
+        }
+    }
+    
+    
     // MARK: - Import
     
     static func buildSmallModel(store: Store) {
