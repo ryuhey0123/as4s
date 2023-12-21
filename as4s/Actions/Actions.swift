@@ -150,7 +150,7 @@ enum Actions {
         Actions.addBeam(id: 11, i: 4, j: 8, store: store)
         Actions.addBeam(id: 12, i: 3, j: 7, store: store)
         
-        Actions.addSupport(id: 1, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(id: 1, constrValues: [1, 1, 1, 1, 1, 1], store: store)
         Actions.addSupport(id: 2, constrValues: [1, 1, 1, 0, 0, 0], store: store)
         Actions.addSupport(id: 3, constrValues: [1, 1, 1, 0, 0, 0], store: store)
         Actions.addSupport(id: 4, constrValues: [1, 1, 1, 0, 0, 0], store: store)

@@ -31,6 +31,10 @@ final class Support: Renderable {
         self.node = node
         self.constrValues = constrValues
         self.geometry = MVCSupportGeometry(target: node.position.metal, type: type, color: float4(color))
+        
+        node.updateHandlers.append {
+            self.geometry.target = self.node.position.metal
+        }
     }
     
     func appendTo(model: Model) {

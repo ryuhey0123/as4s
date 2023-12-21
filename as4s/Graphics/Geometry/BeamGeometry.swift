@@ -113,6 +113,23 @@ struct BeamGeometry: Geometry {
         localCoord.yDir = ydir
         localCoord.zDir = zdir
         
+        vX.direction = zdir
+        vY.direction = ydir
+        vZ.direction = zdir
+        mX.direction = zdir
+        mY.direction = zdir
+        mZ.direction = ydir
+        
+        if model.i != i {
+            updateNode(i: i)
+        }
+        
+        if model.j != j {
+            updateNode(j: j)
+        }
+    }
+    
+    private mutating func updateNode(i: float3) {
         model.i = i
         disp.i = i
         vX.i = i
@@ -127,7 +144,9 @@ struct BeamGeometry: Geometry {
         mXiLabel.target = i
         mYiLabel.target = i
         mZiLabel.target = i
-        
+    }
+    
+    private mutating func updateNode(j: float3) {
         model.j = j
         disp.j = j
         vX.j = j
@@ -143,12 +162,6 @@ struct BeamGeometry: Geometry {
         mYjLabel.target = j
         mZjLabel.target = j
         
-        vX.direction = zdir
-        vY.direction = ydir
-        vZ.direction = zdir
-        mX.direction = zdir
-        mY.direction = zdir
-        mZ.direction = ydir
     }
     
     mutating func updateGeometry(force: [Float]) {

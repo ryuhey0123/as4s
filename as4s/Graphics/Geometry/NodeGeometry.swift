@@ -8,7 +8,7 @@
 import SwiftUI
 import Mevic
 
-class NodeGeometry: Geometry {
+struct NodeGeometry: Geometry {
     
     typealias ElementConfigType = Config.node
     
@@ -17,7 +17,11 @@ class NodeGeometry: Geometry {
     var disp: MVCPointGeometry
     var dispLabel: MVCLabelGeometry
     
-    var color: Color = ElementConfigType.color
+    var color: Color = ElementConfigType.color {
+        didSet {
+            model.color = float4(float3(color), 1)
+        }
+    }
     
     init(id: Int, position: float3) {
         let position = position.metal
@@ -27,7 +31,7 @@ class NodeGeometry: Geometry {
         dispLabel = Self.defaultLabel(target: position, tag: id.description)
     }
     
-    func update(id: Int, position: float3) {
+    mutating func update(id: Int, position: float3) {
         let position = position.metal
         model.position = position
         disp.position = position
