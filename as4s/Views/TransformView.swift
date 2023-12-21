@@ -45,8 +45,7 @@ struct TransformView: View {
             .pickerStyle(.radioGroup)
             
             HStack {
-                PointValueInput(valueX: $dX, valueY: $dY, valueZ: $dZ,
-                                x: "dX", y: "dY", z: "dZ")
+                PointValueInput(valueX: $dX, valueY: $dY, valueZ: $dZ, x: "dX", y: "dY", z: "dZ")
                 .disabled(mode != .move)
                 .onSubmit {
                     if let store = sharedStore.activeStore {
@@ -54,8 +53,7 @@ struct TransformView: View {
                         dismiss()
                     }
                 }
-                PointValueInput(valueX: $X, valueY: $Y, valueZ: $Z,
-                                x: "X", y: "Y", z: "Z")
+                PointValueInput(valueX: $X, valueY: $Y, valueZ: $Z, x: "X", y: "Y", z: "Z")
                 .disabled(mode != .change)
                 .onSubmit {
                     changeConfirm()
