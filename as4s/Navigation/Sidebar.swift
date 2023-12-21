@@ -22,6 +22,10 @@ struct Sidebar: View {
     
     private var visiableToggle: some View {
         VStack(alignment: .leading) {
+            Section("Caption") {
+                Toggle(isOn: $store.scene.captionLayer.globalCoord.isShown, label: { Text("Global Coord") })
+                Toggle(isOn: $store.scene.captionLayer.beamCoord.isShown, label: { Text("Beam Coord") })
+            }
             Section("Model") {
                 Toggle(isOn: $store.scene.modelLayer.isShown, label: { Text("Model") })
                 Toggle(isOn: $store.scene.modelLayer.node.isShown, label: { Text("Node") })

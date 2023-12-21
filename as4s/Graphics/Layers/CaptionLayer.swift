@@ -9,7 +9,15 @@ import SwiftUI
 import Mevic
 
 class CaptionLayer: MVCLayer {
+    
+    var globalCoord = MVCLayer("Caption-GlobalCoord")
+    var beamCoord = MVCLayer("Caption-BeamCoord")
+    
     init() {
         super.init("Caption")
+        append(layer: globalCoord)
+        append(layer: beamCoord)
+        
+        beamCoord.isShown = false
     }
 }

@@ -44,9 +44,6 @@
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
-		B18FBF512B32DCA700338FC9 /* RFLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18FBF502B32DCA700338FC9 /* RFLine.swift */; };
-		B18FBF542B32DF6500338FC9 /* RFTrapezoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18FBF532B32DF6500338FC9 /* RFTrapezoid.swift */; };
-		B18FBF562B32EBC100338FC9 /* RFLineCoord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18FBF552B32EBC100338FC9 /* RFLineCoord.swift */; };
 		B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */; };
 		B19DFE032B30936A00B7F7B8 /* NodeTransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE022B30936A00B7F7B8 /* NodeTransformView.swift */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
@@ -122,9 +119,6 @@
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
-		B18FBF502B32DCA700338FC9 /* RFLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFLine.swift; sourceTree = "<group>"; };
-		B18FBF532B32DF6500338FC9 /* RFTrapezoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFTrapezoid.swift; sourceTree = "<group>"; };
-		B18FBF552B32EBC100338FC9 /* RFLineCoord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFLineCoord.swift; sourceTree = "<group>"; };
 		B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModelLayer.swift; sourceTree = "<group>"; };
 		B19DFE022B30936A00B7F7B8 /* NodeTransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTransformView.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -228,7 +222,6 @@
 			children = (
 				B12AD6402B16153400D4D315 /* GraphicController.swift */,
 				B1AF9F722B21B6810066C617 /* GraphicScene.swift */,
-				B18FBF522B32DEFD00338FC9 /* Referencable Geometry */,
 				B14E2E622B2F21EF0032AE30 /* Geometry */,
 				B14E2E4A2B2E9FA80032AE30 /* Layers */,
 			);
@@ -366,16 +359,6 @@
 				B1424E592B2A079300F9A22C /* Constraint */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		B18FBF522B32DEFD00338FC9 /* Referencable Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				B18FBF532B32DF6500338FC9 /* RFTrapezoid.swift */,
-				B18FBF502B32DCA700338FC9 /* RFLine.swift */,
-				B18FBF552B32EBC100338FC9 /* RFLineCoord.swift */,
-			);
-			path = "Referencable Geometry";
 			sourceTree = "<group>";
 		};
 		B1A65B8D2ADD367C001A9C7B /* Utilities */ = {
@@ -634,14 +617,11 @@
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */,
-				B18FBF562B32EBC100338FC9 /* RFLineCoord.swift in Sources */,
 				B13AED962B2C26430028B410 /* ModelView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
-				B18FBF512B32DCA700338FC9 /* RFLine.swift in Sources */,
 				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
 				B14E2E612B2F1F2C0032AE30 /* NodalLoadGeometry.swift in Sources */,
-				B18FBF542B32DF6500338FC9 /* RFTrapezoid.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -71,12 +71,8 @@ enum Actions {
     // MARK: - Other Geometry
     
     static func addCoordinate(store: Store) {
-        let x = MVCLineGeometry(j: .x.metal * 100, color: .x, selectable: false)
-        let y = MVCLineGeometry(j: .y.metal * 100, color: .y, selectable: false)
-        let z = MVCLineGeometry(j: .z.metal * 100, color: .z, selectable: false)
-        store.scene.captionLayer.append(geometry: x)
-        store.scene.captionLayer.append(geometry: y)
-        store.scene.captionLayer.append(geometry: z)
+        let coord = MVCCoordGeometry(target: .zero, xDir: .x, yDir: .y, zDir: .z, scale: 100)
+        store.scene.captionLayer.globalCoord.append(geometry: coord)
         
 //        store.scene.overlayLayer.append(geometry: MVCCursor())
         store.scene.overlayLayer.append(geometry: MVCSelectionBox())

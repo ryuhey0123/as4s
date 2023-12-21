@@ -74,7 +74,7 @@ extension BeamColumn: Renderable {
         scene.modelLayer.beamLabel.append(geometry: geometry.label)
         scene.dispModelLayer.beam.append(geometry: geometry.disp)
         scene.forceLayer.append(forceGeometry: geometry)
-        scene.captionLayer.append(geometry: geometry.localCoord)
+        scene.captionLayer.beamCoord.append(geometry: geometry.localCoord)
     }
 }
 
