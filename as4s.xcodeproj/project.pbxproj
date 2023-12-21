@@ -338,9 +338,8 @@
 		B161BC502ADB962A00AABA48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B13AED952B2C26430028B410 /* ModelView.swift */,
-				B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */,
 				B19DFE022B30936A00B7F7B8 /* TransformView.swift */,
+				B198903E2B33E44100CF0431 /* ModelView */,
 				B12324282B31D2D700E8D6B0 /* Inspector */,
 			);
 			path = Views;
@@ -359,6 +358,15 @@
 				B1424E592B2A079300F9A22C /* Constraint */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B198903E2B33E44100CF0431 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+				B13AED952B2C26430028B410 /* ModelView.swift */,
+				B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */,
+			);
+			path = ModelView;
 			sourceTree = "<group>";
 		};
 		B1A65B8D2ADD367C001A9C7B /* Utilities */ = {

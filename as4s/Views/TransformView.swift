@@ -21,6 +21,8 @@ struct TransformView: View {
     
     @State private var mode: Mode = .move
     
+    @State private var isCopy: Bool = false
+    
     private enum Mode {
         case move, change
     }
@@ -60,6 +62,11 @@ struct TransformView: View {
                 }
             }
             
+            Toggle(isOn: $isCopy) {
+                Text("Copy")
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            
             HStack {
                 Button("Cancel") {
                     dismiss()
@@ -70,6 +77,7 @@ struct TransformView: View {
                         case .move:
                             if let store = sharedStore.activeStore {
                                 Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
+                                    
                             }
                         case .change:
                             changeConfirm()
@@ -82,7 +90,7 @@ struct TransformView: View {
             .frame(maxWidth: 360, alignment: .trailing)
         }
         .padding(20)
-        .frame(width: 400, height: 200)
+        .frame(width: 400, height: 230)
     }
     
     private struct PointValueInput: View {
