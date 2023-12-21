@@ -49,6 +49,7 @@ struct NodeTransformView: View {
                 .onSubmit {
                     if let store = sharedStore.activeStore {
                         Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
+                        dismiss()
                     }
                 }
                 PointValueInput(valueX: $X, valueY: $Y, valueZ: $Z,

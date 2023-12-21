@@ -13,20 +13,25 @@ final class Node: Selectable {
     var id: Int
     
     var position: float3 {
-        didSet { geometry.model.position = position.metal }
+        didSet { updateHandlers.forEach { $0() } }
     }
     
     var disp: float3 = .zero
+    
     var geometry: NodeGeometry
     
     var isSelected: Bool = false {
         didSet { geometry.color = isSelected ? Config.node.selectedColor : Config.node.color }
     }
     
+    lazy var updateHandlers: [() -> ()] = [
+        { self.geometry.update(id: self.id, position: self.position) }
+    ]
+    
     init(id: Int, position: float3) {
         self.id = id
         self.position = position
-        self.geometry = NodeGeometry(id: id, position: position.metal)
+        self.geometry = NodeGeometry(id: id, position: position)
     }
 }
 

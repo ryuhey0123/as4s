@@ -5,15 +5,19 @@
 //  Created by Ryuhei Fujita on 2023/11/17.
 //
 
+import SwiftUI
+import simd
 import Mevic
 import OpenSeesCoder
-import simd
 
 final class BeamColumn: Selectable {
     
     var id: Int
+    
     var i: Node
+    
     var j: Node
+    
     var chordAngle: Float
     
     var geometry: BeamGeometry!
@@ -40,10 +44,21 @@ final class BeamColumn: Selectable {
         self.j = j
         self.chordAngle = chordAngle
         self.geometry = BeamGeometry(id: id,
-                                     i: i,
-                                     j: j,
-                                     zdir: chordVector.metal,
-                                     ydir: chordCrossVector.metal)
+                                     i: i.position,
+                                     j: j.position,
+                                     xdir: vector.normalized,
+                                     zdir: chordVector,
+                                     ydir: chordCrossVector)
+        
+        i.updateHandlers.append {
+            self.geometry.updateNode(id: self.id, i: self.i.position, j: self.j.position,
+                                     xdir: self.vector.normalized, zdir: self.chordVector, ydir: self.chordCrossVector)
+        }
+        
+        j.updateHandlers.append {
+            self.geometry.updateNode(id: self.id, i: self.i.position, j: self.j.position,
+                                     xdir: self.vector.normalized, zdir: self.chordVector, ydir: self.chordCrossVector)
+        }
     }
 }
 
@@ -59,6 +74,7 @@ extension BeamColumn: Renderable {
         scene.modelLayer.beamLabel.append(geometry: geometry.label)
         scene.dispModelLayer.beam.append(geometry: geometry.disp)
         scene.forceLayer.append(forceGeometry: geometry)
+        scene.captionLayer.append(geometry: geometry.localCoord)
     }
 }
 
@@ -77,6 +93,6 @@ extension BeamColumn: OSElasticBeamColumn {
     var massDens: Float? { nil }
     
     var transformation: Transformation {
-        Transformation(id: id, vector: chordVector)
+        Transformation(id: id, vector: -chordVector)
     }
 }

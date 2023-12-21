@@ -69,11 +69,11 @@ extension float3 {
         
         var crossVector: float4 = .zero
         if self.z == 0 {
-            crossVector = .init(0, 0, -1, 1)
+            crossVector = .init(0, 0, 1, 1)
         } else if x == 0 && y == 0 {
-            crossVector = .init(1, 0, 0, 1)
+            crossVector = .init(-1, 0, 0, 1)
         } else {
-            crossVector = .init(x, y, -(pow(x, 2) + pow(y, 2)) / z, 1)
+            crossVector = .init(-x, -y, (pow(x, 2) + pow(y, 2)) / z, 1)
         }
         
         let rotatedVector = rotateMatrix * crossVector

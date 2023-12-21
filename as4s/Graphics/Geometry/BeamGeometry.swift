@@ -29,12 +29,12 @@ struct BeamGeometry: Geometry {
         }
     }
     
-    var model: RFLine
+    var model: MVCLineGeometry
     var label: MVCLabelGeometry
     
     var disp: MVCLineGeometry
     
-    var vX: RFTrapezoid
+    var vX: MVCTrapezoidGeometry
     var vY: MVCTrapezoidGeometry
     var vZ: MVCTrapezoidGeometry
     var mX: MVCTrapezoidGeometry
@@ -54,53 +54,20 @@ struct BeamGeometry: Geometry {
     var mYjLabel: MVCLabelGeometry
     var mZjLabel: MVCLabelGeometry
     
-    func updateI(i: float3, j: float3) {
-        model.i = i
-        label.target = (i + j) / 2
-        disp.i = i
-        vX.i = i
-        vY.i = i
-        vZ.i = i
-        mX.i = i
-        mY.i = i
-        mZ.i = i
-        vXiLabel.target = i
-        vYiLabel.target = i
-        vZiLabel.target = i
-        mXiLabel.target = i
-        mYiLabel.target = i
-        mZiLabel.target = i
-    }
+    var localCoord: MVCCoordGeometry
     
-    func updateJ(i: float3, j: float3) {
-        model.j = j
-        label.target = (i + j) / 2
-        disp.j = j
-        vX.j = j
-        vY.j = j
-        vZ.j = j
-        mX.j = j
-        mY.j = j
-        mZ.j = j
-        vXjLabel.target = j
-        vYjLabel.target = j
-        vZjLabel.target = j
-        mXjLabel.target = j
-        mYjLabel.target = j
-        mZjLabel.target = j
-    }
-    
-    init(id: Int, i: Node, j: Node, zdir: float3, ydir: float3) {
+    init(id: Int, i: float3, j: float3, xdir: float3, zdir: float3, ydir: float3) {
+        let i = i.metal
+        let j = j.metal
+        let xdir = xdir.metal
+        let zdir = zdir.metal
+        let ydir = ydir.metal
         
-        model = RFLine(i: i, j: j, color: ElementConfigType.color, selectable: true)
-        
-        let i = i.position.metal
-        let j = j.position.metal
-        
+        model = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         label = Self.defaultLabel(target: (i + j) / 2, tag: id.description)
         disp = MVCLineGeometry(i: i, j: j, iColor: float4(color), jColor: float4(color))
         
-        vX = RFTrapezoid(line: model, iColor: .red, jColor: .blue, direction: .z)
+        vX = Self.defalutGeometry(i: i, j: j, direction: zdir)
         vY = Self.defalutGeometry(i: i, j: j, direction: ydir)
         vZ = Self.defalutGeometry(i: i, j: j, direction: zdir)
         mX = Self.defalutGeometry(i: i, j: j, direction: zdir)
@@ -119,6 +86,8 @@ struct BeamGeometry: Geometry {
         mXjLabel = Self.defaultLabel(target: j)
         mYjLabel = Self.defaultLabel(target: j)
         mZjLabel = Self.defaultLabel(target: j)
+        
+        localCoord = MVCCoordGeometry(target: (i + j) / 2, xDir: xdir, yDir: ydir, zDir: zdir, scale: 100)
     }
     
     static func defalutGeometry(i: float3, j: float3, direction: float3) -> MVCTrapezoidGeometry {
@@ -129,6 +98,57 @@ struct BeamGeometry: Geometry {
                              direction: direction,
                              iColor: float4(Config.postprocess.minForceColor),
                              jColor: float4(Config.postprocess.maxForceColor))
+    }
+    
+    mutating func updateNode(id: Int, i: float3, j: float3, xdir: float3, zdir: float3, ydir: float3) {
+        let i = i.metal
+        let j = j.metal
+        let xdir = xdir.metal
+        let zdir = zdir.metal
+        let ydir = ydir.metal
+        
+        label.target = (i + j) / 2
+        localCoord.target = (i + j) / 2
+        localCoord.xDir = xdir
+        localCoord.yDir = ydir
+        localCoord.zDir = zdir
+        
+        model.i = i
+        disp.i = i
+        vX.i = i
+        vY.i = i
+        vZ.i = i
+        mX.i = i
+        mY.i = i
+        mZ.i = i
+        vXiLabel.target = i
+        vYiLabel.target = i
+        vZiLabel.target = i
+        mXiLabel.target = i
+        mYiLabel.target = i
+        mZiLabel.target = i
+        
+        model.j = j
+        disp.j = j
+        vX.j = j
+        vY.j = j
+        vZ.j = j
+        mX.j = j
+        mY.j = j
+        mZ.j = j
+        vXjLabel.target = j
+        vYjLabel.target = j
+        vZjLabel.target = j
+        mXjLabel.target = j
+        mYjLabel.target = j
+        mZjLabel.target = j
+        
+        vX.direction = zdir
+        vY.direction = ydir
+        vZ.direction = zdir
+        mX.direction = zdir
+        mY.direction = zdir
+        mZ.direction = ydir
     }
     
     mutating func updateGeometry(force: [Float]) {

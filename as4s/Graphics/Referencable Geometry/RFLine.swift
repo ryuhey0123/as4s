@@ -16,16 +16,20 @@ class RFLine: MVCLineGeometry {
     
     var chordAngle: Float
     
+    var center: float3 {
+        (jNode.position + iNode.position).metal / 2
+    }
+    
     var vector: float3 {
         (jNode.position - iNode.position).metal
     }
     
     var chordVector: float3 {
-        vector.chordVector(angle: chordAngle).metal
+        vector.chordVector(angle: chordAngle)
     }
     
     var chordCrossVector: float3 {
-        cross(chordVector, vector).normalized.metal
+        cross(chordVector, vector).normalized
     }
     
     override var i: float3 {
