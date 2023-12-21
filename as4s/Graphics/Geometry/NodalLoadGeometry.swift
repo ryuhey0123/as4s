@@ -21,6 +21,7 @@ struct NodalLoadGeometry: Geometry {
     }
     
     init(id: Int, position: float3, loadvalues: [Float]) {
+        let position = position.metal
         let arrowhead = position - float3(loadvalues[0..<3]).metal * 0.01
         let tag = "(\(loadvalues[0] / 1000), \(loadvalues[1] / 1000), \(loadvalues[2] / 1000))"
         model = MVCArrowGeometry(i: arrowhead,
@@ -28,5 +29,14 @@ struct NodalLoadGeometry: Geometry {
                                  color: float3(color),
                                  thickness: 0.01)
         label = Self.defaultLabel(target: arrowhead, tag: tag)
+    }
+    
+    mutating func updateNode(id: Int, position: float3) {
+        let position = position.metal
+        let distance = model.j - position
+        
+        model.i -= distance
+        model.j -= distance
+        label.target -= distance
     }
 }

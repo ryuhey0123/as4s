@@ -19,7 +19,11 @@ class NodalLoad {
         self.id = id
         self.node = node
         self.loadvalues = loadvalues
-        self.geometry = NodalLoadGeometry(id: id, position: node.position.metal, loadvalues: loadvalues)
+        self.geometry = NodalLoadGeometry(id: id, position: node.position, loadvalues: loadvalues)
+        
+        node.updateHandlers.append {
+            self.geometry.updateNode(id: self.id, position: self.node.position)
+        }
     }
 }
 
