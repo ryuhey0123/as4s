@@ -1,5 +1,5 @@
 //
-//  NodeTransformView.swift
+//  TransformView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/18.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NodeTransformView: View {
+struct TransformView: View {
     @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject var sharedStore: SharedStore
@@ -122,6 +122,6 @@ struct NodeTransformView: View {
 }
 
 #Preview {
-    NodeTransformView()
+    TransformView()
 }
 

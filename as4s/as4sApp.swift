@@ -29,7 +29,7 @@ struct as4sApp: App {
         }
         
         Window("Move Geometry", id: "move-geometry") {
-            NodeTransformView()
+            TransformView()
                 .environmentObject(sharedStore)
         }
     }
