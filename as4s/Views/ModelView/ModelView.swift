@@ -36,7 +36,7 @@ private struct MetalViewRepresentable: ViewRepresentable {
     let store: Store?
     
 #if os(macOS)
-    func makeNSView(context: Context) -> some NSView {        
+    func makeNSView(context: Context) -> some NSView {
         let rightDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleRightDrag(_:)))
         rightDragGesture.buttonMask = 0x2  // Right button
         view.addGestureRecognizer(rightDragGesture)

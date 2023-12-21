@@ -67,7 +67,7 @@ class ModelViewCoordinator: NSObject {
     
     func handleMouseUp(with event: NSEvent) {
         Actions.select(store: store)
-        controller.renderer.selectionMode = 0
+        controller.selectionMode = 0
     }
     
     func handleMouseMoved(with event: NSEvent) {
