@@ -52,7 +52,11 @@ struct Sidebar: View {
                     Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
                     Toggle(isOn: $store.scene.forceLayer.mZ.isShown, label: { Text("Mz") })
                 }
-                Toggle(isOn: $store.scene.dispModelLayer.isShown, label: { Text("Displacement") })
+                
+                Button("Displacement") {
+                    store.scene.dispModelLayer.isHidden.toggle()
+                    store.scene.modelLayer.isUnEnabled.toggle()
+                }
             }
         }
     }
