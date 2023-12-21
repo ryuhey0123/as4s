@@ -8,26 +8,14 @@
 import SwiftUI
 
 struct ModelCommands: Commands {
-    @FocusedValue(\.store) var store
-    @Environment(\.openWindow) var openWindow
+    @FocusedValue(\.showTransform) private var showPreview
     
     var body: some Commands {
         CommandMenu("Model") {
             Button {
-                openWindow(id: "add-node")
+                showPreview?.wrappedValue = true
             } label: {
-                Label("Add Node...", systemImage: "plus")
-            }
-            Button {
-                openWindow(id: "add-node")
-            } label: {
-                Label("Add Beam...", systemImage: "plus")
-            }
-            Divider()
-            Button {
-                openWindow(id: "move-geometry")
-            } label: {
-                Label("Move...", systemImage: "plus")
+                Label("Transform...", systemImage: "plus")
             }
             .keyboardShortcut("m", modifiers: .command)
         }

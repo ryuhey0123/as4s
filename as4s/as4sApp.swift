@@ -23,25 +23,26 @@ struct as4sApp: App {
         .commands {
             ModelCommands()
         }
-        
-        Window("Add node", id: "add-node") {
-            Text("Hello")
-        }
-        
-        Window("Move Geometry", id: "move-geometry") {
-            TransformView()
-                .environmentObject(sharedStore)
-        }
     }
 }
 
 extension FocusedValues {
-    struct StoreFocusedValues: FocusedValueKey {
+    
+    struct StoreFocusedValuesKey: FocusedValueKey {
         typealias Value = Store
+    }
+    
+    struct ShowTransformKey: FocusedValueKey {
+        typealias Value = Binding<Bool>
     }
 
     var store: Store? {
-        get { self[StoreFocusedValues.self] }
-        set { self[StoreFocusedValues.self] = newValue }
+        get { self[StoreFocusedValuesKey.self] }
+        set { self[StoreFocusedValuesKey.self] = newValue }
+    }
+    
+    var showTransform: Binding<Bool>? {
+        get { self[ShowTransformKey.self] }
+        set { self[ShowTransformKey.self] = newValue }
     }
 }

@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct TransformView: View {
+    @EnvironmentObject var store: Store
     @Environment(\.dismiss) private var dismiss
-    
-    @EnvironmentObject var sharedStore: SharedStore
     
     @State private var dX: Float = 0
     @State private var dY: Float = 0
@@ -20,7 +19,6 @@ struct TransformView: View {
     @State private var Z: Float = 0
     
     @State private var mode: Mode = .move
-    
     @State private var isCopy: Bool = false
     
     private enum Mode {
@@ -46,18 +44,16 @@ struct TransformView: View {
             
             HStack {
                 PointValueInput(valueX: $dX, valueY: $dY, valueZ: $dZ, x: "dX", y: "dY", z: "dZ")
-                .disabled(mode != .move)
-                .onSubmit {
-                    if let store = sharedStore.activeStore {
+                    .disabled(mode != .move)
+                    .onSubmit {
                         Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
                         dismiss()
                     }
-                }
                 PointValueInput(valueX: $X, valueY: $Y, valueZ: $Z, x: "X", y: "Y", z: "Z")
-                .disabled(mode != .change)
-                .onSubmit {
-                    changeConfirm()
-                }
+                    .disabled(mode != .change)
+                    .onSubmit {
+                        changeConfirm()
+                    }
             }
             
             Toggle(isOn: $isCopy) {
@@ -73,9 +69,7 @@ struct TransformView: View {
                 Button("OK") {
                     switch mode {
                         case .move:
-                            if let store = sharedStore.activeStore {
-                                Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
-                            }
+                            Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
                         case .change:
                             changeConfirm()
                     }
