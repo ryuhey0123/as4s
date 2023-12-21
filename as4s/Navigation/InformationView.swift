@@ -43,21 +43,25 @@ fileprivate struct InformationTextView: View {
     var idealWidth: CGFloat
     
     var body: some View {
-        VStack {
-            Text("\(title):")
-                .font(.headline)
-                .foregroundStyle(.placeholder)
-                .frame(maxWidth: .infinity, alignment: .leading)
+        ZStack(alignment: .top) {
             ScrollView(.vertical) {
                 Text(text)
                     .font(.callout)
                     .fontDesign(.monospaced)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .padding(.leading)
             }
+            
+            Text("\(title):")
+                .font(.headline)
+                .foregroundStyle(.tertiary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+                .padding(.vertical, 5)
+                .background(.ultraThinMaterial)
         }
         .frame(idealWidth: idealWidth, maxWidth: .infinity)
-        .padding(.leading)
     }
 }
 
