@@ -34,10 +34,10 @@ struct TransformView: View {
     var body: some View {
         VStack {
             Picker(selection: $mode, label: Text("")) {
-                Text("Transform")
+                Text("Relative")
                     .tag(Mode.move)
                     .position(x: 40)
-                Text("Change")
+                Text("Absolute")
                     .tag(Mode.change)
                     .position(x: 40)
             }
