@@ -11,17 +11,31 @@ import OpenSeesCoder
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
+    
     @State private var showingInspector: Bool = false
     @State private var showingTransform: Bool = false
+    @State private var showingInformation: Bool = false
     
     var body: some View {
         NavigationSplitView {
             Sidebar()
         } detail: {
-            ModelView(store: store)
-                .onAppear {
-                    Actions.addCoordinate(store: store)
+            VSplitView {
+                VStack(spacing: -1.0) {
+                    ModelView(store: store)
+                        .onAppear {
+                            Actions.addCoordinate(store: store)
+                    }
+                    Divider()
+                        .background(.black)
+                    AccessoryView(showingInformation: $showingInformation)
                 }
+                if showingInformation {
+                    InformationView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+                }
+                    
+            }
+            
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
@@ -55,4 +69,25 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store())
+        .frame(width: 1000)
+}
+
+struct AccessoryView: View {
+    @Binding var showingInformation: Bool
+    
+    var body: some View {
+        HStack {
+            Text("Hello!")
+                .foregroundStyle(.secondary)
+            Spacer()
+            Toggle(isOn: $showingInformation, label: {
+                Label("Show Information", systemImage: "square.bottomthird.inset.filled")
+                    .labelStyle(.iconOnly)
+            })
+            .toggleStyle(.button)
+            .buttonStyle(.borderless)
+        }
+        .padding(.vertical, 5)
+        .padding(.horizontal)
+    }
 }

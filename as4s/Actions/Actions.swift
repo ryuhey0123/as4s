@@ -209,8 +209,7 @@ enum Actions {
     static func analayze(store: Store) {
         exexuteOpenSees(store: store)
         
-        guard let data = store.openSeesStdErrData else { return }
-        let result = parseResultData(data: data)
+        let result = parseResultData(data: store.openSeesStdErr)
         
         updateNodeResult(nodeDisps: result.node, store: store)
         updateEleResult(eleForce: result.ele, store: store)
@@ -226,6 +225,8 @@ enum Actions {
             fatalError("Cannot write command file at: \(path.path())")
         }
         
+        store.openSeesInput = String(data: data, encoding: .utf8) ?? ""
+        
         let process = Process()
         let outputPipe = Pipe()
         let errorPipe = Pipe()
@@ -240,16 +241,10 @@ enum Actions {
             process.waitUntilExit()
             
             let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-            store.openSeesStdOutData = outputData
-            
-            print("OutputData:")
-            print(String(data: outputData, encoding: .utf8) ?? "")
+            store.openSeesStdOut = String(data: outputData, encoding: .utf8) ?? ""
             
             let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-            store.openSeesStdErrData = errorData
-            
-            print("ErrorData:")
-            print(String(data: errorData, encoding: .utf8) ?? "")
+            store.openSeesStdErr = String(data: errorData, encoding: .utf8) ?? ""
             
             if process.terminationStatus == 0 {
                 Logger.openSees.info("Success execute OpenSees")
@@ -261,10 +256,8 @@ enum Actions {
         }
     }
     
-    static func parseResultData(data: Data) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
-        guard let resultLines = String(data: data, encoding: .utf8)?.components(separatedBy: .newlines) else {
-            fatalError("Cannnot read lines")
-        }
+    static func parseResultData(data: String) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
+        let resultLines = data.components(separatedBy: .newlines)
         
         var nodeDisps: [Int: [Float]] = [:]
         var eleForce: [Int: [Float]] = [:]

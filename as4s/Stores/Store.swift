@@ -18,8 +18,9 @@ final class Store: ObservableObject {
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]
     
-    var openSeesStdOutData: Data?
-    var openSeesStdErrData: Data?
+    @Published var openSeesInput: String = ""
+    @Published var openSeesStdOut: String = ""
+    @Published var openSeesStdErr: String = ""
     
     init(model: Model = Model()) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
