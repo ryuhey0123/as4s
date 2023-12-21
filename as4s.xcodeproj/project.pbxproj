@@ -21,8 +21,6 @@
 		B1424E562B29E09800F9A22C /* Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E552B29E09800F9A22C /* Mass.swift */; };
 		B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5B2B2A0C5700F9A22C /* Selectable.swift */; };
 		B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */; };
-		B1424E612B2AB16800F9A22C /* PostProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E602B2AB16800F9A22C /* PostProcess.swift */; };
-		B1424E632B2AB19100F9A22C /* NodeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E622B2AB19100F9A22C /* NodeResult.swift */; };
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
@@ -44,6 +42,7 @@
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
+		B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19890412B33EA8D00CF0431 /* BeamInspector.swift */; };
 		B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */; };
 		B19DFE032B30936A00B7F7B8 /* TransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE022B30936A00B7F7B8 /* TransformView.swift */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
@@ -92,8 +91,6 @@
 		B1424E552B29E09800F9A22C /* Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mass.swift; sourceTree = "<group>"; };
 		B1424E5B2B2A0C5700F9A22C /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElasticSection.swift; sourceTree = "<group>"; };
-		B1424E602B2AB16800F9A22C /* PostProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProcess.swift; sourceTree = "<group>"; };
-		B1424E622B2AB19100F9A22C /* NodeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeResult.swift; sourceTree = "<group>"; };
 		B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewCoordinator.swift; sourceTree = "<group>"; };
 		B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
@@ -119,6 +116,7 @@
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
+		B19890412B33EA8D00CF0431 /* BeamInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamInspector.swift; sourceTree = "<group>"; };
 		B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModelLayer.swift; sourceTree = "<group>"; };
 		B19DFE022B30936A00B7F7B8 /* TransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformView.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -168,6 +166,7 @@
 			children = (
 				B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */,
 				B12324292B31D2E500E8D6B0 /* NodeInspector.swift */,
+				B19890412B33EA8D00CF0431 /* BeamInspector.swift */,
 			);
 			path = Inspector;
 			sourceTree = "<group>";
@@ -206,15 +205,6 @@
 				B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */,
 			);
 			path = Specification;
-			sourceTree = "<group>";
-		};
-		B1424E5F2B2AB15200F9A22C /* PostProcess */ = {
-			isa = PBXGroup;
-			children = (
-				B1424E602B2AB16800F9A22C /* PostProcess.swift */,
-				B1424E622B2AB19100F9A22C /* NodeResult.swift */,
-			);
-			path = PostProcess;
 			sourceTree = "<group>";
 		};
 		B1424E692B2AEBA400F9A22C /* Graphics */ = {
@@ -297,7 +287,6 @@
 				B14E2E4C2B2EAACC0032AE30 /* Main Menu */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
-				B1424E5F2B2AB15200F9A22C /* PostProcess */,
 				B161BC512ADB963800AABA48 /* Models */,
 				B1424E692B2AEBA400F9A22C /* Graphics */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
@@ -612,12 +601,11 @@
 				B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */,
+				B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */,
 				B1424E562B29E09800F9A22C /* Mass.swift in Sources */,
 				B14E2E5D2B2F1D440032AE30 /* NodeGeometry.swift in Sources */,
-				B1424E632B2AB19100F9A22C /* NodeResult.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
-				B1424E612B2AB16800F9A22C /* PostProcess.swift in Sources */,
 				B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */,
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */,

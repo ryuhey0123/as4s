@@ -14,7 +14,11 @@ struct ObjectInspector: View {
         if selectedObjects.count == 1 {
             if let node = selectedObjects[0] as? Node {
                 NodeInspector(node: node)
+            } else if let beam = selectedObjects[0] as? BeamColumn {
+                BeamInspector(beam: beam)
             }
+        } else {
+            Text("Selected \(selectedObjects.count) Objects.")
         }
     }
 }

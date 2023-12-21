@@ -75,7 +75,6 @@ struct TransformView: View {
                         case .move:
                             if let store = sharedStore.activeStore {
                                 Actions.moveSelectedObject(to: .init(dX, dY, dZ), store: store)
-                                    
                             }
                         case .change:
                             changeConfirm()
