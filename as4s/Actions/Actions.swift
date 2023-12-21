@@ -74,7 +74,7 @@ enum Actions {
         let coord = MVCCoordGeometry(target: .zero, xDir: .x, yDir: .y, zDir: .z, scale: 100)
         store.scene.captionLayer.globalCoord.append(geometry: coord)
         
-//        store.scene.overlayLayer.append(geometry: MVCCursor())
+        store.scene.overlayLayer.append(geometry: MVCCursor())
         store.scene.overlayLayer.append(geometry: MVCSelectionBox())
         
         Logger.action.trace("\(#function): Add Coordinate")
