@@ -20,32 +20,6 @@ class ModelViewCoordinator: NSObject {
     }
     
     @objc
-    func handleClick(_ recognizer: NSClickGestureRecognizer) {}
-    
-    @objc
-    func handleLeftDrag(_ recognizer: NSPanGestureRecognizer) {
-        let location = float2(recognizer.location(in: view))
-        let translation = float2(recognizer.translation(in: view))
-        let startLocation = location - translation
-        
-        // TODO: internal
-        switch recognizer.state {
-            case .began:
-                controller.renderer.inputs.dragStartLocation.x = startLocation.x
-                controller.renderer.inputs.dragStartLocation.y = Float(view.frame.height) - startLocation.y
-            case .changed:
-                controller.renderer.inputs.dragLocation.x = location.x
-                controller.renderer.inputs.dragLocation.y = Float(view.frame.height) - location.y
-                controller.renderer.inputs.mode = (startLocation.x < location.x) ? 1 : 2
-            case .ended:
-                Actions.select(store: store)
-                controller.renderer.inputs.mode = 0
-            default:
-                break
-        }
-    }
-    
-    @objc
     func handleRightDrag(_ gestureRecognize: NSPanGestureRecognizer) {
         let velocity = gestureRecognize.velocity(in: view)
         
@@ -84,6 +58,29 @@ class ModelViewCoordinator: NSObject {
         } else {
             let sizedDelta = float2(event.deltaX, event.deltaY) * 0.01 * Config.cameraControllSensitivity.rotate
             controller.scene.camera.rotate(sizedDelta)
+        }
+    }
+    
+    func handleMouseDown(with event: NSEvent) {
+        controller.dragStartLocation = float2(event.locationInWindow, at: view)
+    }
+    
+    func handleMouseUp(with event: NSEvent) {
+        Actions.select(store: store)
+        controller.renderer.selectionMode = 0
+    }
+    
+    func handleMouseMoved(with event: NSEvent) {
+        controller.currentMouseLocation = float2(event.locationInWindow, at: view)
+    }
+    
+    func handleMouseDragged(with event: NSEvent) {
+        controller.currentMouseLocation = float2(event.locationInWindow, at: view)
+        
+        if controller.currentMouseLocation.x > controller.dragStartLocation.x {
+            controller.selectionMode = 1
+        } else {
+            controller.selectionMode = 2
         }
     }
 }

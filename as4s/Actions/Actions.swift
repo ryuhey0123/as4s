@@ -84,7 +84,7 @@ enum Actions {
     // MARK: - Selection
     
     static func select(store: Store) {
-        let selectedIds = store.scene.renderer.getSeletionId()
+        let selectedIds = store.scene.renderer.getSeletedId()
         guard !selectedIds.isEmpty else { return }
         
         let selectedNodes = store.model.nodes.filter({

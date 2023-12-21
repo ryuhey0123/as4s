@@ -26,6 +26,11 @@ extension float2 {
     init(_ xValue: CGFloat, _ yValue: CGFloat) {
         self.init(x: Float(xValue), y: Float(yValue))
     }
+    
+    init(_ point: NSPoint, at view: NSView) {
+        let location = view.convert(point, from: nil)
+        self.init(x: Float(location.x), y: Float(view.frame.height - location.y))
+    }
 }
 
 // MARK: - float3 Extensions

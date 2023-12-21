@@ -13,10 +13,13 @@ struct Sidebar: View {
     var body: some View {
         VStack {
             visiableToggle
-            addPoint
-            importBigTestModel
-            buildSmallTestModel
+            // addPoint
+            // importBigTestModel
+            // buildSmallTestModel
             buildAnalyzeCommand
+        }
+        .onAppear {
+            Actions.buildSmallModel(store: store)
         }
     }
     
