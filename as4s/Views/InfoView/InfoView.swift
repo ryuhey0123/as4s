@@ -18,12 +18,12 @@ struct InfoView: View {
         VStack(spacing: -1.0) {
             HStack(spacing: -1.0) {
                 if showingOutput {
-                    InformationTextView(title: "Output", text: $output, idealWidth: 600)
+                    InformationTextView(title: "Output", text: $output)
                         .transition(.move(edge: .leading))
                 }
                 Divider()
                 if showingInput {
-                    InformationTextView(title: "Input", text: $input, idealWidth: 300)
+                    InformationTextView(title: "Input", text: $input)
                         .transition(.move(edge: .trailing))
                 }
             }
@@ -40,32 +40,58 @@ struct InfoView: View {
 fileprivate struct InformationTextView: View {
     var title: String
     @Binding var text: String
-    var idealWidth: CGFloat
+    
+    @State private var showLabel: Bool = true
+    
+    struct OffsetPreferenceKey: PreferenceKey {
+        static var defaultValue = CGFloat.zero
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value += nextValue()
+        }
+    }
     
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView(.vertical) {
-                Text("\n\n\n" + text)
-                    .font(.callout)
-                    .fontDesign(.monospaced)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .padding(.leading)
+                ZStack {
+                    GeometryReader { geometry in
+                        Color.clear
+                            .preference(
+                                key: OffsetPreferenceKey.self,
+                                // FIXME: Cannnot get window height
+                                value: geometry.frame(in: .global).origin.y + geometry.bounds(of: .scrollView)!.height
+                            )
+                    }
+                    Text("\n\n\n" + text)
+                        .font(.callout)
+                        .fontDesign(.monospaced)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .padding(.leading)
+                }
+                .onPreferenceChange(OffsetPreferenceKey.self) { value in
+                    withAnimation {
+                        showLabel = value > 670
+                        print(value)
+                    }
+                }
             }
             
-            HStack {
-                Text("\(title)")
-                    .font(.headline)
-                    .foregroundStyle(.tertiary)
-                    .padding(.horizontal)
-                    .padding(.vertical, 5)
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                Spacer()
+            if showLabel {
+                HStack {
+                    Text("\(title)")
+                        .font(.headline)
+                        .foregroundStyle(.tertiary)
+                        .padding(.horizontal)
+                        .padding(.vertical, 5)
+                        .background(.ultraThinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                    Spacer()
+                }
+                .padding(7)
             }
-            .padding(7)
         }
-        .frame(idealWidth: idealWidth, maxWidth: .infinity)
+        .frame(maxWidth: .infinity)
     }
 }
 

@@ -12,7 +12,7 @@ struct Detail: View {
     @EnvironmentObject var store: Store
     
     @State private var hide = SideHolder()
-    @State private var showingAccesary: Bool = true
+    @State private var showingAccesary: Bool = false
 
     var body: some View {
         ZStack {
