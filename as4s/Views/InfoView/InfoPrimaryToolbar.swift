@@ -17,32 +17,46 @@ struct InfoPrimaryToolbar: SplitDivider {
     var styling: SplitStyling = SplitStyling(visibleThickness: 25)
     
     var body: some View {
-        HStack {
-            Text("Hello!")
-                .foregroundStyle(.secondary)
-            Spacer()
-            Toggle(isOn: $showingInformation, label: {
-                Label("Show Information", systemImage: "square.bottomthird.inset.filled")
-                    .labelStyle(.iconOnly)
-            })
-            .toggleStyle(.button)
-            .buttonStyle(.borderless)
-            .onChange(of: showingInformation) {
-                withAnimation(.interactiveSpring) {
-                    hide.toggle()
+        ZStack {
+            HStack {
+                Text("Hello!")
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Toggle(isOn: $showingInformation, label: {
+                    Label("Show Information", systemImage: "square.bottomthird.inset.filled")
+                        .labelStyle(.iconOnly)
+                })
+                .toggleStyle(.button)
+                .buttonStyle(.borderless)
+                .onChange(of: showingInformation) {
+                    withAnimation(.interactiveSpring) {
+                        hide.toggle()
+                    }
+                    showingAccesary.toggle()
                 }
-                showingAccesary.toggle()
             }
-        }
-        .padding(.horizontal)
-        .frame(height: 25)
-        .contentShape(Rectangle())
-        .onHover { hovering in
-            if hovering {
-                NSCursor.resizeUpDown.push()
-            } else {
-                NSCursor.pop()
+            .padding(.horizontal)
+            .frame(height: 25)
+            .contentShape(
+                Rectangle()
+            )
+            
+            HStack {
+                Spacer()
+                    .frame(width: 100)
+                Rectangle()
+                    .fill(.clear)
+                    .onHover { hovering in
+                        if hovering {
+                            NSCursor.resizeUpDown.push()
+                        } else {
+                            NSCursor.pop()
+                        }
+                    }
+                Spacer()
+                    .frame(width: 100)
             }
+            .frame(height: 25)
         }
     }
 }

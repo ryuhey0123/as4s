@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D642B35C3FD00938518 /* MakeBeamView.swift */; };
+		B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D662B35C42400938518 /* InputFloatValueField.swift */; };
 		B12324272B31CC5500E8D6B0 /* ObjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */; };
 		B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324292B31D2E500E8D6B0 /* NodeInspector.swift */; };
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
@@ -30,6 +32,7 @@
 		B14AC23A2B3557A000282CE0 /* MVCViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */; };
 		B14AC23C2B355A6100282CE0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B14AC23B2B355A6100282CE0 /* Colors.xcassets */; };
 		B14AC23E2B35624100282CE0 /* LabeledScaler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC23D2B35624100282CE0 /* LabeledScaler.swift */; };
+		B14AC2422B3582FC00282CE0 /* CommandTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2412B3582FC00282CE0 /* CommandTabView.swift */; };
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
@@ -87,6 +90,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1077D642B35C3FD00938518 /* MakeBeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBeamView.swift; sourceTree = "<group>"; };
+		B1077D662B35C42400938518 /* InputFloatValueField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFloatValueField.swift; sourceTree = "<group>"; };
 		B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInspector.swift; sourceTree = "<group>"; };
 		B12324292B31D2E500E8D6B0 /* NodeInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeInspector.swift; sourceTree = "<group>"; };
 		B124ADDC2B06429100AE5429 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
@@ -108,6 +113,7 @@
 		B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCViewRepresentable.swift; sourceTree = "<group>"; };
 		B14AC23B2B355A6100282CE0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B14AC23D2B35624100282CE0 /* LabeledScaler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledScaler.swift; sourceTree = "<group>"; };
+		B14AC2412B3582FC00282CE0 /* CommandTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTabView.swift; sourceTree = "<group>"; };
 		B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewCoordinator.swift; sourceTree = "<group>"; };
 		B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
@@ -255,6 +261,17 @@
 			path = Sheets;
 			sourceTree = "<group>";
 		};
+		B14AC2402B3582E700282CE0 /* CommandTabView */ = {
+			isa = PBXGroup;
+			children = (
+				B14AC2412B3582FC00282CE0 /* CommandTabView.swift */,
+				B14AC22B2B34850000282CE0 /* MakeNodeView.swift */,
+				B1077D642B35C3FD00938518 /* MakeBeamView.swift */,
+				B1077D662B35C42400938518 /* InputFloatValueField.swift */,
+			);
+			path = CommandTabView;
+			sourceTree = "<group>";
+		};
 		B14E2E4A2B2E9FA80032AE30 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,7 +383,7 @@
 		B161BC502ADB962A00AABA48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B14AC22B2B34850000282CE0 /* MakeNodeView.swift */,
+				B14AC2402B3582E700282CE0 /* CommandTabView */,
 				B14AC23F2B35774400282CE0 /* Sheets */,
 				B14AC2322B35539C00282CE0 /* InfoView */,
 				B198903E2B33E44100CF0431 /* ModelView */,
@@ -639,7 +656,10 @@
 				B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */,
 				B14E2E4E2B2EAAF20032AE30 /* ModelCommands.swift in Sources */,
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
+				B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */,
 				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
+				B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */,
+				B14AC2422B3582FC00282CE0 /* CommandTabView.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B14AC22E2B348B2F00282CE0 /* InfoView.swift in Sources */,
 				B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */,

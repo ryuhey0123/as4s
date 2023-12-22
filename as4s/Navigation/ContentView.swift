@@ -13,12 +13,13 @@ import SplitView
 struct ContentView: View {
     @EnvironmentObject var store: Store
     
-    @State private var showingInspector: Bool = true
+    @State private var showingInspector: Bool = false
     @State private var showingTransform: Bool = false
     
     var body: some View {
         NavigationSplitView {
             Sidebar()
+                .frame(minWidth: 170)
         } detail: {
             Detail()
         }
@@ -47,5 +48,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store())
-        .frame(width: 1000)
+        .frame(width: 700)
 }

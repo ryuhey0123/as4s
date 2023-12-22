@@ -10,13 +10,29 @@ import SwiftUI
 struct Sidebar: View {
     @EnvironmentObject var store: Store
     
+    @State private var commandItem: CommnadItem = .node
+    
+    enum CommnadItem {
+        case node, beam
+    }
+    
     var body: some View {
-        VStack {
-            visiableToggle
-            // addPoint
-            // importBigTestModel
-            // buildSmallTestModel
+        VSplitView {
+            CommandTabView()
+            
+            Divider()
+            
+            ScrollView {
+                visiableToggle
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            Divider()
+            
             buildAnalyzeCommand
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
         }
         .onAppear {
             Actions.buildSmallModel(store: store)
@@ -92,5 +108,5 @@ struct Sidebar: View {
 #Preview {
     Sidebar()
         .environmentObject(Store())
-        .frame(height: 500)
+        .frame(width: 250, height: 800)
 }
