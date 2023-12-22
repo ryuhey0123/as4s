@@ -37,6 +37,13 @@ struct InfoPrimaryToolbar: SplitDivider {
         .padding(.horizontal)
         .frame(height: 25)
         .contentShape(Rectangle())
+        .onHover { hovering in
+            if hovering {
+                NSCursor.resizeUpDown.push()
+            } else {
+                NSCursor.pop()
+            }
+        }
     }
 }
 

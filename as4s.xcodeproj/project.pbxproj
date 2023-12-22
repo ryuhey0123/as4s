@@ -247,6 +247,14 @@
 			path = InfoView;
 			sourceTree = "<group>";
 		};
+		B14AC23F2B35774400282CE0 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				B19DFE022B30936A00B7F7B8 /* TransformView.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 		B14E2E4A2B2E9FA80032AE30 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,8 +366,8 @@
 		B161BC502ADB962A00AABA48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B19DFE022B30936A00B7F7B8 /* TransformView.swift */,
 				B14AC22B2B34850000282CE0 /* MakeNodeView.swift */,
+				B14AC23F2B35774400282CE0 /* Sheets */,
 				B14AC2322B35539C00282CE0 /* InfoView */,
 				B198903E2B33E44100CF0431 /* ModelView */,
 				B12324282B31D2D700E8D6B0 /* Inspector */,

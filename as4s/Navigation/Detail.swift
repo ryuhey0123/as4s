@@ -34,7 +34,7 @@ struct Detail: View {
             })
             .hide(hide)
             .fraction(0.75)
-            .constraints(minPFraction: 0.3, minSFraction: 0.25)
+            .constraints(minPFraction: 0.3, minSFraction: 0.15)
             .splitter {
                 InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
             }
