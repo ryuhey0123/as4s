@@ -24,8 +24,8 @@ class ModelViewCoordinator: NSObject {
         let velocity = gestureRecognize.velocity(in: view)
         
         if NSEvent.modifierFlags.contains(.shift) {
-            controller?.scene.camera.pan(float2(x: Float(velocity.x) * 0.00002,
-                                                y: -Float(velocity.y) * 0.00002))
+            controller?.scene.camera.pan(float2(x: Float(velocity.x) * 0.000025,
+                                                y: -Float(velocity.y) * 0.000025))
         } else {
             controller?.scene.camera.rotate(float2(x:  Float(velocity.x) * 0.0001,
                                                    y: -Float(velocity.y) * 0.0001))
