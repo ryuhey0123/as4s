@@ -12,40 +12,37 @@ struct Detail: View {
     @EnvironmentObject var store: Store
     
     @State private var hide = SideHolder()
-    @State private var showingAccesary: Bool = false
-    @State private var showingOutput: Bool = true
-    @State private var showingInput: Bool = true
-    
+    @State private var showingAccesary: Bool = true
+
     var body: some View {
-        VStack(spacing: -1.0) {
-            VSplit(top: {
-                VStack(spacing: -1.0) {
-                    ModelView()
-                        .onAppear {
-                            Actions.addCoordinate(store: store)
-                        }
-                    Divider()
+        ZStack {
+            ModelView()
+                .onAppear {
+                    Actions.addCoordinate(store: store)
                 }
-            }, bottom: {
-                VStack(spacing: -1.0) {
-                    Divider()
-                    InfoView(output: $store.openSeesStdErr, input: $store.openSeesInput, showingOutput: $showingOutput, showingInput: $showingInput)
+            VStack(spacing: -1.0) {
+                VSplit(top: {
+                    EmptyView()
+                }, bottom: {
+                    VStack(spacing: -1.0) {
+                        Divider()
+                        InfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+                    }
+                    .background(.ultraThinMaterial)
+                })
+                .hide(hide)
+                .fraction(0.75)
+                .constraints(minPFraction: 0.3, minSFraction: 0.15)
+                .splitter {
+                    InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
                 }
-            })
-            .hide(hide)
-            .fraction(0.75)
-            .constraints(minPFraction: 0.3, minSFraction: 0.15)
-            .splitter {
-                InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
+            }
+            .onAppear {
+                if !showingAccesary {
+                    hide.hide(.secondary)
+                }
             }
             
-            if showingAccesary {
-                Divider()
-                InfoSecondaryToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
-            }
-        }
-        .onAppear {
-            hide.hide(.secondary)
         }
     }
 }

@@ -11,7 +11,6 @@ import SplitView
 struct InfoPrimaryToolbar: SplitDivider {
     @Binding var hide: SideHolder
     @Binding var showingAccesary: Bool
-    @State private var showingInformation: Bool = false
     
     var layout: LayoutHolder = LayoutHolder()
     var styling: SplitStyling = SplitStyling(visibleThickness: 25)
@@ -22,17 +21,16 @@ struct InfoPrimaryToolbar: SplitDivider {
                 Text("Hello!")
                     .foregroundStyle(.secondary)
                 Spacer()
-                Toggle(isOn: $showingInformation, label: {
+                Toggle(isOn: $showingAccesary, label: {
                     Label("Show Information", systemImage: "square.bottomthird.inset.filled")
                         .labelStyle(.iconOnly)
                 })
                 .toggleStyle(.button)
                 .buttonStyle(.borderless)
-                .onChange(of: showingInformation) {
+                .onChange(of: showingAccesary) {
                     withAnimation(.interactiveSpring) {
                         hide.toggle()
                     }
-                    showingAccesary.toggle()
                 }
             }
             .padding(.horizontal)
@@ -58,6 +56,7 @@ struct InfoPrimaryToolbar: SplitDivider {
             }
             .frame(height: 25)
         }
+        .background(.ultraThinMaterial)
     }
 }
 

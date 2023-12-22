@@ -10,23 +10,30 @@ import SwiftUI
 struct InfoView: View {
     @Binding var output: String
     @Binding var input: String
-    @Binding var showingOutput: Bool
-    @Binding var showingInput: Bool
+    
+    @State private var showingOutput: Bool = true
+    @State private var showingInput: Bool = true
     
     var body: some View {
-        HStack(spacing: -1.0) {
-            if showingOutput {
-                InformationTextView(title: "Output", text: $output, idealWidth: 600)
-                    .transition(.move(edge: .leading))
+        VStack(spacing: -1.0) {
+            HStack(spacing: -1.0) {
+                if showingOutput {
+                    InformationTextView(title: "Output", text: $output, idealWidth: 600)
+                        .transition(.move(edge: .leading))
+                }
+                Divider()
+                if showingInput {
+                    InformationTextView(title: "Input", text: $input, idealWidth: 300)
+                        .transition(.move(edge: .trailing))
+                }
             }
+            .animation(.interactiveSpring, value: showingOutput)
+            .animation(.interactiveSpring, value: showingInput)
+            
             Divider()
-            if showingInput {
-                InformationTextView(title: "Input", text: $input, idealWidth: 300)
-                    .transition(.move(edge: .trailing))
-            }
+            
+            InfoSecondaryToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
         }
-        .animation(.interactiveSpring, value: showingOutput)
-        .animation(.interactiveSpring, value: showingInput)
     }
 }
 
@@ -63,8 +70,8 @@ fileprivate struct InformationTextView: View {
 }
 
 #Preview {
-    InfoView(output: .constant(SampleString.output), input: .constant(SampleString.input), showingOutput: .constant(true), showingInput: .constant(true))
-        .frame(width: 1000)
+    InfoView(output: .constant(SampleString.output), input: .constant(SampleString.input))
+        .frame(width: 600)
 }
 
 fileprivate enum SampleString {
