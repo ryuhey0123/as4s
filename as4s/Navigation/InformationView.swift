@@ -16,21 +16,21 @@ struct InformationView: View {
     
     var body: some View {
         VStack(spacing: -1.0) {
-            HSplitView {
+            HStack(spacing: -1.0) {
                 if showingOutput {
-                    InformationTextView(title: "Output data", text: $output, idealWidth: 600)
-                } else {
-                    EmptyView()
+                    InformationTextView(title: "Output", text: $output, idealWidth: 600)
+                        .transition(.move(edge: .leading))
                 }
+                Divider()
                 if showingInput {
-                    InformationTextView(title: "Input data", text: $input, idealWidth: 300)
-                } else {
-                    EmptyView()
+                    InformationTextView(title: "Input", text: $input, idealWidth: 300)
+                        .transition(.move(edge: .trailing))
                 }
             }
+            .animation(.interactiveSpring, value: showingOutput)
+            .animation(.interactiveSpring, value: showingInput)
             
             Divider()
-                .background(.black)
             
             InformationAccessory(showingOutput: $showingOutput, showingInput: $showingInput)
         }
@@ -45,7 +45,7 @@ fileprivate struct InformationTextView: View {
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView(.vertical) {
-                Text(text)
+                Text("\n\n\n" + text)
                     .font(.callout)
                     .fontDesign(.monospaced)
                     .multilineTextAlignment(.leading)
@@ -53,13 +53,17 @@ fileprivate struct InformationTextView: View {
                     .padding(.leading)
             }
             
-            Text("\(title):")
-                .font(.headline)
-                .foregroundStyle(.tertiary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.vertical, 5)
-                .background(.ultraThinMaterial)
+            HStack {
+                Text("\(title)")
+                    .font(.headline)
+                    .foregroundStyle(.tertiary)
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                Spacer()
+            }
+            .padding(7)
         }
         .frame(idealWidth: idealWidth, maxWidth: .infinity)
     }

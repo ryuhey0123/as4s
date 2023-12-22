@@ -14,27 +14,27 @@ struct ContentView: View {
     
     @State private var showingInspector: Bool = false
     @State private var showingTransform: Bool = false
-    @State private var showingInformation: Bool = false
+    @State private var showingInformation: Bool = true
     
     var body: some View {
         NavigationSplitView {
             Sidebar()
         } detail: {
-            VSplitView {
+            VStack(spacing: -1.0) {
                 VStack(spacing: -1.0) {
                     ModelView(store: store)
                         .onAppear {
                             Actions.addCoordinate(store: store)
                     }
                     Divider()
-                        .background(.black)
                     AccessoryView(showingInformation: $showingInformation)
                 }
                 if showingInformation {
+                    Divider()
                     InformationView(output: $store.openSeesStdErr, input: $store.openSeesInput)
                 }
-                    
             }
+            .animation(.interactiveSpring, value: showingInformation)
             
         }
         .inspector(isPresented: $showingInspector) {
