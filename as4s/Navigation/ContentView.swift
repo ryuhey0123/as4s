@@ -15,43 +15,12 @@ struct ContentView: View {
     
     @State private var showingInspector: Bool = false
     @State private var showingTransform: Bool = false
-    @State private var showingInformation: Bool = true
-    
-    @State private var hide = SideHolder()
-    
-    @State private var showingAccesary: Bool = true
-    @State private var showingOutput: Bool = true
-    @State private var showingInput: Bool = true
     
     var body: some View {
         NavigationSplitView {
             Sidebar()
         } detail: {
-            VStack(spacing: -1.0) {
-                VSplit(top: {
-                    VStack(spacing: -1.0) {
-                        ModelView(store: store)
-                            .onAppear {
-                                Actions.addCoordinate(store: store)
-                            }
-                        Divider()
-                    }
-                }, bottom: {
-                    VStack(spacing: -1.0) {
-                        Divider()
-                        InformationView(output: $store.openSeesStdErr, input: $store.openSeesInput, showingOutput: $showingOutput, showingInput: $showingInput)
-                    }
-                })
-                .hide(hide)
-                .splitter { CustomSplitter(hide: $hide, showingAccesary: $showingAccesary) }
-                .fraction(0.75)
-                .constraints(minPFraction: 0.3, minSFraction: 0.25)
-                
-                if showingAccesary {
-                    Divider()
-                    InformationAccessory(showingOutput: $showingOutput, showingInput: $showingInput)
-                }
-            }
+            Detail()
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
@@ -72,12 +41,6 @@ struct ContentView: View {
         .focusedSceneValue(\.showTransform, $showingTransform)
         .sheet(isPresented: $showingTransform) {
             TransformView()
-        }
-    }
-    
-    var addPoint: some View {
-        Button("Add Random Point") {
-            Actions.appendNode(position: .random(in: -10000...10000), store: store)
         }
     }
 }

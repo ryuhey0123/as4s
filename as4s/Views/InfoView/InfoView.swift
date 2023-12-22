@@ -1,5 +1,5 @@
 //
-//  InformationView.swift
+//  InfoView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InformationView: View {
+struct InfoView: View {
     @Binding var output: String
     @Binding var input: String
     @Binding var showingOutput: Bool
@@ -63,7 +63,7 @@ fileprivate struct InformationTextView: View {
 }
 
 #Preview {
-    InformationView(output: .constant(SampleString.output), input: .constant(SampleString.input), showingOutput: .constant(true), showingInput: .constant(true))
+    InfoView(output: .constant(SampleString.output), input: .constant(SampleString.input), showingOutput: .constant(true), showingInput: .constant(true))
         .frame(width: 1000)
 }
 

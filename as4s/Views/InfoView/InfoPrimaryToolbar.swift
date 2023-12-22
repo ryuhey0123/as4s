@@ -1,5 +1,5 @@
 //
-//  InfoPrimaryAccessory.swift
+//  InfoPrimaryToolbar.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/22.
@@ -8,12 +8,10 @@
 import SwiftUI
 import SplitView
 
-struct CustomSplitter: SplitDivider {
+struct InfoPrimaryToolbar: SplitDivider {
     @Binding var hide: SideHolder
     @Binding var showingAccesary: Bool
-    
-    @State private var hideButton: Bool = false
-    @State private var showingInformation: Bool = true
+    @State private var showingInformation: Bool = false
     
     var layout: LayoutHolder = LayoutHolder()
     var styling: SplitStyling = SplitStyling(visibleThickness: 25)
@@ -42,6 +40,6 @@ struct CustomSplitter: SplitDivider {
     }
 }
 
-//#Preview {
-//    InfoPrimaryAccessory()
-//}
+#Preview {
+    InfoPrimaryToolbar(hide: .constant(SideHolder()), showingAccesary: .constant(true))
+}

@@ -1,5 +1,5 @@
 //
-//  InformationAccessory.swift
+//  InfoSecondaryToolbar.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InformationAccessory: View {
+struct InfoSecondaryToolbar: View {
     @Binding var showingOutput: Bool
     @Binding var showingInput: Bool
     
@@ -46,5 +46,5 @@ struct InformationAccessory: View {
 }
 
 #Preview {
-    InformationAccessory(showingOutput: .constant(true), showingInput: .constant(true))
+    InfoSecondaryToolbar(showingOutput: .constant(true), showingInput: .constant(true))
 }
