@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D642B35C3FD00938518 /* MakeBeamView.swift */; };
 		B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D662B35C42400938518 /* InputFloatValueField.swift */; };
+		B1077D692B35E47B00938518 /* InformationText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D682B35E47B00938518 /* InformationText.swift */; };
+		B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D6A2B35E4D500938518 /* SampleText.swift */; };
 		B12324272B31CC5500E8D6B0 /* ObjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */; };
 		B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324292B31D2E500E8D6B0 /* NodeInspector.swift */; };
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
@@ -92,6 +94,8 @@
 /* Begin PBXFileReference section */
 		B1077D642B35C3FD00938518 /* MakeBeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBeamView.swift; sourceTree = "<group>"; };
 		B1077D662B35C42400938518 /* InputFloatValueField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFloatValueField.swift; sourceTree = "<group>"; };
+		B1077D682B35E47B00938518 /* InformationText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationText.swift; sourceTree = "<group>"; };
+		B1077D6A2B35E4D500938518 /* SampleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleText.swift; sourceTree = "<group>"; };
 		B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInspector.swift; sourceTree = "<group>"; };
 		B12324292B31D2E500E8D6B0 /* NodeInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeInspector.swift; sourceTree = "<group>"; };
 		B124ADDC2B06429100AE5429 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
@@ -247,8 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				B14AC22D2B348B2F00282CE0 /* InfoView.swift */,
+				B1077D682B35E47B00938518 /* InformationText.swift */,
 				B14AC2352B35543B00282CE0 /* InfoPrimaryToolbar.swift */,
 				B14AC2332B3553B500282CE0 /* InfoSecondaryToolbar.swift */,
+				B1077D6A2B35E4D500938518 /* SampleText.swift */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -643,6 +649,7 @@
 				B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */,
 				B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */,
 				B14AC2382B35552B00282CE0 /* Detail.swift in Sources */,
+				B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */,
 				B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */,
 				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,
 				B1B312212ADC264600DC32B9 /* Actions.swift in Sources */,
@@ -683,6 +690,7 @@
 				B14E2E5B2B2EEDEF0032AE30 /* BeamGeometry.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
+				B1077D692B35E47B00938518 /* InformationText.swift in Sources */,
 				B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */,
 				B14AC23E2B35624100282CE0 /* LabeledScaler.swift in Sources */,
 				B13AED962B2C26430028B410 /* ModelView.swift in Sources */,
