@@ -19,14 +19,12 @@ struct Sidebar: View {
     var body: some View {
         VSplitView {
             CommandTabView()
+                .frame(minHeight: 50, maxHeight: .infinity)
             
             Divider()
             
-            ScrollView {
-                visiableToggle
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
+            visiableToggle
+                .frame(minHeight: 50, maxHeight: .infinity)
             
             Divider()
             
@@ -40,43 +38,47 @@ struct Sidebar: View {
     }
     
     private var visiableToggle: some View {
-        VStack(alignment: .leading) {
-            Section("Caption") {
-                Toggle(isOn: $store.scene.captionLayer.globalCoord.isShown, label: { Text("Global Coord") })
-                Toggle(isOn: $store.scene.captionLayer.beamCoord.isShown, label: { Text("Beam Coord") })
-            }
-            Section("Model") {
-                Toggle(isOn: $store.scene.modelLayer.isShown, label: { Text("Model") })
-                Toggle(isOn: $store.scene.modelLayer.node.isShown, label: { Text("Node") })
-                Toggle(isOn: $store.scene.modelLayer.beam.isShown, label: { Text("Beam") })
-                Toggle(isOn: $store.scene.modelLayer.support.isShown, label: { Text("Suppot") })
-            }
-            Section("Label") {
-                Toggle(isOn: $store.scene.modelLayer.nodeLabel.isShown, label: { Text("Node") })
-                Toggle(isOn: $store.scene.modelLayer.beamLabel.isShown, label: { Text("Beam") })
-            }
-            Section("Load") {
-                Toggle(isOn: $store.scene.loadLayer.isShown, label: { Text("Load") })
-                Toggle(isOn: $store.scene.loadLayer.nodal.isShown, label: { Text("Nodal") })
-            }
-            Section("PostProcess") {
-                Toggle(isOn: $store.scene.forceLayer.isShown, label: { Text("Force") })
-                HStack {
-                    Toggle(isOn: $store.scene.forceLayer.vX.isShown, label: { Text("Vx") })
-                    Toggle(isOn: $store.scene.forceLayer.vY.isShown, label: { Text("Vy") })
-                    Toggle(isOn: $store.scene.forceLayer.vZ.isShown, label: { Text("Vz") })
+        ScrollView {
+            VStack(alignment: .leading) {
+                Section("Caption") {
+                    Toggle(isOn: $store.scene.captionLayer.globalCoord.isShown, label: { Text("Global Coord") })
+                    Toggle(isOn: $store.scene.captionLayer.beamCoord.isShown, label: { Text("Beam Coord") })
                 }
-                HStack {
-                    Toggle(isOn: $store.scene.forceLayer.mX.isShown, label: { Text("Mx") })
-                    Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
-                    Toggle(isOn: $store.scene.forceLayer.mZ.isShown, label: { Text("Mz") })
+                Section("Model") {
+                    Toggle(isOn: $store.scene.modelLayer.isShown, label: { Text("Model") })
+                    Toggle(isOn: $store.scene.modelLayer.node.isShown, label: { Text("Node") })
+                    Toggle(isOn: $store.scene.modelLayer.beam.isShown, label: { Text("Beam") })
+                    Toggle(isOn: $store.scene.modelLayer.support.isShown, label: { Text("Suppot") })
                 }
-                
-                Button("Displacement") {
-                    store.scene.dispModelLayer.isHidden.toggle()
-                    store.scene.modelLayer.isUnEnabled.toggle()
+                Section("Label") {
+                    Toggle(isOn: $store.scene.modelLayer.nodeLabel.isShown, label: { Text("Node") })
+                    Toggle(isOn: $store.scene.modelLayer.beamLabel.isShown, label: { Text("Beam") })
+                }
+                Section("Load") {
+                    Toggle(isOn: $store.scene.loadLayer.isShown, label: { Text("Load") })
+                    Toggle(isOn: $store.scene.loadLayer.nodal.isShown, label: { Text("Nodal") })
+                }
+                Section("PostProcess") {
+                    Toggle(isOn: $store.scene.forceLayer.isShown, label: { Text("Force") })
+                    HStack {
+                        Toggle(isOn: $store.scene.forceLayer.vX.isShown, label: { Text("Vx") })
+                        Toggle(isOn: $store.scene.forceLayer.vY.isShown, label: { Text("Vy") })
+                        Toggle(isOn: $store.scene.forceLayer.vZ.isShown, label: { Text("Vz") })
+                    }
+                    HStack {
+                        Toggle(isOn: $store.scene.forceLayer.mX.isShown, label: { Text("Mx") })
+                        Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
+                        Toggle(isOn: $store.scene.forceLayer.mZ.isShown, label: { Text("Mz") })
+                    }
+                    
+                    Button("Displacement") {
+                        store.scene.dispModelLayer.isHidden.toggle()
+                        store.scene.modelLayer.isUnEnabled.toggle()
+                    }
                 }
             }
+            .padding()
+            .frame(maxWidth: .infinity,  alignment: .leading)
         }
     }
     

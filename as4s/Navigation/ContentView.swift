@@ -48,5 +48,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store())
-        .frame(width: 700)
+        .frame(width: 800, height: 500)
 }
