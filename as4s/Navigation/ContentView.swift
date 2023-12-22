@@ -8,6 +8,7 @@
 import SwiftUI
 import Mevic
 import OpenSeesCoder
+import SplitView
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
@@ -16,26 +17,41 @@ struct ContentView: View {
     @State private var showingTransform: Bool = false
     @State private var showingInformation: Bool = true
     
+    @State private var hide = SideHolder()
+    
+    @State private var showingAccesary: Bool = true
+    @State private var showingOutput: Bool = true
+    @State private var showingInput: Bool = true
+    
     var body: some View {
         NavigationSplitView {
             Sidebar()
         } detail: {
             VStack(spacing: -1.0) {
-                VStack(spacing: -1.0) {
-                    ModelView(store: store)
-                        .onAppear {
-                            Actions.addCoordinate(store: store)
+                VSplit(top: {
+                    VStack(spacing: -1.0) {
+                        ModelView(store: store)
+                            .onAppear {
+                                Actions.addCoordinate(store: store)
+                            }
+                        Divider()
                     }
+                }, bottom: {
+                    VStack(spacing: -1.0) {
+                        Divider()
+                        InformationView(output: $store.openSeesStdErr, input: $store.openSeesInput, showingOutput: $showingOutput, showingInput: $showingInput)
+                    }
+                })
+                .hide(hide)
+                .splitter { CustomSplitter(hide: $hide, showingAccesary: $showingAccesary) }
+                .fraction(0.75)
+                .constraints(minPFraction: 0.3, minSFraction: 0.25)
+                
+                if showingAccesary {
                     Divider()
-                    AccessoryView(showingInformation: $showingInformation)
-                }
-                if showingInformation {
-                    Divider()
-                    InformationView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+                    InformationAccessory(showingOutput: $showingOutput, showingInput: $showingInput)
                 }
             }
-            .animation(.interactiveSpring, value: showingInformation)
-            
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
@@ -66,14 +82,15 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-        .environmentObject(Store())
-        .frame(width: 1000)
-}
-
-struct AccessoryView: View {
-    @Binding var showingInformation: Bool
+struct CustomSplitter: SplitDivider {
+    @Binding var hide: SideHolder
+    @Binding var showingAccesary: Bool
+    
+    @State private var hideButton: Bool = false
+    @State private var showingInformation: Bool = true
+    
+    var layout: LayoutHolder = LayoutHolder()
+    var styling: SplitStyling = SplitStyling(visibleThickness: 25)
     
     var body: some View {
         HStack {
@@ -86,8 +103,21 @@ struct AccessoryView: View {
             })
             .toggleStyle(.button)
             .buttonStyle(.borderless)
+            .onChange(of: showingInformation) {
+                withAnimation(.interactiveSpring) {
+                    hide.toggle()
+                }
+                showingAccesary.toggle()
+            }
         }
-        .padding(.vertical, 5)
         .padding(.horizontal)
+        .frame(height: 25)
+        .contentShape(Rectangle())
     }
+}
+
+#Preview {
+    ContentView()
+        .environmentObject(Store())
+        .frame(width: 1000)
 }

@@ -10,30 +10,23 @@ import SwiftUI
 struct InformationView: View {
     @Binding var output: String
     @Binding var input: String
-    
-    @State private var showingOutput: Bool = true
-    @State private var showingInput: Bool = true
+    @Binding var showingOutput: Bool
+    @Binding var showingInput: Bool
     
     var body: some View {
-        VStack(spacing: -1.0) {
-            HStack(spacing: -1.0) {
-                if showingOutput {
-                    InformationTextView(title: "Output", text: $output, idealWidth: 600)
-                        .transition(.move(edge: .leading))
-                }
-                Divider()
-                if showingInput {
-                    InformationTextView(title: "Input", text: $input, idealWidth: 300)
-                        .transition(.move(edge: .trailing))
-                }
+        HStack(spacing: -1.0) {
+            if showingOutput {
+                InformationTextView(title: "Output", text: $output, idealWidth: 600)
+                    .transition(.move(edge: .leading))
             }
-            .animation(.interactiveSpring, value: showingOutput)
-            .animation(.interactiveSpring, value: showingInput)
-            
             Divider()
-            
-            InformationAccessory(showingOutput: $showingOutput, showingInput: $showingInput)
+            if showingInput {
+                InformationTextView(title: "Input", text: $input, idealWidth: 300)
+                    .transition(.move(edge: .trailing))
+            }
         }
+        .animation(.interactiveSpring, value: showingOutput)
+        .animation(.interactiveSpring, value: showingInput)
     }
 }
 
@@ -69,7 +62,7 @@ fileprivate struct InformationTextView: View {
     }
 }
 
-fileprivate struct InformationAccessory: View {
+struct InformationAccessory: View {
     @Binding var showingOutput: Bool
     @Binding var showingInput: Bool
     
@@ -102,14 +95,14 @@ fileprivate struct InformationAccessory: View {
                 }
             }
         }
-        .padding(.vertical, 5)
         .padding(.horizontal)
+        .frame(height: 25)
     }
 }
 
 
 #Preview {
-    InformationView(output: .constant(SampleString.output), input: .constant(SampleString.input))
+    InformationView(output: .constant(SampleString.output), input: .constant(SampleString.input), showingOutput: .constant(true), showingInput: .constant(true))
         .frame(width: 1000)
 }
 

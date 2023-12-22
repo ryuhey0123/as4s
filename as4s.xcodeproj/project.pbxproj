@@ -23,6 +23,7 @@
 		B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */; };
 		B14AC22C2B34850000282CE0 /* MakeNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC22B2B34850000282CE0 /* MakeNodeView.swift */; };
 		B14AC22E2B348B2F00282CE0 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC22D2B348B2F00282CE0 /* InformationView.swift */; };
+		B14AC2312B353A3A00282CE0 /* SplitView in Frameworks */ = {isa = PBXBuildFile; productRef = B14AC2302B353A3A00282CE0 /* SplitView */; };
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
@@ -145,6 +146,7 @@
 			files = (
 				B1424E4E2B29CF1600F9A22C /* OpenSeesCoder in Frameworks */,
 				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
+				B14AC2312B353A3A00282CE0 /* SplitView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +464,7 @@
 			packageProductDependencies = (
 				B17FE6502ADE82E5009A9134 /* Mevic */,
 				B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */,
+				B14AC2302B353A3A00282CE0 /* SplitView */,
 			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
@@ -538,6 +541,7 @@
 			packageReferences = (
 				B1D0265F2AE0E55F00DF77E0 /* XCLocalSwiftPackageReference "../Mevic/Mevic" */,
 				B1424E4C2B29CF1600F9A22C /* XCLocalSwiftPackageReference "../OpenSeesCoder" */,
+				B14AC22F2B353A3A00282CE0 /* XCRemoteSwiftPackageReference "SplitView" */,
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
@@ -1001,10 +1005,26 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B14AC22F2B353A3A00282CE0 /* XCRemoteSwiftPackageReference "SplitView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stevengharris/SplitView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OpenSeesCoder;
+		};
+		B14AC2302B353A3A00282CE0 /* SplitView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B14AC22F2B353A3A00282CE0 /* XCRemoteSwiftPackageReference "SplitView" */;
+			productName = SplitView;
 		};
 		B17FE6502ADE82E5009A9134 /* Mevic */ = {
 			isa = XCSwiftPackageProductDependency;
