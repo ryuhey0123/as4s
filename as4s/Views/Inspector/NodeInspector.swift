@@ -10,13 +10,16 @@ import SwiftUI
 struct NodeInspector: View {
     var node: Node
     
+    @State private var massExpended: Bool = false
+    @State private var supportExpended: Bool = false
+    
     var body: some View {
         VStack {
             Text("Node")
                 .font(.headline)
                 .foregroundStyle(.secondary)
             
-            Form {
+            List {
                 Section {
                     LabeledContent(content: { Text("\(node.id)") }, label: { Text("Self") })
                 } header: {
@@ -29,19 +32,20 @@ struct NodeInspector: View {
                     Text("Coordinate")
                 }
                 
-                Section {
+                Section(isExpanded: $massExpended) {
                     LabeledVector(value: float3(node.massValues ?? [0, 0, 0]), unit: "")
                 } header: {
                     Text("Mass")
                 }
                 
-                Section {
+                Section(isExpanded: $supportExpended) {
                     LabeledVector(value: float3(node.massValues ?? [0, 0, 0]), unit: "")
                     LabeledVector(value: float3(node.massValues ?? [0, 0, 0]), unit: "")
                 } header: {
                     Text("Support")
                 }
             }
+            .listStyle(.sidebar)
             .scrollContentBackground(.hidden)
         }
         .background(.ultraThinMaterial)

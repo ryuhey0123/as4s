@@ -10,20 +10,26 @@ import SwiftUI
 struct BeamInspector: View {
     var beam: BeamColumn
     
+    @State private var iCoordinateExpended: Bool = false
+    @State private var jCoordinateExpended: Bool = false
+    @State private var vectorExpended: Bool = false
+    @State private var coordVectorExpended: Bool = false
+    @State private var coordCrossVectorExpended: Bool = false
+    
     var body: some View {
         VStack {
             Text("Beam Colmun Element")
                 .font(.headline)
                 .foregroundStyle(.secondary)
             
-            Form {
+            List {
                 Section {
                     VStack {
                         LabeledContent { Text("\(beam.id)") } label: { Text("Self") }
                             .listRowSeparator(.hidden, edges: .bottom)
-                        LabeledContent { Text("\(beam.i.id)") } label: { Text("i") }
+                        LabeledContent { Text("\(beam.i.id)") } label: { Text("Node i") }
                             .listRowSeparator(.hidden, edges: .bottom)
-                        LabeledContent { Text("\(beam.j.id)") } label: { Text("j") }
+                        LabeledContent { Text("\(beam.j.id)") } label: { Text("Node j") }
                             .listRowSeparator(.hidden, edges: .bottom)
                     }
                 } header: {
@@ -31,21 +37,7 @@ struct BeamInspector: View {
                 }
                 
                 Section {
-                    LabeledVector(value: beam.i.position)
-                        .listRowSeparator(.hidden, edges: .bottom)
-                } header: {
-                    Text("Coordinate i (ID: \(beam.i.id))")
-                }
-                
-                Section {
-                    LabeledVector(value: beam.j.position)
-                        .listRowSeparator(.hidden, edges: .bottom)
-                } header: {
-                    Text("Coordinate j (ID: \(beam.j.id))")
-                }
-                
-                Section {
-                    LabeledScaler(label: "Coord Angle", value: beam.chordAngle, unit: "rad", scale: 3)
+                    LabeledScaler(label: "Coordinate Angle", value: beam.chordAngle, unit: "rad", scale: 3)
                         .listRowSeparator(.hidden, edges: .bottom)
                     LabeledScaler(label: "Length", value: beam.j.position.x)
                         .listRowSeparator(.hidden, edges: .bottom)
@@ -53,27 +45,42 @@ struct BeamInspector: View {
                     Text("Spec")
                 }
                 
-                Section {
+                Section(isExpanded: $iCoordinateExpended) {
+                    LabeledVector(value: beam.i.position)
+                        .listRowSeparator(.hidden, edges: .bottom)
+                } header: {
+                    Text("Coordinate i (ID: \(beam.i.id))")
+                }
+                
+                Section(isExpanded: $jCoordinateExpended) {
+                    LabeledVector(value: beam.j.position)
+                        .listRowSeparator(.hidden, edges: .bottom)
+                } header: {
+                    Text("Coordinate j (ID: \(beam.j.id))")
+                }
+                
+                Section(isExpanded: $vectorExpended) {
                     LabeledVector(value: beam.vector.normalized, unit: "")
                         .listRowSeparator(.hidden, edges: .bottom)
                 } header: {
                     Text("Vector")
                 }
                 
-                Section {
-                    LabeledVector(value: beam.chordVector, unit: "")
+                Section(isExpanded: $coordVectorExpended) {
+                    LabeledVector(value: beam.coordVector, unit: "")
                         .listRowSeparator(.hidden, edges: .bottom)
                 } header: {
-                    Text("Coord Vector")
+                    Text("Coordinate Axis")
                 }
                 
-                Section {
-                    LabeledVector(value: beam.chordCrossVector, unit: "")
+                Section(isExpanded: $coordCrossVectorExpended) {
+                    LabeledVector(value: beam.coordCrossVector, unit: "")
                         .listRowSeparator(.hidden, edges: .bottom)
                 } header: {
-                    Text("Coord Cross Vector")
+                    Text("Cross Coordinate Axis")
                 }
             }
+            .listStyle(.sidebar)
             .scrollContentBackground(.hidden)
         }
         .background(.ultraThinMaterial)

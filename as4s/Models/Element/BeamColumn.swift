@@ -26,12 +26,12 @@ final class BeamColumn: Selectable {
         j.position - i.position
     }
     
-    var chordVector: float3 {
+    var coordVector: float3 {
         vector.chordVector(angle: chordAngle)
     }
     
-    var chordCrossVector: float3 {
-        cross(chordVector, vector).normalized
+    var coordCrossVector: float3 {
+        cross(coordVector, vector).normalized
     }
     
     var isSelected: Bool = false {
@@ -47,17 +47,17 @@ final class BeamColumn: Selectable {
                                      i: i.position,
                                      j: j.position,
                                      xdir: vector.normalized,
-                                     zdir: chordVector,
-                                     ydir: chordCrossVector)
+                                     zdir: coordVector,
+                                     ydir: coordCrossVector)
         
         i.updateHandlers.append {
             self.geometry.updateNode(id: self.id, i: self.i.position, j: self.j.position,
-                                     xdir: self.vector.normalized, zdir: self.chordVector, ydir: self.chordCrossVector)
+                                     xdir: self.vector.normalized, zdir: self.coordVector, ydir: self.coordCrossVector)
         }
         
         j.updateHandlers.append {
             self.geometry.updateNode(id: self.id, i: self.i.position, j: self.j.position,
-                                     xdir: self.vector.normalized, zdir: self.chordVector, ydir: self.chordCrossVector)
+                                     xdir: self.vector.normalized, zdir: self.coordVector, ydir: self.coordCrossVector)
         }
     }
 }
@@ -93,6 +93,6 @@ extension BeamColumn: OSElasticBeamColumn {
     var massDens: Float? { nil }
     
     var transformation: Transformation {
-        Transformation(id: id, vector: -chordVector)
+        Transformation(id: id, vector: -coordVector)
     }
 }
