@@ -27,4 +27,5 @@ struct ObjectInspector: View {
     ObjectInspector(selectedObjects: .constant([
         Node(id: 1, position: .zero)
     ]))
+    .frame(width: 300, height: 600)
 }

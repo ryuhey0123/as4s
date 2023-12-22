@@ -16,7 +16,7 @@ struct ModelView: View {
     public var body: some View {
         MVCViewRepresentable(view: $metalView, controller: controller, store: store)
             .onAppear {
-                metalView.clearColor = .init(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
+                metalView.clearColor = .init(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
                 controller = GraphicController(metalView: metalView, scene: store.scene)
             }
     }

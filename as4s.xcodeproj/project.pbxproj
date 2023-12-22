@@ -28,6 +28,8 @@
 		B14AC2362B35543B00282CE0 /* InfoPrimaryToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2352B35543B00282CE0 /* InfoPrimaryToolbar.swift */; };
 		B14AC2382B35552B00282CE0 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2372B35552B00282CE0 /* Detail.swift */; };
 		B14AC23A2B3557A000282CE0 /* MVCViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */; };
+		B14AC23C2B355A6100282CE0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B14AC23B2B355A6100282CE0 /* Colors.xcassets */; };
+		B14AC23E2B35624100282CE0 /* LabeledScaler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC23D2B35624100282CE0 /* LabeledScaler.swift */; };
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
@@ -104,6 +106,8 @@
 		B14AC2352B35543B00282CE0 /* InfoPrimaryToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPrimaryToolbar.swift; sourceTree = "<group>"; };
 		B14AC2372B35552B00282CE0 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCViewRepresentable.swift; sourceTree = "<group>"; };
+		B14AC23B2B355A6100282CE0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		B14AC23D2B35624100282CE0 /* LabeledScaler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledScaler.swift; sourceTree = "<group>"; };
 		B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewCoordinator.swift; sourceTree = "<group>"; };
 		B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 				B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */,
 				B12324292B31D2E500E8D6B0 /* NodeInspector.swift */,
 				B19890412B33EA8D00CF0431 /* BeamInspector.swift */,
+				B14AC23D2B35624100282CE0 /* LabeledScaler.swift */,
 			);
 			path = Inspector;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				B1FE619E2B258CF8005116DC /* Resources */,
 				B161BC272ADB958A00AABA48 /* Info.plist */,
 				B161BC282ADB958A00AABA48 /* as4s.entitlements */,
+				B14AC23B2B355A6100282CE0 /* Colors.xcassets */,
 				B161BC292ADB958A00AABA48 /* Preview Content */,
 			);
 			path = as4s;
@@ -582,6 +588,7 @@
 				B161BC2B2ADB958A00AABA48 /* Preview Assets.xcassets in Resources */,
 				B161BC262ADB958A00AABA48 /* Assets.xcassets in Resources */,
 				B1FE61B32B258D2D005116DC /* OpenSees in Resources */,
+				B14AC23C2B355A6100282CE0 /* Colors.xcassets in Resources */,
 				B1FE61B42B258D2D005116DC /* init.tcl in Resources */,
 				B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */,
 			);
@@ -649,6 +656,7 @@
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
 				B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */,
+				B14AC23E2B35624100282CE0 /* LabeledScaler.swift in Sources */,
 				B13AED962B2C26430028B410 /* ModelView.swift in Sources */,
 				B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */,
 				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,

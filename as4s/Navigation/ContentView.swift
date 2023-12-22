@@ -13,7 +13,7 @@ import SplitView
 struct ContentView: View {
     @EnvironmentObject var store: Store
     
-    @State private var showingInspector: Bool = false
+    @State private var showingInspector: Bool = true
     @State private var showingTransform: Bool = false
     
     var body: some View {
@@ -24,7 +24,6 @@ struct ContentView: View {
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
-                .inspectorColumnWidth(min: 200, ideal: 200, max: 300)
         }
         .toolbar {
             ToolbarItemGroup(placement: .automatic) {
