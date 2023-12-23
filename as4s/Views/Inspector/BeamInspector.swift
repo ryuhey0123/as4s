@@ -24,7 +24,7 @@ struct BeamInspector: View {
             
             List {
                 Section {
-                    LabeledScaler(label: "Coordinate Angle", value: beam.chordAngle, unit: "rad", scale: 3)
+                    LabeledScaler(label: "Coordinate Angle", value: beam.coordAngle, unit: "rad", scale: 3)
                         .listRowSeparator(.hidden, edges: .bottom)
                     LabeledScaler(label: "Length", value: beam.j.position.x)
                         .listRowSeparator(.hidden, edges: .bottom)

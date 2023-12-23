@@ -12,17 +12,17 @@ struct NodeTable: View {
     
     var body: some View {
         Table(nodes) {
-            TableColumn("ID") { node in
-                Text(node.id, format: .number)
+            TableColumn("ID") { row in
+                Text(row.id, format: .number)
             }
-            TableColumn("X") { node in
-                Text(node.position.x, format: .number)
+            TableColumn("X") { row in
+                Text(row.position.x, format: .number)
             }
-            TableColumn("Y") { node in
-                Text(node.position.y, format: .number)
+            TableColumn("Y") { row in
+                Text(row.position.y, format: .number)
             }
-            TableColumn("Z") { node in
-                Text(node.position.z, format: .number)
+            TableColumn("Z") { row in
+                Text(row.position.z, format: .number)
             }
         }
     }

@@ -8,7 +8,10 @@
 import SwiftUI
 import Mevic
 
-final class Store: ObservableObject {
+final class Store: ObservableObject, Identifiable {
+    
+    let id = UUID()
+    
     @StateObject static var debug: Store = Store(debug: true)
     
     @Published var model: Model
@@ -71,5 +74,13 @@ final class Store: ObservableObject {
     
     func append(_ reactangle: ReactangleSec) {
         model.reactangle.append(reactangle)
+    }
+}
+
+class SharedStore: ObservableObject {
+    @Published var stores: [Store] = []
+    
+    subscript(storeId id: Store.ID) -> Store? {
+        stores.first { $0.id == id }
     }
 }

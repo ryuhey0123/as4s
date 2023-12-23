@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ModelCommands: Commands {
-    @Environment(\.openWindow) var openWindow
+    @Environment(\.openWindow) private var openWindow
+    @FocusedValue(\.store) private var store
     @FocusedValue(\.showTransform) private var showPreview
     
     var body: some Commands {
@@ -23,10 +24,11 @@ struct ModelCommands: Commands {
         
         CommandMenu("Table") {
             Button {
-                openWindow(id: "table-nodes")
+                openWindow(value: store!.id)
             } label: {
                 Label("Node Tabel...", systemImage: "tablecells")
             }
+            .disabled(store == nil)
         }
     }
 }

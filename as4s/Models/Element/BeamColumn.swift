@@ -9,7 +9,7 @@ import simd
 import Mevic
 import OpenSeesCoder
 
-final class BeamColumn: Selectable {
+final class BeamColumn: Identifiable, Selectable {
     
     var id: Int
     
@@ -21,18 +21,22 @@ final class BeamColumn: Selectable {
     
     var section: any CrossSection
     
-    var chordAngle: Float
+    var coordAngle: Float
     
     var geometry: BeamGeometry!
     
     var secTag: Int = 0
+    
+    var length: Float {
+        simd.length(vector)
+    }
     
     var vector: float3 {
         j.position - i.position
     }
     
     var coordVector: float3 {
-        vector.chordVector(angle: chordAngle)
+        vector.chordVector(angle: coordAngle)
     }
     
     var coordCrossVector: float3 {
@@ -49,7 +53,7 @@ final class BeamColumn: Selectable {
         self.j = j
         self.material = material
         self.section = section
-        self.chordAngle = chordAngle
+        self.coordAngle = chordAngle
         self.geometry = BeamGeometry(id: id,
                                      i: i.position,
                                      j: j.position,
