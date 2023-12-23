@@ -28,7 +28,7 @@ struct Detail: View {
                         Divider()
                         InfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
                     }
-                    .background(.ultraThinMaterial)
+                    .background(.thickMaterial)
                 })
                 .hide(hide)
                 .fraction(0.75)

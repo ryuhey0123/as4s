@@ -56,7 +56,7 @@ struct InfoPrimaryToolbar: SplitDivider {
             }
             .frame(height: 25)
         }
-        .background(.ultraThinMaterial)
+        .background(.thickMaterial)
     }
 }
 
