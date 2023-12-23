@@ -27,6 +27,25 @@ struct LabeledScaler: View {
     }
 }
 
+struct LabeledString: View {
+    var label: String
+    var value: String
+    var unit: String = ""
+    
+    var body: some View {
+        HStack(alignment: .bottom) {
+            LabeledContent(content: {
+                Text(value)
+            }, label: {
+                Text(label)
+            })
+            Text(unit)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+    }
+}
+
 struct LabeledVector: View {
     var value: float3
     var unit: String = "mm"

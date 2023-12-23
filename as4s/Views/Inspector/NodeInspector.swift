@@ -15,17 +15,11 @@ struct NodeInspector: View {
     
     var body: some View {
         VStack {
-            Text("Node")
+            Text("Node (ID: \(node.id))")
                 .font(.headline)
                 .foregroundStyle(.secondary)
             
             List {
-                Section {
-                    LabeledContent(content: { Text("\(node.id)") }, label: { Text("Self") })
-                } header: {
-                    Text("ID")
-                }
-                
                 Section {
                     LabeledVector(value: node.position)
                 } header: {

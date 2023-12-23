@@ -34,6 +34,6 @@ protocol CrossSection: Identifiable {
     var type: SectionType { get }
 }
 
-enum SectionType {
-    case elastic
+enum SectionType: String {
+    case elastic = "Elastic"
 }
