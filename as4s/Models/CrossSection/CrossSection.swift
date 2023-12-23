@@ -7,9 +7,11 @@
 
 import OpenSeesCoder
 
-protocol CrossSection {
+protocol CrossSection: Identifiable {
     
     var id: Int { get }
+    
+    var label: String { get }
     
     /// cross-sectional area of section
     var A: Float { get }

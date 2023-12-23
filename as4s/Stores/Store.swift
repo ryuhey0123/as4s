@@ -54,6 +54,14 @@ final class Store: ObservableObject {
         rendable.appendTo(model: model)
         rendable.appendTo(scene: scene)
     }
+    
+    func append(_ material: Material) {
+        model.materials.append(material)
+    }
+    
+    func append(_ reactangle: ReactangleSec) {
+        model.reactangle.append(reactangle)
+    }
 }
 
 class SharedStore: ObservableObject {

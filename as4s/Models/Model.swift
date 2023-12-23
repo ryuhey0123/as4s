@@ -50,7 +50,7 @@ final class Model: OSModel {
     
     // MARK: Other
     
-    var sections: [CrossSection] = []
+    var reactangle: [ReactangleSec] = []
     var materials: [Material] = []
     
     init(ndm: Int = 3, ndf: Int? = 6) {

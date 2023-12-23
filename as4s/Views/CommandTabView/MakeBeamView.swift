@@ -16,6 +16,9 @@ struct MakeBeamView: View {
     @State private var angle: Float? = 0.0
     @State private var section: Int? = 1
     
+    @State private var selectedSectionId: Int = 0
+    @State private var selectedMaterialId: Int = 0
+    
     var body: some View {
         VStack {
             Text("Make Beam")
@@ -49,6 +52,24 @@ struct MakeBeamView: View {
                 } header: {
                     Text("Coord Angle")
                         .font(.subheadline)
+                }
+                
+                Section {
+                    Picker("Section", selection: $selectedSectionId) {
+                        ForEach(store.model.reactangle) {
+                            Text("\($0.id): \($0.label)")
+                        }
+                    }
+                    .padding(.trailing, 8)
+                }
+                
+                Section {
+                    Picker("Material", selection: $selectedMaterialId) {
+                        ForEach(store.model.materials) {
+                            Text("\($0.id): \($0.label)")
+                        }
+                    }
+                    .padding(.trailing, 8)
                 }
             }
             HStack {
@@ -94,6 +115,6 @@ struct MakeBeamView: View {
         Divider()
         MakeBeamView()
             .environmentObject(Store())
-            .frame(width: 500)
+            .frame(width: 300)
     }
 }

@@ -10,12 +10,12 @@ import OpenSeesCoder
 final class ElasticSection {
     
     var id: Int
-    var section: CrossSection
+    var section: any CrossSection
     var material: Material
     
     var key: (Int, Int) { (section.id, material.id) }
     
-    init(id: Int, section: CrossSection, material: Material) {
+    init(id: Int, section: any CrossSection, material: Material) {
         guard section.type == .elastic else { fatalError() }
         
         self.id = id

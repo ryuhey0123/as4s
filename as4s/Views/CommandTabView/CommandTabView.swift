@@ -11,19 +11,21 @@ struct CommandTabView: View {
     @State private var commandItem: CommandItems = .node
     
     enum CommandItems: String {
-        case node = "Add node"
-        case beam = "Add beam"
-        case support = "Add support"
-        case section = "Add Section"
+        case node = "Node"
+        case beam = "Beam"
+        case support = "Support"
+        case section = "Section"
+        case material = "Material"
     }
     
     var body: some View {
         VStack {
             HStack {
-                CommandItem(command: .node, systemName: "circle.grid.2x1.fill", item: $commandItem)
+                CommandItem(command: .node, systemName: "circle.grid.2x1", item: $commandItem)
                 CommandItem(command: .beam, systemName: "line.diagonal", item: $commandItem)
-                CommandItem(command: .support, systemName: "triangle.fill", item: $commandItem)
-                CommandItem(command: .section, systemName: "h.square.fill", item: $commandItem)
+                CommandItem(command: .support, systemName: "triangle", item: $commandItem)
+                CommandItem(command: .section, systemName: "h.square", item: $commandItem)
+                CommandItem(command: .material, systemName: "leaf", item: $commandItem)
             }
             .padding(.top, 5)
             .frame(height: 25)
@@ -40,6 +42,8 @@ struct CommandTabView: View {
                         EmptyView()
                     case .section:
                         EmptyView()
+                    case .material:
+                        MakeMaterialView()
                 }
             }
             
@@ -85,8 +89,10 @@ struct CommandTabView: View {
     HStack(spacing: -1.0) {
         CommandTabView()
             .frame(width: 170, height: 500)
+            .environmentObject(Store())
         Divider()
         CommandTabView()
             .frame(width: 300, height: 500)
+            .environmentObject(Store())
     }
 }

@@ -19,7 +19,7 @@ final class BeamColumn: Selectable {
     
     var material: Material
     
-    var section: CrossSection
+    var section: any CrossSection
     
     var chordAngle: Float
     
@@ -43,7 +43,7 @@ final class BeamColumn: Selectable {
         didSet { geometry.color = isSelected ? Config.beam.selectedColor : Config.beam.color }
     }
     
-    init(id: Int, i: Node, j: Node, material: Material, section: CrossSection, chordAngle: Float = 0.0) {
+    init(id: Int, i: Node, j: Node, material: Material, section: any CrossSection, chordAngle: Float = 0.0) {
         self.id = id
         self.i = i
         self.j = j

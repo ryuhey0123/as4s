@@ -10,16 +10,23 @@ import simd
 final class ReactangleSec {
     
     var id: Int
+    var label: String
     
     var width: Float
     var height: Float
     var type: SectionType
     
-    init(id: Int, width: Float, height: Float, type: SectionType = .elastic) {
+    init(id: Int, label: String = "", width: Float, height: Float, type: SectionType = .elastic) {
         self.id = id
         self.width = width
         self.height = height
         self.type = type
+        
+        if label != "" {
+            self.label = label
+        } else {
+            self.label = "Rect Section \(id)"
+        }
     }
 }
 
