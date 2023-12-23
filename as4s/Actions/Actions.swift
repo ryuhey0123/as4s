@@ -26,14 +26,13 @@ enum Actions {
         addNode(id: id, position: position, store: store)
     }
     
-    static func addBeam(id: Int, i: Int, j: Int, angle: Float = 0.0, section: Int = 1, store: Store) {
+    static func addBeam(id: Int, i: Int, j: Int, angle: Float, section: Int, material: Int, store: Store) {
         guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
-              let jNode = store.model.nodes.first(where: { $0.nodeTag == j }) else {
+              let jNode = store.model.nodes.first(where: { $0.nodeTag == j }),
+              let material = store.model.materials.first(where: { $0.id == material }),
+              let section =  store.model.reactangle.first(where: { $0.id == section }) else {
             fatalError("Cannot find nodes \(i), \(j)")
         }
-        
-        let material = Material(id: 1, E: 2.05e5, G: 0.4)
-        let section = ReactangleSec(id: 1, width: 100, height: 100)
         
         let beam = BeamColumn(id: id, i: iNode, j: jNode, material: material, section: section)
         store.append(beam)
@@ -41,9 +40,9 @@ enum Actions {
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
     }
     
-    static func appendBeam(i: Int, j: Int, angle: Float = 0.0, section: Int = 1, store: Store) {
+    static func appendBeam(i: Int, j: Int, angle: Float, section: Int, material: Int, store: Store) {
         let id = store.model.beams.count + 1
-        addBeam(id: id, i: i, j: j, store: store)
+       addBeam(id: id, i: i, j: j, angle: angle, section: section, material: material, store: store)
     }
     
     static func addMaterial(id: Int, label: String, E: Float, G: Float, store: Store) {
@@ -165,20 +164,21 @@ enum Actions {
         Actions.addNode(id: 7, position: .init(x: -500, y:  500, z: 1000), store: store)
         Actions.addNode(id: 8, position: .init(x:  500, y:  500, z: 1000), store: store)
         
-        Actions.addBeam(id:  1, i: 1, j: 2, store: store)
-        Actions.addBeam(id:  2, i: 2, j: 4, store: store)
-        Actions.addBeam(id:  3, i: 3, j: 4, store: store)
-        Actions.addBeam(id:  4, i: 1, j: 3, store: store)
+        Actions.addMaterial(id: 1, label: "SS400", E: 2.05e5, G: 1.02e3, store: store)
+        Actions.addRectangleSection(id: 1, label: "100x100", width: 100, height: 100, store: store)
         
-        Actions.addBeam(id:  5, i: 5, j: 6, store: store)
-        Actions.addBeam(id:  6, i: 6, j: 8, store: store)
-        Actions.addBeam(id:  7, i: 7, j: 8, store: store)
-        Actions.addBeam(id:  8, i: 5, j: 7, store: store)
-        
-        Actions.addBeam(id:  9, i: 1, j: 5, store: store)
-        Actions.addBeam(id: 10, i: 2, j: 6, store: store)
-        Actions.addBeam(id: 11, i: 4, j: 8, store: store)
-        Actions.addBeam(id: 12, i: 3, j: 7, store: store)
+        Actions.addBeam(id:  1, i: 1, j: 2, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  2, i: 2, j: 4, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  3, i: 3, j: 4, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  4, i: 1, j: 3, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  5, i: 5, j: 6, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  6, i: 6, j: 8, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  7, i: 7, j: 8, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  8, i: 5, j: 7, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id:  9, i: 1, j: 5, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id: 10, i: 2, j: 6, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id: 11, i: 4, j: 8, angle: 0.0, section: 1, material: 1, store: store)
+        Actions.addBeam(id: 12, i: 3, j: 7, angle: 0.0, section: 1, material: 1, store: store)
         
         Actions.addSupport(id: 1, constrValues: [1, 1, 1, 1, 1, 1], store: store)
         Actions.addSupport(id: 2, constrValues: [1, 1, 1, 0, 0, 0], store: store)
@@ -222,12 +222,15 @@ enum Actions {
             return (id: id, iNode: iNode, jNode: jNode)
         }.compactMap { $0 }
         
+        Actions.addMaterial(id: 1, label: "SS400", E: 2.05e5, G: 1.02e3, store: store)
+        Actions.addRectangleSection(id: 1, label: "100x100", width: 100, height: 100, store: store)
+        
         for node in nodes {
             Actions.addNode(id: node.id, position: node.position, store: store)
         }
         
         for beam in beams {
-            Actions.addBeam(id: beam.id, i: beam.iNode, j: beam.jNode, store: store)
+            Actions.addBeam(id: beam.id, i: beam.iNode, j: beam.jNode, angle: 0.0, section: 1, material: 1, store: store)
         }
     }
     

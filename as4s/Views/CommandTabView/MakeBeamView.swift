@@ -14,10 +14,9 @@ struct MakeBeamView: View {
     @State private var iNode: Int?
     @State private var jNode: Int?
     @State private var angle: Float? = 0.0
-    @State private var section: Int? = 1
     
-    @State private var selectedSectionId: Int = 0
-    @State private var selectedMaterialId: Int = 0
+    @State private var selectedSectionId: Int = 1
+    @State private var selectedMaterialId: Int = 1
     
     var body: some View {
         VStack {
@@ -35,14 +34,6 @@ struct MakeBeamView: View {
                         .padding(.bottom, 20)
                 } header: {
                     Text("Node ID")
-                        .font(.subheadline)
-                }
-                
-                Section {
-                    InputIntValueField(value: $section, label: "ID")
-                        .padding(.bottom, 20)
-                } header: {
-                    Text("Section")
                         .font(.subheadline)
                 }
                 
@@ -78,16 +69,14 @@ struct MakeBeamView: View {
                     iNode = nil
                     jNode = nil
                     angle = 0.0
-                    section = 1
                 } label: {
                     Text("Reset")
                 }
                 Button {
                     guard let iNode = iNode,
                           let jNode = jNode,
-                          let angle = angle,
-                          let section = section else { return }
-                    Actions.appendBeam(i: iNode, j: jNode, angle: angle, section: section, store: store)
+                          let angle = angle else { return }
+                    Actions.appendBeam(i: iNode, j: jNode, angle: angle, section: selectedSectionId, material: selectedMaterialId, store: store)
                     id = store.model.beams.count + 1
                 } label: {
                     Text("OK")
