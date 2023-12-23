@@ -12,10 +12,11 @@ struct InputFloatValueField: View {
     var label: String = ""
     var systemImage: String = "number.square.fill"
     var unit: String = ""
+    var pronpt: Text?
     
     var body: some View {
         HStack {
-            TextField(value: $value, format: .number) {
+            TextField(value: $value, format: .number, prompt: pronpt) {
                 HStack {
                     Text(label)
                         .frame(width: 35, alignment: .trailing)
@@ -35,10 +36,11 @@ struct InputIntValueField: View {
     var label: String = ""
     var systemImage: String = "1.square.fill"
     var unit: String = ""
+    var pronpt: Text?
     
     var body: some View {
         HStack {
-            TextField(value: $value, format: .number) {
+            TextField(value: $value, format: .number, prompt: pronpt) {
                 HStack {
                     Text(label)
                         .frame(width: 35, alignment: .trailing)

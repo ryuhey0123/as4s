@@ -10,10 +10,11 @@ import Mevic
 
 final class Store: ObservableObject {
     
-    let model: Model
+    @Published var model: Model
     
     @Published var scene: GraphicScene = GraphicScene()
     @Published var selectedObjects: [Selectable] = []
+    @Published var snapNodes: [Node?] = [nil, nil]
     
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]

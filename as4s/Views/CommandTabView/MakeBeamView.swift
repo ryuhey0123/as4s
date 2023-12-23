@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MakeBeamView: View {
-    @State private var id: Int? = 1
+    @EnvironmentObject var store: Store
     
+    @State private var id: Int?
     @State private var iNode: Int?
     @State private var jNode: Int?
-    @State private var angle: Float?
-    @State private var section: Int?
+    @State private var angle: Float? = 0.0
+    @State private var section: Int? = 1
     
     var body: some View {
         VStack {
@@ -53,12 +54,20 @@ struct MakeBeamView: View {
             HStack {
                 Spacer()
                 Button {
-                    print("Cancel")
+                    iNode = nil
+                    jNode = nil
+                    angle = 0.0
+                    section = 1
                 } label: {
-                    Text("Cancel")
+                    Text("Reset")
                 }
                 Button {
-                    print("OK")
+                    guard let iNode = iNode,
+                          let jNode = jNode,
+                          let angle = angle,
+                          let section = section else { return }
+                    Actions.appendBeam(i: iNode, j: jNode, angle: angle, section: section, store: store)
+                    id = store.model.beams.count + 1
                 } label: {
                     Text("OK")
                 }
@@ -67,15 +76,24 @@ struct MakeBeamView: View {
             .padding()
         }
         .padding(.trailing)
+        .onAppear {
+            id = store.model.beams.count + 1
+        }
+        .onChange(of: store.snapNodes) {
+            iNode = store.snapNodes[0]?.id
+            jNode = store.snapNodes[1]?.id
+        }
     }
 }
 
 #Preview {
     HStack {
         MakeBeamView()
+            .environmentObject(Store())
             .frame(width: 170)
         Divider()
         MakeBeamView()
+            .environmentObject(Store())
             .frame(width: 500)
     }
 }

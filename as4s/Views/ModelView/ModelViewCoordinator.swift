@@ -62,6 +62,7 @@ class ModelViewCoordinator: NSObject {
     }
     
     func handleMouseDown(with event: NSEvent) {
+        Actions.snap(store: store)
         controller.dragStartLocation = float2(event.locationInWindow, at: view)
     }
     

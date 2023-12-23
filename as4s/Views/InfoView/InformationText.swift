@@ -42,7 +42,6 @@ struct InformationText: View {
                 .onPreferenceChange(OffsetPreferenceKey.self) { value in
                     withAnimation {
                         showLabel = value > 670
-                        print(value)
                     }
                 }
             }

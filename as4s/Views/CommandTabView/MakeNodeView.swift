@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MakeNodeView: View {
+    @EnvironmentObject var store: Store
+    
     @State private var id: Int?
     @State private var xValue: Float?
     @State private var yValue: Float?
@@ -36,12 +38,18 @@ struct MakeNodeView: View {
             HStack {
                 Spacer()
                 Button {
-                    print("Cancel")
+                    xValue = 0
+                    yValue = 0
+                    zValue = 0
                 } label: {
-                    Text("Cancel")
+                    Text("Reset")
                 }
                 Button {
-                    print("OK")
+                    guard let xValue = xValue,
+                          let yValue = yValue,
+                          let zValue = zValue else { return }
+                    Actions.appendNode(position: .init(xValue, yValue, zValue), store: store)
+                    id = store.model.nodes.count + 1
                 } label: {
                     Text("OK")
                 }
@@ -50,15 +58,20 @@ struct MakeNodeView: View {
             .padding()
         }
         .padding(.trailing)
+        .onAppear {
+            id = store.model.nodes.count + 1
+        }
     }
 }
 
 #Preview {
     HStack {
         MakeNodeView()
+            .environmentObject(Store())
             .frame(width: 170)
         Divider()
         MakeNodeView()
+            .environmentObject(Store())
             .frame(width: 300)
     }
 }

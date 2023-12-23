@@ -28,20 +28,33 @@ enum Actions {
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
-    static func addBeam(id: Int, i: Node, j: Node, store: Store) {
-        let beam = BeamColumn(id: id, i: i, j: j)
-        store.append(beam)
-
-        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
-    }
+//    static func addBeam(id: Int, i: Node, j: Node, store: Store) {
+//        let beam = BeamColumn(id: id, i: i, j: j)
+//        store.append(beam)
+//
+//        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
+//    }
     
-    static func addBeam(id: Int, i: Int, j: Int, store: Store) {
+    static func addBeam(id: Int, i: Int, j: Int, angle: Float = 0.0, section: Int = 1, store: Store) {
         guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
               let jNode = store.model.nodes.first(where: { $0.nodeTag == j }) else {
             fatalError("Cannot find nodes \(i), \(j)")
         }
         
-        let beam = BeamColumn(id: id, i: iNode, j: jNode)
+        let beam = BeamColumn(id: id, i: iNode, j: jNode, chordAngle: angle)
+        store.append(beam)
+        
+        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
+    }
+    
+    static func appendBeam(i: Int, j: Int, angle: Float = 0.0, section: Int = 1, store: Store) {
+        guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
+              let jNode = store.model.nodes.first(where: { $0.nodeTag == j }) else {
+            fatalError("Cannot find nodes \(i), \(j)")
+        }
+        
+        let id = store.model.beams.count + 1
+        let beam = BeamColumn(id: id, i: iNode, j: jNode, chordAngle: angle)
         store.append(beam)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
@@ -102,6 +115,13 @@ enum Actions {
         store.selectedObjects.append(contentsOf: selectedBeam)
     }
     
+    static func snap(store: Store) {
+        guard let snapId = store.scene.renderer.getSnappedId() else { return }
+        guard let selectedNodes = store.model.nodes.first(where: { $0.geometry.model.id == snapId }) else { return }
+        store.snapNodes[0] = store.snapNodes[1]
+        store.snapNodes[1] = selectedNodes
+    }
+
     static func unselectAll(store: Store) {
         store.selectedObjects = []
         store.model.nodes.forEach { $0.isSelected = false }
@@ -197,9 +217,7 @@ enum Actions {
         }
         
         for beam in beams {
-            guard let i: Node = store.model.nodes.first(where: { $0.nodeTag == beam.iNode }) else { break }
-            guard let j: Node = store.model.nodes.first(where: { $0.nodeTag == beam.jNode }) else { break }
-            Actions.addBeam(id: beam.id, i: i, j: j, store: store)
+            Actions.addBeam(id: beam.id, i: beam.iNode, j: beam.jNode, store: store)
         }
     }
     

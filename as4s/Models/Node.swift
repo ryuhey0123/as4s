@@ -57,3 +57,9 @@ extension Node: OSNode {
     
     var massValues: [Float]? { nil }
 }
+
+extension Node: Equatable {
+    static func == (lhs: Node, rhs: Node) -> Bool {
+        lhs.id == rhs.id
+    }
+}
