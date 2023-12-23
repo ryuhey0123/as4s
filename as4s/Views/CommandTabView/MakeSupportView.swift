@@ -47,12 +47,8 @@ struct MakeSupportView: View {
             }
             
             SubmitButtom(cancelAction: {
-                tx = false
-                ty = false
-                tz = false
-                rx = false
-                ry = false
-                rz = false
+                tx = false; ty = false; tz = false
+                rx = false; ry = false; rz = false
             }, submitAction: {
                 let values: [Int] = [tx, ty, tz, rx, ry, rz].map { $0 ? 1 : 0 }
                 for nodeId in nodeIds {
