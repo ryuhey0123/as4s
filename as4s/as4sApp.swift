@@ -9,15 +9,10 @@ import SwiftUI
 
 @main
 struct as4sApp: App {
-    @StateObject private var sharedStore = SharedStore()
     
     var body: some Scene {
         DocumentGroup(newDocument: { Store() }) { configuration in
             ContentView()
-                .onAppear {
-                    sharedStore.stores.append(configuration.document)
-                    sharedStore.activeStore = configuration.document
-                }
                 .focusedSceneValue(\.store, configuration.document)
         }
         .commands {

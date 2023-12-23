@@ -8,7 +8,7 @@
 import Mevic
 import OpenSeesCoder
 
-final class Node: Selectable {
+final class Node: Identifiable, Selectable {
     
     var id: Int
     

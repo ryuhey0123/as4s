@@ -73,8 +73,3 @@ final class Store: ObservableObject {
         model.reactangle.append(reactangle)
     }
 }
-
-class SharedStore: ObservableObject {
-    var stores: [Store] = []
-    var activeStore: Store?
-}

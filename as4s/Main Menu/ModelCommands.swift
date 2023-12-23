@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ModelCommands: Commands {
+    @Environment(\.openWindow) var openWindow
     @FocusedValue(\.showTransform) private var showPreview
     
     var body: some Commands {
@@ -18,6 +19,14 @@ struct ModelCommands: Commands {
                 Label("Transform...", systemImage: "plus")
             }
             .keyboardShortcut("m", modifiers: .command)
+        }
+        
+        CommandMenu("Table") {
+            Button {
+                openWindow(id: "table-nodes")
+            } label: {
+                Label("Node Tabel...", systemImage: "tablecells")
+            }
         }
     }
 }

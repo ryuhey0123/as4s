@@ -18,6 +18,8 @@ struct ModelView: View {
             .onAppear {
                 metalView.clearColor = .init(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
                 controller = GraphicController(metalView: metalView, scene: store.scene)
+                
+                Actions.addCoordinate(store: store)
             }
     }
 }

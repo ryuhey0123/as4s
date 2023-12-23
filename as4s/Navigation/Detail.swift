@@ -17,9 +17,7 @@ struct Detail: View {
     var body: some View {
         ZStack {
             ModelView()
-                .onAppear {
-                    Actions.addCoordinate(store: store)
-                }
+            
             VStack(spacing: -1.0) {
                 VSplit(top: {
                     EmptyView()
