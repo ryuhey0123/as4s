@@ -34,7 +34,7 @@ enum Actions {
             fatalError("Cannot find nodes \(i), \(j)")
         }
         
-        let beam = BeamColumn(id: id, i: iNode, j: jNode, material: material, section: section)
+        let beam = BeamColumn(id: id, i: iNode, j: jNode, material: material, section: section, chordAngle: angle)
         store.append(beam)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")

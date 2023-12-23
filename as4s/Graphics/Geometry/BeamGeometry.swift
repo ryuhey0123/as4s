@@ -174,14 +174,14 @@ struct BeamGeometry: Geometry {
         let vYi = -force[Force.Vy.rawValue]
         let vZi = -force[Force.Vz.rawValue]
         let mXi = -force[Force.T.rawValue]
-        let mYi = -force[Force.My.rawValue]
-        let mZi = force[Force.Mz.rawValue]
+        let mYi = force[Force.My.rawValue]
+        let mZi = -force[Force.Mz.rawValue]
         let vXj = force[Force.P.rawValue + offset]
         let vYj = force[Force.Vy.rawValue + offset]
         let vZj = force[Force.Vz.rawValue + offset]
         let mXj = force[Force.T.rawValue + offset]
-        let mYj = force[Force.My.rawValue + offset]
-        let mZj = -force[Force.Mz.rawValue + offset]
+        let mYj = -force[Force.My.rawValue + offset]
+        let mZj = force[Force.Mz.rawValue + offset]
         
         
         vX.iHeight = vXi * vScale
