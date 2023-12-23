@@ -20,27 +20,55 @@ struct ContentView: View {
         NavigationSplitView {
             Sidebar()
                 .frame(minWidth: 170)
+                .toolbar {
+                    ToolbarItemGroup {
+                        startPauseButton
+                    }
+                }
         } detail: {
             Detail()
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        ProgressBar()
+                    }
+                    ToolbarItem {
+                        Spacer()
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            showingInspector.toggle()
+                        } label: {
+                            Label("Inspector toggle", systemImage: "info.circle")
+                        }
+                    }
+                }
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
         }
-        .toolbar {
-            ToolbarItemGroup(placement: .automatic) {
-                Button {
-                    showingInspector.toggle()
-                } label: {
-                    Label("Inspector toggle", systemImage: "info.circle")
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem {
+//                Button {
+//                    showingInspector.toggle()
+//                } label: {
+//                    Label("Inspector toggle", systemImage: "info.circle")
+//                }
+//            }
+//        }
         .onExitCommand(perform: {
             Actions.unselectAll(store: store)
         })
         .focusedSceneValue(\.showTransform, $showingTransform)
         .sheet(isPresented: $showingTransform) {
             TransformView()
+        }
+    }
+    
+    private var startPauseButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "play.fill")
         }
     }
 }
