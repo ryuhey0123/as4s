@@ -122,6 +122,8 @@ enum Actions {
         
         store.selectedObjects.append(contentsOf: selectedNodes)
         store.selectedObjects.append(contentsOf: selectedBeam)
+        
+        store.selectedNodes.append(contentsOf: selectedNodes)
     }
     
     static func snap(store: Store) {
@@ -133,6 +135,7 @@ enum Actions {
 
     static func unselectAll(store: Store) {
         store.selectedObjects = []
+        store.selectedNodes = []
         store.model.nodes.forEach { $0.isSelected = false }
         store.model.beams.forEach { $0.isSelected = false }
     }

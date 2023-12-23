@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ObjectInspector: View {
-    @Binding var selectedObjects: [Selectable]
+    @Binding var selectedObjects: [any Selectable]
     
     var body: some View {
         if selectedObjects.count == 1 {

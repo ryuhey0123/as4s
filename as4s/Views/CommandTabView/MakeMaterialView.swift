@@ -17,7 +17,7 @@ struct MakeMaterialView: View {
     
     var body: some View {
         VStack {
-            Text("Make Material")
+            Text("Material")
                 .font(.headline)
                 .padding(.bottom, 20)
             Form {
@@ -32,26 +32,17 @@ struct MakeMaterialView: View {
                         .padding(.bottom, 20)
                 }
             }
-            HStack {
-                Spacer()
-                Button {
-                    label = ""
-                    E = nil
-                    G = nil
-                } label: {
-                    Text("Reset")
-                }
-                Button {
-                    guard let E = E,
-                          let G = G else { return }
-                    Actions.appendMaterial(label: label, E: E, G: G, store: store)
-                    id = store.model.materials.count + 1
-                } label: {
-                    Text("OK")
-                }
-                .buttonStyle(.borderedProminent)
-            }
-            .padding()
+            
+            SubmitButtom(cancelAction: {
+                label = ""
+                E = nil
+                G = nil
+            }, submitAction: {
+                guard let E = E,
+                      let G = G else { return }
+                Actions.appendMaterial(label: label, E: E, G: G, store: store)
+                id = store.model.materials.count + 1
+            })
         }
         .padding(.trailing)
         .onAppear {
@@ -65,6 +56,7 @@ struct MakeMaterialView: View {
         MakeMaterialView()
             .environmentObject(Store())
             .frame(width: 170)
+        Divider()
         MakeMaterialView()
             .environmentObject(Store())
             .frame(width: 300)

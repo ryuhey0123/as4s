@@ -39,7 +39,7 @@ struct CommandTabView: View {
                     case .beam:
                         MakeBeamView()
                     case .support:
-                        EmptyView()
+                        MakeSupportView()
                     case .section:
                         EmptyView()
                     case .material:

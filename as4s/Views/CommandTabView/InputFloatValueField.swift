@@ -55,6 +55,45 @@ struct InputIntValueField: View {
     }
 }
 
+struct InputIntValuesField: View {
+    @Binding var array: [Int]
+    @State private var string: String = ""
+    
+    var label: String = ""
+    var systemImage: String = "1.square.fill"
+    var unit: String = ""
+    var pronpt: Text?
+    
+    var body: some View {
+        HStack {
+            TextField(text: $string, prompt: pronpt) {
+                HStack {
+                    Text(label)
+                        .frame(width: 35, alignment: .trailing)
+                    Image(systemName: systemImage)
+                }
+            }
+            .multilineTextAlignment(.trailing)
+            .onChange(of: string) {
+                array = string.components(separatedBy: ",")
+                    .compactMap { Int($0.trimmingCharacters(in: .whitespacesAndNewlines)) }
+            }
+            .onChange(of: array) {
+                string = ""
+                if !array.isEmpty {
+                    array[0..<array.endIndex-1].forEach {
+                        string += "\($0), "
+                    }
+                    string += "\(array.last!)"
+                }
+            }
+            Text(unit)
+                .font(.footnote)
+        }
+        .frame(height: 19)
+    }
+}
+
 struct InputStringValueField: View {
     @Binding var value: String
     var label: String = ""
@@ -86,5 +125,6 @@ struct InputStringValueField: View {
         InputFloatValueField(value: .constant(2392.0923))
         InputIntValueField(value: .constant(23))
         InputStringValueField(value: .constant("Test Label"))
+        InputIntValuesField(array: .constant([1, 2, 3]))
     }
 }

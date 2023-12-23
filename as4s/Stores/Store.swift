@@ -13,7 +13,8 @@ final class Store: ObservableObject {
     @Published var model: Model
     
     @Published var scene: GraphicScene = GraphicScene()
-    @Published var selectedObjects: [Selectable] = []
+    @Published var selectedObjects: [any Selectable] = []
+    @Published var selectedNodes: [Node] = []
     @Published var snapNodes: [Node?] = [nil, nil]
     
     var openSeesBinaryURL: URL

@@ -20,7 +20,7 @@ struct MakeBeamView: View {
     
     var body: some View {
         VStack {
-            Text("Make Beam")
+            Text("Beam-Column")
                 .font(.headline)
                 .padding(.bottom, 20)
             Form {
@@ -63,27 +63,18 @@ struct MakeBeamView: View {
                     .padding(.trailing, 8)
                 }
             }
-            HStack {
-                Spacer()
-                Button {
-                    iNode = nil
-                    jNode = nil
-                    angle = 0.0
-                } label: {
-                    Text("Reset")
-                }
-                Button {
-                    guard let iNode = iNode,
-                          let jNode = jNode,
-                          let angle = angle else { return }
-                    Actions.appendBeam(i: iNode, j: jNode, angle: angle, section: selectedSectionId, material: selectedMaterialId, store: store)
-                    id = store.model.beams.count + 1
-                } label: {
-                    Text("OK")
-                }
-                .buttonStyle(.borderedProminent)
-            }
-            .padding()
+            
+            SubmitButtom(cancelAction: {
+                iNode = nil
+                jNode = nil
+                angle = 0.0
+            }, submitAction: {
+                guard let iNode = iNode,
+                      let jNode = jNode,
+                      let angle = angle else { return }
+                Actions.appendBeam(i: iNode, j: jNode, angle: angle, section: selectedSectionId, material: selectedMaterialId, store: store)
+                id = store.model.beams.count + 1
+            })
         }
         .padding(.trailing)
         .onAppear {

@@ -17,7 +17,7 @@ struct MakeNodeView: View {
     
     var body: some View {
         VStack {
-            Text("Make Node")
+            Text("Node")
                 .font(.headline)
                 .padding(.bottom, 20)
             Form {
@@ -35,27 +35,18 @@ struct MakeNodeView: View {
                         .font(.subheadline)
                 }
             }
-            HStack {
-                Spacer()
-                Button {
-                    xValue = 0
-                    yValue = 0
-                    zValue = 0
-                } label: {
-                    Text("Reset")
-                }
-                Button {
-                    guard let xValue = xValue,
-                          let yValue = yValue,
-                          let zValue = zValue else { return }
-                    Actions.appendNode(position: .init(xValue, yValue, zValue), store: store)
-                    id = store.model.nodes.count + 1
-                } label: {
-                    Text("OK")
-                }
-                .buttonStyle(.borderedProminent)
-            }
-            .padding()
+            
+            SubmitButtom(cancelAction: {
+                xValue = 0
+                yValue = 0
+                zValue = 0
+            }, submitAction: {
+                guard let xValue = xValue,
+                      let yValue = yValue,
+                      let zValue = zValue else { return }
+                Actions.appendNode(position: .init(xValue, yValue, zValue), store: store)
+                id = store.model.nodes.count + 1
+            })
         }
         .padding(.trailing)
         .onAppear {
