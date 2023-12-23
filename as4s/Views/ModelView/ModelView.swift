@@ -24,5 +24,5 @@ struct ModelView: View {
 
 #Preview {
     ModelView()
-        .environmentObject(Store())
+        .environmentObject(Store.debug)
 }

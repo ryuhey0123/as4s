@@ -33,7 +33,7 @@ struct Sidebar: View {
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .onAppear {
-            Actions.buildSmallModel(store: store)
+            Actions.buildDebugModel(store: store)
         }
     }
     
@@ -96,7 +96,7 @@ struct Sidebar: View {
     
     private var buildSmallTestModel: some View {
         Button("Small Test Model") {
-            Actions.buildSmallModel(store: store)
+            Actions.buildDebugModel(store: store)
         }
     }
     
@@ -109,6 +109,6 @@ struct Sidebar: View {
 
 #Preview {
     Sidebar()
-        .environmentObject(Store())
+        .environmentObject(Store.debug)
         .frame(width: 250, height: 800)
 }

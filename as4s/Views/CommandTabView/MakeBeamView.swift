@@ -55,12 +55,8 @@ struct MakeBeamView: View {
                 }
                 
                 Section {
-                    Picker("Material", selection: $selectedMaterialId) {
-                        ForEach(store.model.materials) {
-                            Text("\($0.id): \($0.label)")
-                        }
-                    }
-                    .padding(.trailing, 8)
+                    MaterialPicker(selection: $selectedMaterialId)
+                        .padding(.trailing, 8)
                 }
             }
             
@@ -90,11 +86,10 @@ struct MakeBeamView: View {
 #Preview {
     HStack {
         MakeBeamView()
-            .environmentObject(Store())
             .frame(width: 170)
         Divider()
         MakeBeamView()
-            .environmentObject(Store())
             .frame(width: 300)
     }
+    .environmentObject(Store.debug)
 }

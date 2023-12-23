@@ -9,6 +9,7 @@ import SwiftUI
 import Mevic
 
 final class Store: ObservableObject {
+    @StateObject static var debug: Store = Store(debug: true)
     
     @Published var model: Model
     
@@ -39,6 +40,14 @@ final class Store: ObservableObject {
         self.model = model
         self.openSeesBinaryURL = binaryURL
         self.tclEnvironment = environment
+    }
+    
+    convenience init(debug: Bool) {
+        self.init()
+        
+        if debug {
+            Actions.buildDebugModel(store: self)
+        }
     }
     
     convenience init(configuration: ReadConfiguration) throws {

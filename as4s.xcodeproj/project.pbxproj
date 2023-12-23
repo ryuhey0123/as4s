@@ -64,6 +64,7 @@
 		B1A524F62B36B21100171268 /* MakeMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524F52B36B21100171268 /* MakeMaterialView.swift */; };
 		B1A524F82B36C1EC00171268 /* MakeSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524F72B36C1EC00171268 /* MakeSupportView.swift */; };
 		B1A524FA2B36C25600171268 /* SubmitButtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524F92B36C25600171268 /* SubmitButtom.swift */; };
+		B1A524FD2B36D51300171268 /* MaterialPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524FC2B36D51300171268 /* MaterialPicker.swift */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
 		B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF9F722B21B6810066C617 /* GraphicScene.swift */; };
 		B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B3121A2ADC1CFE00DC32B9 /* Node.swift */; };
@@ -156,6 +157,7 @@
 		B1A524F52B36B21100171268 /* MakeMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMaterialView.swift; sourceTree = "<group>"; };
 		B1A524F72B36C1EC00171268 /* MakeSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSupportView.swift; sourceTree = "<group>"; };
 		B1A524F92B36C25600171268 /* SubmitButtom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtom.swift; sourceTree = "<group>"; };
+		B1A524FC2B36D51300171268 /* MaterialPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialPicker.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B1AF9F722B21B6810066C617 /* GraphicScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicScene.swift; sourceTree = "<group>"; };
 		B1B3121A2ADC1CFE00DC32B9 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -205,7 +207,6 @@
 				B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */,
 				B12324292B31D2E500E8D6B0 /* NodeInspector.swift */,
 				B19890412B33EA8D00CF0431 /* BeamInspector.swift */,
-				B14AC23D2B35624100282CE0 /* LabeledScaler.swift */,
 			);
 			path = Inspector;
 			sourceTree = "<group>";
@@ -275,8 +276,6 @@
 				B1077D642B35C3FD00938518 /* MakeBeamView.swift */,
 				B1A524F52B36B21100171268 /* MakeMaterialView.swift */,
 				B1A524F72B36C1EC00171268 /* MakeSupportView.swift */,
-				B1A524F92B36C25600171268 /* SubmitButtom.swift */,
-				B1077D662B35C42400938518 /* InputFloatValueField.swift */,
 			);
 			path = CommandTabView;
 			sourceTree = "<group>";
@@ -348,6 +347,7 @@
 				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
 				B14E2E4B2B2EAA360032AE30 /* Navigation */,
 				B161BC502ADB962A00AABA48 /* Views */,
+				B1A524FB2B36D3A500171268 /* Components */,
 				B14E2E4C2B2EAACC0032AE30 /* Main Menu */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
@@ -452,6 +452,17 @@
 				B1424E532B29E05F00F9A22C /* Transformation.swift */,
 			);
 			path = Rapper;
+			sourceTree = "<group>";
+		};
+		B1A524FB2B36D3A500171268 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B14AC23D2B35624100282CE0 /* LabeledScaler.swift */,
+				B1A524FC2B36D51300171268 /* MaterialPicker.swift */,
+				B1077D662B35C42400938518 /* InputFloatValueField.swift */,
+				B1A524F92B36C25600171268 /* SubmitButtom.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		B1A65B8D2ADD367C001A9C7B /* Utilities */ = {
@@ -681,6 +692,7 @@
 				B1B3121B2ADC1CFE00DC32B9 /* Node.swift in Sources */,
 				B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */,
 				B14AC2382B35552B00282CE0 /* Detail.swift in Sources */,
+				B1A524FD2B36D51300171268 /* MaterialPicker.swift in Sources */,
 				B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */,
 				B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */,
 				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,

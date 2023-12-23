@@ -32,4 +32,7 @@ struct SubmitButtom: View {
 
 #Preview {
     SubmitButtom(cancelAction: {}, submitAction: {})
+        .frame(width: 300)
+        .border(.secondary)
+        .padding()
 }

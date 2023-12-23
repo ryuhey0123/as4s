@@ -81,9 +81,14 @@ fileprivate struct LabeledVectorScaler: View {
 }
 
 #Preview {
-    Group {
+    VStack(spacing: 10.0) {
         LabeledScaler(label: "X", value: 1000.2938, unit: "mm")
+            .border(.secondary)
         LabeledScaler(label: "X", value: 1.203, unit: "rad")
+            .border(.secondary)
         LabeledVector(value: .init(x: 10000, y: 100000, z: 10000.00))
+            .border(.secondary)
     }
+    .padding()
+    .frame(width: 300)
 }

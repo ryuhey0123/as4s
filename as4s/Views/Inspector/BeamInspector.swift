@@ -115,4 +115,5 @@ struct BeamInspector: View {
         section: ReactangleSec(id: 1, width: 200, height: 200)
     ))
     .frame(width: 300, height: 600)
+    .environmentObject(Store.debug)
 }

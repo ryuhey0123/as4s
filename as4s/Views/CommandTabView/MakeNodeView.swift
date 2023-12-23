@@ -58,11 +58,10 @@ struct MakeNodeView: View {
 #Preview {
     HStack {
         MakeNodeView()
-            .environmentObject(Store())
             .frame(width: 170)
         Divider()
         MakeNodeView()
-            .environmentObject(Store())
             .frame(width: 300)
     }
+    .environmentObject(Store.debug)
 }

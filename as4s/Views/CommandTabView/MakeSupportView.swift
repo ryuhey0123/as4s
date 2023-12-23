@@ -66,10 +66,9 @@ struct MakeSupportView: View {
 #Preview {
     HStack {
         MakeSupportView()
-            .environmentObject(Store())
             .frame(width: 170)
         MakeSupportView()
-            .environmentObject(Store())
             .frame(width: 300)
     }
+    .environmentObject(Store.debug)
 }

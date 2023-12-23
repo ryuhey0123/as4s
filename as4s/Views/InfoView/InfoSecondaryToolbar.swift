@@ -46,5 +46,13 @@ struct InfoSecondaryToolbar: View {
 }
 
 #Preview {
-    InfoSecondaryToolbar(showingOutput: .constant(true), showingInput: .constant(true))
+    struct PreviewWrapper: View {
+        @State var showingOutput: Bool = false
+        @State var showingInput: Bool = false
+        
+        var body: some View {
+            InfoSecondaryToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
+        }
+    }
+    return PreviewWrapper()
 }

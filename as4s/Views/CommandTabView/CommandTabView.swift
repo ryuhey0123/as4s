@@ -89,10 +89,9 @@ struct CommandTabView: View {
     HStack(spacing: -1.0) {
         CommandTabView()
             .frame(width: 170, height: 500)
-            .environmentObject(Store())
         Divider()
         CommandTabView()
             .frame(width: 300, height: 500)
-            .environmentObject(Store())
     }
+    .environmentObject(Store.debug)
 }

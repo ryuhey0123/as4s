@@ -61,5 +61,13 @@ struct InfoPrimaryToolbar: SplitDivider {
 }
 
 #Preview {
-    InfoPrimaryToolbar(hide: .constant(SideHolder()), showingAccesary: .constant(true))
+    struct PreviewWrapper: View {
+        @State var hide: SideHolder = .init()
+        @State var showingAccesary: Bool = false
+        
+        var body: some View {
+            InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
+        }
+    }
+    return PreviewWrapper()
 }

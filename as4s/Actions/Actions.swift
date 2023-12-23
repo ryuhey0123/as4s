@@ -157,7 +157,7 @@ enum Actions {
     
     // MARK: - Import
     
-    static func buildSmallModel(store: Store) {
+    static func buildDebugModel(store: Store) {
         Actions.addNode(id: 1, position: .init(x: -500, y: -500, z:    0), store: store)
         Actions.addNode(id: 2, position: .init(x:  500, y: -500, z:    0), store: store)
         Actions.addNode(id: 3, position: .init(x: -500, y:  500, z:    0), store: store)
@@ -168,6 +168,7 @@ enum Actions {
         Actions.addNode(id: 8, position: .init(x:  500, y:  500, z: 1000), store: store)
         
         Actions.addMaterial(id: 1, label: "SS400", E: 2.05e5, G: 1.02e3, store: store)
+        Actions.addMaterial(id: 2, label: "SS490", E: 2.05e5, G: 1.02e3, store: store)
         Actions.addRectangleSection(id: 1, label: "100x100", width: 100, height: 100, store: store)
         
         Actions.addBeam(id:  1, i: 1, j: 2, angle: 0.0, section: 1, material: 1, store: store)

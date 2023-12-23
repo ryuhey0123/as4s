@@ -49,5 +49,5 @@ struct Detail: View {
 
 #Preview {
     Detail()
-        .environmentObject(Store())
+        .environmentObject(Store.debug)
 }

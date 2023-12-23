@@ -54,11 +54,10 @@ struct MakeMaterialView: View {
 #Preview {
     HStack {
         MakeMaterialView()
-            .environmentObject(Store())
             .frame(width: 170)
         Divider()
         MakeMaterialView()
-            .environmentObject(Store())
             .frame(width: 300)
     }
+    .environmentObject(Store.debug)
 }

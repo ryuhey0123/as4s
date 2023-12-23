@@ -119,12 +119,17 @@ struct InputStringValueField: View {
 }
 
 
-
 #Preview {
     Form {
         InputFloatValueField(value: .constant(2392.0923))
+            .border(.secondary)
         InputIntValueField(value: .constant(23))
+            .border(.secondary)
         InputStringValueField(value: .constant("Test Label"))
+            .border(.secondary)
         InputIntValuesField(array: .constant([1, 2, 3]))
+            .border(.secondary)
     }
+    .padding()
+    .frame(width: 300)
 }
