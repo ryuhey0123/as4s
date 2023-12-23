@@ -69,21 +69,21 @@ enum Actions {
         addRectangleSection(id: id, label: label, width: width, height: height, store: store)
     }
     
-    static func addNodalLoad(id: Int, force: [Float], store: Store) {
-        guard let node = store.model.nodes.first(where: { $0.nodeTag == id }) else {
-            fatalError("Cannot find nodes \(id)")
+    static func addNodalLoad(nodeId: Int, force: [Float], store: Store) {
+        guard let node = store.model.nodes.first(where: { $0.nodeTag == nodeId }) else {
+            fatalError("Cannot find nodes \(nodeId)")
         }
-        let force = NodalLoad(id: id, node: node, loadvalues: force)
+        let force = NodalLoad(id: nodeId, node: node, loadvalues: force)
         store.append(force)
         
         Logger.action.trace("\(#function): Add Nodal Load to \(node.nodeTag)")
     }
     
-    static func addSupport(id: Int, constrValues: [Int], store: Store) {
-        guard let node = store.model.nodes.first(where: { $0.nodeTag == id }) else {
-            fatalError("Cannot find nodes \(id)")
+    static func addSupport(nodeId: Int, constrValues: [Int], store: Store) {
+        guard let node = store.model.nodes.first(where: { $0.nodeTag == nodeId }) else {
+            fatalError("Cannot find nodes \(nodeId)")
         }
-        let support = Support(id: id, node: node, constrValues: constrValues)
+        let support = Support(id: nodeId, node: node, constrValues: constrValues)
         store.append(support)
         
         Logger.action.trace("\(#function): Add Support to \(node.nodeTag)")
@@ -180,13 +180,13 @@ enum Actions {
         Actions.addBeam(id: 11, i: 4, j: 8, angle: 0.0, section: 1, material: 1, store: store)
         Actions.addBeam(id: 12, i: 3, j: 7, angle: 0.0, section: 1, material: 1, store: store)
         
-        Actions.addSupport(id: 1, constrValues: [1, 1, 1, 1, 1, 1], store: store)
-        Actions.addSupport(id: 2, constrValues: [1, 1, 1, 0, 0, 0], store: store)
-        Actions.addSupport(id: 3, constrValues: [1, 1, 1, 0, 0, 0], store: store)
-        Actions.addSupport(id: 4, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(nodeId: 1, constrValues: [1, 1, 1, 1, 1, 1], store: store)
+        Actions.addSupport(nodeId: 2, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(nodeId: 3, constrValues: [1, 1, 1, 0, 0, 0], store: store)
+        Actions.addSupport(nodeId: 4, constrValues: [1, 1, 1, 0, 0, 0], store: store)
         
-        Actions.addNodalLoad(id: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
-        Actions.addNodalLoad(id: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
+        Actions.addNodalLoad(nodeId: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
+        Actions.addNodalLoad(nodeId: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
     }
     
     static func importTestModel(store: Store) {
