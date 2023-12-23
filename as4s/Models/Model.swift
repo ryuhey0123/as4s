@@ -21,7 +21,7 @@ final class Model: OSModel {
     
     // MARK: Specification
     
-    var elasticSec: [ElasticSection] = [.default]
+    var elasticSec: [ElasticSection] = []
     var linerTransfs: [Transformation] = []
     
     // MARK: Loads
@@ -36,7 +36,7 @@ final class Model: OSModel {
     
     // MARK: Output
 
-    var nodeRecorder: OSNodeRecorder = .init(fileName: "tmp/node_disp.out", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
+    // var nodeRecorder: OSNodeRecorder = .init(fileName: "tmp/node_disp.out", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
     
     // MARK: Analyze
     
@@ -47,6 +47,11 @@ final class Model: OSModel {
     var algorithm: some OSAlgorithm = OSLinear()
     var analysis: OSAnalysis = OSAnalysis(analysisType: .Static)
     var analyze: OSAnalyze = OSAnalyze(numIncr: 1)
+    
+    // MARK: Other
+    
+    var sections: [CrossSection] = []
+    var materials: [Material] = []
     
     init(ndm: Int = 3, ndf: Int? = 6) {
         self.ndm = ndm

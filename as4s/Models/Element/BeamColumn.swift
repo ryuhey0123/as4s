@@ -5,7 +5,6 @@
 //  Created by Ryuhei Fujita on 2023/11/17.
 //
 
-import SwiftUI
 import simd
 import Mevic
 import OpenSeesCoder
@@ -18,9 +17,15 @@ final class BeamColumn: Selectable {
     
     var j: Node
     
+    var material: Material
+    
+    var section: CrossSection
+    
     var chordAngle: Float
     
     var geometry: BeamGeometry!
+    
+    var secTag: Int = 0
     
     var vector: float3 {
         j.position - i.position
@@ -38,10 +43,12 @@ final class BeamColumn: Selectable {
         didSet { geometry.color = isSelected ? Config.beam.selectedColor : Config.beam.color }
     }
     
-    init(id: Int, i: Node, j: Node, chordAngle: Float = 0.0) {
+    init(id: Int, i: Node, j: Node, material: Material, section: CrossSection, chordAngle: Float = 0.0) {
         self.id = id
         self.i = i
         self.j = j
+        self.material = material
+        self.section = section
         self.chordAngle = chordAngle
         self.geometry = BeamGeometry(id: id,
                                      i: i.position,
@@ -67,6 +74,13 @@ extension BeamColumn: Renderable {
     func appendTo(model: Model) {
         model.beams.append(self)
         model.linerTransfs.append(transformation)
+        
+        if let sec = model.elasticSec.first(where: { $0.key == (section.id, material.id) }) {
+            secTag = sec.secTag
+        } else {
+            secTag = model.elasticSec.count + 1
+            model.elasticSec.append(ElasticSection(id: secTag, section: section, material: material))
+        }
     }
     
     func appendTo(scene: GraphicScene) {
@@ -81,8 +95,6 @@ extension BeamColumn: Renderable {
 extension BeamColumn: OSElasticBeamColumn {
     
     var eleTag: Int { id }
-    
-    var secTag: Int { 1 }
     
     var iNode: Int { i.id }
     

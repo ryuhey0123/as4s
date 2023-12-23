@@ -28,20 +28,16 @@ enum Actions {
         Logger.action.trace("\(#function): Add Point at \(node.position.description)")
     }
     
-//    static func addBeam(id: Int, i: Node, j: Node, store: Store) {
-//        let beam = BeamColumn(id: id, i: i, j: j)
-//        store.append(beam)
-//
-//        Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
-//    }
-    
     static func addBeam(id: Int, i: Int, j: Int, angle: Float = 0.0, section: Int = 1, store: Store) {
         guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
               let jNode = store.model.nodes.first(where: { $0.nodeTag == j }) else {
             fatalError("Cannot find nodes \(i), \(j)")
         }
         
-        let beam = BeamColumn(id: id, i: iNode, j: jNode, chordAngle: angle)
+        let material = Material(id: 1, E: 2.05e5, G: 0.4)
+        let section = ReactangleSec(id: 1, width: 100, height: 100)
+        
+        let beam = BeamColumn(id: id, i: iNode, j: jNode, material: material, section: section)
         store.append(beam)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")
@@ -53,8 +49,11 @@ enum Actions {
             fatalError("Cannot find nodes \(i), \(j)")
         }
         
+        let material = Material(id: 1, E: 2.05e5, G: 0.4)
+        let section = ReactangleSec(id: 1, width: 100, height: 100)
+        
         let id = store.model.beams.count + 1
-        let beam = BeamColumn(id: id, i: iNode, j: jNode, chordAngle: angle)
+        let beam = BeamColumn(id: id, i: iNode, j: jNode, material: material, section: section)
         store.append(beam)
         
         Logger.action.trace("\(#function): Add Beam from \(beam.iNode) to \(beam.jNode)")

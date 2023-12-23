@@ -87,9 +87,9 @@ struct BeamInspector: View {
     }
 }
 
-#Preview {
-    BeamInspector(beam: BeamColumn(id: 1,
-                                   i: Node(id: 1, position: .init(   0, 1000,  500)),
-                                   j: Node(id: 2, position: .init(1000, 2000, 1000))))
-    .frame(width: 300, height: 600)
-}
+//#Preview {
+//    BeamInspector(beam: BeamColumn(id: 1,
+//                                   i: Node(id: 1, position: .init(   0, 1000,  500)),
+//                                   j: Node(id: 2, position: .init(1000, 2000, 1000))))
+//    .frame(width: 300, height: 600)
+//}
