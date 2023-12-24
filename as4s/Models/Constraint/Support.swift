@@ -38,7 +38,7 @@ final class Support: Renderable {
     }
     
     func appendTo(model: Model) {
-        model.fixes.append(self)
+        model.fixes.insert(self)
     }
     
     func appendTo(scene: GraphicScene) {

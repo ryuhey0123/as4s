@@ -76,14 +76,14 @@ final class BeamColumn: Identifiable, Selectable {
 extension BeamColumn: Renderable {
     
     func appendTo(model: Model) {
-        model.beams.append(self)
-        model.linerTransfs.append(transformation)
+        model.beams.insert(self)
+        model.linerTransfs.insert(transformation)
         
         if let sec = model.elasticSec.first(where: { $0.key == (section.id, material.id) }) {
             secTag = sec.secTag
         } else {
             secTag = model.elasticSec.count + 1
-            model.elasticSec.append(ElasticSection(id: secTag, section: section, material: material))
+            model.elasticSec.insert(ElasticSection(id: secTag, section: section, material: material))
         }
     }
     
@@ -114,5 +114,11 @@ extension BeamColumn: OSElasticBeamColumn {
     
     var transformation: Transformation {
         Transformation(id: id, vector: -coordVector)
+    }
+}
+
+extension BeamColumn: Equatable {
+    static func == (lhs: BeamColumn, rhs: BeamColumn) -> Bool {
+        lhs.eleTag == rhs.eleTag
     }
 }

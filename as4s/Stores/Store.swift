@@ -22,8 +22,8 @@ final class Store: ObservableObject, Identifiable {
     @Published var model: Model
     
     @Published var scene: GraphicScene = GraphicScene()
-    @Published var selectedObjects: [any Selectable] = []
-    @Published var selectedNodes: [Node] = []
+    @Published var selectedNodes: Set<Node> = []
+    @Published var selectedBeams: Set<BeamColumn> = []
     @Published var snapNodes: [Node?] = [nil, nil]
     
     @Published var openSeesInput: String = ""

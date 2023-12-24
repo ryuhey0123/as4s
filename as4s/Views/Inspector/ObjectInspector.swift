@@ -8,24 +8,17 @@
 import SwiftUI
 
 struct ObjectInspector: View {
-    @Binding var selectedObjects: [any Selectable]
+    @Binding var selectedNodes: Set<Node>
+    @Binding var selectedBeams: Set<BeamColumn>
     
     var body: some View {
-        if selectedObjects.count == 1 {
-            if let node = selectedObjects[0] as? Node {
-                NodeInspector(node: node)
-            } else if let beam = selectedObjects[0] as? BeamColumn {
-                BeamInspector(beam: beam)
-            }
-        } else {
-            Text("Selected \(selectedObjects.count) Objects.")
+        if selectedNodes.count != 0 && selectedBeams.count != 0 {
+            Text("Selected \(selectedNodes.count) nodes.")
+            Text("Selected \(selectedBeams.count) beams.")
+        } else if selectedNodes.count == 1 {
+            NodeInspector(node: selectedNodes.first!)
+        } else if selectedBeams.count == 1 {
+            BeamInspector(beam: selectedBeams.first!)
         }
     }
-}
-
-#Preview {
-    ObjectInspector(selectedObjects: .constant([
-        Node(id: 1, position: .zero)
-    ]))
-    .frame(width: 300, height: 600)
 }

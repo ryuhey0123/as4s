@@ -14,29 +14,25 @@ final class Model: OSModel {
     
     // MARK: Renderable
     
-    var nodes: [Node] = []
-    var beams: [BeamColumn] = []
-    var trusses: [Truss] = []
-    var fixes: [Support] = []
+    var nodes: Set<Node> = []
+    var beams: Set<BeamColumn> = []
+    var trusses: Set<Truss> = []
+    var fixes: Set<Support> = []
     
     // MARK: Specification
     
-    var elasticSec: [ElasticSection] = []
-    var linerTransfs: [Transformation] = []
+    var elasticSec: Set<ElasticSection> = []
+    var linerTransfs: Set<Transformation> = []
     
     // MARK: Loads
     
-    var masses: [Mass] = []
+    var masses: Set<Mass> = []
     var nodalLoads: [NodalLoad] = []
     var timeSeries: some OSTimeSeries = OSConstantTimeSeries(tag: 1)
     
-    var plainPatterns: [OSPlainPattern] { [
+    var plainPatterns: Set<OSPlainPattern> { [
         OSPlainPattern(patternTag: 1, tsTag: 1, loads: nodalLoads)
     ] }
-    
-    // MARK: Output
-
-    // var nodeRecorder: OSNodeRecorder = .init(fileName: "tmp/node_disp.out", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp)
     
     // MARK: Analyze
     

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BeamColumnTable: View {
-    @Binding var beams: [BeamColumn]
+    @Binding var beams: Set<BeamColumn>
     @State var selectedRows: Set<BeamColumn.ID> = Set<BeamColumn.ID>()
     
     var body: some View {
-        Table(beams, selection: $selectedRows) {
+        Table(Array(beams), selection: $selectedRows) {
             TableColumn("ID") { row in
                 Text(row.id, format: .number)
             }

@@ -120,10 +120,8 @@ enum Actions {
         selectedNodes.forEach { $0.isSelected = true }
         selectedBeam.forEach { $0.isSelected = true }
         
-        store.selectedObjects.append(contentsOf: selectedNodes)
-        store.selectedObjects.append(contentsOf: selectedBeam)
-        
-        store.selectedNodes.append(contentsOf: selectedNodes)
+        store.selectedBeams.formUnion(selectedBeam)
+        store.selectedNodes.formUnion(selectedNodes)
     }
     
     static func snap(store: Store) {
@@ -134,8 +132,8 @@ enum Actions {
     }
 
     static func unselectAll(store: Store) {
-        store.selectedObjects = []
         store.selectedNodes = []
+        store.selectedBeams = []
         store.model.nodes.forEach { $0.isSelected = false }
         store.model.beams.forEach { $0.isSelected = false }
     }
@@ -144,13 +142,8 @@ enum Actions {
     // MARK: Geometry Transforom
     
     static func moveSelectedObject(to value: float3, store: Store) {
-        let objects = store.selectedObjects
-        guard !objects.isEmpty else { return }
-        
-        for object in objects {
-            if let object = object as? Node {
-                object.position += value
-            }
+        store.selectedNodes.forEach {
+            $0.position += value
         }
     }
     

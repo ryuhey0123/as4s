@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NodeTable: View {
-    @Binding var nodes: [Node]
+    @Binding var nodes: Set<Node>
     
     var body: some View {
-        Table(nodes) {
+        Table(Array(nodes)) {
             TableColumn("ID") { row in
                 Text(row.id, format: .number)
             }

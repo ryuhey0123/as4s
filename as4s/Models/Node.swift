@@ -38,7 +38,7 @@ final class Node: Identifiable, Selectable {
 extension Node: Renderable {
     
     func appendTo(model: Model) {
-        model.nodes.append(self)
+        model.nodes.insert(self)
     }
     
     func appendTo(scene: GraphicScene) {

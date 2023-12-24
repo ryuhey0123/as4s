@@ -47,7 +47,7 @@ struct ContentView: View {
             }
         }
         .inspector(isPresented: $showingInspector) {
-            ObjectInspector(selectedObjects: $store.selectedObjects)
+            ObjectInspector(selectedNodes: $store.selectedNodes, selectedBeams: $store.selectedBeams)
         }
         .onExitCommand(perform: {
             Actions.unselectAll(store: store)
