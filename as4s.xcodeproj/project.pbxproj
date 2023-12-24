@@ -229,6 +229,17 @@
 			path = Inspector;
 			sourceTree = "<group>";
 		};
+		B13B73432B382E1F00230C57 /* ProgressVIew */ = {
+			isa = PBXGroup;
+			children = (
+				B1A525092B3733B800171268 /* ProgressBar.swift */,
+				B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */,
+				B13B733F2B38285C00230C57 /* MessageView.swift */,
+				B13B73412B382A6100230C57 /* MessageBadge.swift */,
+			);
+			path = ProgressVIew;
+			sourceTree = "<group>";
+		};
 		B1424E572B2A075000F9A22C /* Element */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,10 +327,6 @@
 				B161BC232ADB958A00AABA48 /* ContentView.swift */,
 				B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */,
 				B14AC2372B35552B00282CE0 /* Detail.swift */,
-				B1A525092B3733B800171268 /* ProgressBar.swift */,
-				B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */,
-				B13B733F2B38285C00230C57 /* MessageView.swift */,
-				B13B73412B382A6100230C57 /* MessageBadge.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -414,6 +421,7 @@
 		B161BC502ADB962A00AABA48 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B13B73432B382E1F00230C57 /* ProgressVIew */,
 				B1A524FE2B36E74C00171268 /* TableView */,
 				B14AC2402B3582E700282CE0 /* CommandTabView */,
 				B14AC23F2B35774400282CE0 /* Sheets */,
