@@ -10,9 +10,11 @@ import Mevic
 
 final class Store: ObservableObject, Identifiable {
     
-    let id = UUID()
-    
     @StateObject static var debug: Store = Store(debug: true)
+    
+    let id = UUID()
+    var openSeesBinaryURL: URL
+    var tclEnvironment: [String : String]
     
     @Published var model: Model
     
@@ -21,12 +23,15 @@ final class Store: ObservableObject, Identifiable {
     @Published var selectedNodes: [Node] = []
     @Published var snapNodes: [Node?] = [nil, nil]
     
-    var openSeesBinaryURL: URL
-    var tclEnvironment: [String : String]
-    
     @Published var openSeesInput: String = ""
     @Published var openSeesStdOut: String = ""
     @Published var openSeesStdErr: String = ""
+    
+    @Published var progressTitle: ProgressTitles = .modeling
+    @Published var progressSubtitle: String = ""
+    
+    @Published var progress: Double = 0.0
+    @Published var progressEstimated: Double = 100.0
     
     init(model: Model = Model()) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {

@@ -241,27 +241,66 @@ enum Actions {
     
     // MARK: - OpenSees Execute
     
-    static func analayze(store: Store) {
-        exexuteOpenSees(store: store)
-        
-        let result = parseResultData(data: store.openSeesStdErr)
-        
-        updateNodeResult(nodeDisps: result.node, store: store)
-        updateEleResult(eleForce: result.ele, store: store)
+    enum AnalyzeError: Error {
+        case terminateProcess(status: Int32)
+        case invalidData(_ description: String)
     }
     
-    static func exexuteOpenSees(store: Store) {
-        let data = try! OSEncoder().encode(store.model)
-        
-        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("command.tcl")
+    static func analayze(store: Store) {
         do {
-            try data.write(to: path)
-        } catch {
-            fatalError("Cannot write command file at: \(path.path())")
+            let startTime = CACurrentMediaTime()
+            
+            store.progressTitle = .analysing
+            store.progress = 0.0
+            
+            store.progressSubtitle = "Encoding OpenSees Command File..."
+            let path = try buildOpenSeesCommand(store: store)
+            store.progress = 10.0
+            
+            store.progressSubtitle = "Executing OpenSees..."
+            let (_, data) = try exexuteOpenSees(commandPath: path, store: store)
+            store.progress = 20.0
+            
+            store.progressSubtitle = "Parse OpenSees Results..."
+            let result = parseResultData(data: data)
+            store.progress = 60.0
+            
+            store.progressSubtitle = "Update Results..."
+            updateNodeResult(nodeDisps: result.node, store: store)
+            updateEleResult(eleForce: result.ele, store: store)
+            store.progress = 80.0
+            
+            store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
+            store.progressTitle = .result
+            store.progress = 100.0
+            
+        } catch EncodingError.invalidValue {
+            store.progressTitle = .error
+            store.progressSubtitle = "Encoding Error"
+            return
+            
+        } catch AnalyzeError.terminateProcess(status: let error) {
+            store.progressTitle = .error
+            store.progressSubtitle = "Extute terminated Status: \(error)"
+            
+        } catch AnalyzeError.invalidData(let error) {
+            store.progressTitle = .error
+            store.progressSubtitle = "Invalid Data: \(error)"
+            
+        } catch let error {
+            fatalError(error.localizedDescription)
         }
-        
+    }
+    
+    private static func buildOpenSeesCommand(store: Store) throws -> URL {
+        let data = try OSEncoder().encode(store.model)
+        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("command.tcl")
+        try data.write(to: path)
         store.openSeesInput = String(data: data, encoding: .utf8) ?? ""
-        
+        return path
+    }
+    
+    private static func exexuteOpenSees(commandPath: URL, store: Store) throws -> (String, String) {
         let process = Process()
         let outputPipe = Pipe()
         let errorPipe = Pipe()
@@ -269,29 +308,30 @@ enum Actions {
         process.standardError = errorPipe
         process.environment = store.tclEnvironment
         process.executableURL = store.openSeesBinaryURL
-        process.arguments = [path.path()]
+        process.arguments = [commandPath.path()]
         
-        do {
-            try process.run()
-            process.waitUntilExit()
-            
-            let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-            store.openSeesStdOut = String(data: outputData, encoding: .utf8) ?? ""
-            
-            let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-            store.openSeesStdErr = String(data: errorData, encoding: .utf8) ?? ""
-            
-            if process.terminationStatus == 0 {
-                Logger.openSees.info("Success execute OpenSees")
-            } else {
-                fatalError("Error: \(process.terminationStatus)")
-            }
-        } catch {
-            fatalError("Error occurred during OpenSees execution: \(error)")
+        try process.run()
+        process.waitUntilExit()
+        
+        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+        let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+        
+        if process.terminationStatus == 0 {
+            Logger.openSees.info("Success execute OpenSees")
+        } else {
+            throw AnalyzeError.terminateProcess(status: process.terminationStatus)
+        }
+        
+        if let stdout = String(data: outputData, encoding: .utf8), let stderr = String(data: errorData, encoding: .utf8) {
+            store.openSeesStdOut = stdout
+            store.openSeesStdErr = stderr
+            return (stdout, stderr)
+        } else {
+            throw AnalyzeError.invalidData("Fault convert Data to String. \(outputData) \(errorData)")
         }
     }
     
-    static func parseResultData(data: String) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
+    private static func parseResultData(data: String) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
         let resultLines = data.components(separatedBy: .newlines)
         
         var nodeDisps: [Int: [Float]] = [:]
@@ -354,7 +394,7 @@ enum Actions {
         return (node: nodeDisps, ele: eleForce)
     }
     
-    static func updateNodeResult(nodeDisps: [Int: [Float]], store: Store) {
+    private static func updateNodeResult(nodeDisps: [Int: [Float]], store: Store) {
         for result in nodeDisps {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
                 let value = result.value[0..<3]
@@ -365,7 +405,7 @@ enum Actions {
         }
     }
     
-    static func updateEleResult(eleForce: [Int: [Float]], store: Store) {
+    private static func updateEleResult(eleForce: [Int: [Float]], store: Store) {
         for beam in store.model.beams {
             beam.geometry.disp.i = beam.i.geometry.disp.position
             beam.geometry.disp.j = beam.j.geometry.disp.position

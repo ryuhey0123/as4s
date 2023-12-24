@@ -7,17 +7,23 @@
 
 import SwiftUI
 
+enum ProgressTitles: String {
+    case modeling = "Modeling"
+    case analysing = "Analysing..."
+    case result = "Result"
+    case error = "Error"
+}
+
 struct ProgressBar: View {
-    @Binding var title: String
+    @Binding var title: ProgressTitles
     @Binding var subtitle: String
-    
-    @State private var progress: Double = 50
-    @State var total: Double = 100.0
+    @Binding var progress: Double
+    @Binding var total: Double
     
     var body: some View {
         ZStack(alignment: .bottom) {
             HStack {
-                Text(title)
+                Text(title.rawValue)
                     .font(.callout)
                     .bold()
                 Spacer()
@@ -38,10 +44,10 @@ struct ProgressBar: View {
 
 #Preview {
     VStack {
-        ProgressBar(title: .constant("Analysing..."), subtitle: .constant("Building OpenSees Command File"))
+        ProgressBar(title: .constant(.analysing), subtitle: .constant("Building OpenSees Command File"), progress: .constant(50), total: .constant(100))
             .frame(width: 600)
             .padding()
-        ProgressBar(title: .constant("Analysing..."), subtitle: .constant("Building OpenSees Command File"))
+        ProgressBar(title: .constant(.analysing), subtitle: .constant("Building OpenSees Command File"), progress: .constant(50), total: .constant(100))
             .frame(width: 300)
             .padding()
     }
