@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SectionTable: View {
-    @Binding var sections: [ReactangleSec]
+    @Binding var sections: [RectangleSection]
     
     var body: some View {
         Table(sections) {

@@ -58,7 +58,7 @@ enum Actions {
     }
     
     static func addRectangleSection(id: Int, label: String, width: Float, height: Float, store: Store) {
-        let section = ReactangleSec(id: id, label: label, width: width, height: height)
+        let section = RectangleSection(id: id, label: label, width: width, height: height)
         store.append(section)
         
         Logger.action.trace("\(#function): Add Section \(id)")

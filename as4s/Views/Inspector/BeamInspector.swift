@@ -112,7 +112,7 @@ struct BeamInspector: View {
         i: Node(id: 1, position: .init(   0, 1000,  500)),
         j: Node(id: 2, position: .init(1000, 2000, 1000)),
         material: Material(id: 1, E: 2.05e5, G: 2.0e3),
-        section: ReactangleSec(id: 1, width: 200, height: 200)
+        section: RectangleSection(id: 1, width: 200, height: 200)
     ))
     .frame(width: 300, height: 600)
     .environmentObject(Store.debug)

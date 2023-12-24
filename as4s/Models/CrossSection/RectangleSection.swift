@@ -1,5 +1,5 @@
 //
-//  ReactangleSec.swift
+//  RectangleSection.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/23.
@@ -7,7 +7,7 @@
 
 import simd
 
-final class ReactangleSec {
+final class RectangleSection {
     
     var id: Int
     var label: String
@@ -30,7 +30,7 @@ final class ReactangleSec {
     }
 }
 
-extension ReactangleSec: CrossSection {
+extension RectangleSection: CrossSection {
     
     var A: Float {
         width * height
