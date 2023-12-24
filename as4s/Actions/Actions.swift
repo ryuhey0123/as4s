@@ -252,6 +252,8 @@ enum Actions {
             
             store.progressTitle = .analysing
             store.progress = 0.0
+            store.warningMessages = []
+            store.errorMessages = []
             
             store.progressSubtitle = "Encoding OpenSees Command File..."
             let path = try buildOpenSeesCommand(store: store)
@@ -272,11 +274,12 @@ enum Actions {
             updateEleResult(beams: result.elasticBeam3d, store: store)
             store.progress = 80.0
             
+            store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
+            
             if !result.warning.isEmpty {
                 store.progressTitle = .warning
-                store.progressSubtitle = result.warning[0]
+                store.warningMessages.append(contentsOf: result.warning)
             } else {
-                store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
                 store.progressTitle = .success
             }
             

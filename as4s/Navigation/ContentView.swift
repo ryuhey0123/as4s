@@ -27,8 +27,13 @@ struct ContentView: View {
                 Detail()
                     .toolbar {
                         ToolbarItemGroup(placement: .principal) {
-//                            ProgressBar(title: $store.progressTitle, subtitle: $store.progressSubtitle, progress: $store.progress, total: $store.progressEstimated)
-//                                .frame(width: geometry.frame(in: .local).width * 0.4)
+                            ProgressBar(title: $store.progressTitle,
+                                        subtitle: $store.progressSubtitle,
+                                        progress: $store.progress,
+                                        total: $store.progressEstimated,
+                                        errors: $store.errorMessages,
+                                        warnings: $store.warningMessages)
+                                .frame(width: geometry.frame(in: .local).width * 0.4)
                             Spacer()
                         }
                         ToolbarItem(placement: .primaryAction) {

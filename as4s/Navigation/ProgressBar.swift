@@ -25,16 +25,6 @@ struct ProgressBar: View {
     @Binding var errors: [String]
     @Binding var warnings: [String]
     
-    var color: Color {
-        switch title {
-            case .modeling: .accentColor
-            case .analysing: .accentColor
-            case .success: .green
-            case .error: .red
-            case .warning: .yellow
-        }
-    }
-    
     var body: some View {
         ZStack(alignment: .bottom) {
             HStack {
@@ -49,21 +39,11 @@ struct ProgressBar: View {
                     .foregroundStyle(.secondary)
                 
                 if !warnings.isEmpty {
-                    Button {
-                        
-                    } label: {
-                        Text(String(warnings.count))
-                    }
-                    .buttonStyle(CustomButtonStyle(color: .yellow))
+                    MessageBadge(messages: $warnings, forgroundColor: .black, bacgroundColor: .yellow)
                 }
                 
                 if !errors.isEmpty {
-                    Button {
-                        
-                    } label: {
-                        Text(String(errors.count))
-                    }
-                    .buttonStyle(CustomButtonStyle(color: .red))
+                    MessageBadge(messages: $errors, forgroundColor: .black, bacgroundColor: .red)
                 }
             }
             .padding(.vertical, 5)
@@ -75,23 +55,6 @@ struct ProgressBar: View {
         .clipShape(
             RoundedRectangle(cornerRadius: 6)
         )
-    }
-    
-    struct CustomButtonStyle: ButtonStyle {
-        var color: Color
-        
-        public func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .font(.callout)
-                .bold()
-                .padding(.horizontal, 8)
-                .foregroundColor(color == .yellow ? .black : .black)
-                .background(
-                    RoundedRectangle(cornerRadius: 15.0, style: .continuous)
-                        .fill(color)
-                )
-                .opacity(configuration.isPressed ? 0.4 : 1.0)
-        }
     }
 }
 
