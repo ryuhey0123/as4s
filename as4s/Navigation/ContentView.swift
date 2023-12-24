@@ -17,44 +17,36 @@ struct ContentView: View {
     @State private var showingTransform: Bool = false
     
     var body: some View {
-        NavigationSplitView {
-            Sidebar()
-                .frame(minWidth: 170)
-                .toolbar {
-                    ToolbarItemGroup {
-                        startPauseButton
-                    }
-                }
-        } detail: {
-            Detail()
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        ProgressBar()
-                    }
-                    ToolbarItem {
-                        Spacer()
-                    }
-                    ToolbarItem(placement: .primaryAction) {
-                        Button {
-                            showingInspector.toggle()
-                        } label: {
-                            Label("Inspector toggle", systemImage: "info.circle")
+        GeometryReader { geometry in
+            NavigationSplitView {
+                Sidebar()
+                    .frame(minWidth: 170)
+                    .toolbar {
+                        ToolbarItemGroup {
+                            startPauseButton
                         }
                     }
-                }
+            } detail: {
+                Detail()
+                    .toolbar {
+                        ToolbarItemGroup(placement: .principal) {
+                            ProgressBar(title: .constant("Analysing..."), subtitle: .constant("Building OpenSees Command File"))
+                                .frame(width: geometry.frame(in: .local).width * 0.4)
+                            Spacer()
+                        }
+                        ToolbarItem(placement: .primaryAction) {
+                            Button {
+                                showingInspector.toggle()
+                            } label: {
+                                Label("Inspector toggle", systemImage: "info.circle")
+                            }
+                        }
+                    }
+            }
         }
         .inspector(isPresented: $showingInspector) {
             ObjectInspector(selectedObjects: $store.selectedObjects)
         }
-//        .toolbar {
-//            ToolbarItem {
-//                Button {
-//                    showingInspector.toggle()
-//                } label: {
-//                    Label("Inspector toggle", systemImage: "info.circle")
-//                }
-//            }
-//        }
         .onExitCommand(perform: {
             Actions.unselectAll(store: store)
         })
@@ -76,5 +68,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(Store.debug)
-        .frame(width: 800, height: 500)
+        .frame(width: 900, height: 500)
 }

@@ -8,24 +8,41 @@
 import SwiftUI
 
 struct ProgressBar: View {
+    @Binding var title: String
+    @Binding var subtitle: String
+    
+    @State private var progress: Double = 50
+    @State var total: Double = 100.0
+    
     var body: some View {
-        HStack {
-            Text("Hello, World!")
-                .font(.callout)
-            Spacer(minLength: 200)
-            Text("Selected 2 Nodes")
-                .font(.callout)
-                .foregroundStyle(.secondary)
+        ZStack(alignment: .bottom) {
+            HStack {
+                Text(title)
+                    .font(.callout)
+                    .bold()
+                Spacer()
+                Text(subtitle)
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.vertical, 5)
+            .padding(.horizontal, 7)
+            ProgressLine(value: $progress, total: $total)
         }
-        .padding(6)
         .background(.selection)
-        .containerShape(
-            RoundedRectangle(cornerRadius: 5)
+        .clipShape(
+            RoundedRectangle(cornerRadius: 6)
         )
     }
 }
 
 #Preview {
-    ProgressBar()
-        .padding()
+    VStack {
+        ProgressBar(title: .constant("Analysing..."), subtitle: .constant("Building OpenSees Command File"))
+            .frame(width: 600)
+            .padding()
+        ProgressBar(title: .constant("Analysing..."), subtitle: .constant("Building OpenSees Command File"))
+            .frame(width: 300)
+            .padding()
+    }
 }
