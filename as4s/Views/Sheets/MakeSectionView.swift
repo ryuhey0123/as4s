@@ -11,12 +11,15 @@ struct MakeSectionView: View {
     @EnvironmentObject var store: Store
     @Environment(\.dismiss) private var dismiss
     
-    @State private var id: Int?
-    @State private var label: String = ""
-    @State private var width: Float?
-    @State private var height: Float?
+    @State private var commandItem: SectionItems = .rectangle
     
-    let labelWidth: CGFloat = 50
+    enum SectionItems: String {
+        case rectangle
+        case rectanglePipe
+        case circular
+        case circularPipe
+        case shapeH
+    }
     
     var body: some View {
         HStack(alignment: .top, spacing: -1.0) {
@@ -31,25 +34,40 @@ struct MakeSectionView: View {
                     Text(row.type.rawValue)
                 }
             }
+            Divider()
             VStack {
-                Text("Rectangle Shape")
-                    .font(.headline)
-                Form {
-                    InputIntValueField(value: $id, label: "ID", labelWidth: labelWidth)
-                    InputStringValueField(value: $label, label: "Label", labelWidth: labelWidth)
-                    InputFloatValueField(value: $width, label: "Width", labelWidth: labelWidth)
-                    InputFloatValueField(value: $height, label: "Height", labelWidth: labelWidth)
+                HStack {
+                    SimpleTabItem(item: $commandItem, systemName: "rectangle.portrait.fill", command: .rectangle)
+                    SimpleTabItem(item: $commandItem, systemName: "rectangle.portrait", command: .rectanglePipe)
+                    SimpleTabItem(item: $commandItem, systemName: "circle.fill", command: .circular)
+                    SimpleTabItem(item: $commandItem, systemName: "circle", command: .circularPipe)
+                    SimpleTabItem(item: $commandItem, systemName: "h.square", command: .shapeH)
                 }
-                SubmitButtom(cancelAction: {
-                    
-                }, submitAction: {
-                    
-                })
+                .padding(.top, 5)
+                .frame(height: 19)
+                
+                Divider()
+                
+                Group {
+                    switch commandItem {
+                        case .rectangle:
+                            MakeRectangle()
+                        case .rectanglePipe:
+                            EmptyView()
+                        case .circular:
+                            EmptyView()
+                        case .circularPipe:
+                            EmptyView()
+                        case .shapeH:
+                            EmptyView()
+                    }
+                }
+                .padding(.horizontal, 10)
             }
-            .padding()
             .frame(width: 200)
         }
         .frame(minWidth: 500)
+        .padding(.top, 5)
     }
 }
 

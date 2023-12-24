@@ -21,11 +21,11 @@ struct CommandTabView: View {
     var body: some View {
         VStack {
             HStack {
-                CommandItem(command: .node, systemName: "circle.grid.2x1", item: $commandItem)
-                CommandItem(command: .beam, systemName: "line.diagonal", item: $commandItem)
-                CommandItem(command: .support, systemName: "triangle", item: $commandItem)
-                CommandItem(command: .section, systemName: "h.square", item: $commandItem)
-                CommandItem(command: .material, systemName: "leaf", item: $commandItem)
+                SimpleTabItem(item: $commandItem, systemName: "circle.grid.2x1", command: .node)
+                SimpleTabItem(item: $commandItem, systemName: "line.diagonal",   command: .beam)
+                SimpleTabItem(item: $commandItem, systemName: "triangle",        command: .support)
+                SimpleTabItem(item: $commandItem, systemName: "h.square",        command: .section)
+                SimpleTabItem(item: $commandItem, systemName: "leaf",            command: .material)
             }
             .padding(.top, 5)
             .frame(height: 25)
@@ -51,38 +51,6 @@ struct CommandTabView: View {
         }
         .frame(maxHeight: .infinity)
     }
-    
-    struct CommandItem: View {
-        let command: CommandItems
-        let systemName: String
-        
-        @State private var toggle: Bool
-        @Binding var item: CommandItems
-        
-        init(command: CommandItems, systemName: String, item: Binding<CommandItems>) {
-            self.command = command
-            self.systemName = systemName
-            self.toggle = (command == item.wrappedValue)
-            self._item = item
-        }
-        
-        var body: some View {
-            Toggle(isOn: $toggle, label: {
-                Label(command.rawValue, systemImage: systemName)
-                    .labelStyle(.iconOnly)
-            })
-            .toggleStyle(.button)
-            .buttonStyle(.borderless)
-            .padding(3)
-            .onChange(of: toggle) {
-                if toggle { item = command }
-            }
-            .onChange(of: item) {
-                toggle = (item == command)
-            }
-        }
-    }
-
 }
 
 #Preview {

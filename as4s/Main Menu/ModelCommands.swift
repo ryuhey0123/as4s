@@ -27,6 +27,7 @@ struct ModelCommands: Commands {
             } label: {
                 Label("Section...", systemImage: "plus")
             }
+            .keyboardShortcut("s", modifiers: [.command, .control])
         }
         
         CommandMenu("Table") {
