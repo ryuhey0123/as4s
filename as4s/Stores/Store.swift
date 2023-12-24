@@ -85,8 +85,8 @@ final class Store: ObservableObject, Identifiable {
         model.materials.append(material)
     }
     
-    func append(_ reactangle: RectangleSection) {
-        model.reactangle.append(reactangle)
+    func append(_ section: CrossSection) {
+        model.sections.append(section)
     }
 }
 

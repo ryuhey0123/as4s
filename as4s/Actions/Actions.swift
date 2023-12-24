@@ -30,7 +30,7 @@ enum Actions {
         guard let iNode = store.model.nodes.first(where: { $0.nodeTag == i }),
               let jNode = store.model.nodes.first(where: { $0.nodeTag == j }),
               let material = store.model.materials.first(where: { $0.id == material }),
-              let section =  store.model.reactangle.first(where: { $0.id == section }) else {
+              let section = store.model.sections.first(where: { $0.id == section }) else {
             fatalError("Cannot find nodes \(i), \(j)")
         }
         
@@ -65,7 +65,7 @@ enum Actions {
     }
     
     static func appendRectangleSection(label: String, width: Float, height: Float, store: Store) {
-        let id = store.model.reactangle.count + 1
+        let id = store.model.sections.count + 1
         addRectangleSection(id: id, label: label, width: width, height: height, store: store)
     }
     

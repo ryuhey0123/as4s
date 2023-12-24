@@ -7,31 +7,30 @@
 
 import OpenSeesCoder
 
-protocol CrossSection: Identifiable {
+class CrossSection: Identifiable {
     
-    var id: Int { get }
+    var id: Int
+    var label: String = ""
     
-    var label: String { get }
+    var type: SectionType
     
     /// cross-sectional area of section
-    var A: Float { get }
-    
+    var A: Float { 0.0 }
     /// second moment of area about the local z-axis
-    var Iz: Float { get }
-    
+    var Iz: Float { 0.0 }
     /// second moment of area about the local y-axis (required for 3D analysis)
-    var Iy: Float { get }
-    
+    var Iy: Float { 0.0 }
     /// torsional moment of inertia of section (required for 3D analysis)
-    var J: Float { get }
-    
+    var J: Float { 0.0 }
     /// shear shape factor along the local y-axis (optional)
-    var alphaY: Float? { get }
-    
+    var alphaY: Float? { nil }
     /// shear shape factor along the local z-axis (optional)
-    var alphaZ: Float? { get }
+    var alphaZ: Float? { nil }
     
-    var type: SectionType { get }
+    init(id: Int, type: SectionType) {
+        self.id = id
+        self.type = type
+    }
 }
 
 enum SectionType: String {

@@ -122,5 +122,6 @@ struct TransformView: View {
 
 #Preview {
     TransformView()
+        .environmentObject(Store.debug)
 }
 

@@ -7,15 +7,15 @@
 
 import OpenSeesCoder
 
-final class ElasticSection {
+final class ElasticSection: Identifiable {
     
     var id: Int
-    var section: any CrossSection
+    var section: CrossSection
     var material: Material
     
     var key: (Int, Int) { (section.id, material.id) }
     
-    init(id: Int, section: any CrossSection, material: Material) {
+    init(id: Int, section: CrossSection, material: Material) {
         guard section.type == .elastic else { fatalError() }
         
         self.id = id

@@ -20,8 +20,8 @@ struct TableView: View {
                 .tabItem { Text("Beam") }.tag(2)
             MaterialTable(materials: $store.model.materials)
                 .tabItem { Text("Material") }.tag(3)
-            SectionTable(sections: $store.model.reactangle)
-                .tabItem { Text("Section") }.tag(4)
+//            SectionTable(sections: $store.model.sections)
+//                .tabItem { Text("Section") }.tag(4)
         }
         .padding()
     }

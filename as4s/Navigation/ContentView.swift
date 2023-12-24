@@ -14,7 +14,9 @@ struct ContentView: View {
     @EnvironmentObject var store: Store
     
     @State private var showingInspector: Bool = false
-    @State private var showingTransform: Bool = false
+    
+    @State private var showingTransformSheet: Bool = false
+    @State private var showingMakeSectionSheet: Bool = false
     
     @State private var isAnalyed: Bool = false
     
@@ -52,9 +54,13 @@ struct ContentView: View {
         .onExitCommand(perform: {
             Actions.unselectAll(store: store)
         })
-        .focusedSceneValue(\.showTransform, $showingTransform)
-        .sheet(isPresented: $showingTransform) {
+        .focusedSceneValue(\.showTransform, $showingTransformSheet)
+        .focusedSceneValue(\.showMakeSection, $showingMakeSectionSheet)
+        .sheet(isPresented: $showingTransformSheet) {
             TransformView()
+        }
+        .sheet(isPresented: $showingMakeSectionSheet) {
+            MakeSectionView()
         }
     }
     

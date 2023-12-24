@@ -39,6 +39,10 @@ extension FocusedValues {
     struct ShowTransformKey: FocusedValueKey {
         typealias Value = Binding<Bool>
     }
+    
+    struct ShowMakeSectionKey: FocusedValueKey {
+        typealias Value = Binding<Bool>
+    }
 
     var store: Store? {
         get { self[StoreFocusedValuesKey.self] }
@@ -48,5 +52,10 @@ extension FocusedValues {
     var showTransform: Binding<Bool>? {
         get { self[ShowTransformKey.self] }
         set { self[ShowTransformKey.self] = newValue }
+    }
+    
+    var showMakeSection: Binding<Bool>? {
+        get { self[ShowMakeSectionKey.self] }
+        set { self[ShowMakeSectionKey.self] = newValue }
     }
 }

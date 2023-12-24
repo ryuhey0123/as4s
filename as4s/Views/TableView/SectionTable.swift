@@ -45,7 +45,7 @@ struct SectionTable: View {
         }
     }
 }
-
-#Preview {
-    SectionTable(sections: .constant(Store.debug.model.reactangle))
-}
+//
+//#Preview {
+//    SectionTable(sections: .constant(Store.debug.model.rectangles))
+//}

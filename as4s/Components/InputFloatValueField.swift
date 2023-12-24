@@ -13,13 +13,14 @@ struct InputFloatValueField: View {
     var systemImage: String = "number.square.fill"
     var unit: String = ""
     var pronpt: Text?
+    var labelWidth: CGFloat = 25
     
     var body: some View {
         HStack {
             TextField(value: $value, format: .number, prompt: pronpt) {
                 HStack {
                     Text(label)
-                        .frame(width: 35, alignment: .trailing)
+                        .frame(width: labelWidth, alignment: .trailing)
                     Image(systemName: systemImage)
                 }
             }
@@ -37,13 +38,14 @@ struct InputIntValueField: View {
     var systemImage: String = "1.square.fill"
     var unit: String = ""
     var pronpt: Text?
+    var labelWidth: CGFloat = 25
     
     var body: some View {
         HStack {
             TextField(value: $value, format: .number, prompt: pronpt) {
                 HStack {
                     Text(label)
-                        .frame(width: 35, alignment: .trailing)
+                        .frame(width: labelWidth, alignment: .trailing)
                     Image(systemName: systemImage)
                 }
             }
@@ -63,13 +65,14 @@ struct InputIntValuesField: View {
     var systemImage: String = "1.square.fill"
     var unit: String = ""
     var pronpt: Text?
+    var labelWidth: CGFloat = 25
     
     var body: some View {
         HStack {
             TextField(text: $string, prompt: pronpt) {
                 HStack {
                     Text(label)
-                        .frame(width: 35, alignment: .trailing)
+                        .frame(width: labelWidth, alignment: .trailing)
                     Image(systemName: systemImage)
                 }
             }
@@ -100,13 +103,14 @@ struct InputStringValueField: View {
     var systemImage: String = "s.square.fill"
     var unit: String = ""
     var pronpt: Text?
+    var labelWidth: CGFloat = 25
     
     var body: some View {
         HStack {
             TextField(text: $value) {
                 HStack {
                     Text(label)
-                        .frame(width: 35, alignment: .trailing)
+                        .frame(width: labelWidth, alignment: .trailing)
                     Image(systemName: systemImage)
                 }
             }

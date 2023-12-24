@@ -47,7 +47,7 @@ struct MakeBeamView: View {
                 
                 Section {
                     Picker("Section", selection: $selectedSectionId) {
-                        ForEach(store.model.reactangle) {
+                        ForEach(store.model.sections) {
                             Text("\($0.id): \($0.label)")
                         }
                     }
