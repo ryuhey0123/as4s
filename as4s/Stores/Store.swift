@@ -7,12 +7,15 @@
 
 import SwiftUI
 import Mevic
+import OpenSeesCoder
 
 final class Store: ObservableObject, Identifiable {
     
     @StateObject static var debug: Store = Store(debug: true)
     
     let id = UUID()
+    
+    var openSeesDecoder: OSReslutDecoder
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]
     
@@ -48,6 +51,8 @@ final class Store: ObservableObject, Identifiable {
         self.model = model
         self.openSeesBinaryURL = binaryURL
         self.tclEnvironment = environment
+        
+        self.openSeesDecoder = .init(tclEnvironment: environment, openSeesBinaryURL: binaryURL)
     }
     
     convenience init(debug: Bool) {

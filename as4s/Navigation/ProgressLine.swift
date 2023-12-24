@@ -10,8 +10,7 @@ import SwiftUI
 struct ProgressLine: View {
     @Binding var value: Double
     @Binding var total: Double
-    
-    @State private var newValue: Double = 0.0
+    var color: Color
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,18 +22,13 @@ struct ProgressLine: View {
             .stroke(
                 .linearGradient(
                     Gradient(stops: [
-                        .init(color: .accentColor, location: 0.0),
-                        .init(color: .accentColor, location: newValue / total),
-                        .init(color: .clear, location: newValue / total)
+                        .init(color: color, location: 0.0),
+                        .init(color: color, location: value / total),
+                        .init(color: .clear, location: value / total)
                     ]),
                     startPoint: UnitPoint(x: 0.0, y: 0.0),
                     endPoint: UnitPoint(x: 1.0, y: 0.0)),
                 style: StrokeStyle(lineWidth: 2))
-            .onChange(of: value) {
-                withAnimation {
-                    newValue = value
-                }
-            }
         }
         .frame(height: 2)
     }
@@ -48,10 +42,10 @@ struct ProgressLine: View {
         let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
         
         var body: some View {
-            ProgressLine(value: $value, total: $total)
+            ProgressLine(value: $value, total: $total, color: .accentColor)
                 .padding()
                 .onReceive(timer) { _ in
-                    if value < 100 {
+                    if value <= 100 {
                         value += 1
                     } else {
                         value = 0

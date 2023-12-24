@@ -16,7 +16,7 @@ enum SampleText {
                             All Rights Reserved
 (Copyright and Disclaimer @ http://www.berkeley.edu/OpenSees/copyright.html)
 
-
+WARNING BandSPDLinLapackSolver::solve() -factorization failed, matrix singular U(i,i) = 0, i= 0
 
 Node: 1
 Coordinates  : -500 -500 0

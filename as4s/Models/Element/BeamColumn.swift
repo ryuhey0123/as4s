@@ -106,6 +106,10 @@ extension BeamColumn: OSElasticBeamColumn {
     
     var transfTag: Int { id }
     
+    var releaseZ: Int? { nil }
+    
+    var releaseY: Int? { nil }
+    
     var massDens: Float? { nil }
     
     var transformation: Transformation {

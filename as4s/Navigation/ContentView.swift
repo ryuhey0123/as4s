@@ -16,22 +16,19 @@ struct ContentView: View {
     @State private var showingInspector: Bool = false
     @State private var showingTransform: Bool = false
     
+    @State private var isAnalyed: Bool = false
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationSplitView {
                 Sidebar()
                     .frame(minWidth: 170)
-                    .toolbar {
-                        ToolbarItemGroup {
-                            startPauseButton
-                        }
-                    }
             } detail: {
                 Detail()
                     .toolbar {
                         ToolbarItemGroup(placement: .principal) {
-                            ProgressBar(title: $store.progressTitle, subtitle: $store.progressSubtitle, progress: $store.progress, total: $store.progressEstimated)
-                                .frame(width: geometry.frame(in: .local).width * 0.4)
+//                            ProgressBar(title: $store.progressTitle, subtitle: $store.progressSubtitle, progress: $store.progress, total: $store.progressEstimated)
+//                                .frame(width: geometry.frame(in: .local).width * 0.4)
                             Spacer()
                         }
                         ToolbarItem(placement: .primaryAction) {

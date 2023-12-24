@@ -258,20 +258,28 @@ enum Actions {
             store.progress = 10.0
             
             store.progressSubtitle = "Executing OpenSees..."
-            let (_, data) = try exexuteOpenSees(commandPath: path, store: store)
+            let (stdout, stderr) = try store.openSeesDecoder.exexute(commandFilePath: path)
+            store.openSeesStdOut = stdout
+            store.openSeesStdErr = stderr
             store.progress = 20.0
             
             store.progressSubtitle = "Parse OpenSees Results..."
-            let result = parseResultData(data: data)
+            let result = store.openSeesDecoder.parse(data: stderr)
             store.progress = 60.0
             
             store.progressSubtitle = "Update Results..."
-            updateNodeResult(nodeDisps: result.node, store: store)
-            updateEleResult(eleForce: result.ele, store: store)
+            updateNodeResult(nodes: result.node, store: store)
+            updateEleResult(beams: result.elasticBeam3d, store: store)
             store.progress = 80.0
             
-            store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
-            store.progressTitle = .result
+            if !result.warning.isEmpty {
+                store.progressTitle = .warning
+                store.progressSubtitle = result.warning[0]
+            } else {
+                store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
+                store.progressTitle = .success
+            }
+            
             store.progress = 100.0
             
         } catch EncodingError.invalidValue {
@@ -290,6 +298,8 @@ enum Actions {
         } catch let error {
             fatalError(error.localizedDescription)
         }
+        
+        store.progress = 0.0
     }
     
     private static func buildOpenSeesCommand(store: Store) throws -> URL {
@@ -300,104 +310,10 @@ enum Actions {
         return path
     }
     
-    private static func exexuteOpenSees(commandPath: URL, store: Store) throws -> (String, String) {
-        let process = Process()
-        let outputPipe = Pipe()
-        let errorPipe = Pipe()
-        process.standardOutput = outputPipe
-        process.standardError = errorPipe
-        process.environment = store.tclEnvironment
-        process.executableURL = store.openSeesBinaryURL
-        process.arguments = [commandPath.path()]
-        
-        try process.run()
-        process.waitUntilExit()
-        
-        let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-        let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-        
-        if process.terminationStatus == 0 {
-            Logger.openSees.info("Success execute OpenSees")
-        } else {
-            throw AnalyzeError.terminateProcess(status: process.terminationStatus)
-        }
-        
-        if let stdout = String(data: outputData, encoding: .utf8), let stderr = String(data: errorData, encoding: .utf8) {
-            store.openSeesStdOut = stdout
-            store.openSeesStdErr = stderr
-            return (stdout, stderr)
-        } else {
-            throw AnalyzeError.invalidData("Fault convert Data to String. \(outputData) \(errorData)")
-        }
-    }
-    
-    private static func parseResultData(data: String) -> (node: [Int: [Float]], ele: [Int: [Float]] ){
-        let resultLines = data.components(separatedBy: .newlines)
-        
-        var nodeDisps: [Int: [Float]] = [:]
-        var eleForce: [Int: [Float]] = [:]
-        
-        var disps: [Float] = []
-        var forces: [Float] = []
-        
-        let nodeRegex = /(\sNode:\s)([0-9]+)/
-        let nodeDispRegex = /(\sDisps:)([\s0-9e.-]+)/
-        let nodeIdRegex = /\sID\s:/
-        
-        let eleRegex = /ElasticBeam3d: ([0-9]+)/
-        let eleForceRgex = /\sEnd ([1|2]) Forces \(P Mz Vy My Vz T\):\s([0-9.e+\-\s]+)/
-        
-        var currentNodeId: Int = 0
-        var currentEleId: Int = 0
-        
-        var isNodeSection: Bool = false
-        var isEleSection: Bool = false
-        
-        for line in resultLines {
-            
-            if let match = line.wholeMatch(of: nodeRegex) {
-                isNodeSection = true
-                currentNodeId = Int(match.2)!
-                disps = []
-            }
-            
-            if let match = line.wholeMatch(of: eleRegex) {
-                isEleSection = true
-                currentEleId = Int(match.1)!
-                forces = []
-            }
-            
-            if isNodeSection {
-                if let match = line.wholeMatch(of: nodeDispRegex) {
-                    let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
-                    disps += value.map { Float($0)! }
-                }
-                if let _ = line.prefixMatch(of: nodeIdRegex) {
-                    isNodeSection = false
-                    nodeDisps[currentNodeId] = disps
-                }
-            }
-            
-            if isEleSection {
-                if let match = line.wholeMatch(of: eleForceRgex) {
-                    let value = match.2.trimmingCharacters(in: .whitespaces).components(separatedBy: " ")
-                    forces += value.map { Float($0)! }
-                    
-                    if match.1 == "2" {
-                        isEleSection = false
-                        eleForce[currentEleId] = forces
-                    }
-                }
-            }
-        }
-        
-        return (node: nodeDisps, ele: eleForce)
-    }
-    
-    private static func updateNodeResult(nodeDisps: [Int: [Float]], store: Store) {
-        for result in nodeDisps {
-            if let node = store.model.nodes.first(where: { $0.nodeTag == result.key }) {
-                let value = result.value[0..<3]
+    private static func updateNodeResult(nodes: [OSReslutDecoder.OSResult.Node], store: Store) {
+        for result in nodes {
+            if let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) {
+                let value = result.disps[0..<3]
                 node.geometry.disp.position = (node.position + float3(value)).metal
                 node.geometry.dispLabel.target = (node.position + float3(value)).metal
                 node.geometry.dispLabel.text = "(\(String(format: "%.1f", value[0])), \(String(format: "%.1f", value[1])), \(String(format: "%.1f", value[2])))"
@@ -405,13 +321,15 @@ enum Actions {
         }
     }
     
-    private static func updateEleResult(eleForce: [Int: [Float]], store: Store) {
+    private static func updateEleResult(beams: [OSReslutDecoder.OSResult.ElasticBeam3d], store: Store) {
         for beam in store.model.beams {
             beam.geometry.disp.i = beam.i.geometry.disp.position
             beam.geometry.disp.j = beam.j.geometry.disp.position
             
-            let force = eleForce[beam.id]!
-            beam.geometry.updateGeometry(force: force)
+            if let result = beams.first(where: { $0.tag == beam.eleTag }) {
+                let force = result.iForce + result.jForce
+                beam.geometry.updateGeometry(force: force)
+            }
         }
     }
 }
