@@ -1,5 +1,5 @@
 //
-//  Highlighted.swift
+//  CommandEditorView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import HighlightedTextEditor
 
-struct Highlighted: View {
+struct CommandEditorView: View {
     @Binding var text: String
     
     var body: some View {
@@ -27,7 +27,7 @@ struct Highlighted: View {
         @State var text: String = SampleText.input
         
         var body: some View {
-            Highlighted(text: $text)
+            CommandEditorView(text: $text)
         }
     }
     return PreviewWrapper()

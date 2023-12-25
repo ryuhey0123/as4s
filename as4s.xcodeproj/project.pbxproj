@@ -49,10 +49,8 @@
 		B14E2E5D2B2F1D440032AE30 /* NodeGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */; };
 		B14E2E5F2B2F1D8E0032AE30 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */; };
 		B14E2E612B2F1F2C0032AE30 /* NodalLoadGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */; };
-		B1512ADB2B3977F800A14A17 /* CodeEditorView in Frameworks */ = {isa = PBXBuildFile; productRef = B1512ADA2B3977F800A14A17 /* CodeEditorView */; };
-		B1512AE42B397EF100A14A17 /* CodeEditor in Frameworks */ = {isa = PBXBuildFile; productRef = B1512AE32B397EF100A14A17 /* CodeEditor */; };
 		B1512AE72B39865500A14A17 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = B1512AE62B39865500A14A17 /* HighlightedTextEditor */; };
-		B1512AE92B39867100A14A17 /* Highlighted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AE82B39867100A14A17 /* Highlighted.swift */; };
+		B1512AE92B39867100A14A17 /* CommandEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AE82B39867100A14A17 /* CommandEditorView.swift */; };
 		B1512AEB2B399E1F00A14A17 /* OpenSeesHighlightRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
 		B161BC222ADB958A00AABA48 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC212ADB958A00AABA48 /* Store.swift */; };
@@ -156,7 +154,7 @@
 		B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGeometry.swift; sourceTree = "<group>"; };
 		B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoadGeometry.swift; sourceTree = "<group>"; };
-		B1512AE82B39867100A14A17 /* Highlighted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlighted.swift; sourceTree = "<group>"; };
+		B1512AE82B39867100A14A17 /* CommandEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandEditorView.swift; sourceTree = "<group>"; };
 		B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSeesHighlightRule.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC1F2ADB958A00AABA48 /* as4sApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sApp.swift; sourceTree = "<group>"; };
@@ -214,9 +212,7 @@
 				B1424E4E2B29CF1600F9A22C /* OpenSeesCoder in Frameworks */,
 				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
 				B14AC2312B353A3A00282CE0 /* SplitView in Frameworks */,
-				B1512ADB2B3977F800A14A17 /* CodeEditorView in Frameworks */,
 				B1512AE72B39865500A14A17 /* HighlightedTextEditor in Frameworks */,
-				B1512AE42B397EF100A14A17 /* CodeEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				B14AC22D2B348B2F00282CE0 /* InfoView.swift */,
-				B1512AE82B39867100A14A17 /* Highlighted.swift */,
+				B1512AE82B39867100A14A17 /* CommandEditorView.swift */,
 				B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */,
 				B1077D682B35E47B00938518 /* InformationText.swift */,
 				B14AC2352B35543B00282CE0 /* InfoPrimaryToolbar.swift */,
@@ -641,16 +637,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				B1512AE12B3979CB00A14A17 /* PBXTargetDependency */,
-				B1512ADF2B3979C800A14A17 /* PBXTargetDependency */,
 			);
 			name = as4s;
 			packageProductDependencies = (
 				B17FE6502ADE82E5009A9134 /* Mevic */,
 				B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */,
 				B14AC2302B353A3A00282CE0 /* SplitView */,
-				B1512ADA2B3977F800A14A17 /* CodeEditorView */,
-				B1512AE32B397EF100A14A17 /* CodeEditor */,
 				B1512AE62B39865500A14A17 /* HighlightedTextEditor */,
 			);
 			productName = as4s;
@@ -729,8 +721,6 @@
 				B1D0265F2AE0E55F00DF77E0 /* XCLocalSwiftPackageReference "../Mevic/Mevic" */,
 				B1424E4C2B29CF1600F9A22C /* XCLocalSwiftPackageReference "../OpenSeesCoder" */,
 				B14AC22F2B353A3A00282CE0 /* XCRemoteSwiftPackageReference "SplitView" */,
-				B1512AD82B39773C00A14A17 /* XCRemoteSwiftPackageReference "CodeEditorView" */,
-				B1512AE22B397EF100A14A17 /* XCRemoteSwiftPackageReference "CodeEditor" */,
 				B1512AE52B39865500A14A17 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */,
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
@@ -830,7 +820,7 @@
 				B14AC2362B35543B00282CE0 /* InfoPrimaryToolbar.swift in Sources */,
 				B1A525082B3725D700171268 /* SectionTable.swift in Sources */,
 				B13B73402B38285C00230C57 /* MessageView.swift in Sources */,
-				B1512AE92B39867100A14A17 /* Highlighted.swift in Sources */,
+				B1512AE92B39867100A14A17 /* CommandEditorView.swift in Sources */,
 				B14AC22C2B34850000282CE0 /* MakeNodeView.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
@@ -876,14 +866,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B1512ADF2B3979C800A14A17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = B1512ADE2B3979C800A14A17 /* CodeEditorView */;
-		};
-		B1512AE12B3979CB00A14A17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = B1512AE02B3979CB00A14A17 /* LanguageSupport */;
-		};
 		B161BC322ADB958A00AABA48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B161BC1B2ADB958A00AABA48 /* as4s */;
@@ -1244,22 +1226,6 @@
 				minimumVersion = 3.5.0;
 			};
 		};
-		B1512AD82B39773C00A14A17 /* XCRemoteSwiftPackageReference "CodeEditorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mchakravarty/CodeEditorView#Apache-2.0-1-ov-file";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.0;
-			};
-		};
-		B1512AE22B397EF100A14A17 /* XCRemoteSwiftPackageReference "CodeEditor" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ZeeZide/CodeEditor";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
-			};
-		};
 		B1512AE52B39865500A14A17 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kyle-n/HighlightedTextEditor";
@@ -1279,26 +1245,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B14AC22F2B353A3A00282CE0 /* XCRemoteSwiftPackageReference "SplitView" */;
 			productName = SplitView;
-		};
-		B1512ADA2B3977F800A14A17 /* CodeEditorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1512AD82B39773C00A14A17 /* XCRemoteSwiftPackageReference "CodeEditorView" */;
-			productName = CodeEditorView;
-		};
-		B1512ADE2B3979C800A14A17 /* CodeEditorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1512AD82B39773C00A14A17 /* XCRemoteSwiftPackageReference "CodeEditorView" */;
-			productName = CodeEditorView;
-		};
-		B1512AE02B3979CB00A14A17 /* LanguageSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1512AD82B39773C00A14A17 /* XCRemoteSwiftPackageReference "CodeEditorView" */;
-			productName = LanguageSupport;
-		};
-		B1512AE32B397EF100A14A17 /* CodeEditor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1512AE22B397EF100A14A17 /* XCRemoteSwiftPackageReference "CodeEditor" */;
-			productName = CodeEditor;
 		};
 		B1512AE62B39865500A14A17 /* HighlightedTextEditor */ = {
 			isa = XCSwiftPackageProductDependency;

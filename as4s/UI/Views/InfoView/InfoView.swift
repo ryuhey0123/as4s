@@ -23,7 +23,7 @@ struct InfoView: View {
                 }
                 Divider()
                 if showingInput {
-                    Highlighted(text: $input)
+                    CommandEditorView(text: $input)
                         .transition(.move(edge: .trailing))
                 }
             }

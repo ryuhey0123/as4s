@@ -71,13 +71,12 @@ final class Store: ObservableObject, Identifiable {
     }
     
     convenience init(configuration: ReadConfiguration) throws {
-//        guard let data = configuration.file.regularFileContents else {
-//            throw CocoaError(.fileReadCorruptFile)
-//        }
-//        
+        guard let data = configuration.file.regularFileContents else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        
 //        let model = try JSONDecoder().decode(Model.self, from: data)
-//        self.init(model: model)
-        fatalError()
+        self.init()
     }
     
     func append(_ rendable: some Renderable) {
