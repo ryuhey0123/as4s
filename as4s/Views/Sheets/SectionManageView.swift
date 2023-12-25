@@ -1,5 +1,5 @@
 //
-//  MakeSectionView.swift
+//  SectionManageView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/24.
@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-struct MakeSectionView: View {
+struct SectionManageView: View {
     @EnvironmentObject var store: Store
-    @Environment(\.dismiss) private var dismiss
-    
     @State private var commandItem: SectionItems = .rectangle
     
     enum SectionItems: String {
@@ -32,6 +30,24 @@ struct MakeSectionView: View {
                 }
                 TableColumn("Type") { row in
                     Text(row.type.rawValue)
+                }
+                TableColumn("A") { row in
+                    Text(row.A, format: .number)
+                }
+                TableColumn("Iy") { row in
+                    Text(row.Iy, format: .number)
+                }
+                TableColumn("Iz") { row in
+                    Text(row.Iz, format: .number)
+                }
+                TableColumn("J") { row in
+                    Text(row.J, format: .number)
+                }
+                TableColumn("alphaY") { row in
+                    Text(row.alphaY ?? 0.0, format: .number)
+                }
+                TableColumn("alphaZ") { row in
+                    Text(row.alphaZ ?? 0.0, format: .number)
                 }
             }
             Divider()
@@ -72,6 +88,6 @@ struct MakeSectionView: View {
 }
 
 #Preview {
-    MakeSectionView()
+    SectionManageView()
         .environmentObject(Store.debug)
 }

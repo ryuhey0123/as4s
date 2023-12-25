@@ -40,7 +40,11 @@ extension FocusedValues {
         typealias Value = Binding<Bool>
     }
     
-    struct ShowMakeSectionKey: FocusedValueKey {
+    struct ShowSectionManagerKey: FocusedValueKey {
+        typealias Value = Binding<Bool>
+    }
+    
+    struct ShowMaterialManagerKey: FocusedValueKey {
         typealias Value = Binding<Bool>
     }
 
@@ -54,8 +58,13 @@ extension FocusedValues {
         set { self[ShowTransformKey.self] = newValue }
     }
     
-    var showMakeSection: Binding<Bool>? {
-        get { self[ShowMakeSectionKey.self] }
-        set { self[ShowMakeSectionKey.self] = newValue }
+    var showSectionManager: Binding<Bool>? {
+        get { self[ShowSectionManagerKey.self] }
+        set { self[ShowSectionManagerKey.self] = newValue }
+    }
+    
+    var showMaterialManager: Binding<Bool>? {
+        get { self[ShowMaterialManagerKey.self] }
+        set { self[ShowMaterialManagerKey.self] = newValue }
     }
 }

@@ -57,6 +57,7 @@
 		B161BC352ADB958A00AABA48 /* as4sTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC342ADB958A00AABA48 /* as4sTests.swift */; };
 		B161BC3F2ADB958A00AABA48 /* as4sUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */; };
 		B161BC412ADB958A00AABA48 /* as4sUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */; };
+		B177A7792B39615800BD5B55 /* MaterialManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B177A7782B39615800BD5B55 /* MaterialManageView.swift */; };
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
 		B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19890412B33EA8D00CF0431 /* BeamInspector.swift */; };
@@ -75,7 +76,7 @@
 		B1A525082B3725D700171268 /* SectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A525072B3725D700171268 /* SectionTable.swift */; };
 		B1A5250A2B3733B800171268 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A525092B3733B800171268 /* ProgressBar.swift */; };
 		B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A65B8E2ADD36A1001A9C7B /* Logger.swift */; };
-		B1AE658B2B3875D10046B26F /* MakeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE658A2B3875D10046B26F /* MakeSectionView.swift */; };
+		B1AE658B2B3875D10046B26F /* SectionManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE658A2B3875D10046B26F /* SectionManageView.swift */; };
 		B1AE658D2B387D850046B26F /* MakeRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE658C2B387D850046B26F /* MakeRectangle.swift */; };
 		B1AE658F2B3880E60046B26F /* SimpleTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AE658E2B3880E60046B26F /* SimpleTabItem.swift */; };
 		B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AF9F722B21B6810066C617 /* GraphicScene.swift */; };
@@ -163,6 +164,7 @@
 		B161BC3A2ADB958A00AABA48 /* as4sUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = as4sUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B161BC3E2ADB958A00AABA48 /* as4sUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITests.swift; sourceTree = "<group>"; };
 		B161BC402ADB958A00AABA48 /* as4sUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = as4sUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B177A7782B39615800BD5B55 /* MaterialManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialManageView.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
 		B19890412B33EA8D00CF0431 /* BeamInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamInspector.swift; sourceTree = "<group>"; };
 		B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModelLayer.swift; sourceTree = "<group>"; };
@@ -180,7 +182,7 @@
 		B1A525072B3725D700171268 /* SectionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTable.swift; sourceTree = "<group>"; };
 		B1A525092B3733B800171268 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B1A65B8E2ADD36A1001A9C7B /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		B1AE658A2B3875D10046B26F /* MakeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSectionView.swift; sourceTree = "<group>"; };
+		B1AE658A2B3875D10046B26F /* SectionManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionManageView.swift; sourceTree = "<group>"; };
 		B1AE658C2B387D850046B26F /* MakeRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRectangle.swift; sourceTree = "<group>"; };
 		B1AE658E2B3880E60046B26F /* SimpleTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTabItem.swift; sourceTree = "<group>"; };
 		B1AF9F722B21B6810066C617 /* GraphicScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicScene.swift; sourceTree = "<group>"; };
@@ -299,7 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				B19DFE022B30936A00B7F7B8 /* TransformView.swift */,
-				B1AE658A2B3875D10046B26F /* MakeSectionView.swift */,
+				B1AE658A2B3875D10046B26F /* SectionManageView.swift */,
+				B177A7782B39615800BD5B55 /* MaterialManageView.swift */,
 				B1AE658C2B387D850046B26F /* MakeRectangle.swift */,
 			);
 			path = Sheets;
@@ -755,6 +758,7 @@
 				B14E2E5F2B2F1D8E0032AE30 /* Geometry.swift in Sources */,
 				B19DFE032B30936A00B7F7B8 /* TransformView.swift in Sources */,
 				B1424E522B29DFD400F9A22C /* CrossSection.swift in Sources */,
+				B177A7792B39615800BD5B55 /* MaterialManageView.swift in Sources */,
 				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
 				B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */,
 				B1A525062B37247F00171268 /* MaterialTable.swift in Sources */,
@@ -781,7 +785,7 @@
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */,
 				B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */,
-				B1AE658B2B3875D10046B26F /* MakeSectionView.swift in Sources */,
+				B1AE658B2B3875D10046B26F /* SectionManageView.swift in Sources */,
 				B1424E562B29E09800F9A22C /* Mass.swift in Sources */,
 				B14E2E5D2B2F1D440032AE30 /* NodeGeometry.swift in Sources */,
 				B13B73422B382A6100230C57 /* MessageBadge.swift in Sources */,

@@ -14,8 +14,6 @@ struct CommandTabView: View {
         case node = "Node"
         case beam = "Beam"
         case support = "Support"
-        case section = "Section"
-        case material = "Material"
     }
     
     var body: some View {
@@ -24,8 +22,6 @@ struct CommandTabView: View {
                 SimpleTabItem(item: $commandItem, systemName: "circle.grid.2x1", command: .node)
                 SimpleTabItem(item: $commandItem, systemName: "line.diagonal",   command: .beam)
                 SimpleTabItem(item: $commandItem, systemName: "triangle",        command: .support)
-                SimpleTabItem(item: $commandItem, systemName: "h.square",        command: .section)
-                SimpleTabItem(item: $commandItem, systemName: "leaf",            command: .material)
             }
             .padding(.top, 5)
             .frame(height: 25)
@@ -40,10 +36,6 @@ struct CommandTabView: View {
                         MakeBeamView()
                     case .support:
                         MakeSupportView()
-                    case .section:
-                        EmptyView()
-                    case .material:
-                        MakeMaterialView()
                 }
             }
             

@@ -11,7 +11,8 @@ struct ModelCommands: Commands {
     @Environment(\.openWindow) private var openWindow
     @FocusedValue(\.store) private var store
     @FocusedValue(\.showTransform) private var showTransform
-    @FocusedValue(\.showMakeSection) private var showMakeSection
+    @FocusedValue(\.showSectionManager) private var showSectionManager
+    @FocusedValue(\.showMaterialManager) private var showMaterialManager
     
     var body: some Commands {
         CommandMenu("Model") {
@@ -23,11 +24,18 @@ struct ModelCommands: Commands {
             .keyboardShortcut("m", modifiers: .command)
             
             Button {
-                showMakeSection?.wrappedValue = true
+                showSectionManager?.wrappedValue = true
             } label: {
                 Label("Section...", systemImage: "plus")
             }
             .keyboardShortcut("s", modifiers: [.command, .control])
+            
+            Button {
+                showMaterialManager?.wrappedValue = true
+            } label: {
+                Label("Material...", systemImage: "plus")
+            }
+            .keyboardShortcut("m", modifiers: [.command, .control])
         }
         
         CommandMenu("Table") {

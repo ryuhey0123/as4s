@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MakeRectangle: View {
+    @Environment(\.dismiss) private var dismiss
+    
     let labelWidth: CGFloat = 50
     
     @State private var id: Int?
@@ -32,7 +34,7 @@ struct MakeRectangle: View {
                 InputFloatValueField(value: $height, label: "Height", labelWidth: labelWidth)
             }
             SubmitButtom(cancelAction: {
-                
+                dismiss()
             }, submitAction: {
                 
             })

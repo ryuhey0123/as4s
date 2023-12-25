@@ -14,11 +14,9 @@ struct ContentView: View {
     @EnvironmentObject var store: Store
     
     @State private var showingInspector: Bool = false
-    
     @State private var showingTransformSheet: Bool = false
-    @State private var showingMakeSectionSheet: Bool = false
-    
-    @State private var isAnalyed: Bool = false
+    @State private var showingSectionManagerSheet: Bool = false
+    @State private var showingMaterialManagerSheet: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,20 +53,16 @@ struct ContentView: View {
             Actions.unselectAll(store: store)
         })
         .focusedSceneValue(\.showTransform, $showingTransformSheet)
-        .focusedSceneValue(\.showMakeSection, $showingMakeSectionSheet)
         .sheet(isPresented: $showingTransformSheet) {
             TransformView()
         }
-        .sheet(isPresented: $showingMakeSectionSheet) {
-            MakeSectionView()
+        .focusedSceneValue(\.showSectionManager, $showingSectionManagerSheet)
+        .sheet(isPresented: $showingSectionManagerSheet) {
+            SectionManageView()
         }
-    }
-    
-    private var startPauseButton: some View {
-        Button {
-            
-        } label: {
-            Image(systemName: "play.fill")
+        .focusedSceneValue(\.showMaterialManager, $showingMaterialManagerSheet)
+        .sheet(isPresented: $showingMaterialManagerSheet) {
+            MaterialManageView()
         }
     }
 }
