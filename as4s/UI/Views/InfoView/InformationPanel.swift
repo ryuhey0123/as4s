@@ -12,7 +12,7 @@ struct InformationPanel: View {
     
     @State private var showingAccesary: Bool = false
     @State private var currentHeight: CGFloat = 0
-    @State private var storeHeight: CGFloat = 200
+    @State private var storedHeight: CGFloat = 200
     
     let subToolBarHeightHalf: CGFloat = 12.5
     let minTopHeight: CGFloat = 100
@@ -29,7 +29,8 @@ struct InformationPanel: View {
                             .onChanged { gesture in
                                 withAnimation(.linear(duration: 0.1)) {
                                     let height = geometry.frame(in: .global).height
-                                    currentHeight = height - min(max(minBottomHeight, gesture.location.y), height - minTopHeight)
+                                    currentHeight = clamp(value: height - gesture.location.y,
+                                                          in: minTopHeight...height - minBottomHeight)
                                 }
                                 showingAccesary = true
                             }
@@ -37,9 +38,9 @@ struct InformationPanel: View {
                     .onChange(of: showingAccesary) {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             if showingAccesary {
-                                currentHeight = storeHeight
+                                currentHeight = storedHeight
                             } else {
-                                storeHeight = currentHeight
+                                storedHeight = currentHeight
                                 currentHeight = 0
                             }
                         }
@@ -52,6 +53,10 @@ struct InformationPanel: View {
                     .zIndex(1)
             }
         }
+    }
+    
+    private func clamp(value: CGFloat, in range: ClosedRange<CGFloat>) -> CGFloat {
+        min(max(value, range.lowerBound), range.upperBound)
     }
 }
 
