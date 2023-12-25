@@ -384,11 +384,7 @@
 		B161BC1E2ADB958A00AABA48 /* as4s */ = {
 			isa = PBXGroup;
 			children = (
-				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
-				B14E2E4B2B2EAA360032AE30 /* Navigation */,
-				B161BC502ADB962A00AABA48 /* Views */,
-				B1A524FB2B36D3A500171268 /* Components */,
-				B14E2E4C2B2EAACC0032AE30 /* Main Menu */,
+				B177A77A2B3965BF00BD5B55 /* UI */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
 				B161BC512ADB963800AABA48 /* Models */,
@@ -458,6 +454,18 @@
 				B1A524F22B36AD1C00171268 /* Rapper */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B177A77A2B3965BF00BD5B55 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B161BC1F2ADB958A00AABA48 /* as4sApp.swift */,
+				B14E2E4B2B2EAA360032AE30 /* Navigation */,
+				B161BC502ADB962A00AABA48 /* Views */,
+				B1A524FB2B36D3A500171268 /* Components */,
+				B14E2E4C2B2EAACC0032AE30 /* Main Menu */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		B198903E2B33E44100CF0431 /* ModelView */ = {
