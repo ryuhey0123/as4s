@@ -10,31 +10,31 @@ import SwiftUI
 struct ModelCommands: Commands {
     @Environment(\.openWindow) private var openWindow
     @FocusedValue(\.store) private var store
-    @FocusedValue(\.showTransform) private var showTransform
-    @FocusedValue(\.showSectionManager) private var showSectionManager
-    @FocusedValue(\.showMaterialManager) private var showMaterialManager
     
     var body: some Commands {
         CommandMenu("Model") {
             Button {
-                showTransform?.wrappedValue = true
+                store!.showingTransformSheet = true
             } label: {
                 Label("Transform...", systemImage: "plus")
             }
+            .disabled(store == nil)
             .keyboardShortcut("m", modifiers: .command)
             
             Button {
-                showSectionManager?.wrappedValue = true
+                store!.showingSectionManagerSheet = true
             } label: {
                 Label("Section...", systemImage: "plus")
             }
+            .disabled(store == nil)
             .keyboardShortcut("s", modifiers: [.command, .control])
             
             Button {
-                showMaterialManager?.wrappedValue = true
+                store!.showingMaterialManagerSheet = true
             } label: {
                 Label("Material...", systemImage: "plus")
             }
+            .disabled(store == nil)
             .keyboardShortcut("m", modifiers: [.command, .control])
         }
         

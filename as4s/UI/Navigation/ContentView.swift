@@ -12,11 +12,7 @@ import SplitView
 
 struct ContentView: View {
     @EnvironmentObject var store: Store
-    
     @State private var showingInspector: Bool = false
-    @State private var showingTransformSheet: Bool = false
-    @State private var showingSectionManagerSheet: Bool = false
-    @State private var showingMaterialManagerSheet: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,16 +51,13 @@ struct ContentView: View {
         .onExitCommand(perform: {
             Actions.unselectAll(store: store)
         })
-        .focusedSceneValue(\.showTransform, $showingTransformSheet)
-        .sheet(isPresented: $showingTransformSheet) {
+        .sheet(isPresented: $store.showingTransformSheet) {
             TransformView()
         }
-        .focusedSceneValue(\.showSectionManager, $showingSectionManagerSheet)
-        .sheet(isPresented: $showingSectionManagerSheet) {
+        .sheet(isPresented: $store.showingSectionManagerSheet) {
             SectionManageView()
         }
-        .focusedSceneValue(\.showMaterialManager, $showingMaterialManagerSheet)
-        .sheet(isPresented: $showingMaterialManagerSheet) {
+        .sheet(isPresented: $store.showingMaterialManagerSheet) {
             MaterialManageView()
         }
     }

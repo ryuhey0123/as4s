@@ -31,40 +31,12 @@ struct as4sApp: App {
 }
 
 extension FocusedValues {
-    
     struct StoreFocusedValuesKey: FocusedValueKey {
         typealias Value = Store
     }
     
-    struct ShowTransformKey: FocusedValueKey {
-        typealias Value = Binding<Bool>
-    }
-    
-    struct ShowSectionManagerKey: FocusedValueKey {
-        typealias Value = Binding<Bool>
-    }
-    
-    struct ShowMaterialManagerKey: FocusedValueKey {
-        typealias Value = Binding<Bool>
-    }
-
     var store: Store? {
         get { self[StoreFocusedValuesKey.self] }
         set { self[StoreFocusedValuesKey.self] = newValue }
-    }
-    
-    var showTransform: Binding<Bool>? {
-        get { self[ShowTransformKey.self] }
-        set { self[ShowTransformKey.self] = newValue }
-    }
-    
-    var showSectionManager: Binding<Bool>? {
-        get { self[ShowSectionManagerKey.self] }
-        set { self[ShowSectionManagerKey.self] = newValue }
-    }
-    
-    var showMaterialManager: Binding<Bool>? {
-        get { self[ShowMaterialManagerKey.self] }
-        set { self[ShowMaterialManagerKey.self] = newValue }
     }
 }

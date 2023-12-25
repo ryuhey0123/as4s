@@ -39,6 +39,10 @@ final class Store: ObservableObject, Identifiable {
     @Published var warningMessages: [String] = []
     @Published var errorMessages: [String] = []
     
+    @Published var showingTransformSheet: Bool = false
+    @Published var showingSectionManagerSheet: Bool = false
+    @Published var showingMaterialManagerSheet: Bool = false
+    
     init(model: Model = Model()) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
             fatalError("Not found OpenSees")
