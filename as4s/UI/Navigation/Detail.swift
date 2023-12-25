@@ -11,36 +11,41 @@ import SplitView
 struct Detail: View {
     @EnvironmentObject var store: Store
     
-    @State private var hide = SideHolder()
     @State private var showingAccesary: Bool = false
-    
-    let fraction = FractionHolder.usingUserDefaults(0.5, key: "myFraction")
+    @State private var currentHeight: CGFloat = 200
+    @State private var storeHeight: CGFloat = 200
 
     var body: some View {
-        ZStack {
-            ModelView()
-            
-            VStack(spacing: -1.0) {
-                VSplit(top: {
-                    EmptyView()
-                }, bottom: {
-                    VStack(spacing: -1.0) {
-                        Divider()
-                        InfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+            ZStack(alignment: .bottom) {
+                ModelView()
+                
+                GeometryReader { geometry in
+                    VStack {
+                        PrimaryInfoToolbar(showingAccesary: $showingAccesary)
+                            .position(x: geometry.frame(in: .local).width / 2, y: currentHeight)
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        currentHeight = gesture.location.y
+                                    }
+                            )
+                            .zIndex(2.0)
+                            .onChange(of: showingAccesary) {
+                                withAnimation {
+                                    if showingAccesary {
+                                        currentHeight = storeHeight
+                                    } else {
+                                        storeHeight = currentHeight
+                                        currentHeight = geometry.frame(in: .local).height - 12.5
+                                    }
+                                }
+                            }
+                        
+                        TextinfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+                            .frame(height: geometry.frame(in: .local).height - currentHeight - 12.5)
+                            .background(.ultraThinMaterial)
+                            .zIndex(1.0)
                     }
-                    .background(.thickMaterial)
-                })
-                .hide(hide)
-                .fraction(fraction)
-                .constraints(minPFraction: 0.3, minSFraction: 0.15)
-                .splitter {
-                    InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
-                }
-            }
-            .onAppear {
-                if !showingAccesary {
-                    hide.hide(.secondary)
-                }
             }
         }
     }

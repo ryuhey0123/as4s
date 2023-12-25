@@ -1,5 +1,5 @@
 //
-//  InfoView.swift
+//  TextinfoView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InfoView: View {
+struct TextinfoView: View {
     @Binding var output: String
     @Binding var input: String
     
@@ -18,7 +18,7 @@ struct InfoView: View {
         VStack(spacing: -1.0) {
             HStack(spacing: -1.0) {
                 if showingOutput {
-                    InformationText(title: "Output", text: $output)
+                    OutputTextView(title: "Output", text: $output)
                         .transition(.move(edge: .leading))
                 }
                 Divider()
@@ -32,12 +32,12 @@ struct InfoView: View {
             
             Divider()
             
-            InfoSecondaryToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
+            SecondaryInfoToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
         }
     }
 }
 
 #Preview {
-    InfoView(output: .constant(SampleText.output), input: .constant(SampleText.input))
+    TextinfoView(output: .constant(SampleText.output), input: .constant(SampleText.input))
         .frame(width: 600)
 }

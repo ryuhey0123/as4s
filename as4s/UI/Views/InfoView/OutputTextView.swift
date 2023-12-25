@@ -1,5 +1,5 @@
 //
-//  InformationText.swift
+//  OutputTextView.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InformationText: View {
+struct OutputTextView: View {
     var title: String
     @Binding var text: String
     
@@ -45,5 +45,5 @@ struct InformationText: View {
 }
 
 #Preview {
-    InformationText(title: "Input", text: .constant(SampleText.input))
+    OutputTextView(title: "Input", text: .constant(SampleText.output))
 }
