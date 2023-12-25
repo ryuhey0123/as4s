@@ -20,6 +20,7 @@ struct ModelView: View {
                 controller = GraphicController(metalView: metalView, scene: store.scene)
                 
                 Actions.addCoordinate(store: store)
+                Actions.buildDebugModel(store: store)
             }
     }
 }

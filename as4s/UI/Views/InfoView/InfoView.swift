@@ -23,7 +23,7 @@ struct InfoView: View {
                 }
                 Divider()
                 if showingInput {
-                    InformationText(title: "Input", text: $input)
+                    Highlighted(text: $input)
                         .transition(.move(edge: .trailing))
                 }
             }

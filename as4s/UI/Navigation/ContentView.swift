@@ -29,7 +29,7 @@ struct ContentView: View {
                                         total: $store.progressEstimated,
                                         errors: $store.errorMessages,
                                         warnings: $store.warningMessages)
-                                .frame(width: geometry.frame(in: .local).width * 0.4)
+                            .frame(width: geometry.frame(in: .local).width * 0.4)
                             Spacer()
                         }
                         ToolbarItem(placement: .primaryAction) {
@@ -39,9 +39,6 @@ struct ContentView: View {
                                 Label("Inspector toggle", systemImage: "info.circle")
                             }
                         }
-                    }
-                    .onAppear {
-                        Actions.buildDebugModel(store: store)
                     }
             }
         }
