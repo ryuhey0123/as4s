@@ -14,30 +14,15 @@ struct OutputTextView: View {
     @State private var showLabel: Bool = true
     
     var body: some View {
-        ZStack(alignment: .top) {
-            ScrollView(.vertical) {
-                ZStack {
-                    Text("\n\n\n" + text)
-                        .font(.callout)
-                        .fontDesign(.monospaced)
-                        .multilineTextAlignment(.leading)
-                        .textSelection(.enabled)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                        .padding(.leading)
-                }
-            }
-            if showLabel {
-                HStack {
-                    Text("\(title)")
-                        .font(.headline)
-                        .foregroundStyle(.tertiary)
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                    Spacer()
-                }
-                .padding(7)
+        ScrollView(.vertical) {
+            ZStack {
+                Text(text)
+                    .font(.callout)
+                    .fontDesign(.monospaced)
+                    .multilineTextAlignment(.leading)
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                    .padding(.leading)
             }
         }
         .frame(maxWidth: .infinity)
