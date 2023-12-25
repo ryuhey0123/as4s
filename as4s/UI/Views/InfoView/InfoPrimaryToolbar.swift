@@ -57,6 +57,11 @@ struct InfoPrimaryToolbar: SplitDivider {
             .frame(height: 25)
         }
         .background(.thickMaterial)
+        .onAppear {
+            if !showingAccesary {
+                hide.hide(.secondary)
+            }
+        }
     }
 }
 

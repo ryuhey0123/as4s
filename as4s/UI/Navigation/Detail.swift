@@ -13,6 +13,8 @@ struct Detail: View {
     
     @State private var hide = SideHolder()
     @State private var showingAccesary: Bool = false
+    
+    let fraction = FractionHolder.usingUserDefaults(0.5, key: "myFraction")
 
     var body: some View {
         ZStack {
@@ -29,7 +31,7 @@ struct Detail: View {
                     .background(.thickMaterial)
                 })
                 .hide(hide)
-                .fraction(0.75)
+                .fraction(fraction)
                 .constraints(minPFraction: 0.3, minSFraction: 0.15)
                 .splitter {
                     InfoPrimaryToolbar(hide: $hide, showingAccesary: $showingAccesary)
