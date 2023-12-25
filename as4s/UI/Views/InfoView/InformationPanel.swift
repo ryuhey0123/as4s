@@ -11,22 +11,25 @@ struct InformationPanel: View {
     @EnvironmentObject var store: Store
     
     @State private var showingAccesary: Bool = false
+    @State private var currentHeight: CGFloat = 0
+    @State private var storeHeight: CGFloat = 200
     
-    @State private var currentPosition: CGFloat = 200
-    @State private var storePosition: CGFloat = 200
-    
-    let subToolBarHeightHalf = 12.5
+    let subToolBarHeightHalf: CGFloat = 12.5
+    let minTopHeight: CGFloat = 100
+    let minBottomHeight: CGFloat = 100
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 PrimaryInfoToolbar(showingAccesary: $showingAccesary)
-                    .position(x: geometry.frame(in: .global).width / 2, y: currentPosition)
+                    .position(x: geometry.frame(in: .global).width / 2,
+                              y: geometry.frame(in: .global).height - currentHeight - subToolBarHeightHalf)
                     .gesture(
                         DragGesture()
                             .onChanged { gesture in
                                 withAnimation(.linear(duration: 0.1)) {
-                                    currentPosition = min(max(100, gesture.location.y), geometry.frame(in: .global).height - 100)
+                                    let height = geometry.frame(in: .global).height
+                                    currentHeight = height - min(max(minBottomHeight, gesture.location.y), height - minTopHeight)
                                 }
                                 showingAccesary = true
                             }
@@ -34,22 +37,19 @@ struct InformationPanel: View {
                     .onChange(of: showingAccesary) {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             if showingAccesary {
-                                currentPosition = storePosition
+                                currentHeight = storeHeight
                             } else {
-                                storePosition = currentPosition
-                                currentPosition = geometry.frame(in: .global).height - subToolBarHeightHalf
+                                storeHeight = currentHeight
+                                currentHeight = 0
                             }
                         }
                     }
                     .zIndex(2)
                 
                 TextinfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
-                    .frame(height: max(0, geometry.frame(in: .global).height - currentPosition - subToolBarHeightHalf))
+                    .frame(height: currentHeight)
                     .background(.ultraThinMaterial)
                     .zIndex(1)
-            }
-            .onAppear {
-                currentPosition = showingAccesary ? 200 : geometry.frame(in: .global).height - subToolBarHeightHalf
             }
         }
     }
