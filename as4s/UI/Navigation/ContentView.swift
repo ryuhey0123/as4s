@@ -44,6 +44,9 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .onAppear {
+                        Actions.buildDebugModel(store: store)
+                    }
             }
         }
         .inspector(isPresented: $showingInspector) {

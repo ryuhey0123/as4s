@@ -40,7 +40,6 @@ struct Detail: View {
                     hide.hide(.secondary)
                 }
             }
-            
         }
     }
 }

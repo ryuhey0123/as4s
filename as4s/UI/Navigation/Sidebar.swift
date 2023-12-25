@@ -10,12 +10,6 @@ import SwiftUI
 struct Sidebar: View {
     @EnvironmentObject var store: Store
     
-    @State private var commandItem: CommnadItem = .node
-    
-    enum CommnadItem {
-        case node, beam
-    }
-    
     var body: some View {
         VSplitView {
             CommandTabView()
@@ -28,12 +22,11 @@ struct Sidebar: View {
             
             Divider()
             
-            buildAnalyzeCommand
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .center)
-        }
-        .onAppear {
-            Actions.buildDebugModel(store: store)
+            Button("Analyze") {
+                Actions.analayze(store: store)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
         }
     }
     
@@ -79,30 +72,6 @@ struct Sidebar: View {
             }
             .padding()
             .frame(maxWidth: .infinity,  alignment: .leading)
-        }
-    }
-    
-    var addPoint: some View {
-        Button("Add Random Point") {
-            Actions.appendNode(position: .random(in: -10000...10000), store: store)
-        }
-    }
-    
-    private var importBigTestModel: some View {
-        Button("Big Test Model") {
-            Actions.importTestModel(store: store)
-        }
-    }
-    
-    private var buildSmallTestModel: some View {
-        Button("Small Test Model") {
-            Actions.buildDebugModel(store: store)
-        }
-    }
-    
-    private var buildAnalyzeCommand: some View {
-        Button("Analyze") {
-            Actions.analayze(store: store)
         }
     }
 }
