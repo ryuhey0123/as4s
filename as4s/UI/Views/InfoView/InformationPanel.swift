@@ -32,7 +32,7 @@ struct InformationPanel: View {
                             }
                     )
                     .onChange(of: showingAccesary) {
-                        withAnimation(.interactiveSpring) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
                             if showingAccesary {
                                 currentPosition = storePosition
                             } else {
