@@ -10,8 +10,26 @@ import SwiftUI
 struct InformationPanel: View {
     @EnvironmentObject var store: Store
     
-    @State private var showingAccesary: Bool = false
     @State private var currentHeight: CGFloat = 0
+    
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                PrimaryInfoToolbarView(geometry: geometry, currentHeight: $currentHeight)
+                    .zIndex(1)
+                TextinfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
+                    .frame(height: currentHeight)
+                    .background(.ultraThinMaterial)
+            }
+        }
+    }
+}
+
+fileprivate struct PrimaryInfoToolbarView: View {
+    var geometry: GeometryProxy
+    @Binding var currentHeight: CGFloat
+    
+    @State private var showingAccesary: Bool = false
     @State private var storedHeight: CGFloat = 200
     
     let subToolBarHeightHalf: CGFloat = 12.5
@@ -19,40 +37,30 @@ struct InformationPanel: View {
     let minBottomHeight: CGFloat = 100
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                PrimaryInfoToolbar(showingAccesary: $showingAccesary)
-                    .position(x: geometry.frame(in: .global).width / 2,
-                              y: geometry.frame(in: .global).height - currentHeight - subToolBarHeightHalf)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { gesture in
-                                withAnimation(.linear(duration: 0.1)) {
-                                    let height = geometry.frame(in: .global).height
-                                    currentHeight = clamp(value: height - gesture.location.y,
-                                                          in: minTopHeight...height - minBottomHeight)
-                                }
-                                showingAccesary = true
-                            }
-                    )
-                    .onChange(of: showingAccesary) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            if showingAccesary {
-                                currentHeight = storedHeight
-                            } else {
-                                storedHeight = currentHeight
-                                currentHeight = 0
-                            }
+        PrimaryInfoToolbar(showingAccesary: $showingAccesary)
+            .position(x: geometry.frame(in: .global).width / 2,
+                      y: geometry.frame(in: .global).height - currentHeight - subToolBarHeightHalf)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        withAnimation(.linear(duration: 0.1)) {
+                            let height = geometry.frame(in: .global).height
+                            currentHeight = clamp(value: height - gesture.location.y,
+                                                  in: minTopHeight...height - minBottomHeight)
                         }
+                        showingAccesary = true
                     }
-                    .zIndex(2)
-                
-                TextinfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
-                    .frame(height: currentHeight)
-                    .background(.ultraThinMaterial)
-                    .zIndex(1)
+            )
+            .onChange(of: showingAccesary) {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    if showingAccesary {
+                        currentHeight = storedHeight
+                    } else {
+                        storedHeight = currentHeight
+                        currentHeight = 0
+                    }
+                }
             }
-        }
     }
     
     private func clamp(value: CGFloat, in range: ClosedRange<CGFloat>) -> CGFloat {
