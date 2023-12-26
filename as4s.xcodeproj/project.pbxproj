@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B10287BD2B37C8D50020EDC9 /* ProgressLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */; };
 		B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D642B35C3FD00938518 /* MakeBeamView.swift */; };
 		B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D662B35C42400938518 /* InputFloatValueField.swift */; };
 		B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D6A2B35E4D500938518 /* SampleText.swift */; };
@@ -110,7 +109,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLine.swift; sourceTree = "<group>"; };
 		B1077D642B35C3FD00938518 /* MakeBeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBeamView.swift; sourceTree = "<group>"; };
 		B1077D662B35C42400938518 /* InputFloatValueField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFloatValueField.swift; sourceTree = "<group>"; };
 		B1077D6A2B35E4D500938518 /* SampleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleText.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				B1A525092B3733B800171268 /* ProgressBar.swift */,
-				B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */,
 				B13B733F2B38285C00230C57 /* MessageView.swift */,
 				B13B73412B382A6100230C57 /* MessageBadge.swift */,
 			);
@@ -810,7 +807,6 @@
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
 				B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */,
 				B1512AED2B39D16100A14A17 /* InformationPanel.swift in Sources */,
-				B10287BD2B37C8D50020EDC9 /* ProgressLine.swift in Sources */,
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1A524F62B36B21100171268 /* MakeMaterialView.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */,

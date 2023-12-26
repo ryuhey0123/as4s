@@ -113,6 +113,9 @@ struct Textinfo: View {
     }
 }
 
+
+// MARK: - Previews
+
 #Preview {
     Textinfo(output: .constant(SampleText.output), input: .constant(SampleText.input))
         .frame(width: 600)

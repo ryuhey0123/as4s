@@ -24,50 +24,7 @@ struct InformationPanel: View {
         }
     }
     
-    struct ResizableToolbar: View {
-        var geometry: GeometryProxy
-        @Binding var currentHeight: CGFloat
-        
-        @State private var showingAccesary: Bool = false
-        @State private var storedHeight: CGFloat = 200
-        
-        let subToolBarHeightHalf: CGFloat = 12.5
-        let minTopHeight: CGFloat = 100
-        let minBottomHeight: CGFloat = 100
-        
-        var body: some View {
-            PrimaryInfoToolbar(showingAccesary: $showingAccesary)
-                .position(x: geometry.frame(in: .global).width / 2,
-                          y: geometry.frame(in: .global).height - currentHeight - subToolBarHeightHalf)
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            withAnimation(.linear(duration: 0.1)) {
-                                let height = geometry.frame(in: .global).height
-                                currentHeight = clamp(value: height - gesture.location.y,
-                                                      in: minTopHeight...height - minBottomHeight)
-                            }
-                            showingAccesary = true
-                        }
-                )
-                .onChange(of: showingAccesary) {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        if showingAccesary {
-                            currentHeight = storedHeight
-                        } else {
-                            storedHeight = currentHeight
-                            currentHeight = 0
-                        }
-                    }
-                }
-        }
-        
-        func clamp(value: CGFloat, in range: ClosedRange<CGFloat>) -> CGFloat {
-            min(max(value, range.lowerBound), range.upperBound)
-        }
-    }
-    
-    struct PrimaryInfoToolbar: View {
+    struct Toolbar: View {
         @Binding var showingAccesary: Bool
         
         var body: some View {
@@ -112,9 +69,53 @@ struct InformationPanel: View {
             .background(.background)
         }
     }
+    
+    struct ResizableToolbar: View {
+        var geometry: GeometryProxy
+        @Binding var currentHeight: CGFloat
+        
+        @State private var showingAccesary: Bool = false
+        @State private var storedHeight: CGFloat = 200
+        
+        let subToolBarHeightHalf: CGFloat = 12.5
+        let minTopHeight: CGFloat = 100
+        let minBottomHeight: CGFloat = 100
+        
+        var body: some View {
+            Toolbar(showingAccesary: $showingAccesary)
+                .position(x: geometry.frame(in: .global).width / 2,
+                          y: geometry.frame(in: .global).height - currentHeight - subToolBarHeightHalf)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            withAnimation(.linear(duration: 0.1)) {
+                                let height = geometry.frame(in: .global).height
+                                currentHeight = clamp(value: height - gesture.location.y,
+                                                      in: minTopHeight...height - minBottomHeight)
+                            }
+                            showingAccesary = true
+                        }
+                )
+                .onChange(of: showingAccesary) {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        if showingAccesary {
+                            currentHeight = storedHeight
+                        } else {
+                            storedHeight = currentHeight
+                            currentHeight = 0
+                        }
+                    }
+                }
+        }
+        
+        func clamp(value: CGFloat, in range: ClosedRange<CGFloat>) -> CGFloat {
+            min(max(value, range.lowerBound), range.upperBound)
+        }
+    }
 }
 
 
+// MARK: - Previews
 
 #Preview {
     struct PreviewWrapper: View {
@@ -139,7 +140,7 @@ struct InformationPanel: View {
         @State var showingAccesary: Bool = false
         
         var body: some View {
-            InformationPanel.PrimaryInfoToolbar(showingAccesary: $showingAccesary)
+            InformationPanel.Toolbar(showingAccesary: $showingAccesary)
         }
     }
     return PreviewWrapper()
