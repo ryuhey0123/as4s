@@ -27,6 +27,9 @@ final class BeamColumn: Identifiable, Selectable {
     
     var secTag: Int = 0
     
+    var releaseI: (z: Bool, y: Bool)
+    var releaseJ: (z: Bool, y: Bool)
+    
     var length: Float {
         simd.length(vector)
     }
@@ -47,13 +50,24 @@ final class BeamColumn: Identifiable, Selectable {
         didSet { geometry.color = isSelected ? Config.beam.selectedColor : Config.beam.color }
     }
     
-    init(id: Int, i: Node, j: Node, material: Material, section: CrossSection, chordAngle: Float = 0.0) {
+    init(id: Int,
+         i: Node,
+         j: Node,
+         material: Material,
+         section: CrossSection,
+         chordAngle: Float = 0.0,
+         releaseI: (z: Bool, y: Bool) = (false, false),
+         releaseJ: (z: Bool, y: Bool) = (false, false)
+    ) {
         self.id = id
         self.i = i
         self.j = j
         self.material = material
         self.section = section
         self.coordAngle = chordAngle
+        self.releaseI = releaseI
+        self.releaseJ = releaseJ
+        
         self.geometry = BeamGeometry(id: id,
                                      i: i.position,
                                      j: j.position,
@@ -106,9 +120,29 @@ extension BeamColumn: OSElasticBeamColumn {
     
     var transfTag: Int { id }
     
-    var releaseZ: Int? { nil }
+    var releaseZ: Int? {
+        if releaseI.z && releaseJ.z  {
+            return 3
+        } else if releaseJ.z {
+            return 2
+        } else if releaseI.z {
+            return 1
+        } else {
+            return 0
+        }
+    }
     
-    var releaseY: Int? { nil }
+    var releaseY: Int? {
+        if releaseI.y && releaseJ.y  {
+            return 3
+        } else if releaseJ.y {
+            return 2
+        } else if releaseI.y {
+            return 1
+        } else {
+            return 0
+        }
+    }
     
     var massDens: Float? { nil }
     

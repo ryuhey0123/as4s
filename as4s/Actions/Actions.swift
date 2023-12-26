@@ -185,6 +185,9 @@ enum Actions {
         Actions.addNodalLoad(nodeId: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
         Actions.addNodalLoad(nodeId: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
         
+        store.model.beams.first(where: { $0.id == 5 })?.releaseI.y = true
+        store.model.beams.first(where: { $0.id == 10 })?.releaseJ.z = true
+        
         store.openSeesInput = SampleText.input
         store.openSeesStdErr = SampleText.output
     }
