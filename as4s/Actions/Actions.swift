@@ -246,53 +246,53 @@ enum Actions {
         do {
             let startTime = CACurrentMediaTime()
             
-            store.progressTitle = .analysing
+            store.progressState = .analysing
             store.progress = 0.0
             store.warningMessages = []
             store.errorMessages = []
             
-            store.progressSubtitle = "Encoding OpenSees Command File..."
+            store.progressTitle = "Encoding OpenSees Command File..."
             let path = try buildOpenSeesCommand(store: store)
             store.progress = 10.0
             
-            store.progressSubtitle = "Executing OpenSees..."
+            store.progressTitle = "Executing OpenSees..."
             let (stdout, stderr) = try store.openSeesDecoder.exexute(commandFilePath: path)
             store.openSeesStdOut = stdout
             store.openSeesStdErr = stderr
             store.progress = 20.0
             
-            store.progressSubtitle = "Parse OpenSees Results..."
+            store.progressTitle = "Parse OpenSees Results..."
             let result = store.openSeesDecoder.parse(data: stderr)
             store.progress = 60.0
             
-            store.progressSubtitle = "Update Results..."
+            store.progressTitle = "Update Results..."
             updateNodeResult(nodes: result.node, store: store)
             updateEleResult(beams: result.elasticBeam3d, store: store)
             store.progress = 80.0
             
-            store.progressSubtitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
+            store.progressTitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
             
             if !result.warning.isEmpty {
-                store.progressTitle = .warning
+                store.progressState = .warning
                 store.warningMessages.append(contentsOf: result.warning)
             } else {
-                store.progressTitle = .success
+                store.progressState = .success
             }
             
             store.progress = 100.0
             
         } catch EncodingError.invalidValue {
-            store.progressTitle = .error
-            store.progressSubtitle = "Encoding Error"
+            store.progressState = .error
+            store.progressTitle = "Encoding Error"
             return
             
         } catch AnalyzeError.terminateProcess(status: let error) {
-            store.progressTitle = .error
-            store.progressSubtitle = "Extute terminated Status: \(error)"
+            store.progressState = .error
+            store.progressTitle = "Extute terminated Status: \(error)"
             
         } catch AnalyzeError.invalidData(let error) {
-            store.progressTitle = .error
-            store.progressSubtitle = "Invalid Data: \(error)"
+            store.progressState = .error
+            store.progressTitle = "Invalid Data: \(error)"
             
         } catch let error {
             fatalError(error.localizedDescription)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ProgressTitles: String {
+enum ProgressStates: String {
     case modeling = "Modeling"
     case analysing = "Analysing..."
     case success = "Success"
@@ -16,7 +16,7 @@ enum ProgressTitles: String {
 }
 
 struct ProgressBar: View {
-    @Binding var title: ProgressTitles
+    @Binding var title: ProgressStates
     @Binding var subtitle: String
     
     @Binding var progress: Double
