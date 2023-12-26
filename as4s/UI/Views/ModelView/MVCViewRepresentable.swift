@@ -15,38 +15,44 @@ private typealias ViewRepresentable = UIViewRepresentable
 #endif
 
 struct MVCViewRepresentable: ViewRepresentable {
-    @Binding var view: MVCView
+    @Binding var metalView: MVCView
     let controller: GraphicController?
     let store: Store?
+    
+    func clearColor(_ color: MTLClearColor) -> MVCViewRepresentable {
+        let view = self
+        view.metalView.clearColor = color
+        return view
+    }
     
 #if os(macOS)
     func makeNSView(context: Context) -> some NSView {
         let rightDragGesture = NSPanGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleRightDrag(_:)))
         rightDragGesture.buttonMask = 0x2  // Right button
-        view.addGestureRecognizer(rightDragGesture)
+        metalView.addGestureRecognizer(rightDragGesture)
         
         let pinchGesture = NSMagnificationGestureRecognizer(target: context.coordinator, action: #selector(context.coordinator.handleTrackPadPinch(_:)))
-        view.addGestureRecognizer(pinchGesture)
+        metalView.addGestureRecognizer(pinchGesture)
         
-        return view
+        return metalView
     }
     
     func updateNSView(_ uiView: NSViewType, context: Context) {
         context.coordinator.controller = controller
         context.coordinator.store = store
-        view.coordinator = context.coordinator
+        metalView.coordinator = context.coordinator
     }
     
 #elseif os(iOS)
     func makeUIView(context: Context) -> MTKView {
-        return view
+        return metalView
     }
     
     func updateUIView(_ uiView: MTKView, context: Context) {}
 #endif
     
     func makeCoordinator() -> ModelViewCoordinator {
-        ModelViewCoordinator(view: view)
+        ModelViewCoordinator(view: metalView)
     }
 }
 

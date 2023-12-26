@@ -13,10 +13,12 @@ struct ModelView: View {
     @State private var metalView = MVCView()
     @State private var controller: GraphicController?
     
+    @Environment(\.colorScheme) var colorSheme
+    
     public var body: some View {
-        MVCViewRepresentable(view: $metalView, controller: controller, store: store)
+        MVCViewRepresentable(metalView: $metalView, controller: controller, store: store)
+            .clearColor(colorSheme == .dark ? .init(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0) : .init(red: 0.47, green: 0.47, blue: 0.47, alpha: 1.0))
             .onAppear {
-                metalView.clearColor = .init(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
                 controller = GraphicController(metalView: metalView, scene: store.scene)
                 
                 Actions.addCoordinate(store: store)
