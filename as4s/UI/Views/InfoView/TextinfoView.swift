@@ -15,7 +15,7 @@ struct TextinfoView: View {
     @State private var showingInput: Bool = true
     
     var body: some View {
-        VStack(spacing: -1.0) {
+        ZStack(alignment: .bottom) {
             HStack(spacing: -1.0) {
                 if showingOutput {
                     OutputTextView(title: "Output", text: $output)
@@ -33,7 +33,9 @@ struct TextinfoView: View {
             Divider()
             
             SecondaryInfoToolbar(showingOutput: $showingOutput, showingInput: $showingInput)
+                .background(.ultraThinMaterial)
         }
+        .background(.background)
     }
 }
 

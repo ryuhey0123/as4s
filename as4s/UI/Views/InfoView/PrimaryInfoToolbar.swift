@@ -11,42 +11,45 @@ struct PrimaryInfoToolbar: View {
     @Binding var showingAccesary: Bool
     
     var body: some View {
-        ZStack {
-            HStack {
-                Text("Hello!")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Toggle(isOn: $showingAccesary, label: {
-                    Label("Show Information", systemImage: "square.bottomthird.inset.filled")
-                        .labelStyle(.iconOnly)
-                })
-                .toggleStyle(.button)
-                .buttonStyle(.borderless)
-            }
-            .padding(.horizontal)
-            .frame(height: 25)
-            .contentShape(
-                Rectangle()
-            )
-            
-            HStack {
-                Spacer()
-                    .frame(width: 100)
-                Rectangle()
-                    .fill(.clear)
-                    .onHover { hovering in
-                        if hovering {
-                            NSCursor.resizeUpDown.push()
-                        } else {
-                            NSCursor.pop()
+        VStack(spacing: -1.0) {
+            ZStack {
+                HStack {
+                    Text("Hello!")
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Toggle(isOn: $showingAccesary, label: {
+                        Label("Show Information", systemImage: "square.bottomthird.inset.filled")
+                            .labelStyle(.iconOnly)
+                    })
+                    .toggleStyle(.button)
+                    .buttonStyle(.borderless)
+                }
+                .padding(.horizontal)
+                .frame(height: 25)
+                .contentShape(
+                    Rectangle()
+                )
+                
+                HStack {
+                    Spacer()
+                        .frame(width: 100)
+                    Rectangle()
+                        .fill(.clear)
+                        .onHover { hovering in
+                            if hovering {
+                                NSCursor.resizeUpDown.push()
+                            } else {
+                                NSCursor.pop()
+                            }
                         }
-                    }
-                Spacer()
-                    .frame(width: 100)
+                    Spacer()
+                        .frame(width: 100)
+                }
+                .frame(height: 25)
             }
-            .frame(height: 25)
+            Divider()
         }
-        .background(.thickMaterial)
+        .background(.background)
     }
 }
 

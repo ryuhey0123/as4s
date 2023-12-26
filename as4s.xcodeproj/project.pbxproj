@@ -301,7 +301,6 @@
 				B14AC2352B35543B00282CE0 /* PrimaryInfoToolbar.swift */,
 				B14AC2332B3553B500282CE0 /* SecondaryInfoToolbar.swift */,
 				B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */,
-				B1077D6A2B35E4D500938518 /* SampleText.swift */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -558,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				B1B312202ADC264600DC32B9 /* Actions.swift */,
+				B1077D6A2B35E4D500938518 /* SampleText.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";

@@ -19,8 +19,8 @@ struct InformationPanel: View {
                     .zIndex(1)
                 TextinfoView(output: $store.openSeesStdErr, input: $store.openSeesInput)
                     .frame(height: currentHeight)
-                    .background(.ultraThinMaterial)
             }
+            
         }
     }
 }

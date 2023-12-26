@@ -184,6 +184,9 @@ enum Actions {
         
         Actions.addNodalLoad(nodeId: 5, force: [10e3, 0, 0, 0, 0, 0], store: store)
         Actions.addNodalLoad(nodeId: 6, force: [0, 10e3, 0, 0, 0, 0], store: store)
+        
+        store.openSeesInput = SampleText.input
+        store.openSeesStdErr = SampleText.output
     }
     
     static func importTestModel(store: Store) {
