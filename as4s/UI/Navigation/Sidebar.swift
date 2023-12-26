@@ -23,6 +23,12 @@ struct Sidebar: View {
             Divider()
             
             Button("Analyze") {
+                Actions.analayze(store: store, encoding: false)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .center)
+            
+            Button("Encode/Analyze") {
                 Actions.analayze(store: store)
             }
             .padding()

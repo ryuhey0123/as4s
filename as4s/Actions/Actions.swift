@@ -243,12 +243,6 @@ enum Actions {
     }
     
     static func analayze(store: Store, encoding: Bool = true) {
-        guard let path = store.openSeesCommandPath else {
-            store.progressState = .error
-            store.progressTitle = "Is not set coomand.tcl path."
-            return
-        }
-        
         do {
             let startTime = CACurrentMediaTime()
             
@@ -259,12 +253,12 @@ enum Actions {
             
             if encoding {
                 store.progressTitle = "Encoding OpenSees Command File..."
-                try buildOpenSeesCommand(store: store)
+                try encodeOpenSeesCommand(store: store)
                 store.progress = 10.0
             }
             
             store.progressTitle = "Executing OpenSees..."
-            let (stdout, stderr) = try store.openSeesDecoder.exexute(commandFilePath: path)
+            let (stdout, stderr) = try store.openSeesDecoder.exexute(command: store.openSeesInput)
             store.openSeesStdOut = stdout
             store.openSeesStdErr = stderr
             store.progress = 20.0
@@ -309,12 +303,9 @@ enum Actions {
         store.progress = 0.0
     }
     
-    private static func buildOpenSeesCommand(store: Store) throws {
-        let data = try OSEncoder().encode(store.model)
-        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("command.tcl")
-        try data.write(to: path)
-        store.openSeesInput = String(data: data, encoding: .utf8) ?? ""
-        store.openSeesCommandPath = path
+    private static func encodeOpenSeesCommand(store: Store) throws {
+        let encoded = try OSEncoder().encode(store.model)
+        store.openSeesInput = encoded
     }
     
     private static func updateNodeResult(nodes: [OSReslutDecoder.OSResult.Node], store: Store) {
