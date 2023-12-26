@@ -10,7 +10,6 @@
 		B10287BD2B37C8D50020EDC9 /* ProgressLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */; };
 		B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D642B35C3FD00938518 /* MakeBeamView.swift */; };
 		B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D662B35C42400938518 /* InputFloatValueField.swift */; };
-		B1077D692B35E47B00938518 /* OutputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D682B35E47B00938518 /* OutputTextView.swift */; };
 		B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D6A2B35E4D500938518 /* SampleText.swift */; };
 		B12324272B31CC5500E8D6B0 /* ObjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */; };
 		B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324292B31D2E500E8D6B0 /* NodeInspector.swift */; };
@@ -29,9 +28,7 @@
 		B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5B2B2A0C5700F9A22C /* Selectable.swift */; };
 		B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */; };
 		B14AC22C2B34850000282CE0 /* MakeNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC22B2B34850000282CE0 /* MakeNodeView.swift */; };
-		B14AC22E2B348B2F00282CE0 /* TextinfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC22D2B348B2F00282CE0 /* TextinfoView.swift */; };
-		B14AC2342B3553B500282CE0 /* SecondaryInfoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2332B3553B500282CE0 /* SecondaryInfoToolbar.swift */; };
-		B14AC2362B35543B00282CE0 /* PrimaryInfoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2352B35543B00282CE0 /* PrimaryInfoToolbar.swift */; };
+		B14AC22E2B348B2F00282CE0 /* Textinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC22D2B348B2F00282CE0 /* Textinfo.swift */; };
 		B14AC2382B35552B00282CE0 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2372B35552B00282CE0 /* Detail.swift */; };
 		B14AC23A2B3557A000282CE0 /* MVCViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */; };
 		B14AC23C2B355A6100282CE0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B14AC23B2B355A6100282CE0 /* Colors.xcassets */; };
@@ -49,7 +46,6 @@
 		B14E2E5F2B2F1D8E0032AE30 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */; };
 		B14E2E612B2F1F2C0032AE30 /* NodalLoadGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */; };
 		B1512AE72B39865500A14A17 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = B1512AE62B39865500A14A17 /* HighlightedTextEditor */; };
-		B1512AE92B39867100A14A17 /* CommandEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AE82B39867100A14A17 /* CommandEditorView.swift */; };
 		B1512AEB2B399E1F00A14A17 /* OpenSeesHighlightRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */; };
 		B1512AED2B39D16100A14A17 /* InformationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AEC2B39D16100A14A17 /* InformationPanel.swift */; };
 		B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B161BC1F2ADB958A00AABA48 /* as4sApp.swift */; };
@@ -117,7 +113,6 @@
 		B10287BC2B37C8D50020EDC9 /* ProgressLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressLine.swift; sourceTree = "<group>"; };
 		B1077D642B35C3FD00938518 /* MakeBeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBeamView.swift; sourceTree = "<group>"; };
 		B1077D662B35C42400938518 /* InputFloatValueField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFloatValueField.swift; sourceTree = "<group>"; };
-		B1077D682B35E47B00938518 /* OutputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputTextView.swift; sourceTree = "<group>"; };
 		B1077D6A2B35E4D500938518 /* SampleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleText.swift; sourceTree = "<group>"; };
 		B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectInspector.swift; sourceTree = "<group>"; };
 		B12324292B31D2E500E8D6B0 /* NodeInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeInspector.swift; sourceTree = "<group>"; };
@@ -135,9 +130,7 @@
 		B1424E5B2B2A0C5700F9A22C /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		B1424E5D2B2A0D9D00F9A22C /* ElasticSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElasticSection.swift; sourceTree = "<group>"; };
 		B14AC22B2B34850000282CE0 /* MakeNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeNodeView.swift; sourceTree = "<group>"; };
-		B14AC22D2B348B2F00282CE0 /* TextinfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextinfoView.swift; sourceTree = "<group>"; };
-		B14AC2332B3553B500282CE0 /* SecondaryInfoToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryInfoToolbar.swift; sourceTree = "<group>"; };
-		B14AC2352B35543B00282CE0 /* PrimaryInfoToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryInfoToolbar.swift; sourceTree = "<group>"; };
+		B14AC22D2B348B2F00282CE0 /* Textinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textinfo.swift; sourceTree = "<group>"; };
 		B14AC2372B35552B00282CE0 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		B14AC2392B3557A000282CE0 /* MVCViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCViewRepresentable.swift; sourceTree = "<group>"; };
 		B14AC23B2B355A6100282CE0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -154,7 +147,6 @@
 		B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGeometry.swift; sourceTree = "<group>"; };
 		B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoadGeometry.swift; sourceTree = "<group>"; };
-		B1512AE82B39867100A14A17 /* CommandEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandEditorView.swift; sourceTree = "<group>"; };
 		B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSeesHighlightRule.swift; sourceTree = "<group>"; };
 		B1512AEC2B39D16100A14A17 /* InformationPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPanel.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,11 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				B1512AEC2B39D16100A14A17 /* InformationPanel.swift */,
-				B14AC22D2B348B2F00282CE0 /* TextinfoView.swift */,
-				B1512AE82B39867100A14A17 /* CommandEditorView.swift */,
-				B1077D682B35E47B00938518 /* OutputTextView.swift */,
-				B14AC2352B35543B00282CE0 /* PrimaryInfoToolbar.swift */,
-				B14AC2332B3553B500282CE0 /* SecondaryInfoToolbar.swift */,
+				B14AC22D2B348B2F00282CE0 /* Textinfo.swift */,
 				B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */,
 			);
 			path = InfoView;
@@ -799,9 +787,8 @@
 				B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */,
 				B14AC2422B3582FC00282CE0 /* CommandTabView.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
-				B14AC22E2B348B2F00282CE0 /* TextinfoView.swift in Sources */,
+				B14AC22E2B348B2F00282CE0 /* Textinfo.swift in Sources */,
 				B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */,
-				B14AC2342B3553B500282CE0 /* SecondaryInfoToolbar.swift in Sources */,
 				B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */,
 				B1A524F82B36C1EC00171268 /* MakeSupportView.swift in Sources */,
 				B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */,
@@ -816,10 +803,8 @@
 				B14E2E5D2B2F1D440032AE30 /* NodeGeometry.swift in Sources */,
 				B13B73422B382A6100230C57 /* MessageBadge.swift in Sources */,
 				B14AC23A2B3557A000282CE0 /* MVCViewRepresentable.swift in Sources */,
-				B14AC2362B35543B00282CE0 /* PrimaryInfoToolbar.swift in Sources */,
 				B1A525082B3725D700171268 /* SectionTable.swift in Sources */,
 				B13B73402B38285C00230C57 /* MessageView.swift in Sources */,
-				B1512AE92B39867100A14A17 /* CommandEditorView.swift in Sources */,
 				B14AC22C2B34850000282CE0 /* MakeNodeView.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
@@ -832,7 +817,6 @@
 				B14E2E5B2B2EEDEF0032AE30 /* BeamGeometry.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
-				B1077D692B35E47B00938518 /* OutputTextView.swift in Sources */,
 				B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */,
 				B1A524F02B36A57A00171268 /* Material.swift in Sources */,
 				B14AC23E2B35624100282CE0 /* LabeledScaler.swift in Sources */,
