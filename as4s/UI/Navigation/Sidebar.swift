@@ -22,6 +22,20 @@ struct Sidebar: View {
             
             Divider()
             
+            HStack {
+                Button("Small") {
+                    Actions.buildDebugModel(store: store)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
+                
+                Button("Big") {
+                    Actions.importTestModel(store: store)
+                }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
+            
             Button("Analyze") {
                 Actions.analayze(store: store, encoding: false)
             }
