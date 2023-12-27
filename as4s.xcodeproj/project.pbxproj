@@ -44,6 +44,8 @@
 		B14E2E5D2B2F1D440032AE30 /* NodeGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */; };
 		B14E2E5F2B2F1D8E0032AE30 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */; };
 		B14E2E612B2F1F2C0032AE30 /* NodalLoadGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */; };
+		B14F706A2B3BB94B00BC1DE4 /* FloatingPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F70692B3BB94B00BC1DE4 /* FloatingPanelView.swift */; };
+		B14F706C2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14F706B2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift */; };
 		B1512AE72B39865500A14A17 /* HighlightedTextEditor in Frameworks */ = {isa = PBXBuildFile; productRef = B1512AE62B39865500A14A17 /* HighlightedTextEditor */; };
 		B1512AEB2B399E1F00A14A17 /* OpenSeesHighlightRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */; };
 		B1512AED2B39D16100A14A17 /* InformationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1512AEC2B39D16100A14A17 /* InformationPanel.swift */; };
@@ -145,6 +147,8 @@
 		B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGeometry.swift; sourceTree = "<group>"; };
 		B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoadGeometry.swift; sourceTree = "<group>"; };
+		B14F70692B3BB94B00BC1DE4 /* FloatingPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelView.swift; sourceTree = "<group>"; };
+		B14F706B2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelExpandableLayout.swift; sourceTree = "<group>"; };
 		B1512AEA2B399E1F00A14A17 /* OpenSeesHighlightRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSeesHighlightRule.swift; sourceTree = "<group>"; };
 		B1512AEC2B39D16100A14A17 /* InformationPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPanel.swift; sourceTree = "<group>"; };
 		B161BC1C2ADB958A00AABA48 /* as4s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = as4s.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -510,6 +514,8 @@
 			children = (
 				B1077D662B35C42400938518 /* InputFloatValueField.swift */,
 				B14AC23D2B35624100282CE0 /* LabeledScaler.swift */,
+				B14F70692B3BB94B00BC1DE4 /* FloatingPanelView.swift */,
+				B14F706B2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift */,
 				B1A524FC2B36D51300171268 /* MaterialPicker.swift */,
 				B1AE658E2B3880E60046B26F /* SimpleTabItem.swift */,
 				B1A524F92B36C25600171268 /* SubmitButtom.swift */,
@@ -781,6 +787,7 @@
 				B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */,
 				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
 				B1A5250A2B3733B800171268 /* ProgressBar.swift in Sources */,
+				B14F706C2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift in Sources */,
 				B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */,
 				B14AC2422B3582FC00282CE0 /* CommandTabView.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
@@ -792,6 +799,7 @@
 				B1AF9F732B21B6810066C617 /* GraphicScene.swift in Sources */,
 				B1A525022B371AA300171268 /* TableView.swift in Sources */,
 				B1A524F42B36AD5800171268 /* RectangleSection.swift in Sources */,
+				B14F706A2B3BB94B00BC1DE4 /* FloatingPanelView.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
 				B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */,
 				B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */,
