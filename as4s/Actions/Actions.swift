@@ -257,12 +257,19 @@ enum Actions {
             store.progress = 20.0
             
             store.progressTitle = "Parse OpenSees Results..."
-            let result = store.openSeesDecoder.parse(data: stderr)
+            
+            let nodeResultURL = URL(fileURLWithPath: NSTemporaryDirectory())
+                .appendingPathComponent("node.out")
+            let eleResultURL = URL(fileURLWithPath: NSTemporaryDirectory())
+                .appendingPathComponent("ele.out")
+            
+            let result = store.openSeesDecoder.parse(nodeReultURL: nodeResultURL, eleResultURL: eleResultURL)
+            
             store.progress = 60.0
             
             store.progressTitle = "Update Results..."
             updateNodeResult(nodes: result.node, store: store)
-            updateEleResult(beams: result.elasticBeam3d, store: store)
+//            updateEleResult(beams: result.elasticBeam3d, store: store)
             store.progress = 80.0
             
             store.progressTitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
