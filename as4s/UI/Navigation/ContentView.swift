@@ -8,7 +8,6 @@
 import SwiftUI
 import Mevic
 import OpenSeesCoder
-import SplitView
 
 struct ContentView: View {
     @EnvironmentObject var store: Store

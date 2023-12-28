@@ -7,8 +7,8 @@
 
 import SwiftUI
 import Mevic
+import MGTCoder
 import OpenSeesCoder
-import simd
 
 enum Actions {
     
@@ -200,44 +200,22 @@ enum Actions {
         guard let fileURL = Bundle.main.url(forResource: "TestModel-2", withExtension: "txt") else {
             fatalError("Not found TestModel.txt")
         }
-        guard let fileContents = try? String(contentsOf: fileURL) else {
-            fatalError("Cannot read file.")
-        }
         
-        let data = fileContents.components(separatedBy: "*")
-        
-        let nodeData: [[String]] = data[5].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
-            $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-        }
-        
-        let nodes: [(id: Int, position: float3)] = nodeData.map {
-            guard let id = Int($0[0]) else { return nil }
-            guard let x = Float($0[1]) else { return nil }
-            guard let y = Float($0[2]) else { return nil }
-            guard let z = Float($0[3]) else { return nil }
-            return (id: id, position: float3(x, y, z))
-        }.compactMap { $0 }
-        
-        let beamData: [[String]] = data[6].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
-            $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-        }.filter { $0[1] == "BEAM" }
-        
-        let beams: [(id: Int, iNode: Int, jNode: Int)] = beamData.map {
-            guard let id = Int($0[0]) else { return nil }
-            guard let iNode = Int($0[4]) else { return nil }
-            guard let jNode = Int($0[5]) else { return nil }
-            return (id: id, iNode: iNode, jNode: jNode)
-        }.compactMap { $0 }
+        let mgtModel = try! MGTCoder().encode(url: fileURL, encoding: .utf8)
         
         Actions.addMaterial(id: 1, label: "SS400", E: 2.05e5, G: 1.02e3, store: store)
         Actions.addRectangleSection(id: 1, label: "100x100", width: 100, height: 100, store: store)
         
-        for node in nodes {
+        for node in mgtModel.nodes {
             Actions.addNode(id: node.id, position: node.position, store: store)
         }
         
-        for beam in beams {
-            Actions.addBeam(id: beam.id, i: beam.iNode, j: beam.jNode, angle: 0.0, section: 1, material: 1, store: store)
+        for beam in mgtModel.beams {
+            Actions.addBeam(id: beam.id, i: beam.iN1, j: beam.iN2, angle: beam.angle, section: 1, material: 1, store: store)
+        }
+        
+        for support in mgtModel.constraints {
+            Actions.addSupport(nodeId: support.nodeId, constrValues: support.value, store: store)
         }
         
         store.scene.updateBuffer()

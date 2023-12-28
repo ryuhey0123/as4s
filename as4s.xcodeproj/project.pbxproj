@@ -10,6 +10,7 @@
 		B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D642B35C3FD00938518 /* MakeBeamView.swift */; };
 		B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D662B35C42400938518 /* InputFloatValueField.swift */; };
 		B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1077D6A2B35E4D500938518 /* SampleText.swift */; };
+		B118FEC92B3D5DD2008B0BA2 /* MGTCoder in Frameworks */ = {isa = PBXBuildFile; productRef = B118FEC82B3D5DD2008B0BA2 /* MGTCoder */; };
 		B12324272B31CC5500E8D6B0 /* ObjectInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324262B31CC5500E8D6B0 /* ObjectInspector.swift */; };
 		B123242A2B31D2E500E8D6B0 /* NodeInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12324292B31D2E500E8D6B0 /* NodeInspector.swift */; };
 		B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124ADDC2B06429100AE5429 /* Color+Extensions.swift */; };
@@ -207,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1424E4E2B29CF1600F9A22C /* OpenSeesCoder in Frameworks */,
+				B118FEC92B3D5DD2008B0BA2 /* MGTCoder in Frameworks */,
 				B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */,
 				B1512AE72B39865500A14A17 /* HighlightedTextEditor in Frameworks */,
 			);
@@ -638,6 +640,7 @@
 				B17FE6502ADE82E5009A9134 /* Mevic */,
 				B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */,
 				B1512AE62B39865500A14A17 /* HighlightedTextEditor */,
+				B118FEC82B3D5DD2008B0BA2 /* MGTCoder */,
 			);
 			productName = as4s;
 			productReference = B161BC1C2ADB958A00AABA48 /* as4s.app */;
@@ -715,6 +718,7 @@
 				B1D0265F2AE0E55F00DF77E0 /* XCLocalSwiftPackageReference "../Mevic/Mevic" */,
 				B1424E4C2B29CF1600F9A22C /* XCLocalSwiftPackageReference "../OpenSeesCoder" */,
 				B1512AE52B39865500A14A17 /* XCRemoteSwiftPackageReference "HighlightedTextEditor" */,
+				B118FEC72B3D5DD2008B0BA2 /* XCLocalSwiftPackageReference "../MGTCoder" */,
 			);
 			productRefGroup = B161BC1D2ADB958A00AABA48 /* Products */;
 			projectDirPath = "";
@@ -1199,6 +1203,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		B118FEC72B3D5DD2008B0BA2 /* XCLocalSwiftPackageReference "../MGTCoder" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../MGTCoder;
+		};
 		B1424E4C2B29CF1600F9A22C /* XCLocalSwiftPackageReference "../OpenSeesCoder" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../OpenSeesCoder;
@@ -1221,6 +1229,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B118FEC82B3D5DD2008B0BA2 /* MGTCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MGTCoder;
+		};
 		B1424E4D2B29CF1600F9A22C /* OpenSeesCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OpenSeesCoder;

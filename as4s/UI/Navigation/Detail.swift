@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SplitView
 
 struct Detail: View {
     @EnvironmentObject var store: Store
