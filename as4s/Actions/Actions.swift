@@ -190,9 +190,13 @@ enum Actions {
         
         store.openSeesInput = SampleText.input
         store.openSeesStdErr = SampleText.output
+        
+        store.scene.updateBuffer()
     }
     
     static func importTestModel(store: Store) {
+        let startTime = CACurrentMediaTime()
+        
         guard let fileURL = Bundle.main.url(forResource: "TestModel", withExtension: "txt") else {
             fatalError("Not found TestModel.txt")
         }
@@ -209,8 +213,8 @@ enum Actions {
         let nodes: [(id: Int, position: float3)] = nodeData.map {
             guard let id = Int($0[0]) else { return nil }
             guard let x = Float($0[1]) else { return nil }
-            guard let y = Float($0[3]) else { return nil }
-            guard let z = Float($0[2]) else { return nil }
+            guard let y = Float($0[2]) else { return nil }
+            guard let z = Float($0[3]) else { return nil }
             return (id: id, position: float3(x, y, z))
         }.compactMap { $0 }
         
@@ -235,6 +239,10 @@ enum Actions {
         for beam in beams {
             Actions.addBeam(id: beam.id, i: beam.iNode, j: beam.jNode, angle: 0.0, section: 1, material: 1, store: store)
         }
+        
+        store.scene.updateBuffer()
+        
+        Logger.action.info("\(#function) time: \(CACurrentMediaTime() - startTime) sec")
     }
     
     

@@ -102,11 +102,11 @@ extension BeamColumn: Renderable {
     }
     
     func appendTo(scene: GraphicScene) {
-        scene.modelLayer.beam.append(geometry: geometry.model)
-        scene.modelLayer.beamLabel.append(geometry: geometry.label)
-        scene.dispModelLayer.beam.append(geometry: geometry.disp)
-        scene.forceLayer.append(forceGeometry: geometry)
-        scene.captionLayer.beamCoord.append(geometry: geometry.localCoord)
+        scene.modelLayer.beam.append(geometry: geometry.model, update: false)
+        scene.modelLayer.beamLabel.append(geometry: geometry.label, update: false)
+        scene.dispModelLayer.beam.append(geometry: geometry.disp, update: false)
+        scene.forceLayer.append(forceGeometry: geometry, update: false)
+        scene.captionLayer.beamCoord.append(geometry: geometry.localCoord, update: false)
     }
 }
 

@@ -51,25 +51,25 @@ class ForceLayer: MVCLayer {
         mZ.isShown = false
     }
     
-    func append(forceGeometry: BeamGeometry) {
-        vX.append(geometry: forceGeometry.vX)
-        vY.append(geometry: forceGeometry.vY)
-        vZ.append(geometry: forceGeometry.vZ)
-        mX.append(geometry: forceGeometry.mX)
-        mY.append(geometry: forceGeometry.mY)
-        mZ.append(geometry: forceGeometry.mZ)
+    func append(forceGeometry: BeamGeometry, update: Bool = true) {
+        vX.append(geometry: forceGeometry.vX, update: update)
+        vY.append(geometry: forceGeometry.vY, update: update)
+        vZ.append(geometry: forceGeometry.vZ, update: update)
+        mX.append(geometry: forceGeometry.mX, update: update)
+        mY.append(geometry: forceGeometry.mY, update: update)
+        mZ.append(geometry: forceGeometry.mZ, update: update)
         
-        vX.append(geometry: forceGeometry.vXiLabel)
-        vY.append(geometry: forceGeometry.vYiLabel)
-        vZ.append(geometry: forceGeometry.vZiLabel)
-        mX.append(geometry: forceGeometry.mXiLabel)
-        mY.append(geometry: forceGeometry.mYiLabel)
-        mZ.append(geometry: forceGeometry.mZiLabel)
-        vX.append(geometry: forceGeometry.vXjLabel)
-        vY.append(geometry: forceGeometry.vYjLabel)
-        vZ.append(geometry: forceGeometry.vZjLabel)
-        mX.append(geometry: forceGeometry.mXjLabel)
-        mY.append(geometry: forceGeometry.mYjLabel)
-        mZ.append(geometry: forceGeometry.mZjLabel)
+        vX.append(geometry: forceGeometry.vXiLabel, update: update)
+        vY.append(geometry: forceGeometry.vYiLabel, update: update)
+        vZ.append(geometry: forceGeometry.vZiLabel, update: update)
+        mX.append(geometry: forceGeometry.mXiLabel, update: update)
+        mY.append(geometry: forceGeometry.mYiLabel, update: update)
+        mZ.append(geometry: forceGeometry.mZiLabel, update: update)
+        vX.append(geometry: forceGeometry.vXjLabel, update: update)
+        vY.append(geometry: forceGeometry.vYjLabel, update: update)
+        vZ.append(geometry: forceGeometry.vZjLabel, update: update)
+        mX.append(geometry: forceGeometry.mXjLabel, update: update)
+        mY.append(geometry: forceGeometry.mYjLabel, update: update)
+        mZ.append(geometry: forceGeometry.mZjLabel, update: update)
     }
 }
