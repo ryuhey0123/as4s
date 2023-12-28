@@ -34,6 +34,17 @@ final class Model: OSModel {
         OSPlainPattern(patternTag: 1, tsTag: 1, loads: nodalLoads)
     ] }
     
+    // MARK: Recoders
+    
+    var nodeRecoders: [OSNodeRecorder] = [
+        OSNodeRecorder(fileName: "tmp/res_node_disp", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .disp),
+        OSNodeRecorder(fileName: "tmp/res_node_react", fileOption: .file, dofs: [1, 2, 3, 4, 5, 6], respType: .reaction),
+    ]
+    
+    var elementRecoders: [OSElementRecoder] = [
+        OSElementRecoder(fileName: "tmp/res_ele_force", fileOption: .file, args: ["force"])
+    ]
+    
     // MARK: Analyze
     
     var system: OSSystem = .BandSPD
