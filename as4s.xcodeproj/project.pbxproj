@@ -86,6 +86,7 @@
 		B1B8792A2ADBBB2800CCDDA7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B879292ADBBB2800CCDDA7 /* Model.swift */; };
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE09EE2B21FAAC0002C57B /* Support.swift */; };
+		B1DEA7B22B3D42E700D7756D /* TestModel-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1DEA7B12B3D42E700D7756D /* TestModel-2.txt */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */; };
 		B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* BeamColumn.swift */; };
 		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
@@ -192,6 +193,7 @@
 		B1B879292ADBBB2800CCDDA7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1BE09EE2B21FAAC0002C57B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		B1DEA7B12B3D42E700D7756D /* TestModel-2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TestModel-2.txt"; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* BeamColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamColumn.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 			children = (
 				B1FE619F2B258D2D005116DC /* OpenSees3.5.0 */,
 				B12AD6802B1950A800D4D315 /* TestModel.txt */,
+				B1DEA7B12B3D42E700D7756D /* TestModel-2.txt */,
 				B161BC252ADB958A00AABA48 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -734,6 +737,7 @@
 				B1FE61B32B258D2D005116DC /* OpenSees in Resources */,
 				B14AC23C2B355A6100282CE0 /* Colors.xcassets in Resources */,
 				B1FE61B42B258D2D005116DC /* init.tcl in Resources */,
+				B1DEA7B22B3D42E700D7756D /* TestModel-2.txt in Resources */,
 				B12AD6812B1950A800D4D315 /* TestModel.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

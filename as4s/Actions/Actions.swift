@@ -197,7 +197,7 @@ enum Actions {
     static func importTestModel(store: Store) {
         let startTime = CACurrentMediaTime()
         
-        guard let fileURL = Bundle.main.url(forResource: "TestModel", withExtension: "txt") else {
+        guard let fileURL = Bundle.main.url(forResource: "TestModel-2", withExtension: "txt") else {
             fatalError("Not found TestModel.txt")
         }
         guard let fileContents = try? String(contentsOf: fileURL) else {
@@ -206,7 +206,7 @@ enum Actions {
         
         let data = fileContents.components(separatedBy: "*")
         
-        let nodeData: [[String]] = data[6].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
+        let nodeData: [[String]] = data[5].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
             $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }
         
@@ -218,7 +218,7 @@ enum Actions {
             return (id: id, position: float3(x, y, z))
         }.compactMap { $0 }
         
-        let beamData: [[String]] = data[7].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
+        let beamData: [[String]] = data[6].components(separatedBy: "\n").filter { !$0.isEmpty }.dropFirst(2).map {
             $0.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }.filter { $0[1] == "BEAM" }
         
