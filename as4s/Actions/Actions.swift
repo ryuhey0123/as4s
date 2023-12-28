@@ -218,6 +218,10 @@ enum Actions {
             Actions.addSupport(nodeId: support.nodeId, constrValues: support.value, store: store)
         }
         
+        for nodalLoad in mgtModel.nodalLoads {
+            Actions.addNodalLoad(nodeId: nodalLoad.nodeId, force: nodalLoad.force, store: store)
+        }
+        
         store.scene.updateBuffer()
         
         Logger.action.info("\(#function) time: \(CACurrentMediaTime() - startTime) sec")
