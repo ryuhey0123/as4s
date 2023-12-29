@@ -268,8 +268,17 @@ enum Actions {
             store.progress = 60.0
             
             store.progressTitle = "Update Results..."
-            updateNodeResult(nodes: result.node, store: store)
-//            updateEleResult(beams: result.elasticBeam3d, store: store)
+            
+            if let model = store.results.first(where: { $0.label == "First"}) {
+                updateNodeResult(nodes: result.node, model: model, store: store)
+                updateEleResult(beams: result.elasticBeam3d, model: model, store: store)
+            } else {
+                let model = Result(label: "First")
+                updateNodeResult(nodes: result.node, model: model, store: store)
+                updateEleResult(beams: result.elasticBeam3d, model: model, store: store)
+                store.append(model)
+            }
+            
             store.progress = 80.0
             
             store.progressTitle = "Finished running \(String(format: "%.3f", CACurrentMediaTime() - startTime))sec"
@@ -310,29 +319,22 @@ enum Actions {
         store.openSeesInput = encoded
     }
     
-    private static func updateNodeResult(nodes: [OSResult.Node], store: Store) {
-        let model = Result(label: "First case")
-        
+    private static func updateNodeResult(nodes: [OSResult.Node], model: Result, store: Store) {
         for result in nodes {
-            if let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) {
-                let value = float3(result.disps[0..<3])
-                let disp = DispNode(node: node, disp: value)
-                model.dispNodes.append(disp)
-            }
+            guard let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) else { break }
+            
+            let disp = DispNode(node: node, disp: float3(result.disps[0..<3]))
+            model.dispNodes.append(disp)
         }
-        
-        store.append(model)
     }
     
-    private static func updateEleResult(beams: [OSResult.ElasticBeam3d], store: Store) {
-//        for beam in store.model.beams {
-//            beam.geometry.disp.i = beam.i.geometry.disp.position
-//            beam.geometry.disp.j = beam.j.geometry.disp.position
-//            
-//            if let result = beams.first(where: { $0.tag == beam.eleTag }) {
-//                let force = result.iForce + result.jForce
-//                beam.geometry.updateGeometry(force: force)
-//            }
-//        }
+    private static func updateEleResult(beams: [OSResult.ElasticBeam3d], model: Result, store: Store) {
+        for beam in store.model.beams {
+            guard let iNode = model.dispNodes.first(where: { $0.node.id == beam.iNode }),
+                  let jNode = model.dispNodes.first(where: { $0.node.id == beam.jNode }) else { break }
+            
+            let disp = DispBeam(iNode: iNode, jNode: jNode)
+            model.dispBeams.append(disp)
+        }
     }
 }

@@ -90,6 +90,8 @@
 		B1E8B16E2B3E83A500DD54A5 /* NodeDispGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */; };
 		B1E8B1702B3E859800DD54A5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B16F2B3E859800DD54A5 /* Result.swift */; };
 		B1E8B1722B3E87D400DD54A5 /* ResultLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B1712B3E87D400DD54A5 /* ResultLayer.swift */; };
+		B1E8B1742B3E996000DD54A5 /* BeamDispGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B1732B3E996000DD54A5 /* BeamDispGeometry.swift */; };
+		B1E8B1762B3E9BF400DD54A5 /* DispBeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B1752B3E9BF400DD54A5 /* DispBeam.swift */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */; };
 		B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* BeamColumn.swift */; };
 		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
@@ -199,6 +201,8 @@
 		B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDispGeometry.swift; sourceTree = "<group>"; };
 		B1E8B16F2B3E859800DD54A5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		B1E8B1712B3E87D400DD54A5 /* ResultLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultLayer.swift; sourceTree = "<group>"; };
+		B1E8B1732B3E996000DD54A5 /* BeamDispGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamDispGeometry.swift; sourceTree = "<group>"; };
+		B1E8B1752B3E9BF400DD54A5 /* DispBeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispBeam.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* BeamColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamColumn.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */,
 				B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */,
 				B14E2E5A2B2EEDEF0032AE30 /* BeamGeometry.swift */,
+				B1E8B1732B3E996000DD54A5 /* BeamDispGeometry.swift */,
 				B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */,
 			);
 			path = Geometry;
@@ -586,6 +591,7 @@
 			children = (
 				B1E8B16F2B3E859800DD54A5 /* Result.swift */,
 				B1E8B16B2B3E822D00DD54A5 /* DispNode.swift */,
+				B1E8B1752B3E9BF400DD54A5 /* DispBeam.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -839,9 +845,11 @@
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,
 				B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */,
 				B1512AED2B39D16100A14A17 /* InformationPanel.swift in Sources */,
+				B1E8B1762B3E9BF400DD54A5 /* DispBeam.swift in Sources */,
 				B1424E542B29E05F00F9A22C /* Transformation.swift in Sources */,
 				B1A524F62B36B21100171268 /* MakeMaterialView.swift in Sources */,
 				B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */,
+				B1E8B1742B3E996000DD54A5 /* BeamDispGeometry.swift in Sources */,
 				B14E2E5B2B2EEDEF0032AE30 /* BeamGeometry.swift in Sources */,
 				B12AD6412B16153400D4D315 /* GraphicController.swift in Sources */,
 				B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */,
