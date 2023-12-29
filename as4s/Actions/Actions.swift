@@ -333,8 +333,13 @@ enum Actions {
             guard let iNode = model.dispNodes.first(where: { $0.node.id == beam.iNode }),
                   let jNode = model.dispNodes.first(where: { $0.node.id == beam.jNode }) else { break }
             
-            let disp = DispBeam(iNode: iNode, jNode: jNode)
+            let disp = DispBeamColumn(iNode: iNode, jNode: jNode)
             model.dispBeams.append(disp)
+            
+            let force = ForceBeamColumn(beam: beam)
+            guard let value = beams.first(where: { $0.tag == beam.eleTag }) else { break }
+            force.updateForce(force: value.iForce + value.jForce)
+            model.forceBeams.append(force)
         }
     }
 }

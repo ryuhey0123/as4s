@@ -13,7 +13,9 @@ final class Result: Identifiable {
     var label: String
     
     var dispNodes: [DispNode] = []
-    var dispBeams: [DispBeam] = []
+    var dispBeams: [DispBeamColumn] = []
+    
+    var forceBeams: [ForceBeamColumn] = []
     
     init(label: String) {
         self.label = label
@@ -28,6 +30,10 @@ final class Result: Identifiable {
         
         dispBeams.forEach {
             layer.beamDisp.append(geometry: $0.geometry.model, update: false)
+        }
+        
+        forceBeams.forEach {
+            layer.beamForce.append(forceGeometry: $0.geometry, update: false)
         }
         
         layer.update()

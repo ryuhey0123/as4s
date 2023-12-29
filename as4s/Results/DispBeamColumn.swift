@@ -1,5 +1,5 @@
 //
-//  DispBeam.swift
+//  DispBeamColumn.swift
 //  as4s
 //
 //  Created by Ryuhei Fujita on 2023/12/29.
@@ -7,7 +7,7 @@
 
 import Mevic
 
-final class DispBeam {
+final class DispBeamColumn {
     
     weak var iNode: DispNode!
     weak var jNode: DispNode!

@@ -12,6 +12,8 @@ class ResultLayer: MVCLayer {
     var nodeDisp = MVCLayer("Result-Node-Disp")
     var beamDisp = MVCLayer("Result-Beam-Disp")
     
+    var beamForce = ForceLayer()
+    
     var dispLabel = MVCLayer("Result-Label-Node-Disp")
     
     override init(_ label: String? = nil) {
@@ -19,6 +21,8 @@ class ResultLayer: MVCLayer {
         
         append(layer: nodeDisp)
         append(layer: beamDisp)
+        
+        append(layer: beamForce)
         
         append(layer: dispLabel)
     }
