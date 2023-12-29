@@ -19,4 +19,5 @@ struct NodeDispGeometry: Geometry {
         let position = (position + disp * Self.scale).metal
         model = .init(position: position, color: .init(.red))
         label = Self.defaultLabel(target: position)
-    }}
+    }
+}

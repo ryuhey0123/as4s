@@ -16,7 +16,7 @@ final class Store: ObservableObject, Identifiable {
     let id = UUID()
     
     var openSeesCommandPath: URL? = nil
-    var openSeesDecoder: OSReslutDecoder
+    var openSeesDecoder: OSPrintDecoder
     var openSeesBinaryURL: URL
     var tclEnvironment: [String : String]
     

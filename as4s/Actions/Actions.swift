@@ -310,7 +310,7 @@ enum Actions {
         store.openSeesInput = encoded
     }
     
-    private static func updateNodeResult(nodes: [OSReslutDecoder.OSResult.Node], store: Store) {
+    private static func updateNodeResult(nodes: [OSResult.Node], store: Store) {
         let model = Result(label: "First case")
         
         for result in nodes {
@@ -324,7 +324,7 @@ enum Actions {
         store.append(model)
     }
     
-    private static func updateEleResult(beams: [OSReslutDecoder.OSResult.ElasticBeam3d], store: Store) {
+    private static func updateEleResult(beams: [OSResult.ElasticBeam3d], store: Store) {
 //        for beam in store.model.beams {
 //            beam.geometry.disp.i = beam.i.geometry.disp.position
 //            beam.geometry.disp.j = beam.j.geometry.disp.position
