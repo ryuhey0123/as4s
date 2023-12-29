@@ -37,7 +37,6 @@
 		B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */; };
 		B14E2E3F2B2DC71D0032AE30 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */; };
 		B14E2E432B2E95EF0032AE30 /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */; };
-		B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */; };
 		B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */; };
 		B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */; };
 		B14E2E4E2B2EAAF20032AE30 /* ModelCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14E2E4D2B2EAAF20032AE30 /* ModelCommands.swift */; };
@@ -62,7 +61,6 @@
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
 		B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19890412B33EA8D00CF0431 /* BeamInspector.swift */; };
-		B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */; };
 		B19DFE032B30936A00B7F7B8 /* TransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE022B30936A00B7F7B8 /* TransformView.swift */; };
 		B1A524F02B36A57A00171268 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524EF2B36A57A00171268 /* Material.swift */; };
 		B1A524F42B36AD5800171268 /* RectangleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524F32B36AD5800171268 /* RectangleSection.swift */; };
@@ -88,6 +86,10 @@
 		B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */; };
 		B1BE09EF2B21FAAC0002C57B /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE09EE2B21FAAC0002C57B /* Support.swift */; };
 		B1DEA7B22B3D42E700D7756D /* TestModel-2.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1DEA7B12B3D42E700D7756D /* TestModel-2.txt */; };
+		B1E8B16C2B3E822D00DD54A5 /* DispNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B16B2B3E822D00DD54A5 /* DispNode.swift */; };
+		B1E8B16E2B3E83A500DD54A5 /* NodeDispGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */; };
+		B1E8B1702B3E859800DD54A5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B16F2B3E859800DD54A5 /* Result.swift */; };
+		B1E8B1722B3E87D400DD54A5 /* ResultLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8B1712B3E87D400DD54A5 /* ResultLayer.swift */; };
 		B1F5EF1C2B074A8400805708 /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */; };
 		B1F5EF1E2B074F6200805708 /* BeamColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1D2B074F6200805708 /* BeamColumn.swift */; };
 		B1F5EF202B074FCD00805708 /* Truss.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5EF1F2B074FCD00805708 /* Truss.swift */; };
@@ -141,7 +143,6 @@
 		B14E2E3C2B2DBB600032AE30 /* ModelViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewCoordinator.swift; sourceTree = "<group>"; };
 		B14E2E3E2B2DC71D0032AE30 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
-		B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceLayer.swift; sourceTree = "<group>"; };
 		B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLayer.swift; sourceTree = "<group>"; };
 		B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionLayer.swift; sourceTree = "<group>"; };
 		B14E2E4D2B2EAAF20032AE30 /* ModelCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCommands.swift; sourceTree = "<group>"; };
@@ -169,7 +170,6 @@
 		B177A7782B39615800BD5B55 /* MaterialManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialManageView.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
 		B19890412B33EA8D00CF0431 /* BeamInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamInspector.swift; sourceTree = "<group>"; };
-		B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModelLayer.swift; sourceTree = "<group>"; };
 		B19DFE022B30936A00B7F7B8 /* TransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformView.swift; sourceTree = "<group>"; };
 		B1A524EF2B36A57A00171268 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		B1A524F32B36AD5800171268 /* RectangleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSection.swift; sourceTree = "<group>"; };
@@ -195,6 +195,10 @@
 		B1B8792C2ADBBDE300CCDDA7 /* floatN+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "floatN+Extensions.swift"; sourceTree = "<group>"; };
 		B1BE09EE2B21FAAC0002C57B /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		B1DEA7B12B3D42E700D7756D /* TestModel-2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TestModel-2.txt"; sourceTree = "<group>"; };
+		B1E8B16B2B3E822D00DD54A5 /* DispNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispNode.swift; sourceTree = "<group>"; };
+		B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDispGeometry.swift; sourceTree = "<group>"; };
+		B1E8B16F2B3E859800DD54A5 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		B1E8B1712B3E87D400DD54A5 /* ResultLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultLayer.swift; sourceTree = "<group>"; };
 		B1F5EF1B2B074A8400805708 /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
 		B1F5EF1D2B074F6200805708 /* BeamColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamColumn.swift; sourceTree = "<group>"; };
 		B1F5EF1F2B074FCD00805708 /* Truss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Truss.swift; sourceTree = "<group>"; };
@@ -325,8 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				B14E2E422B2E95EF0032AE30 /* ModelLayer.swift */,
-				B19DFE002B30820100B7F7B8 /* DispModelLayer.swift */,
-				B14E2E442B2E9F5D0032AE30 /* ForceLayer.swift */,
+				B1E8B1712B3E87D400DD54A5 /* ResultLayer.swift */,
 				B14E2E462B2E9F7B0032AE30 /* LoadLayer.swift */,
 				B14E2E482B2E9F8F0032AE30 /* CaptionLayer.swift */,
 			);
@@ -356,6 +359,7 @@
 			children = (
 				B14E2E5E2B2F1D8E0032AE30 /* Geometry.swift */,
 				B14E2E5C2B2F1D440032AE30 /* NodeGeometry.swift */,
+				B1E8B16D2B3E83A500DD54A5 /* NodeDispGeometry.swift */,
 				B14E2E5A2B2EEDEF0032AE30 /* BeamGeometry.swift */,
 				B14E2E602B2F1F2C0032AE30 /* NodalLoadGeometry.swift */,
 			);
@@ -396,6 +400,7 @@
 				B177A77A2B3965BF00BD5B55 /* UI */,
 				B1B8792E2ADBBE2400CCDDA7 /* Stores */,
 				B1B3121F2ADC263C00DC32B9 /* Actions */,
+				B1E8B16A2B3E821400DD54A5 /* Results */,
 				B161BC512ADB963800AABA48 /* Models */,
 				B1424E692B2AEBA400F9A22C /* Graphics */,
 				B1B8792B2ADBBDCC00CCDDA7 /* Extensions */,
@@ -574,6 +579,15 @@
 				B1B3121C2ADC24A700DC32B9 /* Store+Document.swift */,
 			);
 			path = Stores;
+			sourceTree = "<group>";
+		};
+		B1E8B16A2B3E821400DD54A5 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				B1E8B16F2B3E859800DD54A5 /* Result.swift */,
+				B1E8B16B2B3E822D00DD54A5 /* DispNode.swift */,
+			);
+			path = Results;
 			sourceTree = "<group>";
 		};
 		B1FE619E2B258CF8005116DC /* Resources */ = {
@@ -773,6 +787,7 @@
 				B14AC2382B35552B00282CE0 /* Detail.swift in Sources */,
 				B1A524FD2B36D51300171268 /* MaterialPicker.swift in Sources */,
 				B1AE658F2B3880E60046B26F /* SimpleTabItem.swift in Sources */,
+				B1E8B1702B3E859800DD54A5 /* Result.swift in Sources */,
 				B1077D6B2B35E4D500938518 /* SampleText.swift in Sources */,
 				B14E2E472B2E9F7B0032AE30 /* LoadLayer.swift in Sources */,
 				B1424E5E2B2A0D9D00F9A22C /* ElasticSection.swift in Sources */,
@@ -785,7 +800,6 @@
 				B1512AEB2B399E1F00A14A17 /* OpenSeesHighlightRule.swift in Sources */,
 				B177A7792B39615800BD5B55 /* MaterialManageView.swift in Sources */,
 				B1424E502B29D28B00F9A22C /* Renderable.swift in Sources */,
-				B14E2E452B2E9F5D0032AE30 /* ForceLayer.swift in Sources */,
 				B1A525062B37247F00171268 /* MaterialTable.swift in Sources */,
 				B1AE658D2B387D850046B26F /* MakeRectangle.swift in Sources */,
 				B1B8792D2ADBBDE300CCDDA7 /* floatN+Extensions.swift in Sources */,
@@ -794,13 +808,13 @@
 				B161BC202ADB958A00AABA48 /* as4sApp.swift in Sources */,
 				B1077D672B35C42400938518 /* InputFloatValueField.swift in Sources */,
 				B1372C7F2B05CE65000293D4 /* Config.swift in Sources */,
+				B1E8B16E2B3E83A500DD54A5 /* NodeDispGeometry.swift in Sources */,
 				B1A5250A2B3733B800171268 /* ProgressBar.swift in Sources */,
 				B14F706C2B3BBB0E00BC1DE4 /* FloatingPanelExpandableLayout.swift in Sources */,
 				B1077D652B35C3FD00938518 /* MakeBeamView.swift in Sources */,
 				B14AC2422B3582FC00282CE0 /* CommandTabView.swift in Sources */,
 				B1B3121D2ADC24A700DC32B9 /* Store+Document.swift in Sources */,
 				B14AC22E2B348B2F00282CE0 /* Textinfo.swift in Sources */,
-				B19DFE012B30820100B7F7B8 /* DispModelLayer.swift in Sources */,
 				B14E2E492B2E9F8F0032AE30 /* CaptionLayer.swift in Sources */,
 				B1A524F82B36C1EC00171268 /* MakeSupportView.swift in Sources */,
 				B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */,
@@ -809,6 +823,7 @@
 				B1A524F42B36AD5800171268 /* RectangleSection.swift in Sources */,
 				B14F706A2B3BB94B00BC1DE4 /* FloatingPanelView.swift in Sources */,
 				B124ADDD2B06429100AE5429 /* Color+Extensions.swift in Sources */,
+				B1E8B1722B3E87D400DD54A5 /* ResultLayer.swift in Sources */,
 				B14E2E3D2B2DBB600032AE30 /* ModelViewCoordinator.swift in Sources */,
 				B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */,
 				B1AE658B2B3875D10046B26F /* SectionManageView.swift in Sources */,
@@ -818,6 +833,7 @@
 				B14AC23A2B3557A000282CE0 /* MVCViewRepresentable.swift in Sources */,
 				B1A525082B3725D700171268 /* SectionTable.swift in Sources */,
 				B13B73402B38285C00230C57 /* MessageView.swift in Sources */,
+				B1E8B16C2B3E822D00DD54A5 /* DispNode.swift in Sources */,
 				B14AC22C2B34850000282CE0 /* MakeNodeView.swift in Sources */,
 				B161BC222ADB958A00AABA48 /* Store.swift in Sources */,
 				B1424E5C2B2A0C5700F9A22C /* Selectable.swift in Sources */,

@@ -44,8 +44,6 @@ extension Node: Renderable {
     func appendTo(scene: GraphicScene) {
         scene.modelLayer.node.append(geometry: geometry.model, update: false)
         scene.modelLayer.nodeLabel.append(geometry: geometry.label, update: false)
-        scene.dispModelLayer.node.append(geometry: geometry.disp, update: false)
-        scene.dispModelLayer.node.append(geometry: geometry.dispLabel, update: false)
     }
 }
 

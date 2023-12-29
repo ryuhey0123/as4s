@@ -11,10 +11,10 @@ import Mevic
 class GraphicScene: MVCScene, ObservableObject {
     
     @Published var modelLayer = ModelLayer()
-    @Published var dispModelLayer = DispModelLayer()
-    @Published var forceLayer = ForceLayer()
     @Published var loadLayer = LoadLayer()
     @Published var captionLayer = CaptionLayer()
+    
+    @Published var results = MVCLayer("Results")
     
     override init(_ label: String? = nil) {
         super.init()
@@ -25,16 +25,10 @@ class GraphicScene: MVCScene, ObservableObject {
         camera.far = -100_000
     }
     
-    func buildLayer() {
+    private func buildLayer() {
         append(layer: modelLayer)
-        append(layer: dispModelLayer)
-        append(layer: forceLayer)
         append(layer: loadLayer)
         append(layer: captionLayer)
-        
-        dispModelLayer.isShown = false
-        dispModelLayer.nodeLabel.isShown = true
-        forceLayer.isShown = false
-        loadLayer.isShown = false
+        append(layer: results)
     }
 }

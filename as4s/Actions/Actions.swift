@@ -283,6 +283,8 @@ enum Actions {
             
             store.progress = 100.0
             
+            store.scene.updateBuffer()
+            
         } catch EncodingError.invalidValue {
             store.progressState = .error
             store.progressTitle = "Encoding Error"
@@ -309,25 +311,28 @@ enum Actions {
     }
     
     private static func updateNodeResult(nodes: [OSReslutDecoder.OSResult.Node], store: Store) {
+        let model = Result(label: "First case")
+        
         for result in nodes {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) {
-                let value = float3(result.disps[0..<3]) * 100
-                node.geometry.disp.position = (node.position + value).metal
-                node.geometry.dispLabel.target = (node.position + value).metal
-                node.geometry.dispLabel.text = "(\(String(format: "%.1f", value.x)), \(String(format: "%.1f", value.y)), \(String(format: "%.1f", value.z)))"
+                let value = float3(result.disps[0..<3])
+                let disp = DispNode(node: node, disp: value)
+                model.dispNodes.append(disp)
             }
         }
+        
+        store.append(model)
     }
     
     private static func updateEleResult(beams: [OSReslutDecoder.OSResult.ElasticBeam3d], store: Store) {
-        for beam in store.model.beams {
-            beam.geometry.disp.i = beam.i.geometry.disp.position
-            beam.geometry.disp.j = beam.j.geometry.disp.position
-            
-            if let result = beams.first(where: { $0.tag == beam.eleTag }) {
-                let force = result.iForce + result.jForce
-                beam.geometry.updateGeometry(force: force)
-            }
-        }
+//        for beam in store.model.beams {
+//            beam.geometry.disp.i = beam.i.geometry.disp.position
+//            beam.geometry.disp.j = beam.j.geometry.disp.position
+//            
+//            if let result = beams.first(where: { $0.tag == beam.eleTag }) {
+//                let force = result.iForce + result.jForce
+//                beam.geometry.updateGeometry(force: force)
+//            }
+//        }
     }
 }

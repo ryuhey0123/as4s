@@ -21,6 +21,7 @@ final class Store: ObservableObject, Identifiable {
     var tclEnvironment: [String : String]
     
     @Published var model: Model
+    @Published var results: [Result]
     
     @Published var scene: GraphicScene = GraphicScene()
     @Published var selectedNodes: Set<Node> = []
@@ -44,7 +45,7 @@ final class Store: ObservableObject, Identifiable {
     @Published var showingSectionManagerSheet: Bool = false
     @Published var showingMaterialManagerSheet: Bool = false
     
-    init(model: Model = Model()) {
+    init(model: Model = Model(), results: [Result] = []) {
         guard let binaryURL = Bundle.main.url(forResource: "OpenSees", withExtension: nil) else {
             fatalError("Not found OpenSees")
         }
@@ -57,6 +58,7 @@ final class Store: ObservableObject, Identifiable {
         environment["TCL_LIBRARY"] = tclURL.deletingLastPathComponent().path
         
         self.model = model
+        self.results = results
         self.openSeesBinaryURL = binaryURL
         self.tclEnvironment = environment
         
@@ -91,6 +93,10 @@ final class Store: ObservableObject, Identifiable {
     
     func append(_ section: CrossSection) {
         model.sections.append(section)
+    }
+    
+    func append(_ result: Result) {
+        result.appendTo(scene: scene)
     }
 }
 
