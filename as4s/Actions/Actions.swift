@@ -311,10 +311,10 @@ enum Actions {
     private static func updateNodeResult(nodes: [OSReslutDecoder.OSResult.Node], store: Store) {
         for result in nodes {
             if let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) {
-                let value = result.disps[0..<3]
-                node.geometry.disp.position = (node.position + float3(value)).metal
-                node.geometry.dispLabel.target = (node.position + float3(value)).metal
-                node.geometry.dispLabel.text = "(\(String(format: "%.1f", value[0])), \(String(format: "%.1f", value[1])), \(String(format: "%.1f", value[2])))"
+                let value = float3(result.disps[0..<3]) * 100
+                node.geometry.disp.position = (node.position + value).metal
+                node.geometry.dispLabel.target = (node.position + value).metal
+                node.geometry.dispLabel.text = "(\(String(format: "%.1f", value.x)), \(String(format: "%.1f", value.y)), \(String(format: "%.1f", value.z)))"
             }
         }
     }
