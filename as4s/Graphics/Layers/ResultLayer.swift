@@ -9,21 +9,12 @@ import Mevic
 
 class ResultLayer: MVCLayer {
     
-    var nodeDisp = MVCLayer("Result-Node-Disp")
-    var beamDisp = MVCLayer("Result-Beam-Disp")
-    
+    var disp = DispLayer("Result-Disp")
     var beamForce = ForceLayer()
-    
-    var dispLabel = MVCLayer("Result-Label-Node-Disp")
     
     override init(_ label: String? = nil) {
         super.init(label)
-        
-        append(layer: nodeDisp)
-        append(layer: beamDisp)
-        
+        append(layer: disp)
         append(layer: beamForce)
-        
-        append(layer: dispLabel)
     }
 }

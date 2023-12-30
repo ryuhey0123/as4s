@@ -324,17 +324,17 @@ enum Actions {
             guard let node = store.model.nodes.first(where: { $0.nodeTag == result.tag }) else { break }
             
             let disp = DispNode(node: node, disp: float3(result.disps[0..<3]))
-            model.dispNodes.append(disp)
+            model.disp.nodes.append(disp)
         }
     }
     
     private static func updateEleResult(beams: [OSResult.ElasticBeam3d], model: Result, store: Store) {
         for beam in store.model.beams {
-            guard let iNode = model.dispNodes.first(where: { $0.node.id == beam.iNode }),
-                  let jNode = model.dispNodes.first(where: { $0.node.id == beam.jNode }) else { break }
+            guard let iNode = model.disp.nodes.first(where: { $0.node.id == beam.iNode }),
+                  let jNode = model.disp.nodes.first(where: { $0.node.id == beam.jNode }) else { break }
             
             let disp = DispBeamColumn(iNode: iNode, jNode: jNode)
-            model.dispBeams.append(disp)
+            model.disp.beams.append(disp)
             
             let force = ForceBeamColumn(beam: beam)
             guard let value = beams.first(where: { $0.tag == beam.eleTag }) else { break }

@@ -9,7 +9,6 @@ import SwiftUI
 import Mevic
 
 struct BeamGeometry: Geometry {
-    
     typealias ElementConfigType = Config.beam
     
     var color: Color = ElementConfigType.color {
@@ -49,20 +48,7 @@ struct BeamGeometry: Geometry {
         localCoord.yDir = ydir
         localCoord.zDir = zdir
         
-        if model.i != i {
-            updateNode(i: i)
-        }
-        
-        if model.j != j {
-            updateNode(j: j)
-        }
-    }
-    
-    private mutating func updateNode(i: float3) {
         model.i = i
-    }
-    
-    private mutating func updateNode(j: float3) {
         model.j = j
     }
 }

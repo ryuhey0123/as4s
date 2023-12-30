@@ -10,8 +10,6 @@ import Mevic
 struct BeamDispGeometry: Geometry {
     typealias ElementConfigType = Config.beam
     
-    static let scale: Float = 100.0
-    
     var model: MVCLineGeometry
     
     init(i: float3, j: float3) {

@@ -8,7 +8,6 @@ import SwiftUI
 import Mevic
 
 struct NodalLoadGeometry: Geometry {
-    
     typealias ElementConfigType = Config.nodalLoad
     
     var model: MVCArrowGeometry
