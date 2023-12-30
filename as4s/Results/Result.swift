@@ -13,7 +13,7 @@ final class Result: Identifiable {
     var label: String
     
     var disp: DispModel = DispModel()
-    var forces: Forces = Forces()
+    var forces: ForceModel = ForceModel()
     
     init(label: String) {
         self.label = label
