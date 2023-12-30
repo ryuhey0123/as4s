@@ -21,7 +21,7 @@ final class Result: Identifiable {
     }
     
     func appendTo(scene: GraphicScene) {
-        var layer = ResultLayer()
+        var layer = scene.result
         
         disp.appendTo(layer: &layer, update: false)
         
@@ -30,6 +30,5 @@ final class Result: Identifiable {
         }
         
         layer.update()
-        scene.results.append(layer: layer)
     }
 }
