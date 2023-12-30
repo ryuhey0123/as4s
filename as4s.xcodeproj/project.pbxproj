@@ -62,6 +62,7 @@
 		B17DB8012B3FDF6F0005631C /* DispModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DB8002B3FDF6F0005631C /* DispModel.swift */; };
 		B17F72622B215A1300829C30 /* NodalLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F72612B215A1300829C30 /* NodalLoad.swift */; };
 		B17FE6512ADE82E5009A9134 /* Mevic in Frameworks */ = {isa = PBXBuildFile; productRef = B17FE6502ADE82E5009A9134 /* Mevic */; };
+		B1892E432B4066130002E0A7 /* Forces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1892E422B4066130002E0A7 /* Forces.swift */; };
 		B19890422B33EA8D00CF0431 /* BeamInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19890412B33EA8D00CF0431 /* BeamInspector.swift */; };
 		B19DFE032B30936A00B7F7B8 /* TransformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19DFE022B30936A00B7F7B8 /* TransformView.swift */; };
 		B1A524F02B36A57A00171268 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A524EF2B36A57A00171268 /* Material.swift */; };
@@ -178,6 +179,7 @@
 		B17DB7FE2B3FDCE40005631C /* DispLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispLayer.swift; sourceTree = "<group>"; };
 		B17DB8002B3FDF6F0005631C /* DispModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispModel.swift; sourceTree = "<group>"; };
 		B17F72612B215A1300829C30 /* NodalLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodalLoad.swift; sourceTree = "<group>"; };
+		B1892E422B4066130002E0A7 /* Forces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forces.swift; sourceTree = "<group>"; };
 		B19890412B33EA8D00CF0431 /* BeamInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamInspector.swift; sourceTree = "<group>"; };
 		B19DFE022B30936A00B7F7B8 /* TransformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformView.swift; sourceTree = "<group>"; };
 		B1A524EF2B36A57A00171268 /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 			children = (
 				B1E8B16F2B3E859800DD54A5 /* Result.swift */,
 				B17DB8002B3FDF6F0005631C /* DispModel.swift */,
+				B1892E422B4066130002E0A7 /* Forces.swift */,
 				B1E8B16B2B3E822D00DD54A5 /* DispNode.swift */,
 				B1E8B1752B3E9BF400DD54A5 /* DispBeamColumn.swift */,
 				B1E8B1772B3E9EC400DD54A5 /* ForceBeamColumn.swift */,
@@ -881,6 +884,7 @@
 				B1F5EF202B074FCD00805708 /* Truss.swift in Sources */,
 				B1A65B8F2ADD36A1001A9C7B /* Logger.swift in Sources */,
 				B1A525042B37212200171268 /* BeamColumnTable.swift in Sources */,
+				B1892E432B4066130002E0A7 /* Forces.swift in Sources */,
 				B14E2E612B2F1F2C0032AE30 /* NodalLoadGeometry.swift in Sources */,
 				B161BC242ADB958A00AABA48 /* ContentView.swift in Sources */,
 			);

@@ -339,7 +339,7 @@ enum Actions {
             let force = ForceBeamColumn(beam: beam)
             guard let value = beams.first(where: { $0.tag == beam.eleTag }) else { break }
             force.updateForce(force: value.iForce + value.jForce)
-            model.forceBeams.append(force)
+            model.forces.columnBeams.append(force)
         }
     }
 }

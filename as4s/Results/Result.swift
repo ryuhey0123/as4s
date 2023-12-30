@@ -12,23 +12,17 @@ final class Result: Identifiable {
     var id = UUID()
     var label: String
     
-    var disp: DispModel
-    var forceBeams: [ForceBeamColumn] = []
+    var disp: DispModel = DispModel()
+    var forces: Forces = Forces()
     
     init(label: String) {
         self.label = label
-        disp = DispModel()
     }
     
     func appendTo(scene: GraphicScene) {
         var layer = ResultLayer(label)
-        
         disp.appendTo(layer: &layer, update: false)
-        
-        forceBeams.forEach {
-            layer.beamForce.append(forceGeometry: $0.geometry, update: false)
-        }
-        
+        forces.appendTo(layer: &layer, update: false)
         layer.update()
         
         scene.append(result: layer)
