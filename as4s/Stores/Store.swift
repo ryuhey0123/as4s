@@ -70,6 +70,8 @@ final class Store: ObservableObject, Identifiable {
         
         if debug {
             Actions.buildDebugModel(store: self)
+            append(Result(label: "Test Case 1"))
+            append(Result(label: "Test Case 2"))
         }
     }
     
@@ -96,6 +98,7 @@ final class Store: ObservableObject, Identifiable {
     }
     
     func append(_ result: Result) {
+        results.append(result)
         result.appendTo(scene: scene)
     }
 }

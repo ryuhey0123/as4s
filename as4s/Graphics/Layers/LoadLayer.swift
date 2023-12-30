@@ -22,8 +22,5 @@ class LoadLayer: MVCLayer {
         super.init("Load")
         append(layer: nodal)
         append(layer: nodalLabel)
-        
-        nodal.isShown = false
-        nodalLabel.isShown = false
     }
 }

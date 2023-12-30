@@ -17,7 +17,5 @@ class CaptionLayer: MVCLayer {
         super.init("Caption")
         append(layer: globalCoord)
         append(layer: beamCoord)
-        
-        beamCoord.isShown = false
     }
 }
