@@ -17,7 +17,7 @@ struct Sidebar: View {
             
             Divider()
             
-            visiableToggle
+            VisiableToggle()
                 .frame(minHeight: 50, maxHeight: .infinity)
             
             Divider()
@@ -49,8 +49,14 @@ struct Sidebar: View {
             .frame(maxWidth: .infinity, alignment: .center)
         }
     }
+}
+
+
+fileprivate struct VisiableToggle: View {
+    @EnvironmentObject var store: Store
+    @State private var currentId: UUID = UUID()
     
-    private var visiableToggle: some View {
+    var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
                 Section("Caption") {
@@ -93,22 +99,30 @@ struct Sidebar: View {
                 }
                 
                 Section("PostProcess") {
-                    Toggle(isOn: $store.scene.result.beamForce.isShown) {
-                        Text("Force")
+                    Picker("Result", selection: $currentId) {
+                        ForEach(store.scene.results, id: \.id) { result in
+                            Text(result.label ?? "Test")
+                        }
                     }
-                    //                    HStack {
-                    //                        Toggle(isOn: $store.scene.forceLayer.vX.isShown, label: { Text("Vx") })
-                    //                        Toggle(isOn: $store.scene.forceLayer.vY.isShown, label: { Text("Vy") })
-                    //                        Toggle(isOn: $store.scene.forceLayer.vZ.isShown, label: { Text("Vz") })
-                    //                    }
-                    //                    HStack {
-                    //                        Toggle(isOn: $store.scene.forceLayer.mX.isShown, label: { Text("Mx") })
-                    //                        Toggle(isOn: $store.scene.forceLayer.mY.isShown, label: { Text("My") })
-                    //                        Toggle(isOn: $store.scene.forceLayer.mZ.isShown, label: { Text("Mz") })
-                    //                    }
                     
-                    Button("Displacement") {
-                        store.scene.result.disp.isShown.toggle()
+                    if let i = store.scene.results.firstIndex(where: { $0.id == currentId }) {
+                        Toggle(isOn: $store.scene.results[i].beamForce.isShown) {
+                            Text("Force")
+                        }
+                        
+                        HStack {
+                            Toggle(isOn: $store.scene.results[i].beamForce.vX.isShown, label: { Text("Vx") })
+                            Toggle(isOn: $store.scene.results[i].beamForce.vY.isShown, label: { Text("Vy") })
+                            Toggle(isOn: $store.scene.results[i].beamForce.vZ.isShown, label: { Text("Vz") })
+                        }
+                        HStack {
+                            Toggle(isOn: $store.scene.results[i].beamForce.mX.isShown, label: { Text("Mx") })
+                            Toggle(isOn: $store.scene.results[i].beamForce.mY.isShown, label: { Text("My") })
+                            Toggle(isOn: $store.scene.results[i].beamForce.mZ.isShown, label: { Text("Mz") })
+                        }
+                        Button("Displacement") {
+                            store.scene.results[i].disp.isShown.toggle()
+                        }
                     }
                 }
             }
@@ -120,6 +134,12 @@ struct Sidebar: View {
 
 #Preview {
     Sidebar()
+        .environmentObject(Store.debug)
+        .frame(width: 250, height: 800)
+}
+
+#Preview("PostProcess") {
+    VisiableToggle()
         .environmentObject(Store.debug)
         .frame(width: 250, height: 800)
 }

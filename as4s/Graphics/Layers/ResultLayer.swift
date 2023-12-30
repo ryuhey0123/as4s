@@ -18,3 +18,14 @@ class ResultLayer: MVCLayer {
         append(layer: beamForce)
     }
 }
+
+extension ResultLayer: Hashable {
+    
+    static func == (lhs: ResultLayer, rhs: ResultLayer) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

@@ -17,8 +17,8 @@ final class ForceBeamColumn {
         self.beam = beam
         geometry = .init(i: beam.i.position.metal,
                          j: beam.j.position.metal,
-                         zdir: beam.coordVector,
-                         ydir: beam.coordCrossVector)
+                         zdir: beam.coordVector.metal,
+                         ydir: beam.coordCrossVector.metal)
     }
     
     func updateForce(force: [Float]) {

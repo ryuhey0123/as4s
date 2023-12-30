@@ -13,7 +13,7 @@ class GraphicScene: MVCScene, ObservableObject {
     @Published var modelLayer = ModelLayer()
     @Published var loadLayer = LoadLayer()
     @Published var captionLayer = CaptionLayer()
-    @Published var result = ResultLayer()
+    @Published var results: [ResultLayer] = []
     
     override init(_ label: String? = nil) {
         super.init()
@@ -28,6 +28,10 @@ class GraphicScene: MVCScene, ObservableObject {
         append(layer: modelLayer)
         append(layer: loadLayer)
         append(layer: captionLayer)
+    }
+    
+    func append(result: ResultLayer) {
+        results.append(result)
         append(layer: result)
     }
 }
